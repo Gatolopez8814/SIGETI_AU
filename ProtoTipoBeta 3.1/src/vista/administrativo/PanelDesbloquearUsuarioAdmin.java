@@ -7,6 +7,8 @@ package vista.administrativo;
 
 import controlador.Controlador;
 import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import vista.Ventana;
 import vista.VentanaLogin;
@@ -23,12 +25,22 @@ public class PanelDesbloquearUsuarioAdmin extends javax.swing.JPanel {
         if (instancia == null) {
             instancia = new PanelDesbloquearUsuarioAdmin();
         }
+        instancia.cargarjComboUsuarios();
         return instancia;
     }//----------------------------------------------------------------------------- FIN obtenerInstancia()
 
     private void ajustarEventos() {
         addMouseListener(Ventana.obtenerInstancia());
         txtCorreoDesBloquear.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                Ventana.obtenerInstancia().tecla();
+                if (150 != txtCorreoDesBloquear.getText().length()) {
+                } else {
+                    e.consume();
+                }
+            }//
+            
             @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 super.keyPressed(evt);
@@ -53,6 +65,8 @@ public class PanelDesbloquearUsuarioAdmin extends javax.swing.JPanel {
         labelCreador = new javax.swing.JLabel();
         labelUsuario = new javax.swing.JLabel();
         txtCorreoDesBloquear = new javax.swing.JTextField();
+        labelCreador1 = new javax.swing.JLabel();
+        jComboUsuarios = new javax.swing.JComboBox();
 
         jPanel3.setBackground(new java.awt.Color(208, 144, 56));
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -130,7 +144,7 @@ public class PanelDesbloquearUsuarioAdmin extends javax.swing.JPanel {
         jPanel5.setBackground(new java.awt.Color(226, 221, 205));
         jPanel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        labelCreador.setText("Correo del usuario que desea desbloquear");
+        labelCreador.setText("Digite el correo del usuario que desea desbloquear");
 
         labelUsuario.setText("@castillo.cr");
 
@@ -140,15 +154,24 @@ public class PanelDesbloquearUsuarioAdmin extends javax.swing.JPanel {
             }
         });
 
+        labelCreador1.setText("Selecciones el usuario que desea desbloquear");
+
+        jComboUsuarios.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione aquí" }));
+        jComboUsuarios.setToolTipText("");
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(labelCreador)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelCreador)
+                    .addComponent(labelCreador1))
                 .addGap(30, 30, 30)
-                .addComponent(txtCorreoDesBloquear, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtCorreoDesBloquear, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                    .addComponent(jComboUsuarios, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(labelUsuario)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -157,6 +180,10 @@ public class PanelDesbloquearUsuarioAdmin extends javax.swing.JPanel {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelCreador1)
+                    .addComponent(jComboUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(labelCreador)
@@ -172,7 +199,7 @@ public class PanelDesbloquearUsuarioAdmin extends javax.swing.JPanel {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(339, Short.MAX_VALUE))
+                .addContainerGap(300, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -220,7 +247,7 @@ public class PanelDesbloquearUsuarioAdmin extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 11, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -235,7 +262,10 @@ public class PanelDesbloquearUsuarioAdmin extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnDesbloquearusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDesbloquearusuarioActionPerformed
-        if(Controlador.obtenerInstancia().obtieneEstadoUsuario(txtCorreoDesBloquear.getText()) == 1){
+        if(this.txtCorreoDesBloquear.getText().equals("") && this.jComboUsuarios.getSelectedIndex()==0){
+            JOptionPane.showMessageDialog(this, "Faltan datos", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }else if(!this.txtCorreoDesBloquear.getText().equals("") && this.jComboUsuarios.getSelectedIndex()==0){
+            if(Controlador.obtenerInstancia().obtieneEstadoUsuario(txtCorreoDesBloquear.getText()) == 1){
             JOptionPane.showMessageDialog(this, "El usuario ya se encuentra desbloqueado", "ERROR", JOptionPane.ERROR_MESSAGE);
         }else{
         String contrasenna;
@@ -246,6 +276,7 @@ public class PanelDesbloquearUsuarioAdmin extends javax.swing.JPanel {
                 if (Controlador.obtenerInstancia().desBloqueaUsuarioAdmin(txtCorreoDesBloquear.getText())) {
                     JOptionPane.showMessageDialog(this, "   El usuario ha sido desbloqueado con éxito", "Usuario desbloqueado", JOptionPane.INFORMATION_MESSAGE);
 
+                    instancia.cargarjComboUsuarios();
                     
                     Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
                             VentanaLogin.correo, "Usuario", "Desbloqueó al usuario " + txtCorreoDesBloquear.getText());
@@ -259,14 +290,59 @@ public class PanelDesbloquearUsuarioAdmin extends javax.swing.JPanel {
 
         }
         }
+        }else if(this.txtCorreoDesBloquear.getText().equals("") && this.jComboUsuarios.getSelectedIndex()!=0){
+            if(Controlador.obtenerInstancia().obtieneEstadoUsuario(jComboUsuarios.getSelectedItem().toString()) == 1){
+            JOptionPane.showMessageDialog(this, "El usuario ya se encuentra desbloqueado", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }else{
+        String contrasenna;
+        if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Realmente "
+                + "desea desbloquear este usuario?", null, JOptionPane.YES_NO_OPTION)) {
+            contrasenna = JOptionPane.showInputDialog("Digite su contraseña:");
+            if (Controlador.obtenerInstancia().verificarContrasenna(VentanaLogin.correo, contrasenna)) {
+                if (Controlador.obtenerInstancia().desBloqueaUsuarioAdmin(jComboUsuarios.getSelectedItem().toString())) {
+                    JOptionPane.showMessageDialog(this, "   El usuario ha sido desbloqueado con éxito", "Usuario desbloqueado", JOptionPane.INFORMATION_MESSAGE);
+
+                    Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
+                            VentanaLogin.correo, "Usuario", "Desbloqueó al usuario " + jComboUsuarios.getSelectedItem().toString());
+                    instancia.cargarjComboUsuarios();
+                    this.limpiarCampos();
+                    
+                } else {
+                    JOptionPane.showMessageDialog(this, "No se pudo desbloquear el usuario", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "   No se pudo desbloquear el usuario, constraseña incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+
+        }
+        }
+        }else{
+            JOptionPane.showMessageDialog(this, "Debe elegir una sola opción", "ERROR", JOptionPane.ERROR_MESSAGE);
+            instancia.cargarjComboUsuarios();
+            this.limpiarCampos();
+        }
+        
     }//GEN-LAST:event_btnDesbloquearusuarioActionPerformed
 
+     private void cargarjComboUsuarios(){
+        this.jComboUsuarios.removeAllItems();
+        this.jComboUsuarios.addItem("Seleccione aquí");
+        ArrayList<String> temp = Controlador.obtenerInstancia().obtieneUsuarios(VentanaLogin.correo, 0);
+        for (String temp1 : temp) {
+            this.jComboUsuarios.addItem(temp1);
+        }
+        this.jComboUsuarios.setSelectedIndex(0);
+        this.jComboUsuarios.revalidate();
+        this.jComboUsuarios.repaint();
+    }//----------------------------------------------------------------------------- FIN cargarjComboUsuarios()
+     
     private void txtCorreoDesBloquearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoDesBloquearActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCorreoDesBloquearActionPerformed
 
     private void limpiarCampos() {
         txtCorreoDesBloquear.setText("");
+        this.jComboUsuarios.setSelectedIndex(0);
     }
 
     //Declaracion de variables
@@ -275,12 +351,14 @@ public class PanelDesbloquearUsuarioAdmin extends javax.swing.JPanel {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnDesbloquearusuario;
     private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox jComboUsuarios;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JLabel labelCreador;
+    private javax.swing.JLabel labelCreador1;
     private javax.swing.JLabel labelTitulo;
     private javax.swing.JLabel labelUsuario;
     private javax.swing.JTextField txtCorreoDesBloquear;

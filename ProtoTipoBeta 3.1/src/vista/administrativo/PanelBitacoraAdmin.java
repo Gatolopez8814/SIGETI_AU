@@ -3,7 +3,12 @@ package vista.administrativo;
 import controlador.Controlador;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -38,34 +43,34 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
                 Ventana.obtenerInstancia().tecla();
             }
         });
-        jTextAnnoDesde.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                super.keyPressed(evt);
-                Ventana.obtenerInstancia().tecla();
-            }
-        });
-        jTextAnnoHasta.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                super.keyPressed(evt);
-                Ventana.obtenerInstancia().tecla();
-            }
-        });
-        jTextDiaDesde.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                super.keyPressed(evt);
-                Ventana.obtenerInstancia().tecla();
-            }
-        });
-        jTextDiaHasta.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                super.keyPressed(evt);
-                Ventana.obtenerInstancia().tecla();
-            }
-        });
+//        jTextAnnoDesde.addKeyListener(new KeyAdapter() {
+//            @Override
+//            public void keyPressed(java.awt.event.KeyEvent evt) {
+//                super.keyPressed(evt);
+//                Ventana.obtenerInstancia().tecla();
+//            }
+//        });
+//        jTextAnnoHasta.addKeyListener(new KeyAdapter() {
+//            @Override
+//            public void keyPressed(java.awt.event.KeyEvent evt) {
+//                super.keyPressed(evt);
+//                Ventana.obtenerInstancia().tecla();
+//            }
+//        });
+//        jTextDiaDesde.addKeyListener(new KeyAdapter() {
+//            @Override
+//            public void keyPressed(java.awt.event.KeyEvent evt) {
+//                super.keyPressed(evt);
+//                Ventana.obtenerInstancia().tecla();
+//            }
+//        });
+//        jTextDiaHasta.addKeyListener(new KeyAdapter() {
+//            @Override
+//            public void keyPressed(java.awt.event.KeyEvent evt) {
+//                super.keyPressed(evt);
+//                Ventana.obtenerInstancia().tecla();
+//            }
+//        });
         jTextUsuario.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -73,20 +78,20 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
                 Ventana.obtenerInstancia().tecla();
             }
         });
-        jTextMesDesde.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                super.keyPressed(evt);
-                Ventana.obtenerInstancia().tecla();
-            }
-        });
-        jTextMesHasta.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                super.keyPressed(evt);
-                Ventana.obtenerInstancia().tecla();
-            }
-        });
+//        jTextMesDesde.addKeyListener(new KeyAdapter() {
+//            @Override
+//            public void keyPressed(java.awt.event.KeyEvent evt) {
+//                super.keyPressed(evt);
+//                Ventana.obtenerInstancia().tecla();
+//            }
+//        });
+//        jTextMesHasta.addKeyListener(new KeyAdapter() {
+//            @Override
+//            public void keyPressed(java.awt.event.KeyEvent evt) {
+//                super.keyPressed(evt);
+//                Ventana.obtenerInstancia().tecla();
+//            }
+//        });
 
     }
 
@@ -98,12 +103,12 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
     }//----------------------------------------------------------------------------- FIN ocultarComponentes()
 
     private void iniciarValidaciones() {
-        soloNumeros(this.jTextAnnoDesde);
-        soloNumeros(this.jTextMesDesde);
-        soloNumeros(this.jTextDiaDesde);
-        soloNumeros(this.jTextAnnoHasta);
-        soloNumeros(this.jTextMesHasta);
-        soloNumeros(this.jTextDiaHasta);
+//        soloNumeros(this.jTextAnnoDesde);
+//        soloNumeros(this.jTextMesDesde);
+//        soloNumeros(this.jTextDiaDesde);
+//        soloNumeros(this.jTextAnnoHasta);
+//        soloNumeros(this.jTextMesHasta);
+//        soloNumeros(this.jTextDiaHasta);
         soloNumeros(this.jTextHoraInicial);
         soloNumeros(this.jTextMinutoInicial);
         soloNumeros(this.jTextHoraFinal);
@@ -137,17 +142,17 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jPanelRangoFechas = new javax.swing.JPanel();
         jLabelDesde = new javax.swing.JLabel();
-        jTextDiaDesde = new javax.swing.JTextField();
         jLabelGuion1 = new javax.swing.JLabel();
-        jTextMesDesde = new javax.swing.JTextField();
         jLabelGuion2 = new javax.swing.JLabel();
-        jTextAnnoDesde = new javax.swing.JTextField();
         jLabelHasta = new javax.swing.JLabel();
-        jTextDiaHasta = new javax.swing.JTextField();
         jLabelGuion3 = new javax.swing.JLabel();
-        jTextMesHasta = new javax.swing.JTextField();
         jLabelGuion4 = new javax.swing.JLabel();
-        jTextAnnoHasta = new javax.swing.JTextField();
+        jComboDiaDesde = new javax.swing.JComboBox();
+        jComboMesDesde = new javax.swing.JComboBox();
+        jComboAñoDesde = new javax.swing.JComboBox();
+        jComboDiaHasta = new javax.swing.JComboBox();
+        jComboMesHasta = new javax.swing.JComboBox();
+        jComboAñosHasta = new javax.swing.JComboBox();
         jPanelTabla = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableBitacora = new javax.swing.JTable();
@@ -195,7 +200,7 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
 
         jLabelSubtitulo.setText("Seleccione el tipo de consulta: ");
 
-        ComboBusqueda.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione aquí", "Fechas", "Horas", "Usuario" }));
+        ComboBusqueda.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione aquí", "Fechas", "Horas", "Usuario", "Ver todo" }));
         ComboBusqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ComboBusquedaActionPerformed(evt);
@@ -259,37 +264,31 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
 
         jLabelDesde.setText("Desde: ");
 
-        jTextDiaDesde.setText("dd");
-
         jLabelGuion1.setText("-");
-
-        jTextMesDesde.setText("mm");
 
         jLabelGuion2.setText("-");
 
-        jTextAnnoDesde.setText("aaaa");
-        jTextAnnoDesde.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextAnnoDesdeActionPerformed(evt);
-            }
-        });
-
         jLabelHasta.setText("Hasta:");
-
-        jTextDiaHasta.setText("dd");
 
         jLabelGuion3.setText("-");
 
-        jTextMesHasta.setText("mm");
-
         jLabelGuion4.setText("-");
 
-        jTextAnnoHasta.setText("aaaa");
-        jTextAnnoHasta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextAnnoHastaActionPerformed(evt);
-            }
-        });
+        jComboDiaDesde.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+
+        jComboMesDesde.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Setiembre", "Octubre", "Noviembre", "Diciembre" }));
+
+        jComboAñoDesde.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Año" }));
+        jComboAñoDesde.setToolTipText("");
+
+        jComboDiaHasta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        jComboDiaHasta.setToolTipText("");
+
+        jComboMesHasta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Setiembre", "Octubre", "Noviembre", "Diciembre" }));
+        jComboMesHasta.setToolTipText("");
+
+        jComboAñosHasta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Año" }));
+        jComboAñosHasta.setToolTipText("");
 
         javax.swing.GroupLayout jPanelRangoFechasLayout = new javax.swing.GroupLayout(jPanelRangoFechas);
         jPanelRangoFechas.setLayout(jPanelRangoFechasLayout);
@@ -298,28 +297,28 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
             .addGroup(jPanelRangoFechasLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabelDesde)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextDiaDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboDiaDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelGuion1, javax.swing.GroupLayout.PREFERRED_SIZE, 4, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextMesDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jComboMesDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelGuion2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextAnnoDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
+                .addComponent(jComboAñoDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16)
                 .addComponent(jLabelHasta)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextDiaHasta, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboDiaHasta, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelGuion3, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextMesHasta, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jComboMesHasta, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelGuion4, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextAnnoHasta, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jComboAñosHasta, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelRangoFechasLayout.setVerticalGroup(
@@ -328,17 +327,17 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanelRangoFechasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelDesde)
-                    .addComponent(jTextDiaDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelGuion1)
-                    .addComponent(jTextMesDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelGuion2)
-                    .addComponent(jTextAnnoDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelHasta)
-                    .addComponent(jTextDiaHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextMesHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelGuion4)
-                    .addComponent(jTextAnnoHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelGuion3))
+                    .addComponent(jLabelGuion3)
+                    .addComponent(jComboDiaDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboMesDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboAñoDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboDiaHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboMesHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboAñosHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -550,6 +549,7 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Desea finalizar la consulta?", null, JOptionPane.YES_NO_OPTION)) {
+            this.limpiarCampos();
             Ventana.obtenerInstancia().ventanaPrincipalAdmin();
         }
     }//GEN-LAST:event_btnCancelarActionPerformed
@@ -559,6 +559,7 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
 
         switch (tipoConsulta) {
             case "Fechas":
+                this.cargarComboAnnos();
                 this.jPanelRangoFechas.setVisible(true);
                 this.jPanelRangoHoras.setVisible(false);
                 this.jPanelUsuario.setVisible(false);
@@ -571,6 +572,11 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
             case "Horas":
                 this.jPanelRangoFechas.setVisible(false);
                 this.jPanelRangoHoras.setVisible(true);
+                this.jPanelUsuario.setVisible(false);
+                break;
+            case "Ver todo":
+                this.jPanelRangoFechas.setVisible(false);
+                this.jPanelRangoHoras.setVisible(false);
                 this.jPanelUsuario.setVisible(false);
                 break;
             default:
@@ -614,14 +620,6 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
 //        }
     }//GEN-LAST:event_ComboBusquedaActionPerformed
 
-    private void jTextAnnoDesdeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextAnnoDesdeActionPerformed
-
-    }//GEN-LAST:event_jTextAnnoDesdeActionPerformed
-
-    private void jTextAnnoHastaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextAnnoHastaActionPerformed
-
-    }//GEN-LAST:event_jTextAnnoHastaActionPerformed
-
     private void btnConsultarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarTodosActionPerformed
         if (ComboBusqueda.getSelectedIndex() != 0) {
             String tipoConsulta = ComboBusqueda.getSelectedItem().toString();
@@ -635,15 +633,29 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
                     this.jPanelRangoFechas.setVisible(true);
                     this.jPanelRangoHoras.setVisible(false);
                     this.jPanelUsuario.setVisible(false);
-                    if (!jTextAnnoHasta.getText().contains("a")
-                            && !jTextAnnoDesde.getText().contains("a")
-                            && !jTextMesDesde.getText().contains("m")
-                            && !jTextMesHasta.getText().contains("m")
-                            && !jTextDiaDesde.getText().contains("d")
-                            && !jTextDiaHasta.getText().contains("d")) {
-
-                        String fecha1 = this.jTextAnnoDesde.getText() + "-" + this.jTextMesDesde.getText() + "-" + this.jTextDiaDesde.getText();
-                        String fecha2 = this.jTextAnnoHasta.getText() + "-" + this.jTextMesHasta.getText() + "-" + this.jTextDiaHasta.getText();
+//                    if (!jTextAnnoHasta.getText().contains("a")
+//                            && !jTextAnnoDesde.getText().contains("a")
+//                            && !jTextMesDesde.getText().contains("m")
+//                            && !jTextMesHasta.getText().contains("m")
+//                            && !jTextDiaDesde.getText().contains("d")
+//                            && !jTextDiaHasta.getText().contains("d")) {
+//                        
+//    
+//                        String fecha1 = this.jTextAnnoDesde.getText() + "-" + this.jTextMesDesde.getText() + "-" + this.jTextDiaDesde.getText();
+//                        String fecha2 = this.jTextAnnoHasta.getText() + "-" + this.jTextMesHasta.getText() + "-" + this.jTextDiaHasta.getText();
+                    String dia1, mes1, anno1, dia2, mes2, anno2, fecha1, fecha2;
+            dia1 = this.jComboDiaDesde.getSelectedItem().toString();
+            mes1 = String.valueOf(this.jComboMesDesde.getSelectedIndex()+1);
+            anno1 = this.jComboAñoDesde.getSelectedItem().toString();
+            dia2 = this.jComboDiaHasta.getSelectedItem().toString();
+            mes2 = String.valueOf(this.jComboMesHasta.getSelectedIndex()+1);
+            anno2 = this.jComboAñosHasta.getSelectedItem().toString();
+            fecha1 =  anno1+"-"+mes1+"-"+dia1;
+            fecha2 = anno2+"-"+mes2+"-"+dia2;
+            System.err.println(fecha1 + "  "+ fecha2);
+            if(isFechaValida(fecha1) && isFechaValida(fecha2)){
+                        Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
+                            VentanaLogin.correo, "Bitácora", "Consulto bitácora entre " +fecha1+ " y "+ fecha2);
                         ArrayList<Bitacora> aux = Controlador.obtenerInstancia().consultaBitacoraFechas(fecha1, fecha2);
                         if (aux.isEmpty()) {
                             JOptionPane.showMessageDialog(null, "No ha ocurrido acciones entre " + fecha1 + " y " + fecha2 + ".", "ERROR",
@@ -667,6 +679,8 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
                     this.jPanelUsuario.setVisible(true);
                     if (!this.jTextUsuario.getText().equals("")) {
                         String usuario = Controlador.obtenerInstancia().recortaCorreo(this.jTextUsuario.getText()) + "@castillo.cr";
+                        Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
+                            VentanaLogin.correo, "Bitácora", "Consulto bitácora del usuario "+ usuario);
                         ArrayList<Bitacora> aux = Controlador.obtenerInstancia().consultaBitacoraUsuario(usuario);
                         if (aux.isEmpty()) {
                             JOptionPane.showMessageDialog(null, "El usuario " + usuario + " no ha realizado acciones.", "ERROR",
@@ -694,6 +708,8 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
                             && !jTextMinutoFinal.getText().contains("m")) {
                         String hora1 = this.jTextHoraInicial.getText() + ":" + this.jTextMinutoInicial.getText() + ":00";
                         String hora2 = this.jTextHoraFinal.getText() + ":" + this.jTextMinutoFinal.getText() + ":59";
+                        Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
+                            VentanaLogin.correo, "Bitácora", "Consulto bitácora entre "+hora1+" y "+hora2);
                         ArrayList<Bitacora> aux = Controlador.obtenerInstancia().consultaBitacoraHoras(hora1, hora2);
                         if (aux.isEmpty()) {
                             JOptionPane.showMessageDialog(null, "No ha ocurrido acciones entre "+hora1+" y "+hora2+".", "ERROR",
@@ -711,6 +727,22 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
                                 JOptionPane.ERROR_MESSAGE);
                     }
                     break;
+                case "Ver todo":
+                    Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
+                            VentanaLogin.correo, "Bitácora", "Consulto bitácora general ");
+                    ArrayList<Bitacora> aux = Controlador.obtenerInstancia().consultaBitacoraGeneral();
+                        if (aux.isEmpty()) {
+                            JOptionPane.showMessageDialog(null, "No hay datos en la bitacora", "ERROR",
+                                    JOptionPane.ERROR_MESSAGE);
+                        } else {
+                            int i = 0;
+                            while (i < aux.size()) {
+                                modelAux.insertRow(modelAux.getRowCount(), new Object[]{aux.get(i).getUsuario(),
+                                    aux.get(i).getFecha(), aux.get(i).getHora(), aux.get(i).getTabla(), aux.get(i).getAccion()});
+                                i++;
+                            }
+                        }
+                    break;
                 default:
                     break;
             }
@@ -723,18 +755,40 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnConsultarTodosActionPerformed
 
+    public static boolean isFechaValida(String fecha) {
+        try {
+            SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+            formatoFecha.setLenient(false);
+            formatoFecha.parse(fecha);
+        } catch (ParseException e) {
+            return false;
+        }
+        return true;
+    }
+    
+    private void cargarComboAnnos() {
+        ArrayList<Integer> lstAnyos;
+        lstAnyos = new ArrayList<>();
+        int year = Calendar.getInstance().get(Calendar.YEAR);
+        for (int i = 2015; i <= year; i++) {
+            lstAnyos.add(i);
+        }
+         jComboAñoDesde.setModel(new DefaultComboBoxModel(lstAnyos.toArray(new Integer[lstAnyos .size()])));
+         jComboAñosHasta.setModel(new DefaultComboBoxModel(lstAnyos.toArray(new Integer[lstAnyos .size()])));
+    }
+    
     private void limpiarCampos(){
         ComboBusqueda.setSelectedIndex(0);
-        jTextAnnoDesde.setText("");
-        jTextAnnoHasta.setText("");
-        jTextDiaDesde.setText("");
-        jTextDiaHasta.setText("");
-        jTextHoraFinal.setText("");
-        jTextHoraInicial.setText("");
-        jTextMesDesde.setText("");
-        jTextMesHasta.setText("");
-        jTextMinutoFinal.setText("");
-        jTextMinutoInicial.setText("");
+//        jTextAnnoDesde.setText("aaaa");
+//        jTextAnnoHasta.setText("aaaa");
+//        jTextDiaDesde.setText("dd");
+//        jTextDiaHasta.setText("dd");
+        jTextHoraFinal.setText("hh");
+        jTextHoraInicial.setText("hh");
+//        jTextMesDesde.setText("mm");
+//        jTextMesHasta.setText("mm");
+        jTextMinutoFinal.setText("mm");
+        jTextMinutoInicial.setText("mm");
         jTextUsuario.setText("");        
     }
     
@@ -746,6 +800,12 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
     private javax.swing.JComboBox ComboBusqueda;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnConsultarTodos;
+    private javax.swing.JComboBox jComboAñoDesde;
+    private javax.swing.JComboBox jComboAñosHasta;
+    private javax.swing.JComboBox jComboDiaDesde;
+    private javax.swing.JComboBox jComboDiaHasta;
+    private javax.swing.JComboBox jComboMesDesde;
+    private javax.swing.JComboBox jComboMesHasta;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabelAreas;
@@ -772,14 +832,8 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTableBitacora;
-    private javax.swing.JTextField jTextAnnoDesde;
-    private javax.swing.JTextField jTextAnnoHasta;
-    private javax.swing.JTextField jTextDiaDesde;
-    private javax.swing.JTextField jTextDiaHasta;
     private javax.swing.JTextField jTextHoraFinal;
     private javax.swing.JTextField jTextHoraInicial;
-    private javax.swing.JTextField jTextMesDesde;
-    private javax.swing.JTextField jTextMesHasta;
     private javax.swing.JTextField jTextMinutoFinal;
     private javax.swing.JTextField jTextMinutoInicial;
     private javax.swing.JTextField jTextUsuario;

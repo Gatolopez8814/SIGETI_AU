@@ -3,6 +3,8 @@ package vista.administrativo;
 import controlador.Controlador;
 import java.awt.Color;
 import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.util.Arrays;
 import vista.standard.*;
 import javax.swing.JOptionPane;
 import vista.Ventana;
@@ -34,12 +36,29 @@ public class PanelCambioContraseñaAdmin extends javax.swing.JPanel {
         });
         jPasswordNueva.addKeyListener(new KeyAdapter() {
             @Override
+            public void keyTyped(KeyEvent e) {
+                Ventana.obtenerInstancia().tecla();
+               if(16 != Arrays.toString(jPasswordNueva.getPassword()).length()) {
+                } else {
+                    e.consume();
+                }
+            }//
+            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 super.keyPressed(evt);
                 Ventana.obtenerInstancia().tecla();
             }
         });
         jPasswordNueva2.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                Ventana.obtenerInstancia().tecla();
+               if(16 != Arrays.toString(jPasswordNueva2.getPassword()).length()) {
+                } else {
+                    e.consume();
+                }
+            }//
+            
             @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 super.keyPressed(evt);

@@ -4,11 +4,11 @@ import controlador.Controlador;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import vista.Ventana;
 import vista.VentanaLogin;
-
 
 public class PanelCrearTicketArea extends javax.swing.JPanel {//panel donde se encuentran las opciones para crear el Ticket
 
@@ -16,12 +16,12 @@ public class PanelCrearTicketArea extends javax.swing.JPanel {//panel donde se e
         initComponents();
         this.limpiarCampos();
         this.ajustarEventos();
-        this.cargarjComboArea();
-        this.cargarjComboAsunto();
+//        this.cargarjComboArea();
+//        this.cargarjComboAsunto();
     }//----------------------------------------------------------------------------- FIN Constructor()
 
     private void ajustarEventos() {
-         addMouseListener(Ventana.obtenerInstancia());
+        addMouseListener(Ventana.obtenerInstancia());
         jTextDetalle.addFocusListener(new FocusListener() {                       //Focus Listener de TextArea
             @Override
             public void focusGained(FocusEvent e) {                             // Limpia el TextArea cuando se le da click
@@ -46,6 +46,15 @@ public class PanelCrearTicketArea extends javax.swing.JPanel {//panel donde se e
         });
         txtEspecificacion2.addKeyListener(new KeyAdapter() {
             @Override
+            public void keyTyped(KeyEvent e) {
+                Ventana.obtenerInstancia().tecla();
+                if (150 != txtEspecificacion2.getText().length()) {
+                } else {
+                    e.consume();
+                }
+            }//
+
+            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 super.keyPressed(evt);
                 Ventana.obtenerInstancia().tecla();
@@ -57,26 +66,29 @@ public class PanelCrearTicketArea extends javax.swing.JPanel {//panel donde se e
         if (instancia == null) {
             instancia = new PanelCrearTicketArea();
         }
+        instancia.cargarjComboArea();
+        instancia.cargarjComboAsunto();
         return instancia;
     }//----------------------------------------------------------------------------- FIN obtenerInstancia()
-    
-    private void cargarjComboArea(){
+
+    private void cargarjComboArea() {
         this.jComboArea.removeAllItems();
         this.jComboArea.addItem("Seleccione aquí");
         ArrayList<String> temp = Controlador.obtenerInstancia().obtieneAreas();
-        for(int i=0;i<temp.size();i++){
+        for (int i = 0; i < temp.size(); i++) {
             this.jComboArea.addItem(temp.get(i));
         }
         this.jComboArea.setSelectedIndex(0);
         this.jComboArea.revalidate();
         this.jComboArea.repaint();
     }//----------------------------------------------------------------------------- FIN cargarjComboArea()
-    
-    private void cargarjComboAsunto(){
+
+    private void cargarjComboAsunto() {
         this.jComboAsunto.removeAllItems();
         this.jComboAsunto.addItem("Seleccione aquí");
+        this.jComboAsunto.addItem("Otro");
         ArrayList<String> temp = Controlador.obtenerInstancia().obtieneAsuntos();
-        for(int i=0;i<temp.size();i++){
+        for (int i = 0; i < temp.size(); i++) {
             this.jComboAsunto.addItem(temp.get(i));
         }
         this.jComboAsunto.setSelectedIndex(0);
@@ -158,11 +170,18 @@ public class PanelCrearTicketArea extends javax.swing.JPanel {//panel donde se e
 
         jLabel6.setText("Especifique:");
 
-        jComboAsunto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Daño", "Mantenimiento", "otrod" }));
-        jComboAsunto.setSelectedIndex(-1);
+        jComboAsunto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione aquí" }));
+        jComboAsunto.setToolTipText("");
+        jComboAsunto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboAsuntoActionPerformed(evt);
+            }
+        });
 
-        jComboArea.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Soporte técnico", "Mantenimiento" }));
-        jComboArea.setSelectedIndex(-1);
+        txtEspecificacion2.setEnabled(false);
+
+        jComboArea.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione aquí" }));
+        jComboArea.setToolTipText("");
         jComboArea.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboAreaActionPerformed(evt);
@@ -332,31 +351,39 @@ public class PanelCrearTicketArea extends javax.swing.JPanel {//panel donde se e
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Desea finalizar la creación del ticket?", null, JOptionPane.YES_NO_OPTION)) {
+            this.limpiarCampos();
             Ventana.obtenerInstancia().ventanaPrincipalArea();
         }
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-          if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Realmente "
-                + "desea crear el ticket?", null, JOptionPane.YES_NO_OPTION)) {
-            if ((jComboAsunto.getSelectedIndex() != -1) && (jComboArea.getSelectedIndex() != -1) && (!jTextDetalle.getText().equals(""))) {
+
+        if (jComboAsunto.getSelectedItem().toString().equals("Otro") && (txtEspecificacion2.getText().equals("")
+                || (jComboArea.getSelectedIndex() == 0)
+                || (jTextDetalle.getText().equals("El problema consiste en ...")))) {
+            JOptionPane.showMessageDialog(this, "   Faltan datos", "ERROR", JOptionPane.ERROR_MESSAGE);
+        } else if ((jComboAsunto.getSelectedIndex() == 0) || (jComboArea.getSelectedIndex() == 0)
+                || (jTextDetalle.getText().equals("El problema consiste en ..."))) {
+            JOptionPane.showMessageDialog(this, "   Faltan datos", "ERROR", JOptionPane.ERROR_MESSAGE);
+        } else {
+            if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Realmente "
+                    + "desea crear el ticket?", null, JOptionPane.YES_NO_OPTION)) {
                 int consecutivo = Controlador.obtenerInstancia().consultarConsecutivoTicket();
                 if (Controlador.obtenerInstancia().registraNuevoTicket(jTextDetalle.getText(), consecutivo, "1", "No hay comentarios",
-                        VentanaLogin.correo, 1,jComboArea.getSelectedItem().toString(), "No asignado", "No asignado", "No asignado",
-                        jComboAsunto.getSelectedItem().toString(),"curtime()", "curdate()", txtEspecificacion2.getText())) {
+                        VentanaLogin.correo, 1, jComboArea.getSelectedItem().toString(), "No asignado", "No asignado", "No asignado",
+                        jComboAsunto.getSelectedItem().toString(), "curtime()", "curdate()", txtEspecificacion2.getText())) {
                     JOptionPane.showMessageDialog(this, "   El ticket ha sido creado con éxito", "Ticket creado",
-                            JOptionPane.PLAIN_MESSAGE);
-                    
-                    Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
+                            JOptionPane.INFORMATION_MESSAGE);
+
+                    Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora() + 1,
                             VentanaLogin.correo, "Ticket", "Creó el ticket " + consecutivo);
-                    
+                    this.limpiarCampos();
+
                     JOptionPane.showMessageDialog(this, "   Falta enviar correo", "Recordatorio",
                             JOptionPane.PLAIN_MESSAGE);
                 } else {
                     JOptionPane.showMessageDialog(this, "   No se pudo crear el ticket", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
-            } else {
-                JOptionPane.showMessageDialog(null, "Faltan datos");
             }
         }
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -365,13 +392,22 @@ public class PanelCrearTicketArea extends javax.swing.JPanel {//panel donde se e
         this.limpiarCampos();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void limpiarCampos(){
-        this.jComboArea.setSelectedIndex(-1);
+    private void jComboAsuntoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboAsuntoActionPerformed
+        if (jComboAsunto.getSelectedIndex() == 1) {
+            txtEspecificacion2.setEnabled(true);
+        } else {
+            txtEspecificacion2.setText("");
+            txtEspecificacion2.setEnabled(false);
+        }
+    }//GEN-LAST:event_jComboAsuntoActionPerformed
+
+    private void limpiarCampos() {
+        this.jComboArea.setSelectedIndex(0);
         this.jComboAsunto.setSelectedIndex(0);
         this.txtEspecificacion2.setText("");
         this.jTextDetalle.setText("El problema consiste en ...");
     }
-    
+
     //Declaracion de variables
     private static PanelCrearTicketArea instancia = null;
     // Variables declaration - do not modify//GEN-BEGIN:variables

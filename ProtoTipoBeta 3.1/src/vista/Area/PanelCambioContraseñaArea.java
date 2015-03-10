@@ -3,6 +3,8 @@ package vista.Area;
 import controlador.Controlador;
 import java.awt.Color;
 import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.util.Arrays;
 import javax.swing.JOptionPane;
 import vista.Ventana;
 import vista.VentanaLogin;
@@ -33,12 +35,30 @@ public class PanelCambioContraseñaArea extends javax.swing.JPanel {
         });
         jPasswordNueva.addKeyListener(new KeyAdapter() {
             @Override
+            public void keyTyped(KeyEvent e) {
+                Ventana.obtenerInstancia().tecla();
+               if(16 != Arrays.toString(jPasswordNueva.getPassword()).length()) {
+                } else {
+                    e.consume();
+                }
+            }//
+            
+            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 super.keyPressed(evt);
                 Ventana.obtenerInstancia().tecla();
             }
         });
-        jPasswordNueva2.addKeyListener(new KeyAdapter() {
+        jPasswordNueva2.addKeyListener(new KeyAdapter() {            
+            @Override
+            public void keyTyped(KeyEvent e) {
+                Ventana.obtenerInstancia().tecla();
+               if(16 != Arrays.toString(jPasswordNueva2.getPassword()).length()) {
+                } else {
+                    e.consume();
+                }
+            }//
+            
             @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 super.keyPressed(evt);

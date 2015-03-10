@@ -43,6 +43,14 @@ public class PanelConsultaUno extends javax.swing.JPanel {
             }
         });
         txtCodigo.addKeyListener(new KeyAdapter() {
+            
+             @Override
+            public void keyTyped(KeyEvent e) {
+                Ventana.obtenerInstancia().tecla();//
+                if(txtCodigo.getText().length() == 16)
+                    e.consume();
+                }
+            
             @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 super.keyPressed(evt);
@@ -435,7 +443,7 @@ public class PanelConsultaUno extends javax.swing.JPanel {
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
         if (!"".equals(this.txtCodigo.getText())) {
-            Ticket _ticket = Controlador.obtenerInstancia().consultaUno(Integer.parseInt(this.txtCodigo.getText()), VentanaLogin.correo);
+            Ticket _ticket = Controlador.obtenerInstancia().consultaUno(Integer.parseUnsignedInt(this.txtCodigo.getText()), VentanaLogin.correo);
             if (_ticket.getFecha() != null) {//se puede preguntar por cualquier atributo que sea null por defecto
                 this.txtArea.setText(_ticket.getAreaDestino());
                 this.txtResponsable.setText(_ticket.getResponsable());
