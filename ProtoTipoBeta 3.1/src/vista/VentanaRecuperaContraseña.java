@@ -41,7 +41,7 @@ public class VentanaRecuperaContraseña extends JFrame{
     }//----------------------------------------------------------------------------- FIN ajustarConfiguaracionInicial()
 
     public void cambioIcono() {//establece el icono de la aplicacion
-        Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/clave-iconx16.png"));
+        Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/App-password-icon.png"));
         setIconImage(icon);
     }//----------------------------------------------------------------------------- FIN cambioIcono()
 

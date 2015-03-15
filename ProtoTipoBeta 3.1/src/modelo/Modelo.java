@@ -478,7 +478,7 @@ public class Modelo {
         try {
             Statement sentencia = null;
             sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
-            if (sentencia.executeUpdate("update ticket set consecEstado=2 where consecutivoticket='" + _codigo + "'") == 1) {
+            if (sentencia.executeUpdate("update ticket set consecEstado=2, tiempoRealsolucion='No asignado' where consecutivoticket=" + _codigo + "") == 1) {
                 return true;
             }
         } catch (Exception e) {
@@ -618,6 +618,56 @@ public class Modelo {
         }
         return tEncontrados;
     }//----------------------------------------------------------------------------- FIN obtieneAreas()
+    
+    public ArrayList<String> obtieneUsuarios(String usuarioActual, int estado) {
+        ArrayList<String> tEncontrados = new ArrayList<>();
+        String correo;
+        ResultSet resultado = null;
+        try {
+            Statement sentencia = null;
+            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
+
+            resultado = sentencia.executeQuery("select correo from usuario where estado="+estado+" and correo not like '"+usuarioActual+"' order by correo");
+            if (resultado != null) {
+            }
+            while (resultado.next()) {
+                correo = resultado.getString(1);
+                tEncontrados.add(correo);
+            }
+        } catch (Exception e) {
+            System.out.println("Error Exception from Modelo -> obtieneUsuarios()");
+            e.printStackTrace();
+        } finally {
+            ConexionMySql.obtenerInstancia().desconectar();
+            System.out.println("Se ha cerrado la conexion");
+        }
+        return tEncontrados;
+    }//----------------------------------------------------------------------------- FIN obtieneUsuarios()
+    
+    public ArrayList<String> obtieneUsuariosEliminar(String usuarioActual, int estado) {
+        ArrayList<String> tEncontrados = new ArrayList<>();
+        String correo;
+        ResultSet resultado = null;
+        try {
+            Statement sentencia = null;
+            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
+
+            resultado = sentencia.executeQuery("select correo from usuario where estado not like "+estado+" and correo not like '"+usuarioActual+"' order by correo");
+            if (resultado != null) {
+            }
+            while (resultado.next()) {
+                correo = resultado.getString(1);
+                tEncontrados.add(correo);
+            }
+        } catch (Exception e) {
+            System.out.println("Error Exception from Modelo -> obtieneUsuariosEliminar()");
+            e.printStackTrace();
+        } finally {
+            ConexionMySql.obtenerInstancia().desconectar();
+            System.out.println("Se ha cerrado la conexion");
+        }
+        return tEncontrados;
+    }//----------------------------------------------------------------------------- FIN obtieneUsuariosEliminar()
 
     public ArrayList<String> obtieneAsuntos() {
         //este metodo es para que el usuario de area pueda consultar todos los tickets de su area
@@ -1282,6 +1332,30 @@ public class Modelo {
         }
         return cantidad;
     }//----------------------------------------------------------------------------- FIN cantidadCerradosArea()
+    
+    public String obtieneComentarios(int codigo) {
+        //este metodo es para obtener los comentarios de un ticket
+        String cantidad = "";
+        ResultSet resultado = null;
+        try {
+            Statement sentencia = null;
+            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
+
+            resultado = sentencia.executeQuery("select comentarios from ticket where consecutivoticket =" + codigo);
+            if (resultado != null) {
+            }
+            while (resultado.next()) {
+                cantidad = resultado.getString(1);
+            }
+        } catch (Exception e) {
+            System.out.println("Error Exception from Modelo -> obtieneComentarios()");
+            e.printStackTrace();
+        } finally {
+            ConexionMySql.obtenerInstancia().desconectar();
+            System.out.println("Se ha cerrado la conexion");
+        }
+        return cantidad;
+    }//----------------------------------------------------------------------------- FIN obtieneComentarios()
 
     public int cantidadTotalArea(String _correo) {
         //este metodo es para obtener la cantidad de tickets total del area
@@ -1715,6 +1789,44 @@ public class Modelo {
 
     public void obtieneAlertas() {
     
+    }
+
+    public ArrayList<Bitacora> consultaBitacoraGeneral() {
+        //este metodo es para que el usuario administrador consulto la bitacora total
+        ArrayList< Bitacora> bitacora = new ArrayList<>();
+        Bitacora _bitacora;
+        String fecha, hora, tabla, accion, usuario;
+        ResultSet resultado = null;
+        try {
+            Statement sentencia = null;
+            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
+
+            resultado = sentencia.executeQuery("select fecha, hora, tabla, accion, usuario from bitacora ");
+
+            while (resultado.next()) {
+                _bitacora = new Bitacora();
+
+                fecha = String.valueOf(resultado.getDate(1));
+                hora = String.valueOf(resultado.getTime(2));
+                tabla = resultado.getString(3);
+                accion = resultado.getString(4);
+                usuario = resultado.getString(5);
+                
+                _bitacora.setHora(hora);
+                _bitacora.setFecha(fecha);
+                _bitacora.setTabla(tabla);
+                _bitacora.setAccion(accion);
+                _bitacora.setUsuario(usuario);
+                bitacora.add(_bitacora);
+            }
+        } catch (Exception e) {
+            System.out.println("Error Exception from Modelo -> consultaBitacoraGeneral()");
+//            e.printStackTrace();
+        } finally {
+            ConexionMySql.obtenerInstancia().desconectar();
+            System.out.println("Se ha cerrado la conexion");
+        }
+        return bitacora;
     }
 
 }

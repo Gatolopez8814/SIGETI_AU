@@ -2,6 +2,7 @@ package vista.administrativo;
 
 import controlador.Controlador;
 import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import vista.Ventana;
@@ -42,6 +43,15 @@ public class PanelRegistrarUsuariosAdmin extends javax.swing.JPanel {
     private void ajustarEventos() {
         addMouseListener(Ventana.obtenerInstancia());
         jtCorreo.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                Ventana.obtenerInstancia().tecla();
+                if (150 != jtCorreo.getText().length()) {
+                } else {
+                    e.consume();
+                }
+            }//
+            
             @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 super.keyPressed(evt);
@@ -103,6 +113,12 @@ public class PanelRegistrarUsuariosAdmin extends javax.swing.JPanel {
         jPanel2.setBackground(new java.awt.Color(226, 221, 205));
 
         jLabel3.setText("Correo electronico del usuario: ");
+
+        jtCorreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtCorreoActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("@castillo.cr");
 
@@ -167,8 +183,7 @@ public class PanelRegistrarUsuariosAdmin extends javax.swing.JPanel {
 
         labelCreador1.setText("Seleccione el área: ");
 
-        jComboArea.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Sporte Tecnico", "Mantenimiento" }));
-        jComboArea.setSelectedIndex(-1);
+        jComboArea.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione aquí" }));
 
         javax.swing.GroupLayout jPanelAreaLayout = new javax.swing.GroupLayout(jPanelArea);
         jPanelArea.setLayout(jPanelAreaLayout);
@@ -303,7 +318,7 @@ public class PanelRegistrarUsuariosAdmin extends javax.swing.JPanel {
                 contrasenna = JOptionPane.showInputDialog("Digite su contraseña:");
                 if (Controlador.obtenerInstancia().verificarContrasenna(VentanaLogin.correo, contrasenna)) {
                     if (comboTipo.getSelectedItem().equals("Usuario de área")) {
-                        if ((Controlador.obtenerInstancia().registraUsuarioAdmin(jtCorreo.getText(),  3 - comboTipo.getSelectedIndex()))
+                        if ((Controlador.obtenerInstancia().registraUsuarioAdmin(jtCorreo.getText(),  4 - comboTipo.getSelectedIndex()))
                                 && (Controlador.obtenerInstancia().registroAreaUsuario(jtCorreo.getText(), jComboArea.getSelectedItem().toString()))) {
                             JOptionPane.showMessageDialog(this, "   El usuario ha sido registrado con éxito", "Usuario registrado", JOptionPane.PLAIN_MESSAGE);
 
@@ -315,7 +330,7 @@ public class PanelRegistrarUsuariosAdmin extends javax.swing.JPanel {
                             JOptionPane.showMessageDialog(this, "   No se pudo registrar el usuario", "ERROR", JOptionPane.ERROR_MESSAGE);
                         }
                     } else {
-                        if (Controlador.obtenerInstancia().registraUsuarioAdmin(jtCorreo.getText(),  3 - comboTipo.getSelectedIndex())) {
+                        if (Controlador.obtenerInstancia().registraUsuarioAdmin(jtCorreo.getText(),  4 - comboTipo.getSelectedIndex())) {
                             JOptionPane.showMessageDialog(this, "   El usuario ha sido registrado con éxito", "Usuario registrado", JOptionPane.PLAIN_MESSAGE);
 
                             
@@ -346,14 +361,18 @@ public class PanelRegistrarUsuariosAdmin extends javax.swing.JPanel {
             this.cargarjComboArea();
             this.jPanelArea.setVisible(true);
         } else {
-            this.jComboArea.setSelectedIndex(-1);
+            this.jComboArea.setSelectedIndex(0);
             this.jPanelArea.setVisible(false);
         }
     }//GEN-LAST:event_comboTipoActionPerformed
 
+    private void jtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtCorreoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtCorreoActionPerformed
+
     private void limpiarCampos() {
         comboTipo.setSelectedIndex(0);
-        jComboArea.setSelectedIndex(-1);
+        jComboArea.setSelectedIndex(0);
         jtCorreo.setText("");
     }
 

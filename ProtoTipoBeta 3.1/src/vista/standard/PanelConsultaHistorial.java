@@ -1,10 +1,16 @@
 package vista.standard;
 
 import controlador.Controlador;
+import java.awt.List;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -43,48 +49,49 @@ public class PanelConsultaHistorial extends javax.swing.JPanel {
 
     private void ajustarEventos() {
         addMouseListener(Ventana.obtenerInstancia());
-        jTextAnnoDesde.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                super.keyPressed(evt);
-                Ventana.obtenerInstancia().tecla();
-            }
-        });
-        jTextMesDesde.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                super.keyPressed(evt);
-                Ventana.obtenerInstancia().tecla();
-            }
-        });
-        jTextDiaDesde.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                super.keyPressed(evt);
-                Ventana.obtenerInstancia().tecla();
-            }
-        });
-        jTextAnnoHasta.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                super.keyPressed(evt);
-                Ventana.obtenerInstancia().tecla();
-            }
-        });
-        jTextMesHasta.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                super.keyPressed(evt);
-                Ventana.obtenerInstancia().tecla();
-            }
-        });
-        jTextDiaHasta.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                super.keyPressed(evt);
-                Ventana.obtenerInstancia().tecla();
-            }
-        });
+        
+//        jTextAnnoDesde.addKeyListener(new KeyAdapter() {
+//            @Override
+//            public void keyPressed(java.awt.event.KeyEvent evt) {
+//                super.keyPressed(evt);
+//                Ventana.obtenerInstancia().tecla();
+//            }
+//        });
+//        jTextMesDesde.addKeyListener(new KeyAdapter() {
+//            @Override
+//            public void keyPressed(java.awt.event.KeyEvent evt) {
+//                super.keyPressed(evt);
+//                Ventana.obtenerInstancia().tecla();
+//            }
+//        });
+//        jTextDiaDesde.addKeyListener(new KeyAdapter() {
+//            @Override
+//            public void keyPressed(java.awt.event.KeyEvent evt) {
+//                super.keyPressed(evt);
+//                Ventana.obtenerInstancia().tecla();
+//            }
+//        });
+//        jTextAnnoHasta.addKeyListener(new KeyAdapter() {
+//            @Override
+//            public void keyPressed(java.awt.event.KeyEvent evt) {
+//                super.keyPressed(evt);
+//                Ventana.obtenerInstancia().tecla();
+//            }
+//        });
+//        jTextMesHasta.addKeyListener(new KeyAdapter() {
+//            @Override
+//            public void keyPressed(java.awt.event.KeyEvent evt) {
+//                super.keyPressed(evt);
+//                Ventana.obtenerInstancia().tecla();
+//            }
+//        });
+//        jTextDiaHasta.addKeyListener(new KeyAdapter() {
+//            @Override
+//            public void keyPressed(java.awt.event.KeyEvent evt) {
+//                super.keyPressed(evt);
+//                Ventana.obtenerInstancia().tecla();
+//            }
+//        });
     }
 
     private void ocultarComponentes() {
@@ -97,12 +104,12 @@ public class PanelConsultaHistorial extends javax.swing.JPanel {
     }//----------------------------------------------------------------------------- FIN ocultarComponentes()
 
     private void iniciarValidaciones() {
-        soloNumeros(this.jTextAnnoDesde);
-        soloNumeros(this.jTextMesDesde);
-        soloNumeros(this.jTextDiaDesde);
-        soloNumeros(this.jTextAnnoHasta);
-        soloNumeros(this.jTextMesHasta);
-        soloNumeros(this.jTextDiaHasta);
+//        soloNumeros(this.jTextAnnoDesde);
+//        soloNumeros(this.jTextMesDesde);
+//        soloNumeros(this.jTextDiaDesde);
+//        soloNumeros(this.jTextAnnoHasta);
+//        soloNumeros(this.jTextMesHasta);
+//        soloNumeros(this.jTextDiaHasta);
     }//----------------------------------------------------------------------------- FIN iniciarValidaciones()
 
     public void soloNumeros(JTextField txt) {//para validar que en la fecha solo digite numeros
@@ -133,17 +140,17 @@ public class PanelConsultaHistorial extends javax.swing.JPanel {
         jLabelAreas = new javax.swing.JLabel();
         jPanelRangoFechas = new javax.swing.JPanel();
         jLabelDesde = new javax.swing.JLabel();
-        jTextDiaDesde = new javax.swing.JTextField();
         jLabelGuion1 = new javax.swing.JLabel();
-        jTextMesDesde = new javax.swing.JTextField();
         jLabelGuion2 = new javax.swing.JLabel();
-        jTextAnnoDesde = new javax.swing.JTextField();
         jLabelHasta = new javax.swing.JLabel();
-        jTextDiaHasta = new javax.swing.JTextField();
         jLabelGuion3 = new javax.swing.JLabel();
-        jTextMesHasta = new javax.swing.JTextField();
         jLabelGuion4 = new javax.swing.JLabel();
-        jTextAnnoHasta = new javax.swing.JTextField();
+        jComboDiaDesde = new javax.swing.JComboBox();
+        jComboMesDesde = new javax.swing.JComboBox();
+        jComboAñoDesde = new javax.swing.JComboBox();
+        jComboDiaHasta = new javax.swing.JComboBox();
+        jComboMesHasta = new javax.swing.JComboBox();
+        jComboAñosHasta = new javax.swing.JComboBox();
         jPanelTabla = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaTickets = new javax.swing.JTable();
@@ -279,8 +286,7 @@ public class PanelConsultaHistorial extends javax.swing.JPanel {
         jPanelArea.setBackground(new java.awt.Color(153, 153, 153));
         jPanelArea.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jComboArea.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Soporte técnico", "Mantenimiento" }));
-        jComboArea.setSelectedIndex(-1);
+        jComboArea.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione aquí" }));
 
         jLabelAreas.setText("Seleccione el área: ");
 
@@ -310,37 +316,51 @@ public class PanelConsultaHistorial extends javax.swing.JPanel {
 
         jLabelDesde.setText("Desde: ");
 
-        jTextDiaDesde.setText("dd");
-
         jLabelGuion1.setText("-");
-
-        jTextMesDesde.setText("mm");
 
         jLabelGuion2.setText("-");
 
-        jTextAnnoDesde.setText("aaaa");
-        jTextAnnoDesde.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextAnnoDesdeActionPerformed(evt);
-            }
-        });
-
         jLabelHasta.setText("Hasta:");
-
-        jTextDiaHasta.setText("dd");
 
         jLabelGuion3.setText("-");
 
-        jTextMesHasta.setText("mm");
-
         jLabelGuion4.setText("-");
 
-        jTextAnnoHasta.setText("aaaa");
-        jTextAnnoHasta.addActionListener(new java.awt.event.ActionListener() {
+        jComboDiaDesde.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        jComboDiaDesde.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextAnnoHastaActionPerformed(evt);
+                jComboDiaDesdeActionPerformed(evt);
             }
         });
+
+        jComboMesDesde.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Setiembre", "Octubre", "Noviembre", "Diciembre" }));
+        jComboMesDesde.setToolTipText("");
+        jComboMesDesde.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboMesDesdeActionPerformed(evt);
+            }
+        });
+
+        jComboAñoDesde.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Año" }));
+        jComboAñoDesde.setToolTipText("");
+
+        jComboDiaHasta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        jComboDiaHasta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboDiaHastaActionPerformed(evt);
+            }
+        });
+
+        jComboMesHasta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Setiembre", "Octubre", "Noviembre", "Diciembre" }));
+        jComboMesHasta.setToolTipText("");
+        jComboMesHasta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboMesHastaActionPerformed(evt);
+            }
+        });
+
+        jComboAñosHasta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Año" }));
+        jComboAñosHasta.setToolTipText("");
 
         javax.swing.GroupLayout jPanelRangoFechasLayout = new javax.swing.GroupLayout(jPanelRangoFechas);
         jPanelRangoFechas.setLayout(jPanelRangoFechasLayout);
@@ -349,28 +369,28 @@ public class PanelConsultaHistorial extends javax.swing.JPanel {
             .addGroup(jPanelRangoFechasLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabelDesde)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextDiaDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboDiaDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelGuion1, javax.swing.GroupLayout.PREFERRED_SIZE, 4, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextMesDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jComboMesDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelGuion2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextAnnoDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
+                .addComponent(jComboAñoDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
                 .addComponent(jLabelHasta)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextDiaHasta, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboDiaHasta, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelGuion3, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextMesHasta, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jComboMesHasta, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelGuion4, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextAnnoHasta, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jComboAñosHasta, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelRangoFechasLayout.setVerticalGroup(
@@ -379,17 +399,17 @@ public class PanelConsultaHistorial extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanelRangoFechasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelDesde)
-                    .addComponent(jTextDiaDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelGuion1)
-                    .addComponent(jTextMesDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelGuion2)
-                    .addComponent(jTextAnnoDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelHasta)
-                    .addComponent(jTextDiaHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextMesHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelGuion4)
-                    .addComponent(jTextAnnoHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelGuion3))
+                    .addComponent(jLabelGuion3)
+                    .addComponent(jComboDiaDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboMesDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboAñoDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboDiaHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboMesHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboAñosHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
@@ -710,7 +730,12 @@ public class PanelConsultaHistorial extends javax.swing.JPanel {
     }
 
     private void ComboBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBusquedaActionPerformed
-        if (ComboBusqueda.getSelectedItem().equals("Fechas")) {
+        if (ComboBusqueda.getSelectedIndex() == 0) {
+            this.jPanelArea.setVisible(false);
+            this.jPanelRangoFechas.setVisible(false);
+            this.btnConsultarTodos.setEnabled(false);
+        } else if (ComboBusqueda.getSelectedItem().equals("Fechas")) {
+            this.cargarComboAnnos();
             this.jPanelArea.setVisible(false);
             this.jPanelRangoFechas.setVisible(true);
             this.btnConsultarTodos.setEnabled(true);
@@ -750,16 +775,9 @@ public class PanelConsultaHistorial extends javax.swing.JPanel {
         return estado;
     }//----------------------------------------------------------------------------- FIN obtieneEstado()
 
-    private void jTextAnnoDesdeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextAnnoDesdeActionPerformed
-
-    }//GEN-LAST:event_jTextAnnoDesdeActionPerformed
-
-    private void jTextAnnoHastaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextAnnoHastaActionPerformed
-
-    }//GEN-LAST:event_jTextAnnoHastaActionPerformed
-
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Desea finalizar la consulta?", null, JOptionPane.YES_NO_OPTION)) {
+            this.limpiarCampos();
             Ventana.obtenerInstancia().ventanaPrincipalStandard();
         }
     }//GEN-LAST:event_btnCancelarActionPerformed
@@ -772,44 +790,53 @@ public class PanelConsultaHistorial extends javax.swing.JPanel {
         while (modelAux.getRowCount() > 0) {
             modelAux.removeRow(0);
         }
-        
-            
-        if (ComboBusqueda.getSelectedItem().equals("Área")) {
-            if(jComboArea.getSelectedItem().equals("Seleccione aquí")){
-            JOptionPane.showMessageDialog(null, "Seleccione un area.", "ERROR",
-                        JOptionPane.ERROR_MESSAGE);
-        }else{
-            ArrayList<Ticket> aux = Controlador.obtenerInstancia().consultaTodosTicket(a, "", VentanaLogin.correo);
-            if (aux.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "No se han encontrado tickets referentes a esta area.", "ERROR",
+
+        if (ComboBusqueda.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(null, "Opción de busqueda incorrecta", "ERROR",
+                    JOptionPane.ERROR_MESSAGE);
+        } else if (ComboBusqueda.getSelectedItem().equals("Área")) {
+            if (jComboArea.getSelectedItem().equals("Seleccione aquí")) {
+                JOptionPane.showMessageDialog(null, "Seleccione un area.", "ERROR",
                         JOptionPane.ERROR_MESSAGE);
             } else {
-                int i = 0;
-                while (i < aux.size()) {
-                    modelAux.insertRow(modelAux.getRowCount(), new Object[]{aux.get(i).getConsecutivo(),
-                        aux.get(i).getAreaDestino(), aux.get(i).getFecha(), this.obtieneEstado(aux.get(i)),
-                        aux.get(i).getResponsable()});
-                    i++;
-                    //jTable1.setModel(modelAux);
+                ArrayList<Ticket> aux = Controlador.obtenerInstancia().consultaTodosTicket(a, "", VentanaLogin.correo);
+                if (aux.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "No se han encontrado tickets referentes a esta area.", "ERROR",
+                            JOptionPane.ERROR_MESSAGE);
+                } else {
+                    int i = 0;
+                    while (i < aux.size()) {
+                        modelAux.insertRow(modelAux.getRowCount(), new Object[]{aux.get(i).getConsecutivo(),
+                            aux.get(i).getAreaDestino(), aux.get(i).getFecha(), this.obtieneEstado(aux.get(i)),
+                            aux.get(i).getResponsable()});
+                        i++;
+                        //jTable1.setModel(modelAux);
+
+                    }
+
+                    Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
+                            VentanaLogin.correo, "Ticket", "Consultó varios tickets");
 
                 }
-                
-                Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
-                        VentanaLogin.correo, "Ticket", "Consultó varios tickets");
-                
+                tablaTickets.setVisible(true);
+                tablaTickets.revalidate();
+                tablaTickets.repaint();
+                this.jPanelTabla.setVisible(true);
             }
-        }
-        } else {
-            if (!jTextAnnoHasta.getText().contains("a")
-                    && !jTextAnnoDesde.getText().contains("a")
-                    && !jTextMesDesde.getText().contains("m")
-                    && !jTextMesHasta.getText().contains("m")
-                    && !jTextDiaDesde.getText().contains("d")
-                    && !jTextDiaHasta.getText().contains("d")) {
-                ArrayList<Ticket> aux = Controlador.obtenerInstancia().consultaTodosTicket(jTextAnnoDesde.getText() + "-"
-                        + jTextMesDesde.getText() + "-" + jTextDiaDesde.getText(), jTextAnnoHasta.getText() + "-"
-                        + jTextMesHasta.getText() + "-" + jTextDiaHasta.getText(), VentanaLogin.correo);
-
+        } else{
+            String dia1, mes1, anno1, dia2, mes2, anno2, fecha1, fecha2;
+            dia1 = this.jComboDiaDesde.getSelectedItem().toString();
+            mes1 = String.valueOf(this.jComboMesDesde.getSelectedIndex()+1);
+            anno1 = this.jComboAñoDesde.getSelectedItem().toString();
+            dia2 = this.jComboDiaHasta.getSelectedItem().toString();
+            mes2 = String.valueOf(this.jComboMesHasta.getSelectedIndex()+1);
+            anno2 = this.jComboAñosHasta.getSelectedItem().toString();
+            fecha1 =  anno1+"-"+mes1+"-"+dia1;
+            fecha2 = anno2+"-"+mes2+"-"+dia2;
+            System.err.println(fecha1 + "  "+ fecha2);
+            if(isFechaValida(fecha1) && isFechaValida(fecha2)){
+                ArrayList<Ticket> aux = Controlador.obtenerInstancia().consultaTodosTicket(fecha1, fecha2, VentanaLogin.correo);
+                
                 if (aux.isEmpty()) {
                     JOptionPane.showMessageDialog(null, "No se han encontrado tickets en este rango de fechas.", "ERROR",
                             JOptionPane.ERROR_MESSAGE);
@@ -825,17 +852,56 @@ public class PanelConsultaHistorial extends javax.swing.JPanel {
 
                     Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
                             VentanaLogin.correo, "Ticket", "Consultó historial");
-                   
+
                 }
-            } else {
+                tablaTickets.setVisible(true);
+                tablaTickets.revalidate();
+                tablaTickets.repaint();
+                this.jPanelTabla.setVisible(true);
+            }else{
                 JOptionPane.showMessageDialog(null, "Fechas invalidas.", "ERROR",
                         JOptionPane.ERROR_MESSAGE);
             }
-        }
-        tablaTickets.setVisible(true);
-        tablaTickets.revalidate();
-        tablaTickets.repaint();
-        this.jPanelTabla.setVisible(true);
+            
+        }//fin else fechas
+//        else {
+//            if (!jTextAnnoHasta.getText().contains("a")
+//                    && !jTextAnnoDesde.getText().contains("a")
+//                    && !jTextMesDesde.getText().contains("m")
+//                    && !jTextMesHasta.getText().contains("m")
+//                    && !jTextDiaDesde.getText().contains("d")
+//                    && !jTextDiaHasta.getText().contains("d")) {
+//                ArrayList<Ticket> aux = Controlador.obtenerInstancia().consultaTodosTicket(jTextAnnoDesde.getText() + "-"
+//                        + jTextMesDesde.getText() + "-" + jTextDiaDesde.getText(), jTextAnnoHasta.getText() + "-"
+//                        + jTextMesHasta.getText() + "-" + jTextDiaHasta.getText(), VentanaLogin.correo);
+//
+//                if (aux.isEmpty()) {
+//                    JOptionPane.showMessageDialog(null, "No se han encontrado tickets en este rango de fechas.", "ERROR",
+//                            JOptionPane.ERROR_MESSAGE);
+//                } else {
+//                    int i = 0;
+//                    while (i < aux.size()) {
+//                        modelAux.insertRow(modelAux.getRowCount(), new Object[]{aux.get(i).getConsecutivo(),
+//                            aux.get(i).getAreaDestino(), aux.get(i).getFecha(), this.obtieneEstado(aux.get(i)),
+//                            aux.get(i).getResponsable()});
+//                        i++;
+//                        //jTable1.setModel(modelAux);
+//                    }
+//
+//                    Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
+//                            VentanaLogin.correo, "Ticket", "Consultó historial");
+//
+//                }
+//                tablaTickets.setVisible(true);
+//                tablaTickets.revalidate();
+//                tablaTickets.repaint();
+//                this.jPanelTabla.setVisible(true);
+//            } else {
+//                JOptionPane.showMessageDialog(null, "Fechas invalidas.", "ERROR",
+//                        JOptionPane.ERROR_MESSAGE);
+//            }
+//        }
+
 
     }//GEN-LAST:event_btnConsultarTodosActionPerformed
 
@@ -853,13 +919,23 @@ public class PanelConsultaHistorial extends javax.swing.JPanel {
         this.txtTiempoSol.setText(_ticket.getTiempoSolucion());
     }//----------------------------------------------------------------------------- FIN llenarInformacionExtra()
 
+    public static boolean isFechaValida(String fecha) {
+        try {
+            SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+            formatoFecha.setLenient(false);
+            formatoFecha.parse(fecha);
+        } catch (ParseException e) {
+            return false;
+        }
+        return true;
+    }
     private void btnVerDetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerDetalleActionPerformed
         //a partir de aqui se obtiene el codigo del ticket y se llena la demas informacion
 
         int dato = this.tablaTickets.getSelectedRow();
         if (dato >= 0) {
             int codi = Integer.parseInt(String.valueOf(this.tablaTickets.getValueAt(dato, 0)));
-          
+
             if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, " ¿Realmente desea ver el ticket " + codi + "?", null, JOptionPane.YES_NO_OPTION)) {
                 Ticket aux = Controlador.obtenerInstancia().informacionTicket(codi);
                 this.jLabelTitulo.setText("Información del ticket " + codi);
@@ -887,8 +963,36 @@ public class PanelConsultaHistorial extends javax.swing.JPanel {
             this.jPanelRangoFechas.setVisible(false);
             this.jPanelTabla.setVisible(true);
             this.jPanelBoton.setVisible(true);
+            this.limpiarCampos();
         }
     }//GEN-LAST:event_btnRegresarActionPerformed
+
+    private void jComboDiaDesdeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboDiaDesdeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboDiaDesdeActionPerformed
+
+    private void jComboMesDesdeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboMesDesdeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboMesDesdeActionPerformed
+
+    private void jComboDiaHastaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboDiaHastaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboDiaHastaActionPerformed
+
+    private void jComboMesHastaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboMesHastaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboMesHastaActionPerformed
+
+    private void cargarComboAnnos() {
+        ArrayList<Integer> lstAnyos;
+        lstAnyos = new ArrayList<>();
+        int year = Calendar.getInstance().get(Calendar.YEAR);
+        for (int i = 2015; i <= year; i++) {
+            lstAnyos.add(i);
+        }
+         jComboAñoDesde.setModel(new DefaultComboBoxModel(lstAnyos.toArray(new Integer[lstAnyos .size()])));
+         jComboAñosHasta.setModel(new DefaultComboBoxModel(lstAnyos.toArray(new Integer[lstAnyos .size()])));
+    }
 
     private void limpiarCampos() {
 
@@ -908,7 +1012,6 @@ public class PanelConsultaHistorial extends javax.swing.JPanel {
 
     }//----------------------------------------------------------------------------- FIN limpiarCampos()
 
-    
     //Declaracion de variables
     private static PanelConsultaHistorial instancia = null;
     DefaultTableModel modelAux;
@@ -919,6 +1022,12 @@ public class PanelConsultaHistorial extends javax.swing.JPanel {
     private javax.swing.JButton btnRegresar;
     private javax.swing.JButton btnVerDetalle;
     private javax.swing.JComboBox jComboArea;
+    private javax.swing.JComboBox jComboAñoDesde;
+    private javax.swing.JComboBox jComboAñosHasta;
+    private javax.swing.JComboBox jComboDiaDesde;
+    private javax.swing.JComboBox jComboDiaHasta;
+    private javax.swing.JComboBox jComboMesDesde;
+    private javax.swing.JComboBox jComboMesHasta;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
@@ -954,15 +1063,9 @@ public class PanelConsultaHistorial extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPaneComentarios;
-    private javax.swing.JTextField jTextAnnoDesde;
-    private javax.swing.JTextField jTextAnnoHasta;
     private javax.swing.JTextArea jTextAreaComentarios;
     private javax.swing.JTextArea jTextAreaDetalle;
     private javax.swing.JTextArea jTextAreaEspecificacion;
-    private javax.swing.JTextField jTextDiaDesde;
-    private javax.swing.JTextField jTextDiaHasta;
-    private javax.swing.JTextField jTextMesDesde;
-    private javax.swing.JTextField jTextMesHasta;
     private javax.swing.JTable tablaTickets;
     private javax.swing.JTextField txtArea;
     private javax.swing.JTextField txtAsunto;

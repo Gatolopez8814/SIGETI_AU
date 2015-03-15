@@ -6,6 +6,8 @@ import modelo.Modelo;
 import modelo.Ticket;
 import modelo.Usuario;
 
+//Esto es un comentario desde WOOOOOOOOOOOOOOOOO
+
 public class Controlador {
 
     private Controlador() {
@@ -163,6 +165,14 @@ public class Controlador {
     public ArrayList<String> obtieneAreas() {
         return model.obtieneAreas();
     }//----------------------------------------------------------------------------- FIN obtieneAreas()
+    
+    public ArrayList<String> obtieneUsuarios(String usuarioActual, int estado) {
+        return model.obtieneUsuarios(usuarioActual, estado);
+    }//----------------------------------------------------------------------------- FIN obtieneUsuarios()
+    
+    public ArrayList<String> obtieneUsuariosEliminar(String usuarioActual, int estado) {
+        return model.obtieneUsuariosEliminar(usuarioActual, estado);
+    }//----------------------------------------------------------------------------- FIN obtieneUsuariosEliminar()
 
     public ArrayList<String> obtieneAsuntos() {
         return model.obtieneAsuntos();
@@ -219,6 +229,10 @@ public class Controlador {
     public boolean agregaComentario(int _codigo, String _comentario) {
         return model.agregaComentario(_codigo, _comentario);
     }//----------------------------------------------------------------------------- FIN agregaComentario()
+    
+    public String obtieneComentarios(int codigo) {
+        return model.obtieneComentarios(codigo);
+    }
 
     public boolean cambiaFechaSolucion(int _codigo, String _comentario) {
         return model.cambiaFechaSolucion(_codigo, _comentario);
@@ -263,6 +277,11 @@ public class Controlador {
     public ArrayList<Bitacora> consultaBitacoraHoras(String horaInicio, String horaFinal) {
         return model.consultaBitacoraHoras(horaInicio, horaFinal);
     }//----------------------------------------------------------------------------- FIN consultaBitacoraHoras()
+    
+    public ArrayList<Bitacora> consultaBitacoraGeneral() {
+        return model.consultaBitacoraGeneral();
+    }//----------------------------------------------------------------------------- FIN consultaBitacoraGeneral()
+    
     public boolean agregarArea(String nuevaArea){
         return model.agregarArea(nuevaArea);
     }

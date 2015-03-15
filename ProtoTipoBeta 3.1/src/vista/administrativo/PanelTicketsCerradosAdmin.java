@@ -6,7 +6,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -21,7 +26,6 @@ public class PanelTicketsCerradosAdmin extends javax.swing.JPanel {
         this.ocultarComponentes();
         this.ajustarEventos();
         this.iniciarValidaciones();
-        this.LlenaTicketsCerrados();
         this.limpiarCampos();
     }//----------------------------------------------------------------------------- FIN Constructor()
 
@@ -29,6 +33,7 @@ public class PanelTicketsCerradosAdmin extends javax.swing.JPanel {
         if (instancia == null) {
             instancia = new PanelTicketsCerradosAdmin();
         }
+        instancia.LlenaTicketsCerrados();
         return instancia;
     }//----------------------------------------------------------------------------- FIN obtenerInstancia()
 
@@ -72,9 +77,9 @@ public class PanelTicketsCerradosAdmin extends javax.swing.JPanel {
     }//----------------------------------------------------------------------------- FIN llenarInformacionExtra()
 
     private void iniciarValidaciones() {
-        this.soloNumeros(this.jTextAnnoDesde);
-        this.soloNumeros(this.jTextMesDesde);
-        this.soloNumeros(this.jTextDiaDesde);
+//        this.soloNumeros(this.jTextAnnoDesde);
+//        this.soloNumeros(this.jTextMesDesde);
+//        this.soloNumeros(this.jTextDiaDesde);
     }//----------------------------------------------------------------------------- FIN iniciarValidaciones()
 
     private void soloNumeros(JTextField txt) {//para validar que en la fecha solo digite numeros
@@ -117,6 +122,7 @@ public class PanelTicketsCerradosAdmin extends javax.swing.JPanel {
         this.jRadioFecha.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                cargarComboAnnos();
                 jPanelComentario.setVisible(false);
                 btnAplicarCambios.setVisible(true);
                 jPanelFecha.setVisible(true);
@@ -188,11 +194,11 @@ public class PanelTicketsCerradosAdmin extends javax.swing.JPanel {
         jRadioFecha = new javax.swing.JRadioButton();
         jPanelFecha = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
-        jTextDiaDesde = new javax.swing.JTextField();
-        jTextMesDesde = new javax.swing.JTextField();
-        jTextAnnoDesde = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
+        jComboDiaDesde = new javax.swing.JComboBox();
+        jComboMesDesde = new javax.swing.JComboBox();
+        jComboAñoDesde = new javax.swing.JComboBox();
         btnAplicarCambios = new javax.swing.JButton();
         btnAbrir = new javax.swing.JButton();
 
@@ -638,20 +644,16 @@ public class PanelTicketsCerradosAdmin extends javax.swing.JPanel {
 
         jLabel18.setText("Escriba la fecha real de solución: ");
 
-        jTextDiaDesde.setText("dd");
-
-        jTextMesDesde.setText("mm");
-
-        jTextAnnoDesde.setText("aaaa");
-        jTextAnnoDesde.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextAnnoDesdeActionPerformed(evt);
-            }
-        });
-
         jLabel19.setText("-");
 
         jLabel20.setText("-");
+
+        jComboDiaDesde.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+
+        jComboMesDesde.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Setiembre", "Octubre", "Noviembre", "Diciembre" }));
+
+        jComboAñoDesde.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Año" }));
+        jComboAñoDesde.setToolTipText("");
 
         javax.swing.GroupLayout jPanelFechaLayout = new javax.swing.GroupLayout(jPanelFecha);
         jPanelFecha.setLayout(jPanelFechaLayout);
@@ -660,16 +662,16 @@ public class PanelTicketsCerradosAdmin extends javax.swing.JPanel {
             .addGroup(jPanelFechaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel18)
-                .addGap(18, 18, 18)
-                .addComponent(jTextDiaDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 3, 3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboDiaDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextMesDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
+                .addComponent(jComboMesDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextAnnoDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jComboAñoDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelFechaLayout.setVerticalGroup(
@@ -678,12 +680,12 @@ public class PanelTicketsCerradosAdmin extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanelFechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
-                    .addComponent(jTextDiaDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextMesDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextAnnoDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel19)
-                    .addComponent(jLabel20))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel20)
+                    .addComponent(jComboDiaDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboMesDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboAñoDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         btnAplicarCambios.setText("Aplicar cambios");
@@ -786,7 +788,7 @@ public class PanelTicketsCerradosAdmin extends javax.swing.JPanel {
                 .addComponent(jPanelBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -825,12 +827,10 @@ public class PanelTicketsCerradosAdmin extends javax.swing.JPanel {
             this.jPanelTabla.setVisible(true);
             this.jPanelBoton.setVisible(true);
             this.jPanelCantidad.setVisible(true);
+            this.limpiarCampos();
+            this.LlenaTicketsCerrados();
         }
     }//GEN-LAST:event_btnRegresarActionPerformed
-
-    private void jTextAnnoDesdeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextAnnoDesdeActionPerformed
-
-    }//GEN-LAST:event_jTextAnnoDesdeActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         this.jPanelGestion.setVisible(true);
@@ -842,44 +842,62 @@ public class PanelTicketsCerradosAdmin extends javax.swing.JPanel {
             if (this.jTextAreaComentario2.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Debe escribir un comentario", "ERROR", JOptionPane.ERROR_MESSAGE);
             } else {
-                String comentarios = this.jTextAreaComentarios.getText() + "\n" + this.jTextAreaComentario2.getText();
+                String comentarios = Controlador.obtenerInstancia().obtieneComentarios(this.codigoTicket);
+
+                if (comentarios.equals("No hay comentarios")) {
+                    comentarios = "* " + this.jTextAreaComentario2.getText();
+                } else {
+                    comentarios = comentarios + "\n" + "* " + this.jTextAreaComentario2.getText();
+                }
                 if (Controlador.obtenerInstancia().agregaComentario(this.codigoTicket, comentarios)) {
+                    this.actualizarInformacion(this.codigoTicket);
                     JOptionPane.showMessageDialog(this, "Comentario agregado con exito", "", JOptionPane.INFORMATION_MESSAGE);
 
-                    
                     Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
                             VentanaLogin.correo, "Ticket", "Agregó comentario al ticket " + this.codigoTicket);
-                    
+
+                    this.jTextAreaComentario2.setText("");
+
                 } else {
-                    JOptionPane.showMessageDialog(this, "No se pudo agregar el comentario", "ERRO", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "No se pudo agregar el comentario", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
             }
         }
         if (this.jRadioFecha.isSelected()) {
-            if (this.jTextAnnoDesde.getText().equals("") || this.jTextMesDesde.getText().equals("")
-                    || this.jTextDiaDesde.getText().equals("")) {
-                JOptionPane.showMessageDialog(this, "Faltan datos", "ERROR", JOptionPane.ERROR_MESSAGE);
-            } else {
-                String año, mes, dia;
-                año = this.jTextAnnoDesde.getText();
-                mes = this.jTextMesDesde.getText();
-                dia = this.jTextDiaDesde.getText();
-                if (!año.contains("a") && !mes.contains("m") && !dia.contains("d")) {
-                    String fecha = año + "-" + mes + "-" + dia;
-                    if (Controlador.obtenerInstancia().cambiaFechaRealSolucion(this.codigoTicket, fecha)) {
+            String dia1, mes1, anno1, fecha1;
+            dia1 = this.jComboDiaDesde.getSelectedItem().toString();
+            mes1 = String.valueOf(this.jComboMesDesde.getSelectedIndex()+1);
+            anno1 = this.jComboAñoDesde.getSelectedItem().toString();
+            fecha1 =  anno1+"-"+mes1+"-"+dia1;
+            if(isFechaValida(fecha1)){
+//            if (this.jTextAnnoDesde.getText().equals("") || this.jTextMesDesde.getText().equals("")
+//                    || this.jTextDiaDesde.getText().equals("")) {
+//                JOptionPane.showMessageDialog(this, "Faltan datos", "ERROR", JOptionPane.ERROR_MESSAGE);
+//            } else {
+//                String año, mes, dia;
+//                año = this.jTextAnnoDesde.getText();
+//                mes = this.jTextMesDesde.getText();
+//                dia = this.jTextDiaDesde.getText();
+//                if (!año.contains("a") && !mes.contains("m") && !dia.contains("d")) {
+//                    String fecha = año + "-" + mes + "-" + dia;
+                    if (Controlador.obtenerInstancia().cambiaFechaRealSolucion(this.codigoTicket, fecha1)) {
+                        this.actualizarInformacion(this.codigoTicket);
                         JOptionPane.showMessageDialog(this, "Fecha real de solución cambiada con éxito", "", JOptionPane.INFORMATION_MESSAGE);
 
                         Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
                                 VentanaLogin.correo, "Ticket", "Cambió fecha real de solución al ticket " + this.codigoTicket);
+                        this.jComboAñoDesde.setSelectedIndex(0);
+                        this.jComboDiaDesde.setSelectedIndex(0);
+                        this.jComboMesDesde.setSelectedIndex(0);
                        
                     } else {
                         JOptionPane.showMessageDialog(this, "No se pudo cambiar la fecha real de solución", "ERROR", JOptionPane.ERROR_MESSAGE);
                     }
                 } else {
-                    JOptionPane.showMessageDialog(this, "Fecha real de solución invalida", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Fecha invalida", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
 
-            }
+//            }
         }
 
 
@@ -890,7 +908,7 @@ public class PanelTicketsCerradosAdmin extends javax.swing.JPanel {
             int dato = this.tablaTickets.getSelectedRow();
             int codi = Integer.parseInt(String.valueOf(this.tablaTickets.getValueAt(dato, 0)));
             this.codigoTicket = codi;
-            if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, " ¿Realmente desea reabrir el ticket " + codi + "?", null, JOptionPane.YES_NO_OPTION)) {
+            if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, " ¿Realmente desea re abrir el ticket " + codi + "?", null, JOptionPane.YES_NO_OPTION)) {
                if (this.txtEstado.getText().equals("cerrado")) {
                    estado="borrado";
                 Controlador.obtenerInstancia().cambioEstadoLeido(codi);//aqui se modifica el estado a visto.
@@ -900,6 +918,16 @@ public class PanelTicketsCerradosAdmin extends javax.swing.JPanel {
             }   
     }//GEN-LAST:event_btnAbrirActionPerformed
 
+    private void actualizarInformacion(int codi) {
+        Ticket aux = Controlador.obtenerInstancia().informacionTicket(codi);
+        this.jLabelTitulo.setText("Información del ticket " + codi);
+        this.jPanelTabla.setVisible(false);
+        this.jPanelBoton.setVisible(false);
+        this.jPanelCantidad.setVisible(false);
+        this.llenarInformacionExtra(aux);
+        this.jPanelDetalle.setVisible(true);
+    }
+    
     private void LlenaTicketsCerrados() {
         this.cantidad.setText(String.valueOf(Controlador.obtenerInstancia().cantidadCerradosAdmin()));
         modelAux = (DefaultTableModel) tablaTickets.getModel();
@@ -925,15 +953,36 @@ public class PanelTicketsCerradosAdmin extends javax.swing.JPanel {
 //        this.cantidad.setText(String.valueOf(modelAux.getRowCount()));
     }//----------------------------------------------------------------------------- FIN LlenaTicketsCerrados()
 
+    public static boolean isFechaValida(String fecha) {
+        try {
+            SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+            formatoFecha.setLenient(false);
+            formatoFecha.parse(fecha);
+        } catch (ParseException e) {
+            return false;
+        }
+        return true;
+    }
+    
+    private void cargarComboAnnos() {
+        ArrayList<Integer> lstAnyos;
+        lstAnyos = new ArrayList<>();
+        int year = Calendar.getInstance().get(Calendar.YEAR);
+        for (int i = 2015; i <= year; i++) {
+            lstAnyos.add(i);
+        }
+         jComboAñoDesde.setModel(new DefaultComboBoxModel(lstAnyos.toArray(new Integer[lstAnyos .size()])));
+    }
+    
     private void limpiarCampos() {
         buttonGroupGestionar.setSelected(null, true);
-        jTextAnnoDesde.setText("");
+//        jTextAnnoDesde.setText("aaaa");
         jTextAreaComentario2.setText("");
         jTextAreaComentarios.setText("");
         jTextAreaDetalle.setText("");
         jTextAreaEspecificacion.setText("");
-        jTextDiaDesde.setText("");
-        jTextMesDesde.setText("");
+//        jTextDiaDesde.setText("dd");
+//        jTextMesDesde.setText("mm");
         txtArea.setText("");
         txtAsunto.setText("");
         txtCreador.setText("");
@@ -959,6 +1008,9 @@ private DefaultTableModel modelAux;
     private javax.swing.JButton btnVerMAs;
     private javax.swing.ButtonGroup buttonGroupGestionar;
     private javax.swing.JLabel cantidad;
+    private javax.swing.JComboBox jComboAñoDesde;
+    private javax.swing.JComboBox jComboDiaDesde;
+    private javax.swing.JComboBox jComboMesDesde;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -1000,13 +1052,10 @@ private DefaultTableModel modelAux;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPaneComentarios;
-    private javax.swing.JTextField jTextAnnoDesde;
     private javax.swing.JTextArea jTextAreaComentario2;
     private javax.swing.JTextArea jTextAreaComentarios;
     private javax.swing.JTextArea jTextAreaDetalle;
     private javax.swing.JTextArea jTextAreaEspecificacion;
-    private javax.swing.JTextField jTextDiaDesde;
-    private javax.swing.JTextField jTextMesDesde;
     private javax.swing.JTable tablaTickets;
     private javax.swing.JTextField txtArea;
     private javax.swing.JTextField txtAsunto;

@@ -6,7 +6,9 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Arrays;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import vista.Ventana;
 import vista.VentanaLogin;
 
@@ -90,7 +92,8 @@ public class PanelCambioContraseña extends javax.swing.JPanel {
         this.jPasswordNueva2.setText("");
         this.lbmensaje.setText("");
     }//----------------------------------------------------------------------------- FIN limpiarCampos()
-
+    
+ 
     private void ajustarEventos() {
         addMouseListener(Ventana.obtenerInstancia());
 
@@ -117,7 +120,11 @@ public class PanelCambioContraseña extends javax.swing.JPanel {
             @Override
             public void keyTyped(KeyEvent e) {
                 Ventana.obtenerInstancia().tecla();
-                       }//
+                if(16 != Arrays.toString(jPasswordNueva.getPassword()).length()) {
+                } else {
+                    e.consume();
+                }
+            }
 
             @Override
             public void keyPressed(KeyEvent e) {
@@ -134,6 +141,10 @@ public class PanelCambioContraseña extends javax.swing.JPanel {
             @Override
             public void keyTyped(KeyEvent e) {
                 Ventana.obtenerInstancia().tecla();
+                if (16 != Arrays.toString(jPasswordNueva2.getPassword()).length()) {
+                } else {
+                    e.consume();
+                }
             }//
 
             @Override

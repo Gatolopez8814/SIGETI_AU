@@ -2,6 +2,8 @@ package vista.administrativo;
 
 import controlador.Controlador;
 import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import vista.Ventana;
 import vista.VentanaLogin;
@@ -18,12 +20,21 @@ public class PanelBloquearUsuarioAdmin extends javax.swing.JPanel {
         if (instancia == null) {
             instancia = new PanelBloquearUsuarioAdmin();
         }
+        instancia.cargarjComboUsuarios();
         return instancia;
     }//----------------------------------------------------------------------------- FIN obtenerInstancia()
 
     private void ajustarEventos() {
         addMouseListener(Ventana.obtenerInstancia());
         txtCorreoBloquear.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                Ventana.obtenerInstancia().tecla();
+                if (150 != txtCorreoBloquear.getText().length()) {
+                } else {
+                    e.consume();
+                }
+            }//
             @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 super.keyPressed(evt);
@@ -48,6 +59,8 @@ public class PanelBloquearUsuarioAdmin extends javax.swing.JPanel {
         labelCreador = new javax.swing.JLabel();
         labelUsuario = new javax.swing.JLabel();
         txtCorreoBloquear = new javax.swing.JTextField();
+        labelCreador1 = new javax.swing.JLabel();
+        jComboUsuarios = new javax.swing.JComboBox();
 
         jPanel3.setBackground(new java.awt.Color(208, 144, 56));
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -125,7 +138,7 @@ public class PanelBloquearUsuarioAdmin extends javax.swing.JPanel {
         jPanel5.setBackground(new java.awt.Color(226, 221, 205));
         jPanel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        labelCreador.setText("Correo del usuario que desea bloquear");
+        labelCreador.setText("Digite el correo del usuario que desea bloquear");
 
         labelUsuario.setText("@castillo.cr");
 
@@ -135,15 +148,24 @@ public class PanelBloquearUsuarioAdmin extends javax.swing.JPanel {
             }
         });
 
+        labelCreador1.setText("Seleccione el usuario que desea bloquear: ");
+
+        jComboUsuarios.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione aquí" }));
+        jComboUsuarios.setToolTipText("");
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(labelCreador)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelCreador)
+                    .addComponent(labelCreador1))
                 .addGap(30, 30, 30)
-                .addComponent(txtCorreoBloquear, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jComboUsuarios, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtCorreoBloquear, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(labelUsuario)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -151,7 +173,11 @@ public class PanelBloquearUsuarioAdmin extends javax.swing.JPanel {
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(7, 7, 7)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelCreador1)
+                    .addComponent(jComboUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(labelCreador)
@@ -174,7 +200,7 @@ public class PanelBloquearUsuarioAdmin extends javax.swing.JPanel {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -215,7 +241,7 @@ public class PanelBloquearUsuarioAdmin extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 132, Short.MAX_VALUE))
+                .addGap(0, 141, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -230,7 +256,10 @@ public class PanelBloquearUsuarioAdmin extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnBloquearusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBloquearusuarioActionPerformed
-        if (txtCorreoBloquear.getText().equals(VentanaLogin.correo) || txtCorreoBloquear.getText().equals(VentanaLogin.correo.split("@")[0])){
+        if(this.txtCorreoBloquear.getText().equals("") && this.jComboUsuarios.getSelectedIndex()==0){
+            JOptionPane.showMessageDialog(this, "Faltan datos", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }else if(!this.txtCorreoBloquear.getText().equals("") && this.jComboUsuarios.getSelectedIndex()==0){
+            if (txtCorreoBloquear.getText().equals(VentanaLogin.correo) || txtCorreoBloquear.getText().equals(VentanaLogin.correo.split("@")[0])){
              JOptionPane.showMessageDialog(this, "No se puede Bloquear a si mismo", "ERROR", JOptionPane.ERROR_MESSAGE);
              this.limpiarCampos();
         }else if(Controlador.obtenerInstancia().obtieneEstadoUsuario(txtCorreoBloquear.getText()) == 0){
@@ -243,7 +272,8 @@ public class PanelBloquearUsuarioAdmin extends javax.swing.JPanel {
             if (Controlador.obtenerInstancia().verificarContrasenna(VentanaLogin.correo, contrasenna)) {
                 if (Controlador.obtenerInstancia().bloqueaUsuarioAdmin(txtCorreoBloquear.getText())) {
                     JOptionPane.showMessageDialog(this, "   El usuario ha sido bloqueado con éxito", "Usuario bloqueado", JOptionPane.INFORMATION_MESSAGE);
-
+                    //se actualiza el combo box
+                    instancia.cargarjComboUsuarios();
                     
                     Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
                             VentanaLogin.correo, "Usuario", "Bloqueó al usuario " + txtCorreoBloquear.getText());
@@ -257,14 +287,59 @@ public class PanelBloquearUsuarioAdmin extends javax.swing.JPanel {
 
         }
         }
+        }else if(this.txtCorreoBloquear.getText().equals("") && this.jComboUsuarios.getSelectedIndex()!=0){
+            if(Controlador.obtenerInstancia().obtieneEstadoUsuario(txtCorreoBloquear.getText()) == 0){
+            JOptionPane.showMessageDialog(this, "El usuario ya se encuentra bloqueado", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }else{
+        String contrasenna;
+        if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Realmente "
+                + "desea bloquear este usuario?", null, JOptionPane.YES_NO_OPTION)) {
+            contrasenna = JOptionPane.showInputDialog("Digite su contraseña:");
+            if (Controlador.obtenerInstancia().verificarContrasenna(VentanaLogin.correo, contrasenna)) {
+                if (Controlador.obtenerInstancia().bloqueaUsuarioAdmin(this.jComboUsuarios.getSelectedItem().toString())) {
+                    JOptionPane.showMessageDialog(this, "   El usuario ha sido bloqueado con éxito", "Usuario bloqueado", JOptionPane.INFORMATION_MESSAGE);
+                    //se actualiza el combo box
+                                        
+                    Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
+                            VentanaLogin.correo, "Usuario", "Bloqueó al usuario " + this.jComboUsuarios.getSelectedItem().toString());
+                    instancia.cargarjComboUsuarios();
+                   this.limpiarCampos();
+                } else {
+                    JOptionPane.showMessageDialog(this, "No se pudo bloquear el usuario", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "   No se pudo bloquear el usuario, constraseña incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+
+        }
+        }
+        }else{
+            JOptionPane.showMessageDialog(this, "Debe elegir una sola opción", "ERROR", JOptionPane.ERROR_MESSAGE);
+            instancia.cargarjComboUsuarios();
+            this.limpiarCampos();
+        }
+        
     }//GEN-LAST:event_btnBloquearusuarioActionPerformed
 
+     private void cargarjComboUsuarios(){
+        this.jComboUsuarios.removeAllItems();
+        this.jComboUsuarios.addItem("Seleccione aquí");
+        ArrayList<String> temp = Controlador.obtenerInstancia().obtieneUsuarios(VentanaLogin.correo, 1);
+        for (String temp1 : temp) {
+            this.jComboUsuarios.addItem(temp1);
+        }
+        this.jComboUsuarios.setSelectedIndex(0);
+        this.jComboUsuarios.revalidate();
+        this.jComboUsuarios.repaint();
+    }//----------------------------------------------------------------------------- FIN cargarjComboUsuarios()
+     
     private void txtCorreoBloquearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoBloquearActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCorreoBloquearActionPerformed
 
     private void limpiarCampos() {
         txtCorreoBloquear.setText("");
+        this.jComboUsuarios.setSelectedIndex(0);
     }
     //Declaracion de variables
     private static PanelBloquearUsuarioAdmin instancia = null;
@@ -272,12 +347,14 @@ public class PanelBloquearUsuarioAdmin extends javax.swing.JPanel {
     private javax.swing.JButton btnBloquearusuario;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox jComboUsuarios;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JLabel labelCreador;
+    private javax.swing.JLabel labelCreador1;
     private javax.swing.JLabel labelTitulo;
     private javax.swing.JLabel labelUsuario;
     private javax.swing.JTextField txtCorreoBloquear;
