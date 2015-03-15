@@ -1,5 +1,5 @@
 package vista;
-
+//cambio desde netbeans
 import controlador.Controlador;
 import java.awt.BorderLayout;
 import java.awt.Color;
