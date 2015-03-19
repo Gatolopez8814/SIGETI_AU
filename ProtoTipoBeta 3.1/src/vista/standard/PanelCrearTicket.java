@@ -113,11 +113,11 @@ public class PanelCrearTicket extends javax.swing.JPanel {//panel donde se encue
         btnLimpiar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jComboAsunto = new javax.swing.JComboBox();
+        jComboAsunto = new javax.swing.JComboBox<String>();
         jLabel2 = new javax.swing.JLabel();
         txtEspecificacion = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jComboArea = new javax.swing.JComboBox();
+        jComboArea = new javax.swing.JComboBox<String>();
 
         jLabel16.setText("-|-|-|-|-");
 
@@ -412,8 +412,8 @@ public class PanelCrearTicket extends javax.swing.JPanel {//panel donde se encue
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox jComboArea;
-    private javax.swing.JComboBox jComboAsunto;
+    private javax.swing.JComboBox<String> jComboArea;
+    private javax.swing.JComboBox<String> jComboAsunto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel16;

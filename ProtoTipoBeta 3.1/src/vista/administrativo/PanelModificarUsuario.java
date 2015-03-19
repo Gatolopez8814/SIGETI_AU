@@ -64,10 +64,10 @@ public class PanelModificarUsuario extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         labelCreador = new javax.swing.JLabel();
-        comboTipo = new javax.swing.JComboBox();
+        comboTipo = new javax.swing.JComboBox<String>();
         jPanelArea = new javax.swing.JPanel();
         labelCreador1 = new javax.swing.JLabel();
-        jComboArea = new javax.swing.JComboBox();
+        jComboArea = new javax.swing.JComboBox<String>();
         PanelBotones = new javax.swing.JPanel();
         btnModificar = new javax.swing.JButton();
         btnCancelar1 = new javax.swing.JButton();
@@ -373,8 +373,8 @@ public class PanelModificarUsuario extends javax.swing.JPanel {
     private javax.swing.JPanel PanelBotones;
     private javax.swing.JButton btnCancelar1;
     private javax.swing.JButton btnModificar;
-    private javax.swing.JComboBox comboTipo;
-    private javax.swing.JComboBox jComboArea;
+    private javax.swing.JComboBox<String> comboTipo;
+    private javax.swing.JComboBox<String> jComboArea;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

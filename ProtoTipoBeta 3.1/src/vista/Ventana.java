@@ -213,24 +213,24 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
         itemDesLoggeo = new JMenuItem("Cerrar sesión");
         itemAyuda = new JMenuItem("Ayuda");
         itemCambioClave = new JMenuItem("Cambiar clave");
-        //--o--
-        Icon icon = new ImageIcon(getClass().getResource("../img/Delete-2-iconx16.png"));
+        Icon icon;
+        icon = new ImageIcon(getClass().getResource("/img/Deleteiconx16.png"));
         itemSalir.setIcon(icon);
-        Icon icon2 = new ImageIcon(getClass().getResource("../img/ticket16.png"));
+        Icon icon2 = new ImageIcon(getClass().getResource("/img/ticket16.png"));
         itemCrearTicket.setIcon(icon2);
-        Icon icon3 = new ImageIcon(getClass().getResource("../img/Search216.png"));
+        Icon icon3 = new ImageIcon(getClass().getResource("/img/Search216.png"));
         itemBuscarUnTicket.setIcon(icon3);
-        Icon icon4 = new ImageIcon(getClass().getResource("../img/Search-16.png"));
+        Icon icon4 = new ImageIcon(getClass().getResource("/img/Search16.png"));
         itemBuscarUltimoTicket.setIcon(icon4);
-        Icon icon5 = new ImageIcon(getClass().getResource("../img/Search316.png"));
+        Icon icon5 = new ImageIcon(getClass().getResource("/img/Search316.png"));
         itemHistorialTicket.setIcon(icon5);
-        Icon icon6 = new ImageIcon(getClass().getResource("../img/user-login-iconx16.png"));
+        Icon icon6 = new ImageIcon(getClass().getResource("/img/Usericonx16.png"));
         itemDesLoggeo.setIcon(icon6);
-        Icon icon7 = new ImageIcon(getClass().getResource("../img/support-iconx16.png"));
+        Icon icon7 = new ImageIcon(getClass().getResource("/img/supporticonx16.png"));
         itemAyuda.setIcon(icon7);
-        Icon icon8 = new ImageIcon(getClass().getResource("../img/clave-iconx16.png"));
+        Icon icon8 = new ImageIcon(getClass().getResource("/img/claveiconx16.png"));
         itemCambioClave.setIcon(icon8);
-        Icon icon9 = new ImageIcon(getClass().getResource("../img/Carpeta-Search16.png"));
+        Icon icon9 = new ImageIcon(getClass().getResource("/img/CarpetaSearch16.png"));
         menuBuscar.setIcon(icon9);
         //--o--
         itemSalir.setMnemonic(KeyEvent.VK_S);
@@ -293,17 +293,16 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
         JMenuItem itemTicketsAsignados = new JMenuItem("Tickets Asignados");
         JMenuItem itemGenerarReporte = new JMenuItem("Generar Reporte");
         //--o--
-        //Icon icon = new ImageIcon(getClass().getResource("../img/Utilities-iconx16.png"));
-        //menuArea.setIcon(icon);
-        Icon icon2 = new ImageIcon(getClass().getResource("../img/inbox-iconx16.png"));
+        //estas imagenes son para cargar la barra de menu, no el arbol
+        Icon icon2 = new ImageIcon(getClass().getResource("/img/inbox-iconx16.png"));
         itemBandejaEntrada.setIcon(icon2);
-        Icon icon3 = new ImageIcon(getClass().getResource("../img/wood-folder-iconx16.png"));
+        Icon icon3 = new ImageIcon(getClass().getResource("/img/wood-folder-iconx16.png"));
         itemTicketArea.setIcon(icon3);
-        Icon icon4 = new ImageIcon(getClass().getResource("../img/helical-gear-iconx16.png"));
+        Icon icon4 = new ImageIcon(getClass().getResource("/img/helical-gear-iconx16.png"));
         itemTicketProgreso.setIcon(icon4);
-        Icon icon5 = new ImageIcon(getClass().getResource("../img/Actions-dashboard-show-iconx16.png"));
+        Icon icon5 = new ImageIcon(getClass().getResource("/img/Actions-dashboard-show-iconx16.png"));
         itemTicketsAsignados.setIcon(icon5);
-        Icon icon6 = new ImageIcon(getClass().getResource("../img/Balance-iconx16.png"));
+        Icon icon6 = new ImageIcon(getClass().getResource("/img/Balance-iconx16.png"));
         itemGenerarReporte.setIcon(icon6);
         //--o--       
         itemBandejaEntrada.addActionListener(new ActionListener() {
@@ -380,29 +379,29 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
         JMenuItem itemReporte = new JMenuItem("Generar Reporte");
         JMenuItem itemBitacora = new JMenuItem("Bitacora");
         //--o--
-        Icon icon = new ImageIcon(getClass().getResource("../img/users-iconx16.png"));
+        Icon icon = new ImageIcon(getClass().getResource("/img/users-iconx16.png"));
         menuUsuarios.setIcon(icon);
-        Icon icon2 = new ImageIcon(getClass().getResource("../img/inbox-iconx16.png"));
+        Icon icon2 = new ImageIcon(getClass().getResource("/img/inbox-iconx16.png"));
         itemBandejaEntrada.setIcon(icon2);
-        Icon icon3 = new ImageIcon(getClass().getResource("../img/Alerts-iconx16.png"));
+        Icon icon3 = new ImageIcon(getClass().getResource("/img/Alerts-iconx16.png"));
         itemAlertas.setIcon(icon3);
-        Icon icon4 = new ImageIcon(getClass().getResource("../img/helical-gear-iconx16.png"));
+        Icon icon4 = new ImageIcon(getClass().getResource("/img/helical-gear-iconx16.png"));
         itemTicketProgreso.setIcon(icon4);
-        Icon icon5 = new ImageIcon(getClass().getResource("../img/Actions-dashboard-show-iconx16.png"));
+        Icon icon5 = new ImageIcon(getClass().getResource("/img/Actions-dashboard-show-iconx16.png"));
         itemTicketsAsignados.setIcon(icon5);
-        Icon icon6 = new ImageIcon(getClass().getResource("../img/wood-box-iconx16.png"));
+        Icon icon6 = new ImageIcon(getClass().getResource("/img/wood-box-iconx16.png"));
         itemTicketsCerrados.setIcon(icon6);
-        Icon icon7 = new ImageIcon(getClass().getResource("../img/Actions-list-add-user-iconx16.png"));
+        Icon icon7 = new ImageIcon(getClass().getResource("/img/Actions-list-add-user-iconx16.png"));
         itemRegistrarUsuario.setIcon(icon7);
-        Icon icon8 = new ImageIcon(getClass().getResource("../img/Apps-preferences-desktop-user-password-iconx16.png"));
+        Icon icon8 = new ImageIcon(getClass().getResource("/img/Apps-preferences-desktop-user-password-iconx16.png"));
         itemBloquearUsuario.setIcon(icon8);
-        Icon icon9 = new ImageIcon(getClass().getResource("../img/Apps-preferences-desktop-user-iconx16.png"));
+        Icon icon9 = new ImageIcon(getClass().getResource("/img/Apps-preferences-desktop-user-iconx16.png"));
         itemDesbloquearUsuario.setIcon(icon9);
-        Icon icon10 = new ImageIcon(getClass().getResource("../img/Actions-list-remove-user-iconx16.png"));
+        Icon icon10 = new ImageIcon(getClass().getResource("/img/Actions-list-remove-user-iconx16.png"));
         itemEliminarUsuario.setIcon(icon10);
-        Icon icon11 = new ImageIcon(getClass().getResource("../img/Reports-iconx16.png"));
+        Icon icon11 = new ImageIcon(getClass().getResource("/img/Reports-iconx16.png"));
         itemReporte.setIcon(icon11);
-        Icon icon12 = new ImageIcon(getClass().getResource("../img/contacts-icon2x16.png"));
+        Icon icon12 = new ImageIcon(getClass().getResource("/img/contacts-icon2x16.png"));
         itemBitacora.setIcon(icon12);
 
         //--o--       

@@ -57,7 +57,7 @@ public class ArbolArea extends JPanel {//Arbol para usuario de Area
     }//----------------------------------------------------------------------------- FIN ajustarComponentes()
 
     private void armarArbol() {//inicializa y arma el jTree
-        Informacion infSigeti = new Informacion("SIGETI", "src/img/SIGETI-icon16.png"); //abuelo            
+        Informacion infSigeti = new Informacion("SIGET", "src/img/SIGETI-icon16.png"); //abuelo            
         Informacion infTicket = new Informacion("Gestión de tickets               ", "src/img/Carpeta-tickets16.png");//padre 1   
         Informacion infCrear = new Informacion("Crear nuevo ticket", "src/img/ticket16.png");
         Informacion infArea = new Informacion("Área de trabajo", "src/img/Utilities-iconx16.png");//cambiar por el nobre del area 
@@ -68,10 +68,10 @@ public class ArbolArea extends JPanel {//Arbol para usuario de Area
         Informacion infCarpetaReportes = new Informacion("Gestión reportes", "src/img/Network-Statistics-icon.png");
         Informacion infReportes = new Informacion("Generar reporte", "src/img/Balance-iconx16.png");
         Informacion infConsultas = new Informacion("Gestión consultas", "src/img/Carpeta-Search16.png");//padre 2
-        Informacion infConsultarUltimo = new Informacion("Consultar último ticket", "src/img/Search-16.png");
+        Informacion infConsultarUltimo = new Informacion("Consultar último ticket", "src/img/Search16.png");
         Informacion infConsultarUno = new Informacion("Consultar un ticket", "src/img/Search216.png");
         Informacion infConsultarTodos = new Informacion("Consultar mis tickets", "src/img/Search316.png");
-        Informacion infCambioClave = new Informacion("Cambiar contraseña", "src/img/clave-iconx16.png");
+        Informacion infCambioClave = new Informacion("Cambiar contraseña", "src/img/claveiconx16.png");
         Informacion infConf = new Informacion("Configuración", "src/img/Conf-iconx16.png");
         Informacion infCerrarSeccion = new Informacion("Cerrar sesión", "src/img/user-login-iconx16.png");
         //--o--

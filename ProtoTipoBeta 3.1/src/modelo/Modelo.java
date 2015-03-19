@@ -34,14 +34,15 @@ public class Modelo {
         ArrayList<Integer> valores = new ArrayList<>();
         valores.add(0);//1,2,3
         valores.add(-2);//0,1,2
-        String correo = this.recortaCorreo(correoUsuario) + "@castillo.cr";
+//        String correo = this.recortaCorreo(correoUsuario) + "@castillo.cr";
+        System.err.println("correo: "+correoUsuario+" cont: "+contrasena);
         int tipo_usuario = 0;
         int estado = 0;
         ResultSet resultado = null;
         try {
             Statement sentencia = null;
             sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
-            resultado = sentencia.executeQuery("select tipo, estado from usuario where correo = '" + correo + "' and contrasena = '" + contrasena + "'");
+            resultado = sentencia.executeQuery("select tipo, estado from usuario where correo = '" + correoUsuario + "' and contrasena = '" + contrasena + "'");
             if (resultado != null) {
             }
             while (resultado.next()) {
@@ -50,20 +51,23 @@ public class Modelo {
                 switch (estado) {
                     case 0:
                         valores.set(0, tipo_usuario);
-                        valores.set(1, 0);
+                        valores.set(1, 0);//bloqueado
                         break;
                     case 1:
                         valores.set(0, tipo_usuario);
-                        valores.set(1, 1);
+                        valores.set(1, 1);//normal
                         break;
                     case 2:
                         valores.set(0, tipo_usuario);
-                        valores.set(1, -1);
+                        valores.set(1, -1);//eliminado
                 }
             }
         } catch (Exception e) {
             System.out.println("Error Exception from Modelo -> verificaLoggin()");
-            //e.printStackTrace();
+            e.printStackTrace();
+        }finally {
+            ConexionMySql.obtenerInstancia().desconectar();
+            System.out.println("Se ha cerrado la conexion desde el metodo verificaLoggin()");
         }
         return valores;
     }//----------------------------------------------------------------------------- FIN verificaLoggin()   
@@ -87,6 +91,9 @@ public class Modelo {
         } catch (Exception e) {
             System.out.println("Error Exception from Modelo -> verificarContrasenna()");
             //e.printStackTrace();
+        }finally {
+            ConexionMySql.obtenerInstancia().desconectar();
+            System.out.println("Se ha cerrado la conexion");
         }
         return ok;
     }//----------------------------------------------------------------------------- FIN verificarContrasenna()   

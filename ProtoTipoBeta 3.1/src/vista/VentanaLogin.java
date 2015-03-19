@@ -1,5 +1,5 @@
 package vista;
-//cambio desde netbeans
+
 import controlador.Controlador;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -17,6 +17,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
+import java.util.Arrays;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -27,9 +28,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
 import javax.swing.border.TitledBorder;
-import modelo.GeneradorDeClave;
 import modelo.ManejadorDeArchivos;
+
 
 public class VentanaLogin extends JFrame {//miniVentana donde se ingresa a la aplicacion
 
@@ -97,8 +99,8 @@ public class VentanaLogin extends JFrame {//miniVentana donde se ingresa a la ap
         panelCuadro.add(txtCorreo);
         panelCuadro.add(lbDominioCorreo);
 
-        panelCuadro.add(lbContraseña);
-        panelCuadro.add(txtContraseña);
+        panelCuadro.add(lbContrasenna);
+        panelCuadro.add(txtContrasenna);
         panelCuadro.add(Box.createRigidArea(new Dimension(0, 0)));
         //panelCuadro.setBorder(new TitledBorder(""));
         //--o--
@@ -167,7 +169,8 @@ public class VentanaLogin extends JFrame {//miniVentana donde se ingresa a la ap
             @Override
             public void actionPerformed(ActionEvent e) {
                 remember();
-                ArrayList<Integer> valores = Controlador.obtenerInstancia().verificaLoggin(txtCorreo.getText(), txtContraseña.getText());
+                ArrayList<Integer> valores;
+                valores = Controlador.obtenerInstancia().verificaLoggin(txtCorreo.getText(), String.valueOf(txtContrasenna.getPassword()));
                 int tipo = valores.get(0);
                 System.err.println(tipo);
                 int estado = valores.get(1);
@@ -178,7 +181,7 @@ public class VentanaLogin extends JFrame {//miniVentana donde se ingresa a la ap
                         limpiar();
                         break;
                     case 1:
-                        Ventana.obtenerInstancia().setTipoUsuario(Integer.toString(tipo));
+                        Ventana.obtenerInstancia().setTipoUsuario(String.valueOf(tipo));
                         correo = Controlador.obtenerInstancia().recortaCorreo(txtCorreo.getText()) + "@castillo.cr";
                         System.err.println(Controlador.obtenerInstancia().consultarConsecutivoBitacora());
                         Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
@@ -213,7 +216,7 @@ public class VentanaLogin extends JFrame {//miniVentana donde se ingresa a la ap
             @Override
             public void mouseClicked(MouseEvent e) {
                 limpiar();
-                VentanaRecuperaContraseña.obtenerInstancia().mostrar();
+                VentanaRecuperaContrasenna.obtenerInstancia().mostrar();
                 ocultar();
 //                Ventana.obtenerInstancia().mostrar();
             }
@@ -250,25 +253,25 @@ public class VentanaLogin extends JFrame {//miniVentana donde se ingresa a la ap
         lbIndicaciones = new JLabel("Ingrese los datos correspondientes");
         lbCorreo = new JLabel("Ingrese su Correo:");
         lbDominioCorreo = new JLabel("@castillo.cr");
-        lbContraseña = new JLabel("Contraseña:");
+        lbContrasenna = new JLabel("Contraseña:");
         lbOlvidoClave = new JLabel("¿Olvidó su contraseña?");
         //--o--
         lbTitulo.setForeground(Color.WHITE);
         lbIndicaciones.setForeground(Color.WHITE);
         lbCorreo.setForeground(Color.WHITE);
         lbDominioCorreo.setForeground(Color.WHITE);
-        lbContraseña.setForeground(Color.WHITE);
+        lbContrasenna.setForeground(Color.WHITE);
         lbOlvidoClave.setForeground(Color.WHITE);
         //--o--
         lbTitulo.setFont(new Font("tahoma", Font.BOLD, 18));
         lbIndicaciones.setFont(new Font("tahoma", Font.BOLD, 11));
         lbCorreo.setFont(new Font("tahoma", Font.BOLD, 11));
         lbDominioCorreo.setFont(new Font("tahoma", Font.BOLD, 11));
-        lbContraseña.setFont(new Font("tahoma", Font.BOLD, 11));
+        lbContrasenna.setFont(new Font("tahoma", Font.BOLD, 11));
         lbOlvidoClave.setFont(new Font("tahoma", Font.BOLD, 11));
         //--o--
         txtCorreo = new JTextField(10);
-        txtContraseña = new JPasswordField(10);
+        txtContrasenna = new JPasswordField(10);
         //--o--
         btnIngresar = new JButton("Accesar");
         this.getRootPane().setDefaultButton(btnIngresar);
@@ -294,7 +297,7 @@ public class VentanaLogin extends JFrame {//miniVentana donde se ingresa a la ap
         if (!ckRecordar.isSelected()) {
             txtCorreo.setText(null);
         }
-        txtContraseña.setText(null);
+        txtContrasenna.setText(null);
     }//----------------------------------------------------------------------------- FIN limpiar()   
 
     //Declaracion de variables
@@ -302,11 +305,11 @@ public class VentanaLogin extends JFrame {//miniVentana donde se ingresa a la ap
     private JLabel lbIndicaciones;
     private JLabel lbCorreo;
     private JLabel lbDominioCorreo;
-    private JLabel lbContraseña;
+    private JLabel lbContrasenna;
     private JLabel lbOlvidoClave;
     //--o--
     private JTextField txtCorreo;
-    private JPasswordField txtContraseña;
+    private JPasswordField txtContrasenna;
     //--o--
     private JButton btnIngresar;
     private JButton btnRegistrarse;

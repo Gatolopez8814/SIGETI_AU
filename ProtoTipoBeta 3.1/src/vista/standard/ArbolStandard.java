@@ -62,10 +62,10 @@ public class ArbolStandard extends JPanel {//Arbol para usuario standard
         Informacion infTicket = new Informacion("Gestión de tickets               ", "src/img/Carpeta-tickets16.png");//padre 1   
         Informacion infCrear = new Informacion("Crear nuevo ticket", "src/img/ticket16.png");
         Informacion infConsultas = new Informacion("Gestión de consultas", "src/img/Carpeta-Search16.png");//padre 2
-        Informacion infConsultarUltimo = new Informacion("Consultar último ticket", "src/img/Search-16.png");
+        Informacion infConsultarUltimo = new Informacion("Consultar último ticket", "src/img/Search16.png");
         Informacion infConsultarUno = new Informacion("Consultar un ticket", "src/img/Search216.png");
         Informacion infConsultarTodos = new Informacion("Historial de tickets", "src/img/Search316.png");
-        Informacion infCambioClave = new Informacion("Cambiar contraseña", "src/img/clave-iconx16.png");
+        Informacion infCambioClave = new Informacion("Cambiar contraseña", "src/img/claveiconx16.png");
         Informacion infConf = new Informacion("Configuración", "src/img/Conf-iconx16.png");
         Informacion infCerrarSeccion = new Informacion("Cerrar sesión", "src/img/user-login-iconx16.png");
         //--o--

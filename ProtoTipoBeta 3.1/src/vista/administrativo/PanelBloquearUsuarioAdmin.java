@@ -60,7 +60,7 @@ public class PanelBloquearUsuarioAdmin extends javax.swing.JPanel {
         labelUsuario = new javax.swing.JLabel();
         txtCorreoBloquear = new javax.swing.JTextField();
         labelCreador1 = new javax.swing.JLabel();
-        jComboUsuarios = new javax.swing.JComboBox();
+        jComboUsuarios = new javax.swing.JComboBox<String>();
 
         jPanel3.setBackground(new java.awt.Color(208, 144, 56));
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -347,7 +347,7 @@ public class PanelBloquearUsuarioAdmin extends javax.swing.JPanel {
     private javax.swing.JButton btnBloquearusuario;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox jComboUsuarios;
+    private javax.swing.JComboBox<String> jComboUsuarios;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;

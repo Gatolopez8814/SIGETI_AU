@@ -123,10 +123,10 @@ public class PanelConsultaHistorialArea extends javax.swing.JPanel {
         btnCancelar = new javax.swing.JButton();
         jPanelSeleccion = new javax.swing.JPanel();
         jLabelSubtitulo = new javax.swing.JLabel();
-        ComboBusqueda = new javax.swing.JComboBox();
+        ComboBusqueda = new javax.swing.JComboBox<String>();
         jPanelArea = new javax.swing.JPanel();
         jLabelAreas = new javax.swing.JLabel();
-        jComboArea = new javax.swing.JComboBox();
+        jComboArea = new javax.swing.JComboBox<String>();
         jPanelRangoFechas = new javax.swing.JPanel();
         jLabelDesde = new javax.swing.JLabel();
         jLabelGuion1 = new javax.swing.JLabel();
@@ -134,12 +134,12 @@ public class PanelConsultaHistorialArea extends javax.swing.JPanel {
         jLabelHasta = new javax.swing.JLabel();
         jLabelGuion3 = new javax.swing.JLabel();
         jLabelGuion4 = new javax.swing.JLabel();
-        jComboDiaDesde = new javax.swing.JComboBox();
-        jComboMesDesde = new javax.swing.JComboBox();
-        jComboAñoDesde = new javax.swing.JComboBox();
-        jComboDiaHasta = new javax.swing.JComboBox();
-        jComboMesHasta = new javax.swing.JComboBox();
-        jComboAñosHasta = new javax.swing.JComboBox();
+        jComboDiaDesde = new javax.swing.JComboBox<String>();
+        jComboMesDesde = new javax.swing.JComboBox<String>();
+        jComboAñoDesde = new javax.swing.JComboBox<String>();
+        jComboDiaHasta = new javax.swing.JComboBox<String>();
+        jComboMesHasta = new javax.swing.JComboBox<String>();
+        jComboAñosHasta = new javax.swing.JComboBox<String>();
         jPanelTabla = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaTickets = new javax.swing.JTable();
@@ -809,14 +809,22 @@ public class PanelConsultaHistorialArea extends javax.swing.JPanel {
     }
     
     private void cargarComboAnnos() {
-        ArrayList<Integer> lstAnyos;
+        ArrayList<String> lstAnyos;
         lstAnyos = new ArrayList<>();
         int year = Calendar.getInstance().get(Calendar.YEAR);
         for (int i = 2015; i <= year; i++) {
-            lstAnyos.add(i);
+            lstAnyos.add(String.valueOf(i));
         }
-         jComboAñoDesde.setModel(new DefaultComboBoxModel(lstAnyos.toArray(new Integer[lstAnyos .size()])));
-         jComboAñosHasta.setModel(new DefaultComboBoxModel(lstAnyos.toArray(new Integer[lstAnyos .size()])));
+        for (String temp : lstAnyos) {
+            this.jComboAñoDesde.addItem(temp);
+            this.jComboAñosHasta.addItem(temp);
+        }
+        this.jComboAñoDesde.setSelectedIndex(0);
+        this.jComboAñoDesde.revalidate();
+        this.jComboAñoDesde.repaint();
+        this.jComboAñosHasta.setSelectedIndex(0);
+        this.jComboAñosHasta.revalidate();
+        this.jComboAñosHasta.repaint();
     }
 
     private void btnVerMAsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerMAsActionPerformed
@@ -880,18 +888,18 @@ public class PanelConsultaHistorialArea extends javax.swing.JPanel {
     DefaultTableModel modelAux;
     //--o--
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox ComboBusqueda;
+    private javax.swing.JComboBox<String> ComboBusqueda;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnConsultarTodos;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JButton btnVerMAs;
-    private javax.swing.JComboBox jComboArea;
-    private javax.swing.JComboBox jComboAñoDesde;
-    private javax.swing.JComboBox jComboAñosHasta;
-    private javax.swing.JComboBox jComboDiaDesde;
-    private javax.swing.JComboBox jComboDiaHasta;
-    private javax.swing.JComboBox jComboMesDesde;
-    private javax.swing.JComboBox jComboMesHasta;
+    private javax.swing.JComboBox<String> jComboArea;
+    private javax.swing.JComboBox<String> jComboAñoDesde;
+    private javax.swing.JComboBox<String> jComboAñosHasta;
+    private javax.swing.JComboBox<String> jComboDiaDesde;
+    private javax.swing.JComboBox<String> jComboDiaHasta;
+    private javax.swing.JComboBox<String> jComboMesDesde;
+    private javax.swing.JComboBox<String> jComboMesHasta;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;

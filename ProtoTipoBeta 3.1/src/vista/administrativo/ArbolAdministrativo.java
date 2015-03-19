@@ -79,10 +79,10 @@ public class ArbolAdministrativo extends JPanel {//Arbol para usuario de Adminis
         Informacion infCambioTipo = new Informacion("Cambiar Tipo usuario", "src/img/Actions-user-properties-icon.png");
         
         Informacion infConsultas = new Informacion("Gestión consultas", "src/img/Carpeta-Search16.png");//padre 2
-        Informacion infConsultarUltimo = new Informacion("Consultar úlltimo ticket", "src/img/Search-16.png");
+        Informacion infConsultarUltimo = new Informacion("Consultar úlltimo ticket", "src/img/Search16.png");
         Informacion infConsultarUno = new Informacion("Consultar un ticket", "src/img/Search216.png");
         Informacion infConsultarTodos = new Informacion("Consultar varios tickets", "src/img/Search316.png");
-        Informacion infCambioClave = new Informacion("Cambiar contraseña", "src/img/clave-iconx16.png");
+        Informacion infCambioClave = new Informacion("Cambiar contraseña", "src/img/claveiconx16.png");
         Informacion infConf = new Informacion("Configuración", "src/img/Conf-iconx16.png");
         Informacion infCerrarSeccion = new Informacion("Cerrar sesión", "src/img/user-login-iconx16.png");
         Informacion infTodosTickets = new Informacion("Todos los tickets", "src/img/3-Gray-Paper-Box-icon.png");
