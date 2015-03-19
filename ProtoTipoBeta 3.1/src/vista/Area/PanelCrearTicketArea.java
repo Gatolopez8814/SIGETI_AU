@@ -108,9 +108,9 @@ public class PanelCrearTicketArea extends javax.swing.JPanel {//panel donde se e
         jLabel4 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jComboAsunto = new javax.swing.JComboBox();
+        jComboAsunto = new javax.swing.JComboBox<String>();
         txtEspecificacion2 = new javax.swing.JTextField();
-        jComboArea = new javax.swing.JComboBox();
+        jComboArea = new javax.swing.JComboBox<String>();
         txtEspecificacion = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextDetalle = new javax.swing.JTextArea();
@@ -414,8 +414,8 @@ public class PanelCrearTicketArea extends javax.swing.JPanel {//panel donde se e
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox jComboArea;
-    private javax.swing.JComboBox jComboAsunto;
+    private javax.swing.JComboBox<String> jComboArea;
+    private javax.swing.JComboBox<String> jComboAsunto;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel16;

@@ -107,9 +107,9 @@ public class PanelCrearTicketAdministrativo extends javax.swing.JPanel {//panel 
         labelTitulo = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jComboAsunto = new javax.swing.JComboBox();
+        jComboAsunto = new javax.swing.JComboBox<String>();
         jLabel9 = new javax.swing.JLabel();
-        jComboArea = new javax.swing.JComboBox();
+        jComboArea = new javax.swing.JComboBox<String>();
         jLabel2 = new javax.swing.JLabel();
         txtEspecificacion = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
@@ -422,8 +422,8 @@ public class PanelCrearTicketAdministrativo extends javax.swing.JPanel {//panel 
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox jComboArea;
-    private javax.swing.JComboBox jComboAsunto;
+    private javax.swing.JComboBox<String> jComboArea;
+    private javax.swing.JComboBox<String> jComboAsunto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel16;

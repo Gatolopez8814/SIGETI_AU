@@ -160,7 +160,7 @@ public class PanelOlvidoContraseña extends javax.swing.JPanel {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Volver a ventana login?", null, JOptionPane.YES_NO_OPTION)) {
             this.jTextCorreo.setText("");
-            VentanaRecuperaContraseña.obtenerInstancia().ocultar();
+            VentanaRecuperaContrasenna.obtenerInstancia().ocultar();
             VentanaLogin.obtenerInstancia().mostrar();
         }
     }//GEN-LAST:event_jButton2ActionPerformed

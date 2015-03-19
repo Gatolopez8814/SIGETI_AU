@@ -61,7 +61,7 @@ public class PanelEliminarUsuarioAdmin extends javax.swing.JPanel {
         labelUsuario = new javax.swing.JLabel();
         txtCorreoEliminar = new javax.swing.JTextField();
         labelCreador1 = new javax.swing.JLabel();
-        jComboUsuarios = new javax.swing.JComboBox();
+        jComboUsuarios = new javax.swing.JComboBox<String>();
 
         jPanel1.setBackground(new java.awt.Color(208, 144, 56));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -332,7 +332,7 @@ public class PanelEliminarUsuarioAdmin extends javax.swing.JPanel {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnEliminarusuario;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox jComboUsuarios;
+    private javax.swing.JComboBox<String> jComboUsuarios;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

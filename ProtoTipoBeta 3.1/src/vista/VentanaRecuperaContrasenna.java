@@ -10,18 +10,18 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
 
-public class VentanaRecuperaContraseña extends JFrame{
+public class VentanaRecuperaContrasenna extends JFrame{
 
-    private VentanaRecuperaContraseña() {
+    private VentanaRecuperaContrasenna() {
         super("SISTEMA GESTIÓN DE TICKETS - SIGETI - Recuperar contraseña");
         ajustarConfiguracionInicial();
         ajustarComponentes(getContentPane());
         ajustarEventos();
     }//----------------------------------------------------------------------------- FIN Constructor()
 
-    public static VentanaRecuperaContraseña obtenerInstancia() {//asi garantizamos que solo aya una ventana
+    public static VentanaRecuperaContrasenna obtenerInstancia() {//asi garantizamos que solo aya una ventana
         if (instancia == null) {
-            instancia = new VentanaRecuperaContraseña();
+            instancia = new VentanaRecuperaContrasenna();
         }
         return instancia;
     }//----------------------------------------------------------------------------- FIN obtenerInstancia()
@@ -69,7 +69,7 @@ public class VentanaRecuperaContraseña extends JFrame{
     }//----------------------------------------------------------------------------- FIN cerrarAplicacion()
     
     //Declaracion de variables
-    private static VentanaRecuperaContraseña instancia = null;
+    private static VentanaRecuperaContrasenna instancia = null;
 
 
 }//_____________________________________________________________________________

@@ -196,9 +196,9 @@ public class PanelTicketsCerradosAdmin extends javax.swing.JPanel {
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        jComboDiaDesde = new javax.swing.JComboBox();
-        jComboMesDesde = new javax.swing.JComboBox();
-        jComboAñoDesde = new javax.swing.JComboBox();
+        jComboDiaDesde = new javax.swing.JComboBox<String>();
+        jComboMesDesde = new javax.swing.JComboBox<String>();
+        jComboAñoDesde = new javax.swing.JComboBox<String>();
         btnAplicarCambios = new javax.swing.JButton();
         btnAbrir = new javax.swing.JButton();
 
@@ -965,13 +965,18 @@ public class PanelTicketsCerradosAdmin extends javax.swing.JPanel {
     }
     
     private void cargarComboAnnos() {
-        ArrayList<Integer> lstAnyos;
+        ArrayList<String> lstAnyos;
         lstAnyos = new ArrayList<>();
         int year = Calendar.getInstance().get(Calendar.YEAR);
         for (int i = 2015; i <= year; i++) {
-            lstAnyos.add(i);
+            lstAnyos.add(String.valueOf(i));
         }
-         jComboAñoDesde.setModel(new DefaultComboBoxModel(lstAnyos.toArray(new Integer[lstAnyos .size()])));
+        for (String temp : lstAnyos) {
+            this.jComboAñoDesde.addItem(temp);
+        }
+        this.jComboAñoDesde.setSelectedIndex(0);
+        this.jComboAñoDesde.revalidate();
+        this.jComboAñoDesde.repaint();
     }
     
     private void limpiarCampos() {
@@ -1008,9 +1013,9 @@ private DefaultTableModel modelAux;
     private javax.swing.JButton btnVerMAs;
     private javax.swing.ButtonGroup buttonGroupGestionar;
     private javax.swing.JLabel cantidad;
-    private javax.swing.JComboBox jComboAñoDesde;
-    private javax.swing.JComboBox jComboDiaDesde;
-    private javax.swing.JComboBox jComboMesDesde;
+    private javax.swing.JComboBox<String> jComboAñoDesde;
+    private javax.swing.JComboBox<String> jComboDiaDesde;
+    private javax.swing.JComboBox<String> jComboMesDesde;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

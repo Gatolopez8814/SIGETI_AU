@@ -104,13 +104,18 @@ public class PanelTicketsEnProcesoArea extends javax.swing.JPanel {
 
     
     private void cargarComboAnnos() {
-        ArrayList<Integer> lstAnyos;
+        ArrayList<String> lstAnyos;
         lstAnyos = new ArrayList<>();
         int year = Calendar.getInstance().get(Calendar.YEAR);
         for (int i = 2015; i <= year; i++) {
-            lstAnyos.add(i);
+            lstAnyos.add(String.valueOf(i));
         }
-         jComboAñoDesde.setModel(new DefaultComboBoxModel(lstAnyos.toArray(new Integer[lstAnyos .size()])));
+        for (String temp : lstAnyos) {
+            this.jComboAñoDesde.addItem(temp);
+        }
+        this.jComboAñoDesde.setSelectedIndex(0);
+        this.jComboAñoDesde.revalidate();
+        this.jComboAñoDesde.repaint();
     }
     
     private void ajustarEventos() {
@@ -286,20 +291,20 @@ public class PanelTicketsEnProcesoArea extends javax.swing.JPanel {
         jRadioFecha = new javax.swing.JRadioButton();
         jPanelArea = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jComboBoxArea2 = new javax.swing.JComboBox();
+        jComboBoxArea2 = new javax.swing.JComboBox<String>();
         jPanelPrioridad = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
-        jComboBoxPrioridad = new javax.swing.JComboBox();
+        jComboBoxPrioridad = new javax.swing.JComboBox<String>();
         jPanelResponsable = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
-        jComboUsuarios = new javax.swing.JComboBox();
+        jComboUsuarios = new javax.swing.JComboBox<String>();
         jPanelFecha = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
-        jComboDiaDesde = new javax.swing.JComboBox();
-        jComboMesDesde = new javax.swing.JComboBox();
-        jComboAñoDesde = new javax.swing.JComboBox();
+        jComboDiaDesde = new javax.swing.JComboBox<String>();
+        jComboMesDesde = new javax.swing.JComboBox<String>();
+        jComboAñoDesde = new javax.swing.JComboBox<String>();
         btnAplicarCambios = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(252, 239, 148));
@@ -1382,12 +1387,12 @@ public class PanelTicketsEnProcesoArea extends javax.swing.JPanel {
     private javax.swing.JButton btnVerTicket;
     private javax.swing.ButtonGroup buttonGroupGestionar;
     private javax.swing.JLabel cantidad;
-    private javax.swing.JComboBox jComboAñoDesde;
-    private javax.swing.JComboBox jComboBoxArea2;
-    private javax.swing.JComboBox jComboBoxPrioridad;
-    private javax.swing.JComboBox jComboDiaDesde;
-    private javax.swing.JComboBox jComboMesDesde;
-    private javax.swing.JComboBox jComboUsuarios;
+    private javax.swing.JComboBox<String> jComboAñoDesde;
+    private javax.swing.JComboBox<String> jComboBoxArea2;
+    private javax.swing.JComboBox<String> jComboBoxPrioridad;
+    private javax.swing.JComboBox<String> jComboDiaDesde;
+    private javax.swing.JComboBox<String> jComboMesDesde;
+    private javax.swing.JComboBox<String> jComboUsuarios;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
