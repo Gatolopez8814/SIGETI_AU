@@ -173,6 +173,10 @@ public class Controlador {
     public ArrayList<String> obtieneUsuariosEliminar(String usuarioActual, int estado) {
         return model.obtieneUsuariosEliminar(usuarioActual, estado);
     }//----------------------------------------------------------------------------- FIN obtieneUsuariosEliminar()
+    
+    public ArrayList<String> obtieneTodosUsuarios() {
+        return model.obtieneTodosUsuarios();
+    }//----------------------------------------------------------------------------- FIN obtieneTodosUsuarios()
 
     public ArrayList<String> obtieneAsuntos() {
         return model.obtieneAsuntos();

@@ -675,6 +675,31 @@ public class Modelo {
         }
         return tEncontrados;
     }//----------------------------------------------------------------------------- FIN obtieneUsuariosEliminar()
+    
+    public ArrayList<String> obtieneTodosUsuarios() {
+        ArrayList<String> usuarios = new ArrayList<>();
+        String correo;
+        ResultSet resultado = null;
+        try {
+            Statement sentencia = null;
+            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
+
+            resultado = sentencia.executeQuery("select correo from usuario where estado = 1 order by correo");
+            if (resultado != null) {
+            }
+            while (resultado.next()) {
+                correo = resultado.getString(1);
+                usuarios.add(correo);
+            }
+        } catch (Exception e) {
+            System.out.println("Error Exception from Modelo -> obtieneTodosUsuarios()");
+            e.printStackTrace();
+        } finally {
+            ConexionMySql.obtenerInstancia().desconectar();
+            System.out.println("Se ha cerrado la conexion");
+        }
+        return usuarios;
+    }//----------------------------------------------------------------------------- FIN obtieneTodosUsuarios()
 
     public ArrayList<String> obtieneAsuntos() {
         //este metodo es para que el usuario de area pueda consultar todos los tickets de su area

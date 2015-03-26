@@ -104,6 +104,18 @@ public class PanelTicketEnProcesoAdmin extends javax.swing.JPanel {
         });
     }//----------------------------------------------------------------------------- FIN soloNumeros()
 
+     private void cargarjComboUsuarios(){
+        this.jComboUsuarios.removeAllItems();
+        this.jComboUsuarios.addItem("Seleccione aquí");
+        ArrayList<String> temp = Controlador.obtenerInstancia().obtieneTodosUsuarios();
+        for (String temp1 : temp) {
+            this.jComboUsuarios.addItem(temp1);
+        }
+        this.jComboUsuarios.setSelectedIndex(0);
+        this.jComboUsuarios.revalidate();
+        this.jComboUsuarios.repaint();
+    }//----------------------------------------------------------------------------- FIN cargarjComboUsuarios()
+     
     private void cargarjComboArea() {
         this.jComboBoxArea2.removeAllItems();
         this.jComboBoxArea2.addItem("Seleccione aquí");
@@ -199,6 +211,7 @@ public class PanelTicketEnProcesoAdmin extends javax.swing.JPanel {
         this.jRadioResponsable.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                cargarjComboUsuarios();
                 jPanelFecha.setVisible(false);
                 jPanelComentario.setVisible(false);
                 jPanelResponsable.setVisible(true);

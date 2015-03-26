@@ -836,6 +836,11 @@ public class PanelTodosTicketsAdmin extends javax.swing.JPanel {
         jLabel21.setText("Correo del responsable: ");
 
         jComboUsuarios.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione aquí" }));
+        jComboUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboUsuariosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelResponsableLayout = new javax.swing.GroupLayout(jPanelResponsable);
         jPanelResponsable.setLayout(jPanelResponsableLayout);
@@ -1236,6 +1241,10 @@ public class PanelTodosTicketsAdmin extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnAplicarCambiosActionPerformed
 
+    private void jComboUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboUsuariosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboUsuariosActionPerformed
+
     private void actualizarInformacion(int codi) {
         Ticket aux = Controlador.obtenerInstancia().informacionTicket(codi);
         this.jLabelTitulo.setText("Información del ticket " + codi);
@@ -1249,7 +1258,7 @@ public class PanelTodosTicketsAdmin extends javax.swing.JPanel {
     private void cargarjComboUsuarios(){
         this.jComboUsuarios.removeAllItems();
         this.jComboUsuarios.addItem("Seleccione aquí");
-        ArrayList<String> temp = Controlador.obtenerInstancia().obtieneUsuariosEliminar(VentanaLogin.correo, 2);
+        ArrayList<String> temp = Controlador.obtenerInstancia().obtieneTodosUsuarios();
         for (String temp1 : temp) {
             this.jComboUsuarios.addItem(temp1);
         }
