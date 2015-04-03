@@ -386,8 +386,13 @@ public class PanelCrearTicket extends javax.swing.JPanel {//panel donde se encue
                             VentanaLogin.correo, "Ticket", "Creó el ticket " + consecutivo);
                     this.limpiarCampos();
 
-                    JOptionPane.showMessageDialog(this, "   Falta enviar correo", "Recordatorio",
-                            JOptionPane.PLAIN_MESSAGE);
+                    if(Controlador.obtenerInstancia().enviaCorreo("Su ticket fue ingreado correctamente al sistema\n"
+                            + "Puede consultar el progreso de su ticket utilizando el siguiente código"
+                            + "############","SIGETI ticket creado",Controlador.obtenerInstancia().recortaCorreo(VentanaLogin.correo))){
+                        JOptionPane.showMessageDialog(this, "Se ha enviado correo de confirmación", "Correo confirmación", JOptionPane.PLAIN_MESSAGE);
+                    }else{
+                        JOptionPane.showMessageDialog(this, "No se pudo enviar correo de confirmación", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
                 } else {
                     JOptionPane.showMessageDialog(this, "   No se pudo crear el ticket", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }

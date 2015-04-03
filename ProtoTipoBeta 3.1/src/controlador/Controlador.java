@@ -65,8 +65,8 @@ public class Controlador {
         return model.desBloqueaUsuarioAdmin(correoFinal);
     }//----------------------------------------------------------------------------- FIN desBloqueaUsuarioAdmin()
 
-    public void enviaCorreo(String correoUsuario) {
-        model.enviaCorreo(correoUsuario);
+    public boolean enviaCorreo(String mensaje, String asunto, String correoUsuario) {
+        return model.enviaCorreo(mensaje, asunto, correoUsuario);
     }//----------------------------------------------------------------------------- FIN enviaCorreo()
 
     public boolean validaContraseña(String contraseña) {

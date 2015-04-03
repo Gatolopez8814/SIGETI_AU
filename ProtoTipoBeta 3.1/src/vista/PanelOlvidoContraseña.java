@@ -1,5 +1,6 @@
 package vista;
 
+import controlador.Controlador;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyAdapter;
@@ -166,8 +167,17 @@ public class PanelOlvidoContraseña extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Desea recibir la contraseña al correo "+jTextCorreo.getText()+"?", null, JOptionPane.YES_NO_OPTION)) {
-        
+        if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Desea recibir la contraseña al correo "+jTextCorreo.getText()+"@castillo.cr"+"?", null, JOptionPane.YES_NO_OPTION)) {
+            String correo = Controlador.obtenerInstancia().recortaCorreo(jTextCorreo.getText());
+            if(Controlador.obtenerInstancia().enviaCorreo("Usted ha solicitado un cambio de contraseña "
+                    + "para su cuenta en el sistema sigeti", "Cambio de contraseña", correo)){
+                JOptionPane.showMessageDialog(this, "Se envio la nueva contraseña al correo:\n"+correo+"@castillo.cr");
+            this.jTextCorreo.setText("");
+            VentanaRecuperaContrasenna.obtenerInstancia().ocultar();
+            VentanaLogin.obtenerInstancia().mostrar();
+            }else{
+                JOptionPane.showMessageDialog(this, "No se pudo enviar el correo\nIntente de nuevo", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

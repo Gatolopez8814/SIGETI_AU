@@ -24,10 +24,10 @@ public class Modelo {
         return correoFinal;
     }//----------------------------------------------------------------------------- FIN recortaCorreo()
 
-    public void enviaCorreo(String correoUsuario) {
+    public boolean enviaCorreo(String mensaje, String asunto, String correoUsuario) {
         //envia el correo al usuario despues de crear un ticket
-        String correo = correoUsuario + "@hotmail.com";//cambiar por @castillo.cr
-        EnviaMensaje.obtenerInstancia().sendMessage("Has solicitado una nueva contraseña para le sistema SIGETI, la misma es XXXXXX y tendra 3 días de tiempo para cambiarla por otra.", "Cambio de contraseña", correo);
+        String correo = correoUsuario + "@gmail.com";//cambiar por @castillo.cr
+        return EnviaMensaje.obtenerInstancia().sendMessage(mensaje, asunto, correo);
     }//----------------------------------------------------------------------------- FIN enviaCorreo()
 
     public ArrayList<Integer> verificaLoggin(String correoUsuario, String contrasena) {
