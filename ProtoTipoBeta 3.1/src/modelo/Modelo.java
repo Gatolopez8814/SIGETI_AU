@@ -1,6 +1,6 @@
 package modelo;
 
-//Prueba update 1
+//Prueba por karen
 
 import controlador.ConexionMySql;
 import controlador.EnviaMensaje;
