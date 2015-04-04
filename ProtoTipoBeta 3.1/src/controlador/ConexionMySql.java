@@ -24,7 +24,7 @@ public class ConexionMySql {
         try {
             System.out.println("Intendo conectar");
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            conexion = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/sigeti", "root", "root");
+            conexion = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/sigeti", "root", "manager");
             if (conexion != null) {
                 System.out.println("Conexion exitosa");
                 ok = true;

@@ -912,6 +912,8 @@
                           <Component id="jRadioResponsable" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                           <Component id="jRadioFecha" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                          <Component id="jRadioCerrar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -926,6 +928,7 @@
                               <Component id="jRadioPrioridad" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jRadioResponsable" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jRadioFecha" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jRadioCerrar" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
@@ -986,6 +989,11 @@
                       <ComponentRef name="buttonGroupGestionar"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Asignar fecha de soluci&#xf3;n"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JRadioButton" name="jRadioCerrar">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Cerrar ticket"/>
                   </Properties>
                 </Component>
               </SubComponents>

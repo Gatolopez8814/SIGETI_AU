@@ -185,6 +185,17 @@ public class PanelTicketsEnProcesoArea extends javax.swing.JPanel {
                 jPanelPrioridad.setVisible(false);
             }
         });
+        this.jRadioCerrar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jPanelFecha.setVisible(false);
+                jPanelComentario.setVisible(false);
+                jPanelResponsable.setVisible(false);
+                btnAplicarCambios.setVisible(true);
+                jPanelArea.setVisible(false);
+                jPanelPrioridad.setVisible(false);
+            }
+        });
     }
 
     private void LlenaTicketsProceso() {
@@ -289,6 +300,7 @@ public class PanelTicketsEnProcesoArea extends javax.swing.JPanel {
         jRadioPrioridad = new javax.swing.JRadioButton();
         jRadioResponsable = new javax.swing.JRadioButton();
         jRadioFecha = new javax.swing.JRadioButton();
+        jRadioCerrar = new javax.swing.JRadioButton();
         jPanelArea = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jComboBoxArea2 = new javax.swing.JComboBox<String>();
@@ -746,6 +758,8 @@ public class PanelTicketsEnProcesoArea extends javax.swing.JPanel {
         buttonGroupGestionar.add(jRadioFecha);
         jRadioFecha.setText("Asignar fecha de solución");
 
+        jRadioCerrar.setText("Cerrar ticket");
+
         javax.swing.GroupLayout jPanelRadiosLayout = new javax.swing.GroupLayout(jPanelRadios);
         jPanelRadios.setLayout(jPanelRadiosLayout);
         jPanelRadiosLayout.setHorizontalGroup(
@@ -761,6 +775,8 @@ public class PanelTicketsEnProcesoArea extends javax.swing.JPanel {
                 .addComponent(jRadioResponsable)
                 .addGap(10, 10, 10)
                 .addComponent(jRadioFecha)
+                .addGap(10, 10, 10)
+                .addComponent(jRadioCerrar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelRadiosLayout.setVerticalGroup(
@@ -772,7 +788,8 @@ public class PanelTicketsEnProcesoArea extends javax.swing.JPanel {
                     .addComponent(jRadioRedireccioinar)
                     .addComponent(jRadioPrioridad)
                     .addComponent(jRadioResponsable)
-                    .addComponent(jRadioFecha))
+                    .addComponent(jRadioFecha)
+                    .addComponent(jRadioCerrar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1317,6 +1334,24 @@ public class PanelTicketsEnProcesoArea extends javax.swing.JPanel {
 //                }
 //            }
 //        }
+        if (this.jRadioCerrar.isSelected()) {
+            String contrasenna;
+            if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, " ¿Realmente desea cerrar el ticket " + this.codigoTicket + "?", null, JOptionPane.YES_NO_OPTION)) {
+                contrasenna = JOptionPane.showInputDialog("Digite su contraseña:");
+                if (Controlador.obtenerInstancia().verificarContrasenna(VentanaLogin.correo, contrasenna)) {
+                    if (Controlador.obtenerInstancia().cerrarTicket(this.codigoTicket)) {
+                        JOptionPane.showMessageDialog(this, "   El ticket ha sido cerrado con éxito", "Ticket cerrado",
+                                JOptionPane.PLAIN_MESSAGE);
+//                    PanelBandejaArea.obtenerInstancia().llenarBandeja();
+                    } else {
+                        JOptionPane.showMessageDialog(this, "   No se pudo cerrar el ticket", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
+
+                } else {
+                    JOptionPane.showMessageDialog(this, "   No se pudo cerrar el ticket, constraseña incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
     }//GEN-LAST:event_btnAplicarCambiosActionPerformed
 
     public static boolean isFechaValida(String fecha) {
@@ -1431,6 +1466,7 @@ public class PanelTicketsEnProcesoArea extends javax.swing.JPanel {
     private javax.swing.JPanel jPanelRadios;
     private javax.swing.JPanel jPanelResponsable;
     private javax.swing.JPanel jPanelTabla;
+    private javax.swing.JRadioButton jRadioCerrar;
     private javax.swing.JRadioButton jRadioComentario;
     private javax.swing.JRadioButton jRadioFecha;
     private javax.swing.JRadioButton jRadioPrioridad;

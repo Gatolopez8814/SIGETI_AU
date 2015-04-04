@@ -140,8 +140,8 @@ public class Controlador {
         return model.ticketsBandejaEntradaAdmin();
     }//----------------------------------------------------------------------------- FIN  ticketsBandejaEntradaAdmin()
 
-    public boolean cerrarTicket(int codi) {
-        return model.cerrarTicket(codi);
+    public boolean cerrarTicket(int _codigo) {
+        return model.cerrarTicket(_codigo);
     }//----------------------------------------------------------------------------- FIN cerrarTicket()
 
     public ArrayList<Ticket> ticketsCerradosArea(String _correoUsuario) {

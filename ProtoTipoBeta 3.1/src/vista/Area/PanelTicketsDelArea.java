@@ -181,6 +181,17 @@ public class PanelTicketsDelArea extends javax.swing.JPanel {
                 jPanelPrioridad.setVisible(false);
             }
         });
+        this.jRadioCerrar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jPanelFecha.setVisible(false);
+                jPanelComentario.setVisible(false);
+                jPanelResponsable.setVisible(false);
+                btnAplicarCambios.setVisible(true);
+                jPanelArea.setVisible(false);
+                jPanelPrioridad.setVisible(false);
+            }
+        });
     }
 
     @SuppressWarnings("unchecked")
@@ -193,7 +204,6 @@ public class PanelTicketsDelArea extends javax.swing.JPanel {
         jPanelTabla = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        btnCerrarTicket = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -257,6 +267,7 @@ public class PanelTicketsDelArea extends javax.swing.JPanel {
         jRadioPrioridad = new javax.swing.JRadioButton();
         jRadioResponsable = new javax.swing.JRadioButton();
         jRadioFecha = new javax.swing.JRadioButton();
+        jRadioCerrar = new javax.swing.JRadioButton();
         jPanelArea = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jComboBoxArea2 = new javax.swing.JComboBox<String>();
@@ -304,13 +315,6 @@ public class PanelTicketsDelArea extends javax.swing.JPanel {
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel11.setText("LISTA GENERAL DE TICKETS ");
-
-        btnCerrarTicket.setText("Cerrar ticket");
-        btnCerrarTicket.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCerrarTicketActionPerformed(evt);
-            }
-        });
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(102, 51, 0));
@@ -391,8 +395,6 @@ public class PanelTicketsDelArea extends javax.swing.JPanel {
                         .addComponent(jLabel12)
                         .addGap(25, 25, 25)
                         .addComponent(btnVerTicket)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnCerrarTicket)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanelTablaLayout.setVerticalGroup(
@@ -407,7 +409,6 @@ public class PanelTicketsDelArea extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(btnCerrarTicket)
                     .addComponent(btnVerTicket))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -766,6 +767,13 @@ public class PanelTicketsDelArea extends javax.swing.JPanel {
         buttonGroupGestionar.add(jRadioFecha);
         jRadioFecha.setText("Asignar fecha de solución");
 
+        jRadioCerrar.setText("Cerrar ticket");
+        jRadioCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioCerrarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelRadiosLayout = new javax.swing.GroupLayout(jPanelRadios);
         jPanelRadios.setLayout(jPanelRadiosLayout);
         jPanelRadiosLayout.setHorizontalGroup(
@@ -781,6 +789,8 @@ public class PanelTicketsDelArea extends javax.swing.JPanel {
                 .addComponent(jRadioResponsable)
                 .addGap(10, 10, 10)
                 .addComponent(jRadioFecha)
+                .addGap(10, 10, 10)
+                .addComponent(jRadioCerrar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelRadiosLayout.setVerticalGroup(
@@ -792,7 +802,8 @@ public class PanelTicketsDelArea extends javax.swing.JPanel {
                     .addComponent(jRadioRedireccioinar)
                     .addComponent(jRadioPrioridad)
                     .addComponent(jRadioResponsable)
-                    .addComponent(jRadioFecha))
+                    .addComponent(jRadioFecha)
+                    .addComponent(jRadioCerrar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1041,34 +1052,6 @@ public class PanelTicketsDelArea extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void btnCerrarTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarTicketActionPerformed
-        String contrasenna;
-        int dato = this.tablaTickets.getSelectedRow();
-        int codi = Integer.parseInt(String.valueOf(this.tablaTickets.getValueAt(dato, 0)));
-        codigoTicket = codi;
-        if (dato >= 0) {
-            if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, " ¿Realmente desea cerrar el ticket " + codi + "?", null, JOptionPane.YES_NO_OPTION)) {
-                contrasenna = JOptionPane.showInputDialog("Digite su contraseña:");
-                if (Controlador.obtenerInstancia().verificarContrasenna(VentanaLogin.correo, contrasenna)) {
-                    if (Controlador.obtenerInstancia().cerrarTicket(codi)) {
-                        JOptionPane.showMessageDialog(this, "   El ticket ha sido cerrado con éxito", "Ticket cerrado",
-                                JOptionPane.PLAIN_MESSAGE);
-                        this.LlenaTicketsDelArea();
-//                    PanelBandejaArea.obtenerInstancia().llenarBandeja();
-                    } else {
-                        JOptionPane.showMessageDialog(this, "   No se pudo cerrar el ticket", "ERROR", JOptionPane.ERROR_MESSAGE);
-                    }
-
-                } else {
-                    JOptionPane.showMessageDialog(this, "   No se pudo cerrar el ticket, constraseña incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
-                }
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Debe seleccionar un ticket para cerrar", "ERROR", JOptionPane.ERROR_MESSAGE);
-        }
-
-    }//GEN-LAST:event_btnCerrarTicketActionPerformed
-
     private void btnVerTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerTicketActionPerformed
         int dato = this.tablaTickets.getSelectedRow();
         if (dato >= 0) {
@@ -1257,7 +1240,29 @@ public class PanelTicketsDelArea extends javax.swing.JPanel {
                 }
             }
         }
+        if (this.jRadioCerrar.isSelected()) {
+            String contrasenna;
+            if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, " ¿Realmente desea cerrar el ticket " + this.codigoTicket + "?", null, JOptionPane.YES_NO_OPTION)) {
+                contrasenna = JOptionPane.showInputDialog("Digite su contraseña:");
+                if (Controlador.obtenerInstancia().verificarContrasenna(VentanaLogin.correo, contrasenna)) {
+                    if (Controlador.obtenerInstancia().cerrarTicket(this.codigoTicket)) {
+                        JOptionPane.showMessageDialog(this, "   El ticket ha sido cerrado con éxito", "Ticket cerrado",
+                                JOptionPane.PLAIN_MESSAGE);
+//                    PanelBandejaArea.obtenerInstancia().llenarBandeja();
+                    } else {
+                        JOptionPane.showMessageDialog(this, "   No se pudo cerrar el ticket", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
+
+                } else {
+                    JOptionPane.showMessageDialog(this, "   No se pudo cerrar el ticket, constraseña incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
     }//GEN-LAST:event_btnAplicarCambiosActionPerformed
+
+    private void jRadioCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioCerrarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioCerrarActionPerformed
 
     private void LlenaTicketsDelArea() {
         this.lbAsignados.setText(String.valueOf(Controlador.obtenerInstancia().cantidadAsignadosArea(VentanaLogin.correo)));
@@ -1367,7 +1372,6 @@ public class PanelTicketsDelArea extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAplicarCambios;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnCerrarTicket;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnRegresar2;
     private javax.swing.JButton btnVerTicket;
@@ -1420,6 +1424,7 @@ public class PanelTicketsDelArea extends javax.swing.JPanel {
     private javax.swing.JPanel jPanelRadios;
     private javax.swing.JPanel jPanelResponsable;
     private javax.swing.JPanel jPanelTabla;
+    private javax.swing.JRadioButton jRadioCerrar;
     private javax.swing.JRadioButton jRadioComentario;
     private javax.swing.JRadioButton jRadioFecha;
     private javax.swing.JRadioButton jRadioPrioridad;

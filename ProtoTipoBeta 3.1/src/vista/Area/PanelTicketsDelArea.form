@@ -135,8 +135,6 @@
                           <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                           <Component id="btnVerTicket" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="btnCerrarTicket" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -155,7 +153,6 @@
                   <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnCerrarTicket" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnVerTicket" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
@@ -173,14 +170,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JSeparator" name="jSeparator1">
-        </Component>
-        <Component class="javax.swing.JButton" name="btnCerrarTicket">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Cerrar ticket"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCerrarTicketActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel12">
           <Properties>
@@ -995,6 +984,8 @@
                           <Component id="jRadioResponsable" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                           <Component id="jRadioFecha" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                          <Component id="jRadioCerrar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -1009,6 +1000,7 @@
                               <Component id="jRadioPrioridad" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jRadioResponsable" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jRadioFecha" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jRadioCerrar" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
@@ -1070,6 +1062,14 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Asignar fecha de soluci&#xf3;n"/>
                   </Properties>
+                </Component>
+                <Component class="javax.swing.JRadioButton" name="jRadioCerrar">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Cerrar ticket"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioCerrarActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
