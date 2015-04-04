@@ -13,13 +13,13 @@ public class PanelUltimoTicketAdmin extends javax.swing.JPanel {
         initComponents();
         this.ajustarEventos();
         this.limpiarCampos();
-        this.llenarUltimo(VentanaLogin.correo);
     }//----------------------------------------------------------------------------- FIN Constructor()
 
     public static PanelUltimoTicketAdmin obtenerInstancia() {//para garantizar hay solo una instancia
         if (instancia == null) {
             instancia = new PanelUltimoTicketAdmin();
         }
+        instancia.llenarUltimo(VentanaLogin.correo);
         return instancia;
     }////----------------------------------------------------------------------------- FIN obtenerInstancia()
 
@@ -394,7 +394,7 @@ public class PanelUltimoTicketAdmin extends javax.swing.JPanel {
 //            this.jList1.setText("El problema consiste en ...");
             this.jTextAreaDetalle.setText("El problema consiste en ...");
             this.jTextAreaComentarios.setText("");
-            Ventana.obtenerInstancia().ventanaPrincipalStandard();
+            Ventana.obtenerInstancia().ventanaPrincipalAdmin();
         }
     }//GEN-LAST:event_btnCancelarActionPerformed
 
