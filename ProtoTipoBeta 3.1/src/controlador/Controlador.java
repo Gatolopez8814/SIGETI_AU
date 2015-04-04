@@ -177,6 +177,18 @@ public class Controlador {
     public ArrayList<String> obtieneTodosUsuarios() {
         return model.obtieneTodosUsuarios();
     }//----------------------------------------------------------------------------- FIN obtieneTodosUsuarios()
+    
+     public ArrayList<String> obtieneUsuariosGeneral() {
+         return model.obtieneUsuariosGeneral();
+     }//----------------------------------------------------------------------------- FIN obtieneUsuariosGeneral()
+    
+    public String obtieneNombreArea(String _correoUsuario){
+        return model.obtieneNombreArea(_correoUsuario);
+    }//----------------------------------------------------------------------------- FIN obtieneNombreArea()
+    
+    public ArrayList<String> obtieneUsuariosPorArea(String _area) {
+        return model.obtieneUsuariosPorArea(_area);
+    }//----------------------------------------------------------------------------- FIN obtieneUsuariosPorArea()
 
     public ArrayList<String> obtieneAsuntos() {
         return model.obtieneAsuntos();

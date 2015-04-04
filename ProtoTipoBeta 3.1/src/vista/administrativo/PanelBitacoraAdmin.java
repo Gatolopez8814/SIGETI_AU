@@ -23,7 +23,7 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
         initComponents();
         this.limpiarCampos();
         this.ocultarComponentes();
-        this.iniciarValidaciones();
+//        this.iniciarValidaciones();
         this.ajustarEventos();
     }//----------------------------------------------------------------------------- FIN Constructor()
 
@@ -71,13 +71,13 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
 //                Ventana.obtenerInstancia().tecla();
 //            }
 //        });
-        jTextUsuario.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                super.keyPressed(evt);
-                Ventana.obtenerInstancia().tecla();
-            }
-        });
+//        jTextUsuario.addKeyListener(new KeyAdapter() {
+//            @Override
+//            public void keyPressed(java.awt.event.KeyEvent evt) {
+//                super.keyPressed(evt);
+//                Ventana.obtenerInstancia().tecla();
+//            }
+//        });
 //        jTextMesDesde.addKeyListener(new KeyAdapter() {
 //            @Override
 //            public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -109,10 +109,10 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
 //        soloNumeros(this.jTextAnnoHasta);
 //        soloNumeros(this.jTextMesHasta);
 //        soloNumeros(this.jTextDiaHasta);
-        soloNumeros(this.jTextHoraInicial);
-        soloNumeros(this.jTextMinutoInicial);
-        soloNumeros(this.jTextHoraFinal);
-        soloNumeros(this.jTextMinutoFinal);
+//        soloNumeros(this.jTextHoraInicial);
+//        soloNumeros(this.jTextMinutoInicial);
+//        soloNumeros(this.jTextHoraFinal);
+//        soloNumeros(this.jTextMinutoFinal);
     }//----------------------------------------------------------------------------- FIN iniciarValidaciones()
 
     public void soloNumeros(JTextField txt) {//para validar que en la fecha solo digite numeros
@@ -138,8 +138,7 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
         ComboBusqueda = new javax.swing.JComboBox<String>();
         jPanelUsuario = new javax.swing.JPanel();
         jLabelAreas = new javax.swing.JLabel();
-        jTextUsuario = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        jComboUsuarios = new javax.swing.JComboBox<String>();
         jPanelRangoFechas = new javax.swing.JPanel();
         jLabelDesde = new javax.swing.JLabel();
         jLabelGuion1 = new javax.swing.JLabel();
@@ -163,13 +162,13 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
         btnCancelar = new javax.swing.JButton();
         jPanelRangoHoras = new javax.swing.JPanel();
         jLabelHoraInicio = new javax.swing.JLabel();
-        jTextHoraInicial = new javax.swing.JTextField();
         jLabelGuion5 = new javax.swing.JLabel();
-        jTextMinutoInicial = new javax.swing.JTextField();
         jLabelHoraFinal = new javax.swing.JLabel();
-        jTextHoraFinal = new javax.swing.JTextField();
         jLabelGuion7 = new javax.swing.JLabel();
-        jTextMinutoFinal = new javax.swing.JTextField();
+        comboHoraInicial = new javax.swing.JComboBox();
+        comboMinutoInicial = new javax.swing.JComboBox();
+        comboHoraFinal = new javax.swing.JComboBox();
+        comboMinutoFinal = new javax.swing.JComboBox();
 
         jPanel2.setBackground(new java.awt.Color(208, 144, 56));
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -233,7 +232,8 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
 
         jLabelAreas.setText("Ingrese el correo del usuario: ");
 
-        jLabel1.setText("@castillo.cr");
+        jComboUsuarios.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione aquí" }));
+        jComboUsuarios.setToolTipText("");
 
         javax.swing.GroupLayout jPanelUsuarioLayout = new javax.swing.GroupLayout(jPanelUsuario);
         jPanelUsuario.setLayout(jPanelUsuarioLayout);
@@ -242,10 +242,8 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
             .addGroup(jPanelUsuarioLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabelAreas)
-                .addGap(55, 55, 55)
-                .addComponent(jTextUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
+                .addGap(58, 58, 58)
+                .addComponent(jComboUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelUsuarioLayout.setVerticalGroup(
@@ -254,8 +252,7 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanelUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelAreas)
-                    .addComponent(jTextUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(jComboUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -383,11 +380,11 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
                 .addComponent(jScrollPane1)
                 .addContainerGap())
             .addGroup(jPanelTablaLayout.createSequentialGroup()
-                .addGap(281, 281, 281)
+                .addGap(370, 370, 370)
                 .addGroup(jPanelTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(332, Short.MAX_VALUE))
+                .addContainerGap(243, Short.MAX_VALUE))
         );
         jPanelTablaLayout.setVerticalGroup(
             jPanelTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -444,19 +441,19 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
 
         jLabelHoraInicio.setText("Hora inicial: ");
 
-        jTextHoraInicial.setText("hh");
-
-        jLabelGuion5.setText("-");
-
-        jTextMinutoInicial.setText("mm");
+        jLabelGuion5.setText(":");
 
         jLabelHoraFinal.setText("Hora Final: ");
 
-        jTextHoraFinal.setText("hh");
+        jLabelGuion7.setText(":");
 
-        jLabelGuion7.setText("-");
+        comboHoraInicial.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione aquí", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24" }));
 
-        jTextMinutoFinal.setText("mm");
+        comboMinutoInicial.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione aquí", "00", "15", "30", "45" }));
+
+        comboHoraFinal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione aquí", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24" }));
+
+        comboMinutoFinal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione aquí", "00", "15", "30", "45" }));
 
         javax.swing.GroupLayout jPanelRangoHorasLayout = new javax.swing.GroupLayout(jPanelRangoHoras);
         jPanelRangoHoras.setLayout(jPanelRangoHorasLayout);
@@ -466,19 +463,19 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabelHoraInicio)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextHoraInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(comboHoraInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
                 .addComponent(jLabelGuion5, javax.swing.GroupLayout.PREFERRED_SIZE, 4, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextMinutoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(93, 93, 93)
+                .addGap(15, 15, 15)
+                .addComponent(comboMinutoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
                 .addComponent(jLabelHoraFinal)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextHoraFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabelGuion7, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextMinutoFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(comboHoraFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
+                .addComponent(jLabelGuion7, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
+                .addComponent(comboMinutoFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelRangoHorasLayout.setVerticalGroup(
@@ -487,13 +484,13 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanelRangoHorasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelHoraInicio)
-                    .addComponent(jTextHoraInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelGuion5)
-                    .addComponent(jTextMinutoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelHoraFinal)
-                    .addComponent(jTextHoraFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextMinutoFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelGuion7))
+                    .addComponent(comboHoraInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboMinutoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboHoraFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboMinutoFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelGuion7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -565,6 +562,7 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
                 this.jPanelUsuario.setVisible(false);
                 break;
             case "Usuario":
+                this.cargarjComboUsuarios();
                 this.jPanelRangoFechas.setVisible(false);
                 this.jPanelRangoHoras.setVisible(false);
                 this.jPanelUsuario.setVisible(true);
@@ -643,19 +641,27 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
 //    
 //                        String fecha1 = this.jTextAnnoDesde.getText() + "-" + this.jTextMesDesde.getText() + "-" + this.jTextDiaDesde.getText();
 //                        String fecha2 = this.jTextAnnoHasta.getText() + "-" + this.jTextMesHasta.getText() + "-" + this.jTextDiaHasta.getText();
-                    String dia1, mes1, anno1, dia2, mes2, anno2, fecha1, fecha2;
-            dia1 = this.jComboDiaDesde.getSelectedItem().toString();
-            mes1 = String.valueOf(this.jComboMesDesde.getSelectedIndex()+1);
-            anno1 = this.jComboAñoDesde.getSelectedItem().toString();
-            dia2 = this.jComboDiaHasta.getSelectedItem().toString();
-            mes2 = String.valueOf(this.jComboMesHasta.getSelectedIndex()+1);
-            anno2 = this.jComboAñosHasta.getSelectedItem().toString();
-            fecha1 =  anno1+"-"+mes1+"-"+dia1;
-            fecha2 = anno2+"-"+mes2+"-"+dia2;
-            System.err.println(fecha1 + "  "+ fecha2);
-            if(isFechaValida(fecha1) && isFechaValida(fecha2)){
+
+                    String dia1,
+                     mes1,
+                     anno1,
+                     dia2,
+                     mes2,
+                     anno2,
+                     fecha1,
+                     fecha2;
+                    dia1 = this.jComboDiaDesde.getSelectedItem().toString();
+                    mes1 = String.valueOf(this.jComboMesDesde.getSelectedIndex() + 1);
+                    anno1 = this.jComboAñoDesde.getSelectedItem().toString();
+                    dia2 = this.jComboDiaHasta.getSelectedItem().toString();
+                    mes2 = String.valueOf(this.jComboMesHasta.getSelectedIndex() + 1);
+                    anno2 = this.jComboAñosHasta.getSelectedItem().toString();
+                    fecha1 = anno1 + "-" + mes1 + "-" + dia1;
+                    fecha2 = anno2 + "-" + mes2 + "-" + dia2;
+                    System.err.println(fecha1 + "  " + fecha2);
+                    if (isFechaValida(fecha1) && isFechaValida(fecha2)) {
                         Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
-                            VentanaLogin.correo, "Bitácora", "Consulto bitácora entre " +fecha1+ " y "+ fecha2);
+                                VentanaLogin.correo, "Bitácora", "Consulto bitácora entre " + fecha1 + " y " + fecha2);
                         ArrayList<Bitacora> aux = Controlador.obtenerInstancia().consultaBitacoraFechas(fecha1, fecha2);
                         if (aux.isEmpty()) {
                             JOptionPane.showMessageDialog(null, "No ha ocurrido acciones entre " + fecha1 + " y " + fecha2 + ".", "ERROR",
@@ -663,7 +669,7 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
                         } else {
                             int i = 0;
                             while (i < aux.size()) {
-                                modelAux.insertRow(modelAux.getRowCount(), new Object[]{aux.get(i).getUsuario(),
+                                modelAux.insertRow(modelAux.getRowCount(), new Object[]{" " + aux.get(i).getUsuario(),
                                     aux.get(i).getFecha(), aux.get(i).getHora(), aux.get(i).getTabla(), aux.get(i).getAccion()});
                                 i++;
                             }
@@ -677,10 +683,10 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
                     this.jPanelRangoFechas.setVisible(false);
                     this.jPanelRangoHoras.setVisible(false);
                     this.jPanelUsuario.setVisible(true);
-                    if (!this.jTextUsuario.getText().equals("")) {
-                        String usuario = Controlador.obtenerInstancia().recortaCorreo(this.jTextUsuario.getText()) + "@castillo.cr";
+                    if (this.jComboUsuarios.getSelectedIndex() != 0) {
+                        String usuario = jComboUsuarios.getSelectedItem().toString();
                         Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
-                            VentanaLogin.correo, "Bitácora", "Consulto bitácora del usuario "+ usuario);
+                                VentanaLogin.correo, "Bitácora", "Consulto bitácora del usuario " + usuario);
                         ArrayList<Bitacora> aux = Controlador.obtenerInstancia().consultaBitacoraUsuario(usuario);
                         if (aux.isEmpty()) {
                             JOptionPane.showMessageDialog(null, "El usuario " + usuario + " no ha realizado acciones.", "ERROR",
@@ -688,13 +694,13 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
                         } else {
                             int i = 0;
                             while (i < aux.size()) {
-                                modelAux.insertRow(modelAux.getRowCount(), new Object[]{this.jTextUsuario.getText(),
+                                modelAux.insertRow(modelAux.getRowCount(), new Object[]{" " + usuario,
                                     aux.get(i).getFecha(), aux.get(i).getHora(), aux.get(i).getTabla(), aux.get(i).getAccion()});
                                 i++;
                             }
                         }
                     } else {
-                        JOptionPane.showMessageDialog(null, "Es necesario el correo del usuario.", "ERROR",
+                        JOptionPane.showMessageDialog(null, "Debe seleccionar el correo del usuario.", "ERROR",
                                 JOptionPane.ERROR_MESSAGE);
                     }
                     break;
@@ -702,26 +708,42 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
                     this.jPanelRangoFechas.setVisible(false);
                     this.jPanelRangoHoras.setVisible(true);
                     this.jPanelUsuario.setVisible(false);
-                    if (!jTextHoraInicial.getText().contains("h")
-                            && !jTextMinutoInicial.getText().contains("m")
-                            && !jTextHoraInicial.getText().contains("h")
-                            && !jTextMinutoFinal.getText().contains("m")) {
-                        String hora1 = this.jTextHoraInicial.getText() + ":" + this.jTextMinutoInicial.getText() + ":00";
-                        String hora2 = this.jTextHoraFinal.getText() + ":" + this.jTextMinutoFinal.getText() + ":59";
-                        Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
-                            VentanaLogin.correo, "Bitácora", "Consulto bitácora entre "+hora1+" y "+hora2);
-                        ArrayList<Bitacora> aux = Controlador.obtenerInstancia().consultaBitacoraHoras(hora1, hora2);
-                        if (aux.isEmpty()) {
-                            JOptionPane.showMessageDialog(null, "No ha ocurrido acciones entre "+hora1+" y "+hora2+".", "ERROR",
+                    if (this.comboHoraInicial.getSelectedIndex() != 0
+                            && this.comboMinutoInicial.getSelectedIndex() != 0
+                            && this.comboHoraFinal.getSelectedIndex() != 0
+                            && this.comboMinutoFinal.getSelectedIndex() != 0) {
+                        if (Integer.parseInt(comboHoraInicial.getSelectedItem().toString()) > Integer.parseInt(comboHoraFinal.getSelectedItem().toString())) {
+                            JOptionPane.showMessageDialog(null, "Rango de horas erroneo.", "ERROR",
                                     JOptionPane.ERROR_MESSAGE);
-                        } else {
-                            int i = 0;
-                            while (i < aux.size()) {
-                                modelAux.insertRow(modelAux.getRowCount(), new Object[]{aux.get(i).getUsuario(),
-                                    aux.get(i).getFecha(), aux.get(i).getHora(), aux.get(i).getTabla(), aux.get(i).getAccion()});
-                                i++;
+                        }else
+                         if ((Integer.parseInt(comboHoraInicial.getSelectedItem().toString()) == 
+                                 Integer.parseInt(comboHoraFinal.getSelectedItem().toString()))&&
+                                 (Integer.parseInt(comboMinutoInicial.getSelectedItem().toString()) > 
+                                 Integer.parseInt(comboMinutoFinal.getSelectedItem().toString()))) {
+                            JOptionPane.showMessageDialog(null, "Rango de horas erroneo.", "ERROR",
+                                    JOptionPane.ERROR_MESSAGE);
+                        }else {
+                            String hora1 = this.comboHoraInicial.getSelectedItem().toString() + ":"
+                                    + this.comboMinutoInicial.getSelectedItem().toString() + ":00";
+                            String hora2 = this.comboHoraFinal.getSelectedItem().toString() + ":"
+                                    + this.comboMinutoFinal.getSelectedItem().toString() + ":59";
+                            System.err.println(hora1 + "   " + hora2);
+                            Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
+                                    VentanaLogin.correo, "Bitácora", "Consulto bitácora entre " + hora1 + " y " + hora2);
+                            ArrayList<Bitacora> aux = Controlador.obtenerInstancia().consultaBitacoraHoras(hora1, hora2);
+                            if (aux.isEmpty()) {
+                                JOptionPane.showMessageDialog(null, "No ha ocurrido acciones entre " + hora1 + " y " + hora2 + ".", "ERROR",
+                                        JOptionPane.ERROR_MESSAGE);
+                            } else {
+                                int i = 0;
+                                while (i < aux.size()) {
+                                    modelAux.insertRow(modelAux.getRowCount(), new Object[]{" " + aux.get(i).getUsuario(),
+                                        aux.get(i).getFecha(), aux.get(i).getHora(), aux.get(i).getTabla(), aux.get(i).getAccion()});
+                                    i++;
+                                }
                             }
                         }
+
                     } else {
                         JOptionPane.showMessageDialog(null, "Hora invalida.", "ERROR",
                                 JOptionPane.ERROR_MESSAGE);
@@ -731,17 +753,17 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
                     Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
                             VentanaLogin.correo, "Bitácora", "Consulto bitácora general ");
                     ArrayList<Bitacora> aux = Controlador.obtenerInstancia().consultaBitacoraGeneral();
-                        if (aux.isEmpty()) {
-                            JOptionPane.showMessageDialog(null, "No hay datos en la bitacora", "ERROR",
-                                    JOptionPane.ERROR_MESSAGE);
-                        } else {
-                            int i = 0;
-                            while (i < aux.size()) {
-                                modelAux.insertRow(modelAux.getRowCount(), new Object[]{aux.get(i).getUsuario(),
-                                    aux.get(i).getFecha(), aux.get(i).getHora(), aux.get(i).getTabla(), aux.get(i).getAccion()});
-                                i++;
-                            }
+                    if (aux.isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "No hay datos en la bitacora", "ERROR",
+                                JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        int i = 0;
+                        while (i < aux.size()) {
+                            modelAux.insertRow(modelAux.getRowCount(), new Object[]{" " + aux.get(i).getUsuario(),
+                                aux.get(i).getFecha(), aux.get(i).getHora(), aux.get(i).getTabla(), aux.get(i).getAccion()});
+                            i++;
                         }
+                    }
                     break;
                 default:
                     break;
@@ -765,7 +787,7 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
         }
         return true;
     }
-    
+
     private void cargarComboAnnos() {
         ArrayList<String> lstAnyos;
         lstAnyos = new ArrayList<>();
@@ -784,22 +806,39 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
         this.jComboAñosHasta.revalidate();
         this.jComboAñosHasta.repaint();
     }
-    
-    private void limpiarCampos(){
+
+    private void limpiarCampos() {
         ComboBusqueda.setSelectedIndex(0);
+        comboHoraFinal.setSelectedIndex(0);
+        comboHoraInicial.setSelectedIndex(0);
+        comboMinutoFinal.setSelectedIndex(0);
+        comboMinutoInicial.setSelectedIndex(0);
 //        jTextAnnoDesde.setText("aaaa");
 //        jTextAnnoHasta.setText("aaaa");
 //        jTextDiaDesde.setText("dd");
 //        jTextDiaHasta.setText("dd");
-        jTextHoraFinal.setText("hh");
-        jTextHoraInicial.setText("hh");
+//        jTextHoraFinal.setText("hh");
+//        jTextHoraInicial.setText("hh");
 //        jTextMesDesde.setText("mm");
 //        jTextMesHasta.setText("mm");
-        jTextMinutoFinal.setText("mm");
-        jTextMinutoInicial.setText("mm");
-        jTextUsuario.setText("");        
+//        jTextMinutoFinal.setText("mm");
+//        jTextMinutoInicial.setText("mm");
+//        jTextUsuario.setText("");    
+        this.jComboUsuarios.setSelectedIndex(0);
     }
-    
+
+    private void cargarjComboUsuarios() {
+        this.jComboUsuarios.removeAllItems();
+        this.jComboUsuarios.addItem("Seleccione aquí");
+        ArrayList<String> temp = Controlador.obtenerInstancia().obtieneUsuariosGeneral();
+        for (String temp1 : temp) {
+            this.jComboUsuarios.addItem(temp1);
+        }
+        this.jComboUsuarios.setSelectedIndex(0);
+        this.jComboUsuarios.revalidate();
+        this.jComboUsuarios.repaint();
+    }//----------------------------------------------------------------------------- FIN cargarjComboUsuarios()
+
     //Declaracion de variables
     private static PanelBitacoraAdmin instancia = null;
     private DefaultTableModel modelAux;
@@ -808,13 +847,17 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> ComboBusqueda;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnConsultarTodos;
+    private javax.swing.JComboBox comboHoraFinal;
+    private javax.swing.JComboBox comboHoraInicial;
+    private javax.swing.JComboBox comboMinutoFinal;
+    private javax.swing.JComboBox comboMinutoInicial;
     private javax.swing.JComboBox<String> jComboAñoDesde;
     private javax.swing.JComboBox<String> jComboAñosHasta;
     private javax.swing.JComboBox<String> jComboDiaDesde;
     private javax.swing.JComboBox<String> jComboDiaHasta;
     private javax.swing.JComboBox<String> jComboMesDesde;
     private javax.swing.JComboBox<String> jComboMesHasta;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JComboBox<String> jComboUsuarios;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabelAreas;
     private javax.swing.JLabel jLabelDesde;
@@ -840,11 +883,6 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTableBitacora;
-    private javax.swing.JTextField jTextHoraFinal;
-    private javax.swing.JTextField jTextHoraInicial;
-    private javax.swing.JTextField jTextMinutoFinal;
-    private javax.swing.JTextField jTextMinutoInicial;
-    private javax.swing.JTextField jTextUsuario;
     // End of variables declaration//GEN-END:variables
 
 }

@@ -1,7 +1,6 @@
 package modelo;
 
 //Prueba por karen JAJAJA
-
 import controlador.ConexionMySql;
 import controlador.EnviaMensaje;
 import java.sql.CallableStatement;
@@ -35,7 +34,7 @@ public class Modelo {
         valores.add(0);//1,2,3
         valores.add(-2);//0,1,2
 //        String correo = this.recortaCorreo(correoUsuario) + "@castillo.cr";
-        System.err.println("correo: "+correoUsuario+" cont: "+contrasena);
+        System.err.println("correo: " + correoUsuario + " cont: " + contrasena);
         int tipo_usuario = 0;
         int estado = 0;
         ResultSet resultado = null;
@@ -65,7 +64,7 @@ public class Modelo {
         } catch (Exception e) {
             System.out.println("Error Exception from Modelo -> verificaLoggin()");
             e.printStackTrace();
-        }finally {
+        } finally {
             ConexionMySql.obtenerInstancia().desconectar();
             System.out.println("Se ha cerrado la conexion desde el metodo verificaLoggin()");
         }
@@ -91,7 +90,7 @@ public class Modelo {
         } catch (Exception e) {
             System.out.println("Error Exception from Modelo -> verificarContrasenna()");
             //e.printStackTrace();
-        }finally {
+        } finally {
             ConexionMySql.obtenerInstancia().desconectar();
             System.out.println("Se ha cerrado la conexion");
         }
@@ -625,7 +624,7 @@ public class Modelo {
         }
         return tEncontrados;
     }//----------------------------------------------------------------------------- FIN obtieneAreas()
-    
+
     public ArrayList<String> obtieneUsuarios(String usuarioActual, int estado) {
         ArrayList<String> tEncontrados = new ArrayList<>();
         String correo;
@@ -634,7 +633,7 @@ public class Modelo {
             Statement sentencia = null;
             sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
 
-            resultado = sentencia.executeQuery("select correo from usuario where estado="+estado+" and correo not like '"+usuarioActual+"' order by correo");
+            resultado = sentencia.executeQuery("select correo from usuario where estado=" + estado + " and correo not like '" + usuarioActual + "' order by correo");
             if (resultado != null) {
             }
             while (resultado.next()) {
@@ -650,7 +649,7 @@ public class Modelo {
         }
         return tEncontrados;
     }//----------------------------------------------------------------------------- FIN obtieneUsuarios()
-    
+
     public ArrayList<String> obtieneUsuariosEliminar(String usuarioActual, int estado) {
         ArrayList<String> tEncontrados = new ArrayList<>();
         String correo;
@@ -659,7 +658,7 @@ public class Modelo {
             Statement sentencia = null;
             sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
 
-            resultado = sentencia.executeQuery("select correo from usuario where estado not like "+estado+" and correo not like '"+usuarioActual+"' order by correo");
+            resultado = sentencia.executeQuery("select correo from usuario where estado not like " + estado + " and correo not like '" + usuarioActual + "' order by correo");
             if (resultado != null) {
             }
             while (resultado.next()) {
@@ -675,7 +674,7 @@ public class Modelo {
         }
         return tEncontrados;
     }//----------------------------------------------------------------------------- FIN obtieneUsuariosEliminar()
-    
+
     public ArrayList<String> obtieneTodosUsuarios() {
         ArrayList<String> usuarios = new ArrayList<>();
         String correo;
@@ -684,7 +683,7 @@ public class Modelo {
             Statement sentencia = null;
             sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
 
-            resultado = sentencia.executeQuery("select correo from usuario where estado = 1 order by correo");
+            resultado = sentencia.executeQuery("select correo from usuario where estado = 1 and tipo not like 3 order by correo");
             if (resultado != null) {
             }
             while (resultado.next()) {
@@ -700,6 +699,80 @@ public class Modelo {
         }
         return usuarios;
     }//----------------------------------------------------------------------------- FIN obtieneTodosUsuarios()
+    
+    public ArrayList<String> obtieneUsuariosGeneral() {
+        ArrayList<String> usuarios = new ArrayList<>();
+        String correo;
+        ResultSet resultado = null;
+        try {
+            Statement sentencia = null;
+            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
+
+            resultado = sentencia.executeQuery("select correo from usuario where estado = 1 order by correo");
+            if (resultado != null) {
+            }
+            while (resultado.next()) {
+                correo = resultado.getString(1);
+                usuarios.add(correo);
+            }
+        } catch (Exception e) {
+            System.out.println("Error Exception from Modelo -> obtieneUsuariosGeneral()");
+            e.printStackTrace();
+        } finally {
+            ConexionMySql.obtenerInstancia().desconectar();
+            System.out.println("Se ha cerrado la conexion");
+        }
+        return usuarios;
+    }//----------------------------------------------------------------------------- FIN obtieneUsuariosGeneral()
+
+    public String obtieneNombreArea(String _correoUsuario) {
+        //retorna el nombre del area a la que pertenece un usuario de area
+        String area = "";
+        ResultSet resultado = null;
+        try {
+            Statement sentencia = null;
+            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
+            resultado = sentencia.executeQuery("select nombArea from areausuario where correousuario='" + _correoUsuario + "'");
+            if (resultado != null) {
+            }
+            while (resultado.next()) {
+                area = resultado.getString(1);
+            }
+        } catch (Exception e) {
+            System.out.println("Error Exception from Modelo -> obtieneNombreArea()");
+            e.printStackTrace();
+        } finally {
+            ConexionMySql.obtenerInstancia().desconectar();
+            System.out.println("Se ha cerrado la conexion");
+        }
+        return area;
+    }//----------------------------------------------------------------------------- FIN obtieneNombreArea()
+    
+    public ArrayList<String> obtieneUsuariosPorArea(String _area) {
+        //metodo usado para asignar un responsable a un ticket de su respectiva area
+        ArrayList<String> usuarios = new ArrayList<>();
+        String correo;
+        ResultSet resultado = null;
+        try {
+            Statement sentencia = null;
+            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
+
+            resultado = sentencia.executeQuery("select correo from usuario, areausuario where areausuario.correousuario=usuario.correo and areausuario.nombArea='"+_area+"' and usuario.estado=1");
+            if (resultado != null) {
+            }
+            while (resultado.next()) {
+                correo = resultado.getString(1);
+                usuarios.add(correo);
+            }
+        } catch (Exception e) {
+            System.out.println("Error Exception from Modelo -> obtieneTodosUsuarios()");
+            e.printStackTrace();
+        } finally {
+            ConexionMySql.obtenerInstancia().desconectar();
+            System.out.println("Se ha cerrado la conexion");
+        }
+        return usuarios;
+    }//----------------------------------------------------------------------------- FIN obtieneUsuariosPorArea()
 
     public ArrayList<String> obtieneAsuntos() {
         //este metodo es para que el usuario de area pueda consultar todos los tickets de su area
@@ -1364,7 +1437,7 @@ public class Modelo {
         }
         return cantidad;
     }//----------------------------------------------------------------------------- FIN cantidadCerradosArea()
-    
+
     public String obtieneComentarios(int codigo) {
         //este metodo es para obtener los comentarios de un ticket
         String cantidad = "";
@@ -1784,15 +1857,16 @@ public class Modelo {
         }
         return false;
     }
-    public boolean ModificarArea(String area,String nuevaArea) {
-         try {            
+
+    public boolean ModificarArea(String area, String nuevaArea) {
+        try {
             Statement sentencia = null;
-            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();            
-            if (sentencia.executeUpdate("Update area set nombreArea = '" 
-                    + nuevaArea+ "'where nombreArea = '"+area+"'") == 1) {
-                return true;              
+            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
+            if (sentencia.executeUpdate("Update area set nombreArea = '"
+                    + nuevaArea + "'where nombreArea = '" + area + "'") == 1) {
+                return true;
             }
-        } catch (Exception e) {            
+        } catch (Exception e) {
             //e.printStackTrace             
             return false;
         } finally {
@@ -1801,15 +1875,16 @@ public class Modelo {
         }
         return false;
     }
-    public boolean ModificarAsunto(String asunto,String nuevoAsunto) {
-         try {            
+
+    public boolean ModificarAsunto(String asunto, String nuevoAsunto) {
+        try {
             Statement sentencia = null;
-            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();            
-            if (sentencia.executeUpdate("Update asuntos set asunto = '" 
-                    + nuevoAsunto+ "'where asunto = '"+asunto+"'") == 1) {
-                return true;              
+            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
+            if (sentencia.executeUpdate("Update asuntos set asunto = '"
+                    + nuevoAsunto + "'where asunto = '" + asunto + "'") == 1) {
+                return true;
             }
-        } catch (Exception e) {            
+        } catch (Exception e) {
             //e.printStackTrace             
             return false;
         } finally {
@@ -1820,7 +1895,7 @@ public class Modelo {
     }
 
     public void obtieneAlertas() {
-    
+
     }
 
     public ArrayList<Bitacora> consultaBitacoraGeneral() {
@@ -1833,7 +1908,7 @@ public class Modelo {
             Statement sentencia = null;
             sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
 
-            resultado = sentencia.executeQuery("select fecha, hora, tabla, accion, usuario from bitacora ");
+            resultado = sentencia.executeQuery("select fecha, hora, tabla, accion, usuario from bitacora order by fecha");
 
             while (resultado.next()) {
                 _bitacora = new Bitacora();
@@ -1843,7 +1918,7 @@ public class Modelo {
                 tabla = resultado.getString(3);
                 accion = resultado.getString(4);
                 usuario = resultado.getString(5);
-                
+
                 _bitacora.setHora(hora);
                 _bitacora.setFecha(fecha);
                 _bitacora.setTabla(tabla);

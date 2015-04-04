@@ -1354,7 +1354,8 @@ public class PanelTicketsDelArea extends javax.swing.JPanel {
      private void cargarjComboUsuarios(){
         this.jComboUsuarios.removeAllItems();
         this.jComboUsuarios.addItem("Seleccione aquí");
-        ArrayList<String> temp = Controlador.obtenerInstancia().obtieneTodosUsuarios();
+        String area = Controlador.obtenerInstancia().obtieneNombreArea(VentanaLogin.correo);
+        ArrayList<String> temp = Controlador.obtenerInstancia().obtieneUsuariosPorArea(area);
         for (String temp1 : temp) {
             this.jComboUsuarios.addItem(temp1);
         }

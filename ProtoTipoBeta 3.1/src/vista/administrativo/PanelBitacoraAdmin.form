@@ -200,10 +200,8 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabelAreas" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
-                      <Component id="jTextUsuario" min="-2" pref="168" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+                      <Component id="jComboUsuarios" min="-2" pref="146" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -214,8 +212,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabelAreas" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jComboUsuarios" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -228,12 +225,18 @@
                 <Property name="text" type="java.lang.String" value="Ingrese el correo del usuario: "/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextUsuario">
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel1">
+            <Component class="javax.swing.JComboBox" name="jComboUsuarios">
               <Properties>
-                <Property name="text" type="java.lang.String" value="@castillo.cr"/>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="1">
+                    <StringItem index="0" value="Seleccione aqu&#xed;"/>
+                  </StringArray>
+                </Property>
+                <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>
@@ -516,12 +519,12 @@
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="281" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="370" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jSeparator1" min="-2" pref="236" max="-2" attributes="0"/>
                           <Component id="jLabel11" min="-2" pref="236" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="332" max="32767" attributes="0"/>
+                      <EmptySpace pref="243" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -695,19 +698,19 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabelHoraInicio" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jTextHoraInicial" min="-2" pref="26" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="comboHoraInicial" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                       <Component id="jLabelGuion5" min="-2" pref="4" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTextMinutoInicial" min="-2" pref="30" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                      <Component id="comboMinutoInicial" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                       <Component id="jLabelHoraFinal" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jTextHoraFinal" min="-2" pref="26" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabelGuion7" min="-2" pref="7" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTextMinutoFinal" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="comboHoraFinal" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                      <Component id="jLabelGuion7" min="-2" pref="12" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                      <Component id="comboMinutoFinal" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -718,13 +721,13 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabelHoraInicio" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextHoraInicial" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabelGuion5" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextMinutoInicial" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabelHoraFinal" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextHoraFinal" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextMinutoFinal" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabelGuion7" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="comboHoraInicial" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="comboMinutoInicial" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="comboHoraFinal" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="comboMinutoFinal" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelGuion7" alignment="3" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -737,19 +740,9 @@
                 <Property name="text" type="java.lang.String" value="Hora inicial: "/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextHoraInicial">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="hh"/>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JLabel" name="jLabelGuion5">
               <Properties>
-                <Property name="text" type="java.lang.String" value="-"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="jTextMinutoInicial">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="mm"/>
+                <Property name="text" type="java.lang.String" value=":"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabelHoraFinal">
@@ -757,19 +750,101 @@
                 <Property name="text" type="java.lang.String" value="Hora Final: "/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextHoraFinal">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="hh"/>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JLabel" name="jLabelGuion7">
               <Properties>
-                <Property name="text" type="java.lang.String" value="-"/>
+                <Property name="text" type="java.lang.String" value=":"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextMinutoFinal">
+            <Component class="javax.swing.JComboBox" name="comboHoraInicial">
               <Properties>
-                <Property name="text" type="java.lang.String" value="mm"/>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="25">
+                    <StringItem index="0" value="Seleccione aqu&#xed;"/>
+                    <StringItem index="1" value="01"/>
+                    <StringItem index="2" value="02"/>
+                    <StringItem index="3" value="03"/>
+                    <StringItem index="4" value="04"/>
+                    <StringItem index="5" value="05"/>
+                    <StringItem index="6" value="06"/>
+                    <StringItem index="7" value="07"/>
+                    <StringItem index="8" value="08"/>
+                    <StringItem index="9" value="09"/>
+                    <StringItem index="10" value="10"/>
+                    <StringItem index="11" value="11"/>
+                    <StringItem index="12" value="12"/>
+                    <StringItem index="13" value="13"/>
+                    <StringItem index="14" value="14"/>
+                    <StringItem index="15" value="15"/>
+                    <StringItem index="16" value="16"/>
+                    <StringItem index="17" value="17"/>
+                    <StringItem index="18" value="18"/>
+                    <StringItem index="19" value="19"/>
+                    <StringItem index="20" value="20"/>
+                    <StringItem index="21" value="21"/>
+                    <StringItem index="22" value="22"/>
+                    <StringItem index="23" value="23"/>
+                    <StringItem index="24" value="24"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="comboMinutoInicial">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="5">
+                    <StringItem index="0" value="Seleccione aqu&#xed;"/>
+                    <StringItem index="1" value="00"/>
+                    <StringItem index="2" value="15"/>
+                    <StringItem index="3" value="30"/>
+                    <StringItem index="4" value="45"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="comboHoraFinal">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="25">
+                    <StringItem index="0" value="Seleccione aqu&#xed;"/>
+                    <StringItem index="1" value="01"/>
+                    <StringItem index="2" value="02"/>
+                    <StringItem index="3" value="03"/>
+                    <StringItem index="4" value="04"/>
+                    <StringItem index="5" value="05"/>
+                    <StringItem index="6" value="06"/>
+                    <StringItem index="7" value="07"/>
+                    <StringItem index="8" value="08"/>
+                    <StringItem index="9" value="09"/>
+                    <StringItem index="10" value="10"/>
+                    <StringItem index="11" value="11"/>
+                    <StringItem index="12" value="12"/>
+                    <StringItem index="13" value="13"/>
+                    <StringItem index="14" value="14"/>
+                    <StringItem index="15" value="15"/>
+                    <StringItem index="16" value="16"/>
+                    <StringItem index="17" value="17"/>
+                    <StringItem index="18" value="18"/>
+                    <StringItem index="19" value="19"/>
+                    <StringItem index="20" value="20"/>
+                    <StringItem index="21" value="21"/>
+                    <StringItem index="22" value="22"/>
+                    <StringItem index="23" value="23"/>
+                    <StringItem index="24" value="24"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="comboMinutoFinal">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="5">
+                    <StringItem index="0" value="Seleccione aqu&#xed;"/>
+                    <StringItem index="1" value="00"/>
+                    <StringItem index="2" value="15"/>
+                    <StringItem index="3" value="30"/>
+                    <StringItem index="4" value="45"/>
+                  </StringArray>
+                </Property>
               </Properties>
             </Component>
           </SubComponents>
