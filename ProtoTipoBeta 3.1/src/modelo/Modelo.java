@@ -1899,7 +1899,7 @@ public class Modelo {
             sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
             resultado = sentencia.executeQuery("select sysdate() ");
             while (resultado.next()) {
-                System.err.println(resultado.getString(1));
+                //System.err.println(resultado.getString(1));
                 calendario = String.valueOf(resultado.getString(1).split(" ")[0]);
                 fecha.add(0, calendario.split("-")[0]);//año
                 fecha.add(1, calendario.split("-")[1]);//mes
@@ -1907,7 +1907,7 @@ public class Modelo {
                 reloj = String.valueOf(resultado.getString(1).split(" ")[1]);
                 fecha.add(3,reloj.split(":")[0]);//hora
                 fecha.add(4,reloj.split(":")[1]);//minutos
-                fecha.add(5,reloj.split(":")[2]);//segundos               
+                fecha.add(5,reloj.split(":")[2]);//segundos                  
             }
         } catch (Exception e) {
             System.out.println("Error getSysDateFromServer()");

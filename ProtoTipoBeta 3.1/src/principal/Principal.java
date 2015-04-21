@@ -9,6 +9,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
+import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JWindow;
 import javax.swing.SwingUtilities;
@@ -37,9 +38,7 @@ public class Principal {// clase principal donde se encuentra el main
     }//-----------------------------------------------------------------END_MAIN
 
     private void mostrarInterfaz() {//donde se ejecuta el MVC          
-        VentanaLogin ventana = VentanaLogin.obtenerInstancia(); 
-        modelo.Modelo m = new Modelo();
-        m.getSysDateFromServer();
+        VentanaLogin ventana = VentanaLogin.obtenerInstancia();         
         ventana.mostrar();
     }//------------------------------------------------------END_mostrarInterfaz
     
