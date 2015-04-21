@@ -15,6 +15,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import modelo.Modelo;
 import vista.VentanaLogin;
 
 public class Principal {// clase principal donde se encuentra el main
@@ -37,6 +38,8 @@ public class Principal {// clase principal donde se encuentra el main
 
     private void mostrarInterfaz() {//donde se ejecuta el MVC          
         VentanaLogin ventana = VentanaLogin.obtenerInstancia(); 
+        modelo.Modelo m = new Modelo();
+        m.getSysDateFromServer();
         ventana.mostrar();
     }//------------------------------------------------------END_mostrarInterfaz
     

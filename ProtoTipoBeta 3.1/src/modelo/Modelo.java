@@ -695,7 +695,7 @@ public class Modelo {
         }
         return usuarios;
     }//----------------------------------------------------------------------------- FIN obtieneTodosUsuarios()
-    
+
     public ArrayList<String> obtieneUsuariosGeneral() {
         ArrayList<String> usuarios = new ArrayList<>();
         String correo;
@@ -743,7 +743,7 @@ public class Modelo {
         }
         return area;
     }//----------------------------------------------------------------------------- FIN obtieneNombreArea()
-    
+
     public ArrayList<String> obtieneUsuariosPorArea(String _area) {
         //metodo usado para asignar un responsable a un ticket de su respectiva area
         ArrayList<String> usuarios = new ArrayList<>();
@@ -753,7 +753,7 @@ public class Modelo {
             Statement sentencia = null;
             sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
 
-            resultado = sentencia.executeQuery("select correo from usuario, areausuario where areausuario.correousuario=usuario.correo and areausuario.nombArea='"+_area+"' and usuario.estado=1");
+            resultado = sentencia.executeQuery("select correo from usuario, areausuario where areausuario.correousuario=usuario.correo and areausuario.nombArea='" + _area + "' and usuario.estado=1");
             if (resultado != null) {
             }
             while (resultado.next()) {
@@ -1890,9 +1890,33 @@ public class Modelo {
         return false;
     }
 
-    public void obtieneAlertas() {
-
-    }
+    public ArrayList<String> getSysDateFromServer() {
+        ResultSet resultado = null;        
+        ArrayList<String> fecha = new ArrayList<>();
+        String reloj,calendario;
+        try {
+            Statement sentencia = null;
+            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
+            resultado = sentencia.executeQuery("select sysdate() ");
+            while (resultado.next()) {
+                System.err.println(resultado.getString(1));
+                calendario = String.valueOf(resultado.getString(1).split(" ")[0]);
+                fecha.add(0, calendario.split("-")[0]);//año
+                fecha.add(1, calendario.split("-")[1]);//mes
+                fecha.add(2, calendario.split("-")[2]);//dia
+                reloj = String.valueOf(resultado.getString(1).split(" ")[1]);
+                fecha.add(3,reloj.split(":")[0]);//hora
+                fecha.add(4,reloj.split(":")[1]);//minutos
+                fecha.add(5,reloj.split(":")[2]);//segundos               
+            }
+        } catch (Exception e) {
+            System.out.println("Error getSysDateFromServer()");
+        } finally {
+            ConexionMySql.obtenerInstancia().desconectar();
+            System.out.println("Se ha cerrado la conexion");
+        }
+        return fecha;
+    }//----------------------------------------------------------------------------- FIN
 
     public ArrayList<Bitacora> consultaBitacoraGeneral() {
         //este metodo es para que el usuario administrador consulto la bitacora total
@@ -1930,6 +1954,10 @@ public class Modelo {
             System.out.println("Se ha cerrado la conexion");
         }
         return bitacora;
+    }
+
+    public void obtieneAlertas() {
+
     }
 
 }
