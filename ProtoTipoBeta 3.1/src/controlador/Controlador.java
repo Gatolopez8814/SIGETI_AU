@@ -6,8 +6,6 @@ import modelo.Modelo;
 import modelo.Ticket;
 import modelo.Usuario;
 
-//Esto es un comentario desde WOOOOOOOOOOOOOOOOO
-
 public class Controlador {
 
     private Controlador() {

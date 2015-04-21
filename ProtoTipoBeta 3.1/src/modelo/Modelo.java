@@ -15,12 +15,8 @@ public class Modelo {
     public void EjecutaSQL() {
     }//----------------------------------------------------------------------------- FIN Constructor()
 
-    public String recortaCorreo(String correUsuario) {//obtiene los datos antes del @
-        String correoFinal = "";
-        for (int i = 0; i + 1 <= correUsuario.length() && !correUsuario.substring(i, i + 1).equals("@"); i++) {
-            correoFinal = correoFinal + correUsuario.substring(i, i + 1);
-        }
-        return correoFinal;
+    public String recortaCorreo(String correUsuario) {//obtiene los datos antes del @       
+        return correUsuario.split("@")[0];
     }//----------------------------------------------------------------------------- FIN recortaCorreo()
 
     public boolean enviaCorreo(String mensaje, String asunto, String correoUsuario) {
