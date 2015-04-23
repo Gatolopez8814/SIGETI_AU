@@ -147,16 +147,19 @@ public class Modelo {
         } catch (Exception e) {
             System.out.println("Error Exception from Modelo -> obtieneEstadoUsuario()");
             //e.printStackTrace();
+        }finally {
+            ConexionMySql.obtenerInstancia().desconectar();
+            System.out.println("Se ha cerrado la conexion");
         }
         return estado;
     }//----------------------------------------------------------------------------- FIN obtieneEstadoUsuario()
 
-    public boolean cambiaARegistrado(String correoUsuario) {
+    public boolean cambiaARegistrado(String correoUsuario, int nuevoTipo) {
         //este metodo permite al administrador registrar un usuario que ha sido eliminado
         try {
             Statement sentencia = null;
             sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement(); //FALTA VALIDAR NO ELIMINAR USUARIO ACTIVO
-            if (sentencia.executeUpdate("update usuario set estado= 1 where correo='" + correoUsuario + "' and estado=2") == 1) {
+            if (sentencia.executeUpdate("update usuario set estado=1, tipo="+nuevoTipo+" where correo='" + correoUsuario + "' and estado=2") == 1) {
                 return true;
             }
         } catch (Exception e) {
@@ -994,6 +997,9 @@ public class Modelo {
         } catch (Exception e) {
             System.out.println("Error Exception from Modelo -> ticketsBandejaEntrada()");
             e.printStackTrace();
+        } finally {
+            ConexionMySql.obtenerInstancia().desconectar();
+            System.out.println("Se ha cerrado la conexion");
         }
         return tBandeja;
     }//----------------------------------------------------------------------------- FIN ticketsBandejaEntradaArea()
@@ -1030,6 +1036,9 @@ public class Modelo {
         } catch (Exception e) {
             System.out.println("Error Exception from Modelo -> ticketsBandejaEntradaAdmin()");
             e.printStackTrace();
+        } finally {
+            ConexionMySql.obtenerInstancia().desconectar();
+            System.out.println("Se ha cerrado la conexion");
         }
         return tBandeja;
     }//----------------------------------------------------------------------------- FIN ticketsBandejaEntradaAdmin()
@@ -1254,6 +1263,9 @@ public class Modelo {
         } catch (Exception e) {
             System.out.println("Error Exception from Modelo -> ticketsTodosLosTickets()");
             e.printStackTrace();
+        } finally {
+            ConexionMySql.obtenerInstancia().desconectar();
+            System.out.println("Se ha cerrado la conexion");
         }
         return tBandeja;
     }//----------------------------------------------------------------------------- FIN ticketsTodosLosTickets()
@@ -1916,7 +1928,7 @@ public class Modelo {
             System.out.println("Se ha cerrado la conexion");
         }
         return fecha;
-    }//----------------------------------------------------------------------------- FIN
+    }//----------------------------------------------------------------------------- FIN getSysDateFromServer()
 
     public ArrayList<Bitacora> consultaBitacoraGeneral() {
         //este metodo es para que el usuario administrador consulto la bitacora total
@@ -1954,7 +1966,7 @@ public class Modelo {
             System.out.println("Se ha cerrado la conexion");
         }
         return bitacora;
-    }
+    }//----------------------------------------------------------------------------- FIN consultaBitacoraGeneral()
 
     public void obtieneAlertas() {
 

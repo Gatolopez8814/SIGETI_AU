@@ -158,6 +158,11 @@ public class PanelDesbloquearUsuarioAdmin extends javax.swing.JPanel {
 
         jComboUsuarios.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione aquí" }));
         jComboUsuarios.setToolTipText("");
+        jComboUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboUsuariosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -339,6 +344,15 @@ public class PanelDesbloquearUsuarioAdmin extends javax.swing.JPanel {
     private void txtCorreoDesBloquearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoDesBloquearActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCorreoDesBloquearActionPerformed
+
+    private void jComboUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboUsuariosActionPerformed
+        if (jComboUsuarios.getSelectedIndex()==0) {
+            this.txtCorreoDesBloquear.setEnabled(true);
+        } else {
+            this.txtCorreoDesBloquear.setEnabled(false);
+            this.txtCorreoDesBloquear.setText("");
+        }
+    }//GEN-LAST:event_jComboUsuariosActionPerformed
 
     private void limpiarCampos() {
         txtCorreoDesBloquear.setText("");

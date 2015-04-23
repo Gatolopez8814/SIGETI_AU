@@ -152,6 +152,11 @@ public class PanelEliminarUsuarioAdmin extends javax.swing.JPanel {
         labelCreador1.setText("Seleccione el usuario que desea eliminar ");
 
         jComboUsuarios.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione aquí" }));
+        jComboUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboUsuariosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -320,6 +325,15 @@ public class PanelEliminarUsuarioAdmin extends javax.swing.JPanel {
     private void txtCorreoEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoEliminarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCorreoEliminarActionPerformed
+
+    private void jComboUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboUsuariosActionPerformed
+        if (jComboUsuarios.getSelectedIndex()==0) {
+            this.txtCorreoEliminar.setEnabled(true);
+        } else {
+            this.txtCorreoEliminar.setEnabled(false);
+            this.txtCorreoEliminar.setText("");
+        }
+    }//GEN-LAST:event_jComboUsuariosActionPerformed
 
     private void limpiarCampos() {
         txtCorreoEliminar.setText("");

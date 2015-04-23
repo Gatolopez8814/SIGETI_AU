@@ -106,7 +106,7 @@ public class PanelTicketsEnProcesoArea extends javax.swing.JPanel {
     private void cargarComboAnnos() {
         ArrayList<String> lstAnyos;
         lstAnyos = new ArrayList<>();
-        int year = Calendar.getInstance().get(Calendar.YEAR);
+        int year = Integer.parseInt(Controlador.obtenerInstancia().getSysDateFromServer().get(0));
         for (int i = 2015; i <= year; i++) {
             lstAnyos.add(String.valueOf(i));
         }
@@ -758,6 +758,7 @@ public class PanelTicketsEnProcesoArea extends javax.swing.JPanel {
         buttonGroupGestionar.add(jRadioFecha);
         jRadioFecha.setText("Asignar fecha de solución");
 
+        buttonGroupGestionar.add(jRadioCerrar);
         jRadioCerrar.setText("Cerrar ticket");
 
         javax.swing.GroupLayout jPanelRadiosLayout = new javax.swing.GroupLayout(jPanelRadios);

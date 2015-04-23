@@ -26,10 +26,10 @@ public class Controlador {
         return model.ModificaUsuarioAdmin(new Usuario(correoFinal, tipo, 1));
     }//----------------------------------------------------------------------------- FIN registraUsuarioAdmin()
 
-    public boolean cambiaARegistrado(String correoUsuario){
+    public boolean cambiaARegistrado(String correoUsuario, int nuevoTipo){
         String correoFinal = model.recortaCorreo(correoUsuario) + "@castillo.cr";
         System.out.println("correoFinal=" + correoFinal);
-        return model.cambiaARegistrado(correoFinal);
+        return model.cambiaARegistrado(correoFinal, nuevoTipo);
     }
     public boolean eliminaUsuarioAdmin(String correo) {
         String correoFinal = model.recortaCorreo(correo) + "@castillo.cr";
@@ -298,6 +298,10 @@ public class Controlador {
     
     public boolean agregarArea(String nuevaArea){
         return model.agregarArea(nuevaArea);
+    }
+    
+    public ArrayList<String> getSysDateFromServer() {
+        return model.getSysDateFromServer();
     }
     //Declaracion de variables
     private static Controlador instancia = null;

@@ -51,7 +51,7 @@ public class PanelRegistrarUsuariosAdmin extends javax.swing.JPanel {
                     e.consume();
                 }
             }//
-            
+
             @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 super.keyPressed(evt);
@@ -296,58 +296,55 @@ public class PanelRegistrarUsuariosAdmin extends javax.swing.JPanel {
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         String contrasenna;
-       if (comboTipo.getSelectedIndex() == 0 || jtCorreo.getText().equals("")) {
+        if (comboTipo.getSelectedIndex() == 0 || jtCorreo.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Faltan datos", "ERROR", JOptionPane.ERROR_MESSAGE);
-        } else 
-        if (comboTipo.getSelectedItem().equals("Usuario de área") && jComboArea.getSelectedIndex() == 0) {
+        } else if (comboTipo.getSelectedItem().equals("Usuario de área") && jComboArea.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(this, "Faltan datos", "ERROR", JOptionPane.ERROR_MESSAGE);
         } else {
-            if(Controlador.obtenerInstancia().obtieneEstadoUsuario(jtCorreo.getText()) == 0){
-            JOptionPane.showMessageDialog(this, "El usuario ya está registrado, se encuentra bloqueado", "ERROR", JOptionPane.ERROR_MESSAGE);
-            }else
-            if(Controlador.obtenerInstancia().obtieneEstadoUsuario(jtCorreo.getText()) == 2){
-                if(Controlador.obtenerInstancia().cambiaARegistrado(jtCorreo.getText())){
-                    JOptionPane.showMessageDialog(this, "El usuario se encontraba eliminado, "+"\n"+""
-                            + "ha sido registrado otra vez "+"\n"+"como tipo de usuario que era", "Usuario registrado", JOptionPane.ERROR_MESSAGE);
-                }else{
-                JOptionPane.showMessageDialog(this, "   No se pudo registrar el usuario", "ERROR", JOptionPane.ERROR_MESSAGE);    
-                }   
-        }else{
-            if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Realmente "
-                    + "desea registrar este usuario?", null, JOptionPane.YES_NO_OPTION)) {
-                contrasenna = JOptionPane.showInputDialog("Digite su contraseña:");
-                if (Controlador.obtenerInstancia().verificarContrasenna(VentanaLogin.correo, contrasenna)) {
-                    if (comboTipo.getSelectedItem().equals("Usuario de área")) {
-                        if ((Controlador.obtenerInstancia().registraUsuarioAdmin(jtCorreo.getText(),  4 - comboTipo.getSelectedIndex()))
-                                && (Controlador.obtenerInstancia().registroAreaUsuario(jtCorreo.getText(), jComboArea.getSelectedItem().toString()))) {
-                            JOptionPane.showMessageDialog(this, "   El usuario ha sido registrado con éxito", "Usuario registrado", JOptionPane.PLAIN_MESSAGE);
+            if (Controlador.obtenerInstancia().obtieneEstadoUsuario(jtCorreo.getText()) == 0) {
+                JOptionPane.showMessageDialog(this, "El usuario " + Controlador.obtenerInstancia().recortaCorreo(jtCorreo.getText()) + "@castillo.cr"+ " ya está registrado, se encuentra bloqueado", "ERROR", JOptionPane.ERROR_MESSAGE);
+            } else if (Controlador.obtenerInstancia().obtieneEstadoUsuario(jtCorreo.getText()) == 2) {
+                if (Controlador.obtenerInstancia().cambiaARegistrado(jtCorreo.getText(), 4 - comboTipo.getSelectedIndex())) {
+                    JOptionPane.showMessageDialog(this, "El usuario " + Controlador.obtenerInstancia().recortaCorreo(jtCorreo.getText()) + "@castillo.cr" + "\n"
+                            + "ha sido registrado con éxito", "Usuario registrado", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(this, "   No se pudo registrar el usuario", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Realmente "
+                        + "desea registrar este usuario?", null, JOptionPane.YES_NO_OPTION)) {
+                    contrasenna = JOptionPane.showInputDialog("Digite su contraseña:");
+                    if (Controlador.obtenerInstancia().verificarContrasenna(VentanaLogin.correo, contrasenna)) {
+                        if (comboTipo.getSelectedItem().equals("Usuario de área")) {
+                            if ((Controlador.obtenerInstancia().registraUsuarioAdmin(jtCorreo.getText(), 4 - comboTipo.getSelectedIndex()))
+                                    && (Controlador.obtenerInstancia().registroAreaUsuario(jtCorreo.getText(), jComboArea.getSelectedItem().toString()))) {
+                                JOptionPane.showMessageDialog(this, "   El usuario " + Controlador.obtenerInstancia().recortaCorreo(jtCorreo.getText()) + "@castillo.cr" + "\n"
+                                        + "ha sido registrado con éxito", "Usuario registrado", JOptionPane.PLAIN_MESSAGE);
 
-                            
-                            Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
-                                    VentanaLogin.correo, "Usuario", "Registró al usuario " + jtCorreo.getText());
-                            
+                                Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
+                                        VentanaLogin.correo, "Usuario", "Registró al usuario " + jtCorreo.getText());
+
+                            } else {
+                                JOptionPane.showMessageDialog(this, "   No se pudo registrar el usuario", "ERROR", JOptionPane.ERROR_MESSAGE);
+                            }
                         } else {
-                            JOptionPane.showMessageDialog(this, "   No se pudo registrar el usuario", "ERROR", JOptionPane.ERROR_MESSAGE);
+                            if (Controlador.obtenerInstancia().registraUsuarioAdmin(jtCorreo.getText(), 4 - comboTipo.getSelectedIndex())) {
+                                JOptionPane.showMessageDialog(this, "   El usuario ha sido registrado con éxito", "Usuario registrado", JOptionPane.PLAIN_MESSAGE);
+
+                                Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
+                                        VentanaLogin.correo, "Usuario", "Registró al usuario " + jtCorreo.getText());
+
+                            } else {
+                                JOptionPane.showMessageDialog(this, "   No se pudo registrar el usuario", "ERROR", JOptionPane.ERROR_MESSAGE);
+                            }
                         }
                     } else {
-                        if (Controlador.obtenerInstancia().registraUsuarioAdmin(jtCorreo.getText(),  4 - comboTipo.getSelectedIndex())) {
-                            JOptionPane.showMessageDialog(this, "   El usuario ha sido registrado con éxito", "Usuario registrado", JOptionPane.PLAIN_MESSAGE);
-
-                            
-                            Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
-                                    VentanaLogin.correo, "Usuario", "Registró al usuario " + jtCorreo.getText());
-                            
-                        } else {
-                            JOptionPane.showMessageDialog(this, "   No se pudo registrar el usuario", "ERROR", JOptionPane.ERROR_MESSAGE);
-                        }
+                        JOptionPane.showMessageDialog(this, "   No se pudo registrar el usuario, constraseña incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
                     }
-                } else {
-                    JOptionPane.showMessageDialog(this, "   No se pudo registrar el usuario, constraseña incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
             }
-}
         }
-            
+
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelar1ActionPerformed

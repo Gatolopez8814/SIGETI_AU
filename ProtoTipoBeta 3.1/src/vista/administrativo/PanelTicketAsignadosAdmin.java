@@ -1225,7 +1225,7 @@ public class PanelTicketAsignadosAdmin extends javax.swing.JPanel {
     private void cargarComboAnnos() {
         ArrayList<String> lstAnyos;
         lstAnyos = new ArrayList<>();
-        int year = Calendar.getInstance().get(Calendar.YEAR);
+        int year = Integer.parseInt(Controlador.obtenerInstancia().getSysDateFromServer().get(0));
         for (int i = 2015; i <= year; i++) {
             lstAnyos.add(String.valueOf(i));
         }
