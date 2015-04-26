@@ -325,8 +325,14 @@ public class Controlador {
         return model.ModificarArea(area, areaNueva);
     }
 
-    public String nuevaAlerta() { 
-        model.obtieneAlertas();
-        return null;
+    public ArrayList<Ticket> ticketsAlertaAdmin() {
+        return model.ticketsAlertasAdmin();
     }
+//    public String nuevaAlerta() { 
+//        return model.obtieneAlertas();        
+//    }
+    public int numeroAlerta() { 
+        return model.obtieneNumeroAlertas();        
+    }
+    
 }

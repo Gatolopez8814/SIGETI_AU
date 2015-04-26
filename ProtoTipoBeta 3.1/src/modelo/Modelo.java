@@ -1968,8 +1968,51 @@ public class Modelo {
         return bitacora;
     }//----------------------------------------------------------------------------- FIN consultaBitacoraGeneral()
 
-    public void obtieneAlertas() {
+    public ArrayList<Ticket> ticketsAlertasAdmin() {
+        //este metodo es para que el usuario de area pueda consultar todas las alertas        
+        ArrayList< Ticket> tAlertas = new ArrayList<>();
+        Ticket _ticket;
+        String creador, asunto, fechaCreacion;
+        int idtick;
+        ResultSet resultado = null;
+        ResultSet hora = null;
+        ResultSet dia = null;
+        try {
+            Statement sentencia = null;
+            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
+            dia = sentencia.executeQuery("select CURDATE()");
+            sentencia = null;
+            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
+            hora = sentencia.executeQuery("select curTime()");
+            sentencia = null;
+            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
+            resultado = sentencia.executeQuery("select tablaTickets.consecutivoticket, tablaTickets.asunto, tablaTickets.correoUsuario, tablaTickets.fechaCreacion "
+                    + "from ticket tablaTickets, estadoTicket tablaEstado "
+                    + "where tablaEstado.consecutivoEstado = tablaTickets.consecEstado and tablaEstado.descripcion like 'visto' ");
+            if (resultado != null) {
+            }
+            while (resultado.next()) {
+                _ticket = new Ticket();
 
+                idtick = resultado.getInt(1);
+                asunto = resultado.getString(2);
+                creador = resultado.getString(3);
+                fechaCreacion = resultado.getString(4);
+
+                _ticket.setFecha(fechaCreacion);
+                _ticket.setAsunto(asunto);
+                _ticket.setCorreoUsuario(creador);
+                _ticket.setConsecutivo(idtick);
+                tAlertas.add(_ticket);
+            }
+        } catch (Exception e) {
+            System.out.println("Error Exception from Modelo -> ticketsAlertaAdmin()");
+            e.printStackTrace();
+        }
+        return tAlertas;
     }
-
+    public int obtieneNumeroAlertas() {
+        return ticketsAlertasAdmin().size();
+    }
+    
 }

@@ -38,7 +38,7 @@ import vista.Area.PanelTicketsDelArea;
 import vista.Area.PanelTicketsEnProcesoArea;
 import vista.Area.PanelUltimoTicketArea;
 import vista.administrativo.ArbolAdministrativo;
-import vista.administrativo.PanelAlertaTicketAdmin;
+import vista.administrativo.PanelAlertasAdmin;
 import vista.administrativo.PanelBandejaAdministrador;
 import vista.administrativo.PanelBitacoraAdmin;
 import vista.administrativo.PanelBloquearUsuarioAdmin;
@@ -122,9 +122,10 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
                 ventanaPrincipalArea();
                 break;
             case "1":
-                sesion = true;
+                time_check_alert = System.currentTimeMillis();
                 time_start = System.currentTimeMillis();
-                this.setTitle("SISTEMA DE GESTIÓN DE TICKETS - SIGETI - USUARIO ADMINISTRADOR");
+                sesion = true;
+                this.setTitle("SISTEMA DE GESTIÃ“N DE TICKETS - SIGETI - USUARIO ADMINISTRADOR");
                 setSize(new Dimension(sizeX, sizeY));
                 setPreferredSize(new Dimension(sizeX, sizeY));
                 setLocationRelativeTo(null);
@@ -144,7 +145,10 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
         ArbolAdministrativo.previeneError();
         ArbolArea.previeneError();
         ArbolStandard.previeneError();
-        repaint();              
+        repaint();
+        if ("1".equals(usuarioActivo)) {
+            alertasAlPrincipio();
+        }
     }//----------------------------------------------------------------------------- FIN mostrar()
 
     public void ocultar() {// oculta la ventana de ser necesario
@@ -625,10 +629,10 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
     public void cerrarAplicacion() {//mensaje de confirmacion para dar fin a la ejecucion de la aplicacion
         setBarraEstado("¿Realmente desea cerrar la aplicación? ");
         if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Desea cerrar la aplicación?", "Cerrar", JOptionPane.YES_NO_OPTION)) {
-		
+
             Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
                     VentanaLogin.correo, "No aplica", "Finalizó sesión");
-            
+
             System.exit(0);
         }
         setBarraEstadoMensajeAnterior();
@@ -643,11 +647,8 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
         setBarraEstado("¿Desea cerrar la sesion?");
         if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Realmente "
                 + "desea cerrar la sesión?", null, JOptionPane.YES_NO_OPTION)) {
-
-            
             Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
                     VentanaLogin.correo, "No aplica", "Finalizó sesión");
-            
             sesion = false;
             VentanaLogin.obtenerInstancia().mostrar();
             ocultar();
@@ -988,6 +989,7 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
         pack();
         repaint();
     }//----------------------------------------------------------------------------- FIN ticketsAsignadosAdmin()
+
     public void modificarUsuarioAdmin() {
         panelPrincipal.removeAll();
         setBarraEstado("Modificar Usuario");
@@ -998,6 +1000,7 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
         pack();
         repaint();
     }//----------------------------------------------------------------------------- FIN
+
     public void ConfigurarTicketAdmin() {
         panelPrincipal.removeAll();
         setBarraEstado("Ajustes en Ticket");
@@ -1008,6 +1011,7 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
         pack();
         repaint();
     }//----------------------------------------------------------------------------- FIN
+
     public void ticketsProcesoAdmin() {
         panelPrincipal.removeAll();
         setBarraEstado("Tickets en proceso");
@@ -1030,10 +1034,10 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
         repaint();
     }//----------------------------------------------------------------------------- FIN ticketsCerradosAdmin()
 
-    public void alertaTicketsAdmin() {
+     public void alertaTicketsAdmin() {
         panelPrincipal.removeAll();
         setBarraEstado("Alerta de ticket");
-        scrollPanelPrincipal = new JScrollPane(PanelAlertaTicketAdmin.obtenerInstancia());
+        scrollPanelPrincipal = new JScrollPane(PanelAlertasAdmin.obtenerInstancia());
         panelPrincipal.setLayout(new BorderLayout());
         panelPrincipal.add(ArbolAdministrativo.obtenerInstancia(), BorderLayout.WEST);
         panelPrincipal.add(scrollPanelPrincipal, BorderLayout.CENTER);
@@ -1125,14 +1129,27 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
             revalidate();//xq ???
         }
     }//----------------------------------------------------------------------------- FIN validaTimer()
-    
+
     private void validarAlertas() {
-        String mensaje = Controlador.obtenerInstancia().nuevaAlerta();
-        if(mensaje != null){
-            Alertas.obtenerInstancia().WarningAlert(mensaje);
+        if (sesion && ((System.currentTimeMillis() - time_check_alert) > 60000)) {
+            int cant = Controlador.obtenerInstancia().numeroAlerta();
+            if (cant > numAlertas) {
+                Alertas.obtenerInstancia().CautionAlert("Tiene " + (cant - numAlertas) + " Alertas nuevas");
+            }
+            numAlertas = cant;
+            time_check_alert = System.currentTimeMillis();
         }
     }
-    
+
+    private void alertasAlPrincipio() {
+        int cant = Controlador.obtenerInstancia().numeroAlerta();
+        if (cant > 0) {
+            Alertas.obtenerInstancia().WarningAlert("Existen " + cant + " Alertas");
+        }
+        numAlertas = cant;
+        time_check_alert = System.currentTimeMillis();
+    }
+
     @Override
     public void mouseClicked(MouseEvent e) {
         time_start = System.currentTimeMillis();
@@ -1192,11 +1209,11 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
     private JMenuItem itemAyuda;
     private JMenuItem itemCambioClave;
     //--o--
-     private boolean sesion;
+    private boolean sesion;
     private long time_start;
-    //--o--
+    private long time_check_alert;
+    //--o--    
     private Alertas alerta;
-
-    
+    private int numAlertas;
 
 }//____________________________________________________________________END_CLASS
