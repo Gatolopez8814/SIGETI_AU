@@ -734,12 +734,34 @@ public class PanelConsultaHistorialAdmin extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Opción de busqueda incorrecta", "ERROR",
                     JOptionPane.ERROR_MESSAGE);
         } else if (ComboBusqueda.getSelectedItem().equals("Área")) {
-            if (jComboArea.getSelectedIndex() == 0) {
-                JOptionPane.showMessageDialog(null, "Debe seleccionar un área.", "ERROR",
+            if (jComboArea.getSelectedItem().equals("Seleccione aquí")) {
+                JOptionPane.showMessageDialog(null, "Seleccione un area.", "ERROR",
                         JOptionPane.ERROR_MESSAGE);
+            } else {
+                ArrayList<Ticket> aux = Controlador.obtenerInstancia().consultaTodosTicket(a, "", VentanaLogin.correo);
+                if (aux.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "No se han encontrado tickets referentes a esta area.", "ERROR",
+                            JOptionPane.ERROR_MESSAGE);
+                } else {
+                    int i = 0;
+                    while (i < aux.size()) {
+                        modelAux.insertRow(modelAux.getRowCount(), new Object[]{aux.get(i).getConsecutivo(),
+                            aux.get(i).getAreaDestino(), aux.get(i).getFecha(), this.obtieneEstado(aux.get(i))});
+                        i++;
+                        //jTable1.setModel(modelAux);
+
+                    }
+
+                    Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
+                            VentanaLogin.correo, "Ticket", "Consultó varios tickets");
+
+                }
+                tablaTickets.setVisible(true);
+                tablaTickets.revalidate();
+                tablaTickets.repaint();
+                this.jPanelTabla.setVisible(true);
             }
-        }
-        else{
+        } else{
             String dia1, mes1, anno1, dia2, mes2, anno2, fecha1, fecha2;
             dia1 = this.jComboDiaDesde.getSelectedItem().toString();
             mes1 = String.valueOf(this.jComboMesDesde.getSelectedIndex()+1);

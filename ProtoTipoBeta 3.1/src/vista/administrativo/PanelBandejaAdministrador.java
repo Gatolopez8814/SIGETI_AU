@@ -977,7 +977,7 @@ public class PanelBandejaAdministrador extends javax.swing.JPanel {
             
             if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, " ¿Realmente desea ver el ticket " + codi + "?", null, JOptionPane.YES_NO_OPTION)) {
                 
-                Controlador.obtenerInstancia().cambioEstadoLeido(codi);
+                //Controlador.obtenerInstancia().cambioEstadoLeido(codi);
                 Ticket aux = Controlador.obtenerInstancia().informacionTicket(codi);
                 this.jLabelTitulo.setText("Información del ticket " + codi);
                 this.jPanelTabla.setVisible(false);

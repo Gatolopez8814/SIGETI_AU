@@ -807,8 +807,7 @@ public class PanelConsultaHistorial extends javax.swing.JPanel {
                     int i = 0;
                     while (i < aux.size()) {
                         modelAux.insertRow(modelAux.getRowCount(), new Object[]{aux.get(i).getConsecutivo(),
-                            aux.get(i).getAreaDestino(), aux.get(i).getFecha(), this.obtieneEstado(aux.get(i)),
-                            aux.get(i).getResponsable()});
+                            aux.get(i).getAreaDestino(), aux.get(i).getFecha(), this.obtieneEstado(aux.get(i)), aux.get(i).getResponsable()});
                         i++;
                         //jTable1.setModel(modelAux);
 

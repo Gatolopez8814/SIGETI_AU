@@ -364,15 +364,10 @@ public class PanelCrearTicket extends javax.swing.JPanel {//panel donde se encue
     }//GEN-LAST:event_jComboAsuntoActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if(jComboAsunto.getSelectedItem().toString().equals("Otro") && (txtEspecificacion.getText().equals("")
-                || (jComboArea.getSelectedIndex() == 0)
-                || (jTextDetalle.getText().equals("El problema consiste en ...")))){
+         if(txtEspecificacion.getText().equals("") || (jComboArea.getSelectedIndex() == 0)
+                || (jTextDetalle.getText().equals("El problema consiste en ...")) || jComboAsunto.getSelectedIndex() == 0){
             JOptionPane.showMessageDialog(this, "   Faltan datos", "ERROR", JOptionPane.ERROR_MESSAGE);
-        }else
-        if ((jComboAsunto.getSelectedIndex() == 0) || (jComboArea.getSelectedIndex() == 0)
-                || (jTextDetalle.getText().equals("El problema consiste en ..."))) {
-            JOptionPane.showMessageDialog(this, "   Faltan datos", "ERROR", JOptionPane.ERROR_MESSAGE);
-        } else {
+        }else {
             if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Realmente "
                     + "desea crear el ticket?", null, JOptionPane.YES_NO_OPTION)) {
                 int consecutivo = Controlador.obtenerInstancia().consultarConsecutivoTicket();

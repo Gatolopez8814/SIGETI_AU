@@ -358,12 +358,8 @@ public class PanelCrearTicketArea extends javax.swing.JPanel {//panel donde se e
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
-        if (jComboAsunto.getSelectedItem().toString().equals("Otro") && (txtEspecificacion2.getText().equals("")
-                || (jComboArea.getSelectedIndex() == 0)
-                || (jTextDetalle.getText().equals("El problema consiste en ...")))) {
-            JOptionPane.showMessageDialog(this, "   Faltan datos", "ERROR", JOptionPane.ERROR_MESSAGE);
-        } else if ((jComboAsunto.getSelectedIndex() == 0) || (jComboArea.getSelectedIndex() == 0)
-                || (jTextDetalle.getText().equals("El problema consiste en ..."))) {
+       if (txtEspecificacion2.getText().equals("") || (jComboArea.getSelectedIndex() == 0)
+                || (jTextDetalle.getText().equals("El problema consiste en ...")) || jComboAsunto.getSelectedIndex() == 0){
             JOptionPane.showMessageDialog(this, "   Faltan datos", "ERROR", JOptionPane.ERROR_MESSAGE);
         } else {
             if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Realmente "
