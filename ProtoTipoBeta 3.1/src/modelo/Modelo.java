@@ -147,7 +147,7 @@ public class Modelo {
         } catch (Exception e) {
             System.out.println("Error Exception from Modelo -> obtieneEstadoUsuario()");
             //e.printStackTrace();
-        }finally {
+        } finally {
             ConexionMySql.obtenerInstancia().desconectar();
             System.out.println("Se ha cerrado la conexion");
         }
@@ -159,7 +159,7 @@ public class Modelo {
         try {
             Statement sentencia = null;
             sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement(); //FALTA VALIDAR NO ELIMINAR USUARIO ACTIVO
-            if (sentencia.executeUpdate("update usuario set estado=1, tipo="+nuevoTipo+" where correo='" + correoUsuario + "' and estado=2") == 1) {
+            if (sentencia.executeUpdate("update usuario set estado=1, tipo=" + nuevoTipo + " where correo='" + correoUsuario + "' and estado=2") == 1) {
                 return true;
             }
         } catch (Exception e) {
@@ -1903,9 +1903,9 @@ public class Modelo {
     }
 
     public ArrayList<String> getSysDateFromServer() {
-        ResultSet resultado = null;        
+        ResultSet resultado = null;
         ArrayList<String> fecha = new ArrayList<>();
-        String reloj,calendario;
+        String reloj, calendario;
         try {
             Statement sentencia = null;
             sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
@@ -1917,9 +1917,9 @@ public class Modelo {
                 fecha.add(1, calendario.split("-")[1]);//mes
                 fecha.add(2, calendario.split("-")[2]);//dia
                 reloj = String.valueOf(resultado.getString(1).split(" ")[1]);
-                fecha.add(3,reloj.split(":")[0]);//hora
-                fecha.add(4,reloj.split(":")[1]);//minutos
-                fecha.add(5,reloj.split(":")[2]);//segundos                  
+                fecha.add(3, reloj.split(":")[0]);//hora
+                fecha.add(4, reloj.split(":")[1]);//minutos
+                fecha.add(5, reloj.split(":")[2]);//segundos                  
             }
         } catch (Exception e) {
             System.out.println("Error getSysDateFromServer()");
@@ -1975,35 +1975,25 @@ public class Modelo {
         String creador, asunto, fechaCreacion;
         int idtick;
         ResultSet resultado = null;
-        ResultSet hora = null;
-        ResultSet dia = null;
         try {
             Statement sentencia = null;
             sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
-            dia = sentencia.executeQuery("select CURDATE()");
-            sentencia = null;
-            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
-            hora = sentencia.executeQuery("select curTime()");
-            sentencia = null;
-            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
-            resultado = sentencia.executeQuery("select tablaTickets.consecutivoticket, tablaTickets.asunto, tablaTickets.correoUsuario, tablaTickets.fechaCreacion "
+            resultado = sentencia.executeQuery("select tablaTickets.consecutivoticket, tablaTickets.asunto, tablaTickets.correoUsuario, tablaTickets.fechaCreacion , tablaTickets.consecutivoPriori , tablaTickets.tiempoSolucion "//, tablaTickets.consecutivoPriori
                     + "from ticket tablaTickets, estadoTicket tablaEstado "
-                    + "where tablaEstado.consecutivoEstado = tablaTickets.consecEstado and tablaEstado.descripcion like 'visto' ");
-            if (resultado != null) {
-            }
+                    + "where tablaEstado.consecutivoEstado = tablaTickets.consecEstado and tablaEstado.descripcion like 'visto'");
             while (resultado.next()) {
-                _ticket = new Ticket();
-
-                idtick = resultado.getInt(1);
-                asunto = resultado.getString(2);
-                creador = resultado.getString(3);
-                fechaCreacion = resultado.getString(4);
-
-                _ticket.setFecha(fechaCreacion);
-                _ticket.setAsunto(asunto);
-                _ticket.setCorreoUsuario(creador);
-                _ticket.setConsecutivo(idtick);
-                tAlertas.add(_ticket);
+                if (condicionAlertas(resultado.getInt(5), resultado.getString(6))) {
+                    _ticket = new Ticket();
+                    idtick = resultado.getInt(1);
+                    asunto = resultado.getString(2);
+                    creador = resultado.getString(3);
+                    fechaCreacion = resultado.getString(4);
+                    _ticket.setFecha(fechaCreacion);
+                    _ticket.setAsunto(asunto);
+                    _ticket.setCorreoUsuario(creador);
+                    _ticket.setConsecutivo(idtick);
+                    tAlertas.add(_ticket);
+                }
             }
         } catch (Exception e) {
             System.out.println("Error Exception from Modelo -> ticketsAlertaAdmin()");
@@ -2011,8 +2001,44 @@ public class Modelo {
         }
         return tAlertas;
     }
+
+    boolean condicionAlertas(int prioridad, String fecha) {
+        if (!"No asignado".equals(fecha)) {
+            int dif = difDias(fecha);
+            if (prioridad == 1 && dif >= 1) {//alta
+                return true;
+            } else if (prioridad == 2 && dif >= 2) {//media
+                return true;
+            } else if (prioridad == 3 && dif >= 4) {//baja
+                return true;
+            }
+        }
+        return false;
+    }
+
+    int difDias(String fecha) {
+        ArrayList<String> fechaActual = getSysDateFromServer();
+        int diaActual = Integer.valueOf(fechaActual.get(2));
+        int mesActual = Integer.valueOf(fechaActual.get(1));
+        int anioActual = Integer.valueOf(fechaActual.get(0));
+        int diaSolucion = Integer.valueOf(fecha.split("-")[2]);
+        int mesSolucion = Integer.valueOf(fecha.split("-")[1]);
+        int anioSolucion = Integer.valueOf(fecha.split("-")[0]);
+        if (anioSolucion == anioActual) {
+            if (mesSolucion == mesActual) {
+                return diaActual - diaSolucion;
+            } else {
+                return ((mesActual - mesSolucion) * 30) + diaSolucion - diaActual;
+            }
+        } else if (mesSolucion == mesActual) {
+            return diaActual - diaSolucion + ((anioActual - anioSolucion) * 366);
+        } else {
+            return ((mesSolucion - mesActual) * 30) + diaSolucion - diaActual + +((anioActual - anioSolucion) * 366);
+        }        
+    }
+
     public int obtieneNumeroAlertas() {
         return ticketsAlertasAdmin().size();
     }
-    
+
 }

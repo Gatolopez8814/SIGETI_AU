@@ -1141,12 +1141,13 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
         }
     }
 
-    private void alertasAlPrincipio() {
+    private void alertasAlPrincipio() {        
         int cant = Controlador.obtenerInstancia().numeroAlerta();
+        numAlertas = 999999999;
         if (cant > 0) {
             Alertas.obtenerInstancia().WarningAlert("Existen " + cant + " Alertas");
-        }
-        numAlertas = cant;
+        }      
+         numAlertas = cant;
         time_check_alert = System.currentTimeMillis();
     }
 
