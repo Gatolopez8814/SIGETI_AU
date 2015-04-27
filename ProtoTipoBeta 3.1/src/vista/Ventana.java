@@ -80,6 +80,7 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
         ajustarMenu();
         ajustarComponentes(getContentPane());
         ajustarEventos();
+        admin= false;
         alerta = Alertas.obtenerInstancia();
     }//----------------------------------------------------------------------------- FIN Constructor()
 
@@ -91,27 +92,16 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
     }//----------------------------------------------------------------------------- FIN obtenerInstancia()
 
     public void tecla() {
-        time_start = System.currentTimeMillis();
-        System.out.println("keyPressed");
+        time_start = System.currentTimeMillis();        
     }
 
     public void setTipoUsuario(String tipoUsuario) {
         usuarioActivo = tipoUsuario;
         setLocationRelativeTo(null);
         switch (usuarioActivo) {
-            case "3":
-                sesion = true;
-                time_start = System.currentTimeMillis();
-                this.setTitle("SISTEMA DE GESTIÓN DE TICKETS - SIGETI - USUARIO ESTANDARD");
-                setSize(910, 605);
-                setPreferredSize(new Dimension(910, 605));
-                setLocationRelativeTo(null);
-                menuStandard();
-                ArbolStandard.previeneError();
-                ventanaPrincipalStandard();
-                break;
             case "2":
                 sesion = true;
+                admin = false;
                 time_start = System.currentTimeMillis();
                 this.setTitle("SISTEMA DE GESTIÓN DE TICKETS - SIGETI - USUARIO DE AREA");
                 setSize(new Dimension(sizeX, sizeY));
@@ -125,6 +115,7 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
                 time_check_alert = System.currentTimeMillis();
                 time_start = System.currentTimeMillis();
                 sesion = true;
+                admin = true;
                 this.setTitle("SISTEMA DE GESTIÃ“N DE TICKETS - SIGETI - USUARIO ADMINISTRADOR");
                 setSize(new Dimension(sizeX, sizeY));
                 setPreferredSize(new Dimension(sizeX, sizeY));
@@ -133,9 +124,18 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
                 ArbolAdministrativo.previeneError();
                 ventanaPrincipalAdmin();
                 break;
+            case "3":
             default:
-                VentanaLogin.obtenerInstancia().mostrar();
-                this.ocultar();
+                admin = false;
+                sesion = true;
+                time_start = System.currentTimeMillis();
+                this.setTitle("SISTEMA DE GESTIÓN DE TICKETS - SIGETI - USUARIO ESTANDARD");
+                setSize(910, 605);
+                setPreferredSize(new Dimension(910, 605));
+                setLocationRelativeTo(null);
+                menuStandard();
+                ArbolStandard.previeneError();
+                ventanaPrincipalStandard();                
                 break;
         }
     }//----------------------------------------------------------------------------- FIN setTipoUsuario()
@@ -146,12 +146,14 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
         ArbolArea.previeneError();
         ArbolStandard.previeneError();
         repaint();
-        if ("1".equals(usuarioActivo)) {
+        if (admin) {
             alertasAlPrincipio();
-        }
+        }       
     }//----------------------------------------------------------------------------- FIN mostrar()
 
     public void ocultar() {// oculta la ventana de ser necesario
+        sesion = false;
+        admin= false;
         this.setVisible(false);
     }//----------------------------------------------------------------------------- FIN ocultar()
 
@@ -1109,9 +1111,9 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
     @Override
     public void run() {
         try {
-            while (true) {
+            while (true) {                
                 this.validaTimer();
-                this.validarAlertas();
+                this.validarAlertas();                         
             }
         } catch (Exception e) {
         }
@@ -1131,7 +1133,7 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
     }//----------------------------------------------------------------------------- FIN validaTimer()
 
     private void validarAlertas() {
-        if (sesion && ((System.currentTimeMillis() - time_check_alert) > 60000)) {
+        if (sesion && admin && ((System.currentTimeMillis() - time_check_alert) > 60000)) {
             int cant = Controlador.obtenerInstancia().numeroAlerta();
             if (cant > numAlertas) {
                 Alertas.obtenerInstancia().CautionAlert("Tiene " + (cant - numAlertas) + " Alertas nuevas");
@@ -1216,5 +1218,6 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
     //--o--    
     private Alertas alerta;
     private int numAlertas;
+    private boolean admin;
 
 }//____________________________________________________________________END_CLASS
