@@ -13,7 +13,6 @@ public class PanelUltimoTicketStandard extends javax.swing.JPanel {
         initComponents();
         this.ajustarEventos();
         this.limpiarCampos();
-        this.llenarUltimo(VentanaLogin.correo);
 
     }//----------------------------------------------------------------------------- FIN Constructor()
 
@@ -21,6 +20,7 @@ public class PanelUltimoTicketStandard extends javax.swing.JPanel {
         if (instancia == null) {
             instancia = new PanelUltimoTicketStandard();
         }
+        instancia.llenarUltimo(VentanaLogin.correo);
         return instancia;
     }//----------------------------------------------------------------------------- FIN obtenerInstancia()
 

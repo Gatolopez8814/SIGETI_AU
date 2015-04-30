@@ -265,8 +265,6 @@ public class PanelCrearTicket extends javax.swing.JPanel {//panel donde se encue
 
         jLabel2.setText("Especifique:");
 
-        txtEspecificacion.setEnabled(false);
-
         jLabel9.setText("Área de destino: ");
 
         jComboArea.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione aquí" }));

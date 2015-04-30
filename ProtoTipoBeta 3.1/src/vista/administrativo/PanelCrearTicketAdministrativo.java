@@ -185,8 +185,6 @@ public class PanelCrearTicketAdministrativo extends javax.swing.JPanel {//panel 
 
         jLabel2.setText("Especifique:");
 
-        txtEspecificacion.setEnabled(false);
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(

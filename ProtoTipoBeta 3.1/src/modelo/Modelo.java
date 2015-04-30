@@ -1,6 +1,6 @@
 package modelo;
 
-//Prueba por karen JAJAJA
+import com.mysql.jdbc.Connection;
 import controlador.ConexionMySql;
 import controlador.EnviaMensaje;
 import java.sql.CallableStatement;
@@ -15,7 +15,7 @@ public class Modelo {
     public void EjecutaSQL() {
     }//----------------------------------------------------------------------------- FIN Constructor()
 
-    public String recortaCorreo(String correUsuario) {//obtiene los datos antes del @       
+    public String recortaCorreo(String correUsuario) {
         return correUsuario.split("@")[0];
     }//----------------------------------------------------------------------------- FIN recortaCorreo()
 
@@ -27,10 +27,8 @@ public class Modelo {
 
     public ArrayList<Integer> verificaLoggin(String correoUsuario, String contrasena) {
         ArrayList<Integer> valores = new ArrayList<>();
-        valores.add(0);//1,2,3
-        valores.add(-2);//0,1,2
-//        String correo = this.recortaCorreo(correoUsuario) + "@castillo.cr";
-        System.err.println("correo: " + correoUsuario + " cont: " + contrasena);
+        valores.add(0);
+        valores.add(-2);
         int tipo_usuario = 0;
         int estado = 0;
         ResultSet resultado = null;
@@ -58,11 +56,9 @@ public class Modelo {
                 }
             }
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> verificaLoggin()");
-            e.printStackTrace();
+            //e.printStackTrace();
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion desde el metodo verificaLoggin()");
         }
         return valores;
     }//----------------------------------------------------------------------------- FIN verificaLoggin()   
@@ -84,11 +80,9 @@ public class Modelo {
                 }
             }
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> verificarContrasenna()");
             //e.printStackTrace();
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return ok;
     }//----------------------------------------------------------------------------- FIN verificarContrasenna()   
@@ -103,12 +97,10 @@ public class Modelo {
                 return true;
             }
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> registraUsuarioAdmin()");
             //e.printStackTrace();
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return false;
     }//----------------------------------------------------------------------------- FIN registraUsuarioAdmin()
@@ -122,12 +114,10 @@ public class Modelo {
                 return true;
             }
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> ModificaUsuarioAdmin()");
             //e.printStackTrace();
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return false;
     }//----------------------------------------------------------------------------- FIN registraUsuarioAdmin()
@@ -145,11 +135,9 @@ public class Modelo {
                 estado = resultado.getInt(1);
             }
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> obtieneEstadoUsuario()");
             //e.printStackTrace();
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return estado;
     }//----------------------------------------------------------------------------- FIN obtieneEstadoUsuario()
@@ -163,12 +151,10 @@ public class Modelo {
                 return true;
             }
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> cambiaARegistrado()");
             //e.printStackTrace();
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return false;
     }//----------------------------------------------------------------------------- FIN cambiaARegistrado()
@@ -182,19 +168,16 @@ public class Modelo {
                 return true;
             }
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> eliminaUsuarioAdmin()");
             //e.printStackTrace();
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return false;
     }//----------------------------------------------------------------------------- FIN eliminaUsuarioAdmin()
 
     public boolean bloqueaUsuarioAdmin(String correoUsuario) {
         //este metodo permite al administrador bloquear un usuario de la base de datos
-
         try {
             Statement sentencia = null;
             sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
@@ -204,12 +187,10 @@ public class Modelo {
             }
 
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> bloqueaUsuarioAdmin()");
 //            e.printStackTrace();
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return false;
     }//----------------------------------------------------------------------------- FIN bloqueaUsuarioAdmin()
@@ -223,12 +204,10 @@ public class Modelo {
                 return true;
             }
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> desBloqueaUsuarioAdmin()");
 //            e.printStackTrace();
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return false;
     }//----------------------------------------------------------------------------- FIN desBloqueaUsuarioAdmin()
@@ -243,10 +222,8 @@ public class Modelo {
     public boolean registraNuevoTicket(Ticket _ticket) {
         //este metodo permite a los usuarios ingresar un nuevo ticket a la base de datos
         try {
-            System.err.println(_ticket.toString());
             Statement sentencia = null;
             sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
-            System.err.println("entroo");
             if (sentencia.executeUpdate("insert into ticket values(" + _ticket.getConsecutivo() + "," + "'"
                     + _ticket.getCorreoUsuario() + "'" + "," + _ticket.getPrioridad() + "," + _ticket.getEstado() + "," + "'"
                     + _ticket.getDetalleProblema() + "'" + "," + "'" + _ticket.getAreaDestino() + "'" + "," + "'"
@@ -257,12 +234,10 @@ public class Modelo {
                 return true;
             }
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> registraNuevoTicket()");
             //e.printStackTrace();
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return false;
     }//----------------------------------------------------------------------------- FIN registraNuevoTicket()
@@ -276,7 +251,6 @@ public class Modelo {
             int estado;
             ResultSet resultado = null;
             Statement sentencia = null;
-            Statement sentencia2 = null;
             sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
             resultado = sentencia.executeQuery("select responsable, areaDestino, consecEstado, asunto, hora, fechaCreacion, detalleProblema, comentarios from ticket where correoUsuario = '" + _correo + "' and consecutivoticket =" + _codigo);
 
@@ -300,32 +274,26 @@ public class Modelo {
                 _ticket.setComentarios(comentarios);
             }
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> consultaUno()");
-            e.printStackTrace();
+            //e.printStackTrace();
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return _ticket;
     }//----------------------------------------------------------------------------- FIN consultaUno()
 
     public Ticket consultaUltimo(String _correo) {
         //Este metodo es para consultar el ultimo ticket segun el codigo y segun el usuario actual de la sesion
-        Ticket _ticket = new Ticket();
+        Ticket _ticket = null;
         int codigo;
         String responsable, areaDestino, asunto, detalle, comentarios, estado;
         Date hora, fechaCreacion;
-        ResultSet resultado = null;
+        Connection conn = null;
         try {
-            Statement sentencia = null;
-            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
-            resultado = sentencia.executeQuery("select tablaTickets.consecutivoticket, tablaTickets.responsable, tablaTickets.areaDestino, tablaTickets.asunto, tablaEstado.descripcion, "
-                    + " tablaTickets.hora, tablaTickets.fechaCreacion, tablaTickets.detalleProblema, tablaTickets.comentarios "
-                    + " from ticket tablaTickets, estadoTicket tablaEstado "
-                    + " where fechaCreacion =  (select max(fechaCreacion) from ticket where correoUsuario='" + _correo + "') "
-                    + " and tablaEstado.consecutivoEstado = tablaTickets.consecEstado");
-            if (resultado != null) {
-            }
+            conn = ConexionMySql.obtenerInstancia().conectar();
+            CallableStatement cStmt = conn.prepareCall("{call consultaUltimo(?)}");
+            cStmt.setString(1, _correo);
+            cStmt.execute();
+            final ResultSet resultado = cStmt.getResultSet();
             while (resultado.next()) {
                 codigo = resultado.getInt(1);
                 responsable = resultado.getString(2);
@@ -337,6 +305,7 @@ public class Modelo {
                 detalle = resultado.getString(8);
                 comentarios = resultado.getString(9);
 
+                _ticket = new Ticket();
                 _ticket.setConsecutivo(codigo);
                 _ticket.setResponsable(responsable);
                 _ticket.setAreaDestino(areaDestino);
@@ -348,11 +317,9 @@ public class Modelo {
                 _ticket.setComentarios(comentarios);
             }
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> consultaUno()");
-            e.printStackTrace();
+            //e.printStackTrace();
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return _ticket;
     }//----------------------------------------------------------------------------- FIN consultaUltimo()
@@ -370,45 +337,35 @@ public class Modelo {
         ArrayList< Ticket> tEncontrados = new ArrayList<>();
         Ticket _ticket;
         String areaDestino, responsable, estado;
-        System.out.println("consultando por fechas");
         Date fechaCreacion;
         int idtick;
-        ResultSet resultado = null;
-
+        Connection conn = null;
         try {
-            Statement sentencia = null;
-            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
-            resultado = sentencia.executeQuery("select tablaTickets.areaDestino, tablaTickets.fechaCreacion, tablaTickets.consecutivoticket, tablaEstado.descripcion, tablaTickets.responsable "
-                    + " from ticket tablaTickets, estadoTicket tablaEstado where correoUsuario = '" + _correo + "'"
-                    + " and tablaEstado.consecutivoEstado = tablaTickets.consecEstado "
-                    + " and fechaCreacion >= " + "'" + dato1 + " 00:00:00'"
-                    + " and fechaCreacion <=" + "'" + dato2 + " 23:59:59' order by consecutivoticket");
-            if (resultado != null) {
-                System.out.println("Si encontró algo");
-            }
+            conn = ConexionMySql.obtenerInstancia().conectar();
+            CallableStatement cStmt = conn.prepareCall("{call consultaTicketsfecha(?, ?, ?)}");
+            cStmt.setString(1, dato1);
+            cStmt.setString(2, dato2);
+            cStmt.setString(3, _correo);
+            cStmt.execute();
+            final ResultSet resultado = cStmt.getResultSet();
             while (resultado.next()) {
                 _ticket = new Ticket();
-
                 areaDestino = resultado.getString(1);
                 fechaCreacion = resultado.getDate(2);
                 idtick = resultado.getInt(3);
                 estado = resultado.getString(4);
                 responsable = resultado.getString(5);
-
                 _ticket.setConsecutivo(idtick);
                 _ticket.setAreaDestino(areaDestino);
                 _ticket.setFecha(String.valueOf(fechaCreacion));
                 _ticket.setEstado(estado);
                 _ticket.setResponsable(responsable);
                 tEncontrados.add(_ticket);
-//              
             }
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> consultaTicketsfecha()");
-            e.printStackTrace();
+            //e.printStackTrace();
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return tEncontrados;
     }
@@ -420,28 +377,21 @@ public class Modelo {
         String areaDestino, estado, responsable;
         Date fechaCreacion;
         int idtick;
-        ResultSet resultado = null;
+        Connection conn = null;
         try {
-            Statement sentencia = null;
-            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
-
-            resultado = sentencia.executeQuery("select tablaTickets.areaDestino, tablaTickets.fechaCreacion, tablaTickets.consecutivoticket, "
-                    + "tablaTickets.responsable, tablaEstado.descripcion "
-                    + "from ticket tablaTickets, estadoTicket tablaEstado "
-                    + "where correoUsuario = '" + _correo + "' and areaDestino = '" + area + "' "
-                    + "and tablaEstado.consecutivoEstado = tablaTickets.consecEstado \n"
-                    + "order by consecutivoticket");
-            if (resultado != null) {
-            }
+            conn = ConexionMySql.obtenerInstancia().conectar();
+            CallableStatement cStmt = conn.prepareCall("{call consultaTicketsArea(?, ?)}");
+            cStmt.setString(1, area);
+            cStmt.setString(2, _correo);
+            cStmt.execute();
+            final ResultSet resultado = cStmt.getResultSet();
             while (resultado.next()) {
                 _ticket = new Ticket();
-
                 areaDestino = resultado.getString(1);
                 fechaCreacion = resultado.getDate(2);
                 idtick = resultado.getInt(3);
                 responsable = resultado.getString(4);
                 estado = resultado.getString(5);
-
                 _ticket.setAreaDestino(areaDestino);
                 _ticket.setFecha(String.valueOf(fechaCreacion));
                 _ticket.setConsecutivo(idtick);
@@ -450,11 +400,9 @@ public class Modelo {
                 tEncontrados.add(_ticket);
             }
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> consultaTicketsArea()");
-            e.printStackTrace();
+            //e.printStackTrace();
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return tEncontrados;
     }//---------------------------------------------------------------------------------------FIN ConsultaAreaTickets
@@ -470,11 +418,9 @@ public class Modelo {
                 _estado = resultado.getString(1);
             }
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> consultaUno()");
-            e.printStackTrace();
+            //e.printStackTrace();
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return _estado;
     }//----------------------------------------------------------------------------- FIN consultaEstado()
@@ -487,12 +433,10 @@ public class Modelo {
                 return true;
             }
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> cambiaEstadoLeido()");
 //            e.printStackTrace();
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return false;
     }//----------------------------------------------------------------------------- FIN cambioEstadoLeido()
@@ -503,11 +447,13 @@ public class Modelo {
         int consecutivoticket, consecutivoPriori, consecEstado;
         Date fechaCreacion, hora;
         Ticket datos = null;
+        Connection conn = null;
         try {
-            ResultSet resultado = null;
-            Statement sentencia = null;
-            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
-            resultado = sentencia.executeQuery("select tablaTickets.*, tablaEstado.descripcion from ticket tablaTickets, estadoTicket tablaEstado where consecutivoticket = " + _codigo + " and tablaEstado.consecutivoEstado = tablaTickets.consecEstado");
+            conn = ConexionMySql.obtenerInstancia().conectar();
+            CallableStatement cStmt = conn.prepareCall("{call informacionTicket(?)}");
+            cStmt.setInt(1, _codigo);
+            cStmt.execute();
+            final ResultSet resultado = cStmt.getResultSet();
             while (resultado.next()) {
                 consecutivoticket = resultado.getInt(1);
                 correoUsuario = resultado.getString(2);
@@ -527,14 +473,11 @@ public class Modelo {
                 datos = new Ticket(detalleProblema, descripcion, comentarios, correoUsuario, areaDestino,
                         tiempoSolucion, responsable, tiempoRealsolucion, asunto, String.valueOf(hora),
                         consecutivoPriori, consecutivoticket, String.valueOf(fechaCreacion), especificacion);
-
             }
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> informacionAdicionalTicket()");
-            e.printStackTrace();
+            //e.printStackTrace();
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return datos;
     }//----------------------------------------------------------------------------- FIN informacionTicket()
@@ -549,11 +492,9 @@ public class Modelo {
             }
 
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> cambioContrasenna()");
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return false;
     }//----------------------------------------------------------------------------- FIN cambioContrasenna()
@@ -564,24 +505,19 @@ public class Modelo {
         Ticket _ticket;
         String responsable, creador, estado;
         int idtick;
-        ResultSet resultado = null;
+        Connection conn = null;
         try {
-            Statement sentencia = null;
-            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
-
-            resultado = sentencia.executeQuery("select tablaTickets.consecutivoticket, tablaTickets.correoUsuario, tablaTickets.responsable, tablaEstado.descripcion  "
-                    + "from ticket tablaTickets, estadoTicket tablaEstado where tablaTickets.areaDestino = (select nombArea from areausuario where correousuario = '" + _correoUsuario + "') "
-                    + "and tablaEstado.consecutivoEstado = tablaTickets.consecEstado order by consecutivoticket");
-            if (resultado != null) {
-            }
+            conn = ConexionMySql.obtenerInstancia().conectar();
+            CallableStatement cStmt = conn.prepareCall("{call ticketsDelArea(?)}");
+            cStmt.setString(1, _correoUsuario);
+            cStmt.execute();
+            final ResultSet resultado = cStmt.getResultSet();
             while (resultado.next()) {
                 _ticket = new Ticket();
-
                 idtick = resultado.getInt(1);
                 creador = resultado.getString(2);
                 responsable = resultado.getString(3);
                 estado = resultado.getString(4);
-
                 _ticket.setEstado(estado);
                 _ticket.setCorreoUsuario(creador);
                 _ticket.setResponsable(responsable);
@@ -589,14 +525,12 @@ public class Modelo {
                 tEncontrados.add(_ticket);
             }
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> ticketsDelArea()");
-            e.printStackTrace();
+            //e.printStackTrace();
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return tEncontrados;
-    }//----------------------------------------------------------------------------- FIN obtieneAreas()
+    }//----------------------------------------------------------------------------- FIN ticketsDelArea()
 
     public ArrayList<String> obtieneAreas() {
         //este metodo es para que el usuario de area pueda consultar todos los tickets de su area
@@ -615,11 +549,9 @@ public class Modelo {
                 tEncontrados.add(nombre);
             }
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> obtieneAreas()");
-            e.printStackTrace();
+            //e.printStackTrace();
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return tEncontrados;
     }//----------------------------------------------------------------------------- FIN obtieneAreas()
@@ -640,11 +572,9 @@ public class Modelo {
                 tEncontrados.add(correo);
             }
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> obtieneUsuarios()");
-            e.printStackTrace();
+            //e.printStackTrace();
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return tEncontrados;
     }//----------------------------------------------------------------------------- FIN obtieneUsuarios()
@@ -665,11 +595,9 @@ public class Modelo {
                 tEncontrados.add(correo);
             }
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> obtieneUsuariosEliminar()");
-            e.printStackTrace();
+            //e.printStackTrace();
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return tEncontrados;
     }//----------------------------------------------------------------------------- FIN obtieneUsuariosEliminar()
@@ -690,11 +618,9 @@ public class Modelo {
                 usuarios.add(correo);
             }
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> obtieneTodosUsuarios()");
-            e.printStackTrace();
+            //e.printStackTrace();
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return usuarios;
     }//----------------------------------------------------------------------------- FIN obtieneTodosUsuarios()
@@ -715,11 +641,9 @@ public class Modelo {
                 usuarios.add(correo);
             }
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> obtieneUsuariosGeneral()");
-            e.printStackTrace();
+            //e.printStackTrace();
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return usuarios;
     }//----------------------------------------------------------------------------- FIN obtieneUsuariosGeneral()
@@ -738,11 +662,9 @@ public class Modelo {
                 area = resultado.getString(1);
             }
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> obtieneNombreArea()");
-            e.printStackTrace();
+            //e.printStackTrace();
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return area;
     }//----------------------------------------------------------------------------- FIN obtieneNombreArea()
@@ -764,11 +686,9 @@ public class Modelo {
                 usuarios.add(correo);
             }
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> obtieneTodosUsuarios()");
-            e.printStackTrace();
+            //e.printStackTrace();
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return usuarios;
     }//----------------------------------------------------------------------------- FIN obtieneUsuariosPorArea()
@@ -790,11 +710,9 @@ public class Modelo {
                 tEncontrados.add(nombre);
             }
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> obtieneAsuntos()");
-            e.printStackTrace();
+            //e.printStackTrace();
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return tEncontrados;
     }//----------------------------------------------------------------------------- FIN obtieneAsuntos()
@@ -805,25 +723,19 @@ public class Modelo {
         Ticket _ticket;
         String responsable, asunto, estado;
         int idtick;
-        ResultSet resultado = null;
+        Connection conn = null;
         try {
-            Statement sentencia = null;
-            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
-
-            resultado = sentencia.executeQuery("select tablaTickets.consecutivoticket, tablaTickets.asunto, tablaTickets.responsable, "
-                    + "tablaEstado.descripcion from ticket tablaTickets, estadoTicket tablaEstado where tablaTickets.consecEstado = 2 "
-                    + "and tablaEstado.consecutivoEstado = 2"); //El numero 2 corresponde al fechaCreacion de "Visto" en la bd
-            if (resultado != null) {
-                System.out.println("Encontró tickets vistos(en proceso)");
-            }
+            conn = ConexionMySql.obtenerInstancia().conectar();
+            CallableStatement cStmt = conn.prepareCall("{call ticketsEnProcesoArea(?)}");
+            cStmt.setString(1, _correoUsuario);
+            cStmt.execute();
+            final ResultSet resultado = cStmt.getResultSet();
             while (resultado.next()) {
                 _ticket = new Ticket();
-
                 idtick = resultado.getInt(1);
                 asunto = resultado.getString(2);
                 responsable = resultado.getString(3);
                 estado = resultado.getString(4);
-
                 _ticket.setEstado(estado);
                 _ticket.setAsunto(asunto);
                 _ticket.setResponsable(responsable);
@@ -831,11 +743,9 @@ public class Modelo {
                 tEncontrados.add(_ticket);
             }
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> ticketsEnProcesoArea()");
-            e.printStackTrace();
+            //e.printStackTrace();
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return tEncontrados;
     }//----------------------------------------------------------------------------- FIN tickets EnprocesoArea()
@@ -846,25 +756,18 @@ public class Modelo {
         Ticket _ticket;
         String responsable, asunto, fechaCreacion;
         int idtick;
-        ResultSet resultado = null;
+        Connection conn = null;
         try {
-            Statement sentencia = null;
-            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
-
-            resultado = sentencia.executeQuery("select tablaTickets.consecutivoticket, tablaTickets.asunto, tablaTickets.responsable, "
-                    + "tablaTickets.fechaCreacion from ticket tablaTickets, estadoTicket tablaEstado where tablaTickets.consecEstado = 2 "
-                    + "and tablaEstado.consecutivoEstado = 2 "); //El numero 2 corresponde al fechaCreacion de "Visto" en la bd
-            if (resultado != null) {
-                System.out.println("Encontró tickets vistos(en proceso)");
-            }
+            conn = ConexionMySql.obtenerInstancia().conectar();
+            CallableStatement cStmt = conn.prepareCall("{call ticketsEnProcesoAdmin()}");
+            cStmt.execute();
+            final ResultSet resultado = cStmt.getResultSet();
             while (resultado.next()) {
                 _ticket = new Ticket();
-
                 idtick = resultado.getInt(1);
                 asunto = resultado.getString(2);
                 responsable = resultado.getString(3);
                 fechaCreacion = resultado.getString(4);
-
                 _ticket.setFecha(fechaCreacion);
                 _ticket.setAsunto(asunto);
                 _ticket.setResponsable(responsable);
@@ -872,11 +775,9 @@ public class Modelo {
                 tEncontrados.add(_ticket);
             }
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> ticketsEnProcesoArea()");
-            e.printStackTrace();
+            //e.printStackTrace();
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return tEncontrados;
     }//----------------------------------------------------------------------------- FIN tickets En proceso Area
@@ -887,26 +788,19 @@ public class Modelo {
         Ticket _ticket;
         String responsable, asunto, estado;
         int idtick;
-        ResultSet resultado = null;
+        Connection conn = null;
         try {
-            Statement sentencia = null;
-            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
-
-            resultado = sentencia.executeQuery("select tablaTickets.consecutivoticket, tablaTickets.asunto, tablaTickets.responsable, tablaEstado.descripcion "
-                    + " from ticket tablaTickets, estadoTicket tablaEstado "
-                    + " where tablaTickets.areaDestino = (select nombArea from areausuario where correousuario = '" + _correoUsuario + "') "
-                    + " and tablaEstado.consecutivoEstado = tablaTickets.consecEstado and tablaTickets.responsable not like 'No asignado' "
-                    + " and tablaEstado.descripcion not like 'no leido'");//si no ha sido visto, por obvio no tiene responsable
-            if (resultado != null) {
-            }
+            conn = ConexionMySql.obtenerInstancia().conectar();
+            CallableStatement cStmt = conn.prepareCall("{call ticketsDelAreaAsignados(?)}");
+            cStmt.setString(1, _correoUsuario);
+            cStmt.execute();
+            final ResultSet resultado = cStmt.getResultSet();
             while (resultado.next()) {
                 _ticket = new Ticket();
-
                 idtick = resultado.getInt(1);
                 asunto = resultado.getString(2);
                 responsable = resultado.getString(3);
                 estado = resultado.getString(4);
-
                 _ticket.setEstado(estado);
                 _ticket.setAsunto(asunto);
                 _ticket.setResponsable(responsable);
@@ -914,11 +808,9 @@ public class Modelo {
                 tEncontrados.add(_ticket);
             }
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> ticketsDelAreaAsignados()");
-            e.printStackTrace();
+            //e.printStackTrace();
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return tEncontrados;
     }//----------------------------------------------------------------------------- FIN ticketsDelAreaAsignados()
@@ -929,25 +821,18 @@ public class Modelo {
         Ticket _ticket;
         String responsable, asunto, estado;
         int idtick;
-        ResultSet resultado = null;
+        Connection conn = null;
         try {
-            Statement sentencia = null;
-            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
-
-            resultado = sentencia.executeQuery("select tablaTickets.consecutivoticket, tablaTickets.asunto, tablaTickets.responsable, tablaEstado.descripcion "
-                    + " from ticket tablaTickets, estadoTicket tablaEstado "
-                    + " where tablaEstado.consecutivoEstado = tablaTickets.consecEstado and tablaTickets.responsable not like 'No asignado' "
-                    + " and tablaEstado.descripcion not like 'no leido'");//si no ha sido visto, por obvio no tiene responsable
-            if (resultado != null) {
-            }
+            conn = ConexionMySql.obtenerInstancia().conectar();
+            CallableStatement cStmt = conn.prepareCall("{call ticketsAsignadosAdmin()}");
+            cStmt.execute();
+            final ResultSet resultado = cStmt.getResultSet();
             while (resultado.next()) {
                 _ticket = new Ticket();
-
                 idtick = resultado.getInt(1);
                 asunto = resultado.getString(2);
                 responsable = resultado.getString(3);
                 estado = resultado.getString(4);
-
                 _ticket.setEstado(estado);
                 _ticket.setAsunto(asunto);
                 _ticket.setResponsable(responsable);
@@ -955,11 +840,9 @@ public class Modelo {
                 tEncontrados.add(_ticket);
             }
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> ticketsDelAreaAsignados()");
-            e.printStackTrace();
+            //e.printStackTrace();
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return tEncontrados;
     }//----------------------------------------------------------------------------- FIN ticketsDelAreaAsignados()
@@ -970,24 +853,19 @@ public class Modelo {
         Ticket _ticket;
         String creador, asunto, fechaCreacion;
         int idtick;
-        ResultSet resultado = null;
+        Connection conn = null;
         try {
-            Statement sentencia = null;
-            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
-            resultado = sentencia.executeQuery("select tablaTickets.consecutivoticket, tablaTickets.asunto, tablaTickets.correoUsuario, tablaTickets.fechaCreacion "
-                    + "from ticket tablaTickets, estadoTicket tablaEstado "
-                    + "where tablaTickets.areaDestino = (select nombArea from areausuario where correousuario = '" + _correoUsuario + "')"
-                    + "and tablaEstado.consecutivoEstado = tablaTickets.consecEstado and tablaEstado.descripcion like 'no leido'");
-            if (resultado != null) {
-            }
+            conn = ConexionMySql.obtenerInstancia().conectar();
+            CallableStatement cStmt = conn.prepareCall("{call ticketsBandejaEntradaArea(?)}");
+            cStmt.setString(1, _correoUsuario);
+            cStmt.execute();
+            final ResultSet resultado = cStmt.getResultSet();
             while (resultado.next()) {
                 _ticket = new Ticket();
-
                 idtick = resultado.getInt(1);
                 asunto = resultado.getString(2);
                 creador = resultado.getString(3);
                 fechaCreacion = resultado.getString(4);
-
                 _ticket.setFecha(fechaCreacion);
                 _ticket.setAsunto(asunto);
                 _ticket.setCorreoUsuario(creador);
@@ -995,11 +873,9 @@ public class Modelo {
                 tBandeja.add(_ticket);
             }
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> ticketsBandejaEntrada()");
-            e.printStackTrace();
+            //e.printStackTrace();
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return tBandeja;
     }//----------------------------------------------------------------------------- FIN ticketsBandejaEntradaArea()
@@ -1010,23 +886,18 @@ public class Modelo {
         Ticket _ticket;
         String creador, asunto, fechaCreacion;
         int idtick;
-        ResultSet resultado = null;
+        Connection conn = null;
         try {
-            Statement sentencia = null;
-            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
-            resultado = sentencia.executeQuery("select tablaTickets.consecutivoticket, tablaTickets.asunto, tablaTickets.correoUsuario, tablaTickets.fechaCreacion "
-                    + "from ticket tablaTickets, estadoTicket tablaEstado "
-                    + "where tablaEstado.consecutivoEstado = tablaTickets.consecEstado and tablaEstado.descripcion like 'no leido'");
-            if (resultado != null) {
-            }
+            conn = ConexionMySql.obtenerInstancia().conectar();
+            CallableStatement cStmt = conn.prepareCall("{call ticketsBandejaEntradaAdmin()}");
+            cStmt.execute();
+            final ResultSet resultado = cStmt.getResultSet();
             while (resultado.next()) {
                 _ticket = new Ticket();
-
                 idtick = resultado.getInt(1);
                 asunto = resultado.getString(2);
                 creador = resultado.getString(3);
                 fechaCreacion = resultado.getString(4);
-
                 _ticket.setFecha(fechaCreacion);
                 _ticket.setAsunto(asunto);
                 _ticket.setCorreoUsuario(creador);
@@ -1034,11 +905,9 @@ public class Modelo {
                 tBandeja.add(_ticket);
             }
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> ticketsBandejaEntradaAdmin()");
-            e.printStackTrace();
+            //e.printStackTrace();
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return tBandeja;
     }//----------------------------------------------------------------------------- FIN ticketsBandejaEntradaAdmin()
@@ -1053,11 +922,9 @@ public class Modelo {
             }
 
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> cerrarTicket()");
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return false;
     }//----------------------------------------------------------------------------- FIN cerrarTicket()
@@ -1068,25 +935,19 @@ public class Modelo {
         Ticket _ticket;
         String responsable, asunto, estado;
         int idtick;
-        ResultSet resultado = null;
+        Connection conn = null;
         try {
-            Statement sentencia = null;
-            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
-
-            resultado = sentencia.executeQuery("select tablaTickets.consecutivoticket, tablaTickets.asunto, tablaTickets.responsable, tablaEstado.descripcion "
-                    + " from ticket tablaTickets, estadoTicket tablaEstado "
-                    + " where tablaTickets.areaDestino = (select nombArea from areausuario where correousuario = '" + _correoUsuario + "') "
-                    + " and tablaEstado.consecutivoEstado = tablaTickets.consecEstado and tablaEstado.descripcion like 'borrado'");
-            if (resultado != null) {
-            }
+            conn = ConexionMySql.obtenerInstancia().conectar();
+            CallableStatement cStmt = conn.prepareCall("{call ticketsCerradosArea(?)}");
+            cStmt.setString(1, _correoUsuario);
+            cStmt.execute();
+            final ResultSet resultado = cStmt.getResultSet();
             while (resultado.next()) {
                 _ticket = new Ticket();
-
                 idtick = resultado.getInt(1);
                 asunto = resultado.getString(2);
                 responsable = resultado.getString(3);
                 estado = resultado.getString(4);
-
                 _ticket.setEstado(estado);
                 _ticket.setAsunto(asunto);
                 _ticket.setResponsable(responsable);
@@ -1094,11 +955,9 @@ public class Modelo {
                 tBandeja.add(_ticket);
             }
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> ticketsCerradosArea()");
-            e.printStackTrace();
+            //e.printStackTrace();
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return tBandeja;
     }//----------------------------------------------------------------------------- FIN ticketsCerradosArea()
@@ -1109,24 +968,18 @@ public class Modelo {
         Ticket _ticket;
         String responsable, asunto, areaDestino;
         int idtick;
-        ResultSet resultado = null;
+        Connection conn = null;
         try {
-            Statement sentencia = null;
-            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
-
-            resultado = sentencia.executeQuery("select tablaTickets.consecutivoticket, tablaTickets.asunto, tablaTickets.responsable, tablaTickets.areaDestino "
-                    + " from ticket tablaTickets, estadoTicket tablaEstado "
-                    + " where tablaEstado.consecutivoEstado = tablaTickets.consecEstado and tablaEstado.descripcion like 'borrado'");
-            if (resultado != null) {
-            }
+            conn = ConexionMySql.obtenerInstancia().conectar();
+            CallableStatement cStmt = conn.prepareCall("{call ticketsCerradosAdmin()}");
+            cStmt.execute();
+            final ResultSet resultado = cStmt.getResultSet();
             while (resultado.next()) {
                 _ticket = new Ticket();
-
                 idtick = resultado.getInt(1);
                 asunto = resultado.getString(2);
                 responsable = resultado.getString(3);
                 areaDestino = resultado.getString(4);
-
                 _ticket.setAreaDestino(areaDestino);
                 _ticket.setAsunto(asunto);
                 _ticket.setResponsable(responsable);
@@ -1134,11 +987,9 @@ public class Modelo {
                 tBandeja.add(_ticket);
             }
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> ticketsCerradosAdmin()");
-            e.printStackTrace();
+            //e.printStackTrace();
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return tBandeja;
     }//----------------------------------------------------------------------------- FIN ticketsCerradosAdmin
@@ -1152,12 +1003,10 @@ public class Modelo {
                 return true;
             }
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> registraAreaUsuario()");
             //e.printStackTrace();
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return false;
     }//----------------------------------------------------------------------------- FIN registraAreaUsuariomodificaAreaUsuario
@@ -1171,12 +1020,10 @@ public class Modelo {
                 return true;
             }
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> registraAreaUsuario()");
             //e.printStackTrace();
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return false;
     }//----------------------------------------------------------------------------- FIN registraAreaUsuariomodificaAreaUsuario
@@ -1196,11 +1043,9 @@ public class Modelo {
                 cantidad = resultado.getInt(1);
             }
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> cantidadNuevosAdmin()");
             e.printStackTrace();
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return cantidad;
     }//----------------------------------------------------------------------------- FIN cantidadNuevosAdmin()
@@ -1220,11 +1065,9 @@ public class Modelo {
                 cantidad = resultado.getInt(1);
             }
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> cantidadTotalAdmin()");
-            e.printStackTrace();
+            //e.printStackTrace();
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return cantidad;
     }//----------------------------------------------------------------------------- FIN cantidadTotalAdmin()
@@ -1235,24 +1078,19 @@ public class Modelo {
         Ticket _ticket;
         String responsable, creador, fechaCreacion, estado;
         int idtick;
-        ResultSet resultado = null;
+        Connection conn = null;
         try {
-            Statement sentencia = null;
-            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
-
-            resultado = sentencia.executeQuery("select tablaTickets.consecutivoticket, tablaTickets.correoUsuario, tablaTickets.responsable, tablaTickets.fechaCreacion, tablaEstado.descripcion "
-                    + "from ticket tablaTickets, estadoTicket tablaEstado "
-                    + "where tablaTickets.consecEstado = tablaEstado.consecutivoEstado order by tablaTickets.consecutivoticket");
-
+            conn = ConexionMySql.obtenerInstancia().conectar();
+            CallableStatement cStmt = conn.prepareCall("{call ticketsTodosLosTickets()}");
+            cStmt.execute();
+            final ResultSet resultado = cStmt.getResultSet();
             while (resultado.next()) {
                 _ticket = new Ticket();
-
                 idtick = resultado.getInt(1);
                 creador = resultado.getString(2);
                 responsable = resultado.getString(3);
                 fechaCreacion = resultado.getString(4);
                 estado = resultado.getString(5);
-
                 _ticket.setFecha(fechaCreacion);
                 _ticket.setCorreoUsuario(creador);
                 _ticket.setResponsable(responsable);
@@ -1261,11 +1099,9 @@ public class Modelo {
                 tBandeja.add(_ticket);
             }
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> ticketsTodosLosTickets()");
-            e.printStackTrace();
+            //e.printStackTrace();
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return tBandeja;
     }//----------------------------------------------------------------------------- FIN ticketsTodosLosTickets()
@@ -1277,7 +1113,6 @@ public class Modelo {
         try {
             Statement sentencia = null;
             sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
-
             resultado = sentencia.executeQuery("select count(*) from ticket where responsable not like 'No asignado'");
             if (resultado != null) {
             }
@@ -1285,11 +1120,9 @@ public class Modelo {
                 cantidad = resultado.getInt(1);
             }
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> cantidadAsignadosAdmin()");
-            e.printStackTrace();
+            //e.printStackTrace();
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return cantidad;
     }//----------------------------------------------------------------------------- FIN cantidadAsignadosAdmin()
@@ -1301,7 +1134,6 @@ public class Modelo {
         try {
             Statement sentencia = null;
             sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
-
             resultado = sentencia.executeQuery("select count(*) from ticket where consecEstado = 2");
             if (resultado != null) {
             }
@@ -1309,11 +1141,9 @@ public class Modelo {
                 cantidad = resultado.getInt(1);
             }
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> cantidadProcesoAdmin()");
-            e.printStackTrace();
+            //e.printStackTrace();
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return cantidad;
     }//----------------------------------------------------------------------------- FIN cantidadProcesoAdmin()
@@ -1333,16 +1163,13 @@ public class Modelo {
                 cantidad = resultado.getInt(1);
             }
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> cantidadCerradosAdmin()");
-            e.printStackTrace();
+            //e.printStackTrace();
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return cantidad;
     }//----------------------------------------------------------------------------- FIN cantidadCerradosAdmin()
 
-    //A PARTIR DE AQUI COMIENZA LO DE JONATHAN
     public int cantidadNuevosArea(String _correo) {
         //este metodo es para obtener la cantidad de tickets nuevos
         int cantidad = 0;
@@ -1359,11 +1186,9 @@ public class Modelo {
                 cantidad = resultado.getInt(1);
             }
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> cantidadNuevosArea()");
-            e.printStackTrace();
+            //e.printStackTrace();
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return cantidad;
     }//----------------------------------------------------------------------------- FIN cantidadNuevosArea()
@@ -1375,7 +1200,6 @@ public class Modelo {
         try {
             Statement sentencia = null;
             sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
-
             resultado = sentencia.executeQuery("select count(*) as total from ticket tablaTickets "
                     + "where tablaTickets.areaDestino = (select nombArea from areausuario where correousuario = '" + _correo + "') "
                     + "and tablaTickets.responsable not like 'No asignado'");
@@ -1385,11 +1209,9 @@ public class Modelo {
                 cantidad = resultado.getInt(1);
             }
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> cantidadAsignadosArea()");
-            e.printStackTrace();
+            //e.printStackTrace();
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return cantidad;
     }//----------------------------------------------------------------------------- FIN cantidadAsignadosArea()
@@ -1411,11 +1233,9 @@ public class Modelo {
                 cantidad = resultado.getInt(1);
             }
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> cantidadProcesoArea()");
-            e.printStackTrace();
+            //e.printStackTrace();
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return cantidad;
     }//----------------------------------------------------------------------------- FIN cantidadProcesoArea()
@@ -1437,11 +1257,9 @@ public class Modelo {
                 cantidad = resultado.getInt(1);
             }
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> cantidadCerradosArea()");
-            e.printStackTrace();
+            //e.printStackTrace();
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return cantidad;
     }//----------------------------------------------------------------------------- FIN cantidadCerradosArea()
@@ -1461,11 +1279,9 @@ public class Modelo {
                 cantidad = resultado.getString(1);
             }
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> obtieneComentarios()");
-            e.printStackTrace();
+            //e.printStackTrace();
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return cantidad;
     }//----------------------------------------------------------------------------- FIN obtieneComentarios()
@@ -1486,11 +1302,9 @@ public class Modelo {
                 cantidad = resultado.getInt(1);
             }
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> cantidadTotalArea()");
-            e.printStackTrace();
+            //e.printStackTrace();
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return cantidad;
     }//----------------------------------------------------------------------------- FIN cantidadTotalArea()
@@ -1506,11 +1320,9 @@ public class Modelo {
             }
 
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> agregaComentario()");
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return false;
     }//----------------------------------------------------------------------------- FIN agregaComentario()
@@ -1526,11 +1338,9 @@ public class Modelo {
             }
 
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> cambiaFechaSolucion()");
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return false;
     }//----------------------------------------------------------------------------- FIN cambiaFechaSolucion()
@@ -1546,11 +1356,9 @@ public class Modelo {
             }
 
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> cambiaPrioridad()");
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return false;
     }//----------------------------------------------------------------------------- FIN cambiaPrioridad()
@@ -1566,12 +1374,10 @@ public class Modelo {
             }
 
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> redireccionarTicket()");
-            e.printStackTrace();
+            //e.printStackTrace();
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return false;
     }//----------------------------------------------------------------------------- FIN redireccionarTicket()
@@ -1584,13 +1390,10 @@ public class Modelo {
             if (sentencia.executeUpdate("update ticket set responsable='" + _responsable + "' where consecutivoticket=" + _codigo) == 1) {//se actualiza el fechaCreacion a 3, cuya descripcion es cerrado
                 return true;
             }
-
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> asignarResponsable()");
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return false;
     }//----------------------------------------------------------------------------- FIN asignarResponsable()
@@ -1605,11 +1408,9 @@ public class Modelo {
             }
 
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> cambiaFechaRealSolucion()");
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return false;
     }//----------------------------------------------------------------------------- FIN cambiaFechaRealSolucion()
@@ -1624,12 +1425,10 @@ public class Modelo {
                 return true;
             }
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> ejecutarSentenciaSQL()");
-            e.printStackTrace();
+            //e.printStackTrace();
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return false;
     }//----------------------------------------------------------------------------- FIN ejecutarSentenciaSQL()
@@ -1646,10 +1445,8 @@ public class Modelo {
                 contador = resultado.getInt(1);
             }
         } catch (SQLException e) {
-            System.out.println("Error Exception from Modelo -> consultarConsecutivoTicket()");
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return contador + 1;
     }//----------------------------------------------------------------------------- FIN consultarConsecutivoTicket()
@@ -1666,11 +1463,9 @@ public class Modelo {
                 contador = resultado.getInt(1);
             }
         } catch (SQLException e) {
-            System.out.println("Error Exception from Modelo -> cambiaFechaRealSolucion()");
-            e.printStackTrace();
+            //e.printStackTrace();
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return contador + 1;
     }//----------------------------------------------------------------------------- FIN consultarConsecutivo()
@@ -1680,22 +1475,19 @@ public class Modelo {
         ArrayList< Bitacora> bitacora = new ArrayList<>();
         Bitacora _bitacora;
         String fecha, hora, tabla, accion;
-        ResultSet resultado = null;
+        Connection conn = null;
         try {
-            Statement sentencia = null;
-            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
-
-            resultado = sentencia.executeQuery("select fecha, hora, tabla, accion from bitacora "
-                    + "where usuario = '" + correo + "'");
-
+            conn = ConexionMySql.obtenerInstancia().conectar();
+            CallableStatement cStmt = conn.prepareCall("{call consultaBitacoraUsuario(?)}");
+            cStmt.setString(1, correo);
+            cStmt.execute();
+            final ResultSet resultado = cStmt.getResultSet();
             while (resultado.next()) {
                 _bitacora = new Bitacora();
-
                 fecha = String.valueOf(resultado.getDate(1));
                 hora = String.valueOf(resultado.getTime(2));
                 tabla = resultado.getString(3);
                 accion = resultado.getString(4);
-
                 _bitacora.setUsuario(correo);
                 _bitacora.setHora(hora);
                 _bitacora.setFecha(fecha);
@@ -1704,11 +1496,9 @@ public class Modelo {
                 bitacora.add(_bitacora);
             }
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> consultaBitacoraUsuario()");
-//            e.printStackTrace();
+            //e.printStackTrace();  
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return bitacora;
     }//----------------------------------------------------------------------------- FIN consultaBitacoraUsuario()
@@ -1718,23 +1508,21 @@ public class Modelo {
         ArrayList< Bitacora> bitacora = new ArrayList<>();
         Bitacora _bitacora;
         String usuario, fecha, hora, tabla, accion;
-        ResultSet resultado = null;
+        Connection conn = null;
         try {
-            Statement sentencia = null;
-            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
-
-            resultado = sentencia.executeQuery("select usuario, fecha, hora, tabla, accion from bitacora "
-                    + "where fecha between '" + fechaInicio + "' and '" + fechaFinal + "' order by fecha");
-
+            conn = ConexionMySql.obtenerInstancia().conectar();
+            CallableStatement cStmt = conn.prepareCall("{call consultaBitacoraFechas(?, ?)}");
+            cStmt.setString(1, fechaInicio);
+            cStmt.setString(2, fechaFinal);
+            cStmt.execute();
+            final ResultSet resultado = cStmt.getResultSet();
             while (resultado.next()) {
                 _bitacora = new Bitacora();
-
                 usuario = resultado.getString(1);
                 fecha = String.valueOf(resultado.getDate(2));
                 hora = String.valueOf(resultado.getTime(3));
                 tabla = resultado.getString(4);
                 accion = resultado.getString(5);
-
                 _bitacora.setUsuario(usuario);
                 _bitacora.setHora(hora);
                 _bitacora.setFecha(fecha);
@@ -1743,11 +1531,9 @@ public class Modelo {
                 bitacora.add(_bitacora);
             }
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> consultaBitacoraFechas()");
-//            e.printStackTrace();
+            //e.printStackTrace();  
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return bitacora;
     }//----------------------------------------------------------------------------- FIN consultaBitacoraFechas()
@@ -1757,23 +1543,21 @@ public class Modelo {
         ArrayList< Bitacora> bitacora = new ArrayList<>();
         Bitacora _bitacora;
         String usuario, fecha, hora, tabla, accion;
-        ResultSet resultado = null;
+        Connection conn = null;
         try {
-            Statement sentencia = null;
-            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
-
-            resultado = sentencia.executeQuery("select usuario, fecha, hora, tabla, accion from bitacora "
-                    + "where hora between '" + horaInicio + "' and '" + horaFinal + "' order by hora");
-
+            conn = ConexionMySql.obtenerInstancia().conectar();
+            CallableStatement cStmt = conn.prepareCall("{call consultaBitacoraHoras(?, ?)}");
+            cStmt.setString(1, horaInicio);
+            cStmt.setString(2, horaFinal);
+            cStmt.execute();
+            final ResultSet resultado = cStmt.getResultSet();
             while (resultado.next()) {
                 _bitacora = new Bitacora();
-
                 usuario = resultado.getString(1);
                 fecha = String.valueOf(resultado.getDate(2));
                 hora = String.valueOf(resultado.getTime(3));
                 tabla = resultado.getString(4);
                 accion = resultado.getString(5);
-
                 _bitacora.setUsuario(usuario);
                 _bitacora.setHora(hora);
                 _bitacora.setFecha(fecha);
@@ -1782,11 +1566,9 @@ public class Modelo {
                 bitacora.add(_bitacora);
             }
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> consultaBitacoraHoras()");
-//            e.printStackTrace();
+            //e.printStackTrace();  
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return bitacora;
     }//----------------------------------------------------------------------------- FIN consultaBitacoraHoras()
@@ -1803,14 +1585,9 @@ public class Modelo {
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return false;
     }
-    /*
-     DELETE FROM `sigeti`.`area`
-     WHERE <{where_expression}>;
-     */
 
     public boolean agregarAsunto(String nuevoAsunto) {
         try {
@@ -1821,11 +1598,9 @@ public class Modelo {
             }
         } catch (Exception e) {
             //e.printStackTrace
-            System.err.println("kk");
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return false;
     }
@@ -1839,11 +1614,9 @@ public class Modelo {
             }
         } catch (Exception e) {
             //e.printStackTrace
-            System.err.println("kk");
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return false;
     }
@@ -1857,11 +1630,9 @@ public class Modelo {
             }
         } catch (Exception e) {
             //e.printStackTrace
-            System.err.println("kk");
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return false;
     }
@@ -1879,7 +1650,6 @@ public class Modelo {
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return false;
     }
@@ -1897,7 +1667,6 @@ public class Modelo {
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return false;
     }
@@ -1911,7 +1680,6 @@ public class Modelo {
             sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
             resultado = sentencia.executeQuery("select sysdate() ");
             while (resultado.next()) {
-                //System.err.println(resultado.getString(1));
                 calendario = String.valueOf(resultado.getString(1).split(" ")[0]);
                 fecha.add(0, calendario.split("-")[0]);//año
                 fecha.add(1, calendario.split("-")[1]);//mes
@@ -1922,10 +1690,9 @@ public class Modelo {
                 fecha.add(5, reloj.split(":")[2]);//segundos                  
             }
         } catch (Exception e) {
-            System.out.println("Error getSysDateFromServer()");
+            //e.printStackTrace();
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return fecha;
     }//----------------------------------------------------------------------------- FIN getSysDateFromServer()
@@ -1935,22 +1702,19 @@ public class Modelo {
         ArrayList< Bitacora> bitacora = new ArrayList<>();
         Bitacora _bitacora;
         String fecha, hora, tabla, accion, usuario;
-        ResultSet resultado = null;
+        Connection conn = null;
         try {
-            Statement sentencia = null;
-            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
-
-            resultado = sentencia.executeQuery("select fecha, hora, tabla, accion, usuario from bitacora order by fecha");
-
+            conn = ConexionMySql.obtenerInstancia().conectar();
+            CallableStatement cStmt = conn.prepareCall("{call consultaBitacoraGeneral()}");
+            cStmt.execute();
+            final ResultSet resultado = cStmt.getResultSet();
             while (resultado.next()) {
                 _bitacora = new Bitacora();
-
                 fecha = String.valueOf(resultado.getDate(1));
                 hora = String.valueOf(resultado.getTime(2));
                 tabla = resultado.getString(3);
                 accion = resultado.getString(4);
                 usuario = resultado.getString(5);
-
                 _bitacora.setHora(hora);
                 _bitacora.setFecha(fecha);
                 _bitacora.setTabla(tabla);
@@ -1959,11 +1723,9 @@ public class Modelo {
                 bitacora.add(_bitacora);
             }
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> consultaBitacoraGeneral()");
-//            e.printStackTrace();
+            //e.printStackTrace();  
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return bitacora;
     }//----------------------------------------------------------------------------- FIN consultaBitacoraGeneral()
@@ -1974,13 +1736,12 @@ public class Modelo {
         Ticket _ticket;
         String creador, asunto, fechaCreacion;
         int idtick;
-        ResultSet resultado = null;
+        Connection conn = null;
         try {
-            Statement sentencia = null;
-            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
-            resultado = sentencia.executeQuery("select tablaTickets.consecutivoticket, tablaTickets.asunto, tablaTickets.correoUsuario, tablaTickets.fechaCreacion , tablaTickets.consecutivoPriori , tablaTickets.tiempoSolucion "//, tablaTickets.consecutivoPriori
-                    + "from ticket tablaTickets, estadoTicket tablaEstado "
-                    + "where tablaEstado.consecutivoEstado = tablaTickets.consecEstado and tablaEstado.descripcion like 'visto'");
+            conn = ConexionMySql.obtenerInstancia().conectar();
+            CallableStatement cStmt = conn.prepareCall("{call ticketsAlertasAdmin()}");
+            cStmt.execute();
+            final ResultSet resultado = cStmt.getResultSet();
             while (resultado.next()) {
                 if (condicionAlertas(resultado.getInt(5), resultado.getString(6))) {
                     _ticket = new Ticket();
@@ -1996,7 +1757,6 @@ public class Modelo {
                 }
             }
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> ticketsAlertaAdmin()");
             e.printStackTrace();
         }
         return tAlertas;
@@ -2034,7 +1794,7 @@ public class Modelo {
             return diaActual - diaSolucion + ((anioActual - anioSolucion) * 366);
         } else {
             return ((mesSolucion - mesActual) * 30) + diaSolucion - diaActual + +((anioActual - anioSolucion) * 366);
-        }        
+        }
     }
 
     public int obtieneNumeroAlertas() {

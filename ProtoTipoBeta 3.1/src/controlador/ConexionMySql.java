@@ -22,25 +22,19 @@ public class ConexionMySql {
     public Connection conectar() {
         boolean ok = false;
         try {
-            System.out.println("Intendo conectar");
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             conexion = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/sigeti", "root", "root");
             if (conexion != null) {
-                System.out.println("Conexion exitosa");
                 ok = true;
             } else {
-                System.out.println("Conexion fallida");
                 ok = false;
             }
         } catch (SQLException e) {
-            System.err.println("Error de SQLException");
-            e.printStackTrace();
+            //e.printStackTrace();
         } catch (ClassNotFoundException e) {
-            System.err.println("Error de ClassNotFoundException");
-            e.printStackTrace();
+            //e.printStackTrace();
         } catch (Exception e) {
-            System.err.println("Error de Exception");
-            e.printStackTrace();
+            //e.printStackTrace();
         }
         return conexion;
     }//----------------------------------------------------------------------------- FIN conectar()

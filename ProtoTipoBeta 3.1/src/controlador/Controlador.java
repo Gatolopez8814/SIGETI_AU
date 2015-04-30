@@ -28,12 +28,10 @@ public class Controlador {
 
     public boolean cambiaARegistrado(String correoUsuario, int nuevoTipo){
         String correoFinal = model.recortaCorreo(correoUsuario) + "@castillo.cr";
-        System.out.println("correoFinal=" + correoFinal);
         return model.cambiaARegistrado(correoFinal, nuevoTipo);
     }
     public boolean eliminaUsuarioAdmin(String correo) {
         String correoFinal = model.recortaCorreo(correo) + "@castillo.cr";
-        System.out.println("correoFinal=" + correoFinal);
         return model.eliminaUsuarioAdmin(correoFinal);
     }//----------------------------------------------------------------------------- FIN eliminaUsuarioAdmin()
 
@@ -53,13 +51,11 @@ public class Controlador {
 
     public boolean bloqueaUsuarioAdmin(String correo) {
         String correoFinal = model.recortaCorreo(correo) + "@castillo.cr";
-        System.out.println(correoFinal);
         return model.bloqueaUsuarioAdmin(correoFinal);
     }//----------------------------------------------------------------------------- FIN bloqueaUsuarioAdmin()
 
     public boolean desBloqueaUsuarioAdmin(String correo) {
         String correoFinal = model.recortaCorreo(correo) + "@castillo.cr";
-        System.out.println(correoFinal);
         return model.desBloqueaUsuarioAdmin(correoFinal);
     }//----------------------------------------------------------------------------- FIN desBloqueaUsuarioAdmin()
 
@@ -88,8 +84,6 @@ public class Controlador {
     }//----------------------------------------------------------------------------- FIN registraNuevoTicket()
 
     public ArrayList<Ticket> consultaTodosTicket(String dato1, String dato2, String _correo) {
-        //String idTicket = model.recortaCorreo(correo)+"@castillo.cr";
-        System.out.println("dato1=" + dato1 + " dato2= " + dato2);
         return model.consultaTodosTicket(dato1, dato2, _correo);
     }//------------------------------------------------------------------------------FIN ConsultaTodosTickets
 

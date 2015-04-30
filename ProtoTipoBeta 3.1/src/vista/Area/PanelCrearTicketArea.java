@@ -178,8 +178,6 @@ public class PanelCrearTicketArea extends javax.swing.JPanel {//panel donde se e
             }
         });
 
-        txtEspecificacion2.setEnabled(false);
-
         jComboArea.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione aquí" }));
         jComboArea.setToolTipText("");
         jComboArea.addActionListener(new java.awt.event.ActionListener() {
