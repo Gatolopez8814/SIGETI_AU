@@ -12,7 +12,6 @@ public class PanelConfigurarTicket extends javax.swing.JPanel {
 
     private PanelConfigurarTicket() {
         initComponents();
-        initComponents();
         this.limpiarCampos();
         this.ajustarEventos();
         this.cargarjComboArea();
@@ -38,7 +37,7 @@ public class PanelConfigurarTicket extends javax.swing.JPanel {
                     e.consume();
                 }
             }//
-            
+
             @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 super.keyPressed(evt);
@@ -55,7 +54,7 @@ public class PanelConfigurarTicket extends javax.swing.JPanel {
                     e.consume();
                 }
             }//
-            
+
             @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 super.keyPressed(evt);
@@ -71,7 +70,7 @@ public class PanelConfigurarTicket extends javax.swing.JPanel {
                     e.consume();
                 }
             }//
-            
+
             @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 super.keyPressed(evt);
@@ -87,7 +86,7 @@ public class PanelConfigurarTicket extends javax.swing.JPanel {
                     e.consume();
                 }
             }//
-            
+
             @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 super.keyPressed(evt);

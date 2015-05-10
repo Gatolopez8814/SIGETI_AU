@@ -356,8 +356,8 @@ public class PanelCrearTicketArea extends javax.swing.JPanel {//panel donde se e
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
-       if (txtEspecificacion2.getText().equals("") || (jComboArea.getSelectedIndex() == 0)
-                || (jTextDetalle.getText().equals("El problema consiste en ...")) || jComboAsunto.getSelectedIndex() == 0){
+        if ((jComboAsunto.getSelectedIndex() == 1 && txtEspecificacion2.getText().equals("")) || (jComboArea.getSelectedIndex() == 0)
+                || (jTextDetalle.getText().equals("El problema consiste en ...")) || jComboAsunto.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(this, "   Faltan datos", "ERROR", JOptionPane.ERROR_MESSAGE);
         } else {
             if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Realmente "
@@ -373,11 +373,11 @@ public class PanelCrearTicketArea extends javax.swing.JPanel {//panel donde se e
                             VentanaLogin.correo, "Ticket", "Creó el ticket " + consecutivo);
                     this.limpiarCampos();
 
-                    if(Controlador.obtenerInstancia().enviaCorreo("Su ticket fue ingreado correctamente al sistema\n"
+                    if (Controlador.obtenerInstancia().enviaCorreo("Su ticket fue ingreado correctamente al sistema\n"
                             + "Puede consultar el progreso de su ticket utilizando el siguiente código"
-                            + "############","SIGETI ticket creado",Controlador.obtenerInstancia().recortaCorreo(VentanaLogin.correo))){
+                            + "############", "SIGETI ticket creado", Controlador.obtenerInstancia().recortaCorreo(VentanaLogin.correo))) {
                         JOptionPane.showMessageDialog(this, "Se ha enviado correo de confirmación", "Correo confirmación", JOptionPane.PLAIN_MESSAGE);
-                    }else{
+                    } else {
                         JOptionPane.showMessageDialog(this, "No se pudo enviar correo de confirmación", "ERROR", JOptionPane.ERROR_MESSAGE);
                     }
                 } else {
@@ -393,10 +393,12 @@ public class PanelCrearTicketArea extends javax.swing.JPanel {//panel donde se e
 
     private void jComboAsuntoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboAsuntoActionPerformed
         if (jComboAsunto.getSelectedIndex() == 1) {
-            txtEspecificacion2.setEnabled(true);
+            jLabel6.setVisible(true);
+            txtEspecificacion2.setVisible(true);
         } else {
+            jLabel6.setVisible(false);
             txtEspecificacion2.setText("");
-            txtEspecificacion2.setEnabled(false);
+            txtEspecificacion2.setVisible(false);
         }
     }//GEN-LAST:event_jComboAsuntoActionPerformed
 

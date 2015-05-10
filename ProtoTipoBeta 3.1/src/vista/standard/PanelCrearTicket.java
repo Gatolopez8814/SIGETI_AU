@@ -352,17 +352,18 @@ public class PanelCrearTicket extends javax.swing.JPanel {//panel donde se encue
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void jComboAsuntoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboAsuntoActionPerformed
-             if(jComboAsunto.getSelectedIndex()==1){
-                 txtEspecificacion.setEnabled(true);
-             }
-             else{
-             txtEspecificacion.setText("");
-             txtEspecificacion.setEnabled(false);
-             }
+             if (jComboAsunto.getSelectedIndex() == 1) {
+            jLabel2.setVisible(true);
+            txtEspecificacion.setVisible(true);
+        } else {
+            jLabel2.setVisible(false);
+            txtEspecificacion.setText("");
+            txtEspecificacion.setVisible(false);
+        }
     }//GEN-LAST:event_jComboAsuntoActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-         if(txtEspecificacion.getText().equals("") || (jComboArea.getSelectedIndex() == 0)
+         if((jComboAsunto.getSelectedIndex() == 1 && txtEspecificacion.getText().equals("")) || (jComboArea.getSelectedIndex() == 0)
                 || (jTextDetalle.getText().equals("El problema consiste en ...")) || jComboAsunto.getSelectedIndex() == 0){
             JOptionPane.showMessageDialog(this, "   Faltan datos", "ERROR", JOptionPane.ERROR_MESSAGE);
         }else {

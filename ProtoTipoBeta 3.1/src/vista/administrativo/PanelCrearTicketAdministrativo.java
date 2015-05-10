@@ -353,7 +353,7 @@ public class PanelCrearTicketAdministrativo extends javax.swing.JPanel {//panel 
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
-        if (txtEspecificacion.getText().equals("") || (jComboArea.getSelectedIndex() == 0)
+        if ((jComboAsunto.getSelectedIndex() == 1 && txtEspecificacion.getText().equals("")) || (jComboArea.getSelectedIndex() == 0)
                 || (jTextDetalle.getText().equals("El problema consiste en ...")) || jComboAsunto.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(this, "   Faltan datos", "ERROR", JOptionPane.ERROR_MESSAGE);
         } else {
@@ -370,11 +370,11 @@ public class PanelCrearTicketAdministrativo extends javax.swing.JPanel {//panel 
                             VentanaLogin.correo, "Ticket", "Creó el ticket " + consecutivo);
                     this.limpiarCampos();
 
-                    if(Controlador.obtenerInstancia().enviaCorreo("Su ticket fue ingreado correctamente al sistema\n"
+                    if (Controlador.obtenerInstancia().enviaCorreo("Su ticket fue ingreado correctamente al sistema\n"
                             + "Puede consultar el progreso de su ticket utilizando el siguiente código"
-                            + "############","SIGETI ticket creado",Controlador.obtenerInstancia().recortaCorreo(VentanaLogin.correo))){
+                            + "############", "SIGETI ticket creado", Controlador.obtenerInstancia().recortaCorreo(VentanaLogin.correo))) {
                         JOptionPane.showMessageDialog(this, "Se ha enviado correo de confirmación", "Correo confirmación", JOptionPane.PLAIN_MESSAGE);
-                    }else{
+                    } else {
                         JOptionPane.showMessageDialog(this, "No se pudo enviar correo de confirmación", "ERROR", JOptionPane.ERROR_MESSAGE);
                     }
                 } else {
@@ -401,10 +401,12 @@ public class PanelCrearTicketAdministrativo extends javax.swing.JPanel {//panel 
 
     private void jComboAsuntoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboAsuntoActionPerformed
         if (jComboAsunto.getSelectedIndex() == 1) {
-            txtEspecificacion.setEnabled(true);
+            jLabel2.setVisible(true);
+            txtEspecificacion.setVisible(true);
         } else {
+            jLabel2.setVisible(false);
             txtEspecificacion.setText("");
-            txtEspecificacion.setEnabled(false);
+            txtEspecificacion.setVisible(false);
         }
     }//GEN-LAST:event_jComboAsuntoActionPerformed
 
