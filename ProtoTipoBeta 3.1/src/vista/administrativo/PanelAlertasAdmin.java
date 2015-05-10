@@ -130,8 +130,8 @@ public class PanelAlertasAdmin extends javax.swing.JPanel {
         this.jComboBoxArea2.removeAllItems();
         this.jComboBoxArea2.addItem("Seleccione aquí");
         ArrayList<String> temp = Controlador.obtenerInstancia().obtieneAreas();
-        for (String temp1 : temp) {
-            this.jComboBoxArea2.addItem(temp1);
+        for (int i = 0; i < temp.size(); i++) {
+            this.jComboBoxArea2.addItem(temp.get(i));
         }
         this.jComboBoxArea2.setSelectedIndex(0);
         this.jComboBoxArea2.revalidate();
