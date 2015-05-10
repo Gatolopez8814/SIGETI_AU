@@ -31,6 +31,7 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
         if (instancia == null) {
             instancia = new PanelBitacoraAdmin();
         }
+        instancia.limpiarCampos();
         return instancia;
     }//----------------------------------------------------------------------------- FIN obtenerInstancia()
 
@@ -674,6 +675,9 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
                                 i++;
                             }
                         }
+                        jTableBitacora.revalidate();
+                        jTableBitacora.repaint();
+                        this.jPanelTabla.setVisible(true);
                     } else {
                         JOptionPane.showMessageDialog(null, "Fecha invalida.", "ERROR",
                                 JOptionPane.ERROR_MESSAGE);
@@ -699,6 +703,9 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
                                 i++;
                             }
                         }
+                        jTableBitacora.revalidate();
+                        jTableBitacora.repaint();
+                        this.jPanelTabla.setVisible(true);
                     } else {
                         JOptionPane.showMessageDialog(null, "Debe seleccionar el correo del usuario.", "ERROR",
                                 JOptionPane.ERROR_MESSAGE);
@@ -715,14 +722,13 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
                         if (Integer.parseInt(comboHoraInicial.getSelectedItem().toString()) > Integer.parseInt(comboHoraFinal.getSelectedItem().toString())) {
                             JOptionPane.showMessageDialog(null, "Rango de horas erroneo.", "ERROR",
                                     JOptionPane.ERROR_MESSAGE);
-                        }else
-                         if ((Integer.parseInt(comboHoraInicial.getSelectedItem().toString()) == 
-                                 Integer.parseInt(comboHoraFinal.getSelectedItem().toString()))&&
-                                 (Integer.parseInt(comboMinutoInicial.getSelectedItem().toString()) > 
-                                 Integer.parseInt(comboMinutoFinal.getSelectedItem().toString()))) {
+                        } else if ((Integer.parseInt(comboHoraInicial.getSelectedItem().toString())
+                                == Integer.parseInt(comboHoraFinal.getSelectedItem().toString()))
+                                && (Integer.parseInt(comboMinutoInicial.getSelectedItem().toString())
+                                > Integer.parseInt(comboMinutoFinal.getSelectedItem().toString()))) {
                             JOptionPane.showMessageDialog(null, "Rango de horas erroneo.", "ERROR",
                                     JOptionPane.ERROR_MESSAGE);
-                        }else {
+                        } else {
                             String hora1 = this.comboHoraInicial.getSelectedItem().toString() + ":"
                                     + this.comboMinutoInicial.getSelectedItem().toString() + ":00";
                             String hora2 = this.comboHoraFinal.getSelectedItem().toString() + ":"
@@ -744,6 +750,9 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
                             }
                         }
 
+                        jTableBitacora.revalidate();
+                        jTableBitacora.repaint();
+                        this.jPanelTabla.setVisible(true);
                     } else {
                         JOptionPane.showMessageDialog(null, "Hora invalida.", "ERROR",
                                 JOptionPane.ERROR_MESSAGE);
@@ -764,13 +773,14 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
                             i++;
                         }
                     }
+                    jTableBitacora.revalidate();
+                    jTableBitacora.repaint();
+                    this.jPanelTabla.setVisible(true);
                     break;
                 default:
                     break;
             }
-            jTableBitacora.revalidate();
-            jTableBitacora.repaint();
-            this.jPanelTabla.setVisible(true);
+
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione un tipo de busqueda.", "ERROR",
                     JOptionPane.ERROR_MESSAGE);
@@ -813,18 +823,11 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
         comboHoraInicial.setSelectedIndex(0);
         comboMinutoFinal.setSelectedIndex(0);
         comboMinutoInicial.setSelectedIndex(0);
-//        jTextAnnoDesde.setText("aaaa");
-//        jTextAnnoHasta.setText("aaaa");
-//        jTextDiaDesde.setText("dd");
-//        jTextDiaHasta.setText("dd");
-//        jTextHoraFinal.setText("hh");
-//        jTextHoraInicial.setText("hh");
-//        jTextMesDesde.setText("mm");
-//        jTextMesHasta.setText("mm");
-//        jTextMinutoFinal.setText("mm");
-//        jTextMinutoInicial.setText("mm");
-//        jTextUsuario.setText("");    
-        this.jComboUsuarios.setSelectedIndex(0);
+        jComboUsuarios.setSelectedIndex(0);
+        jPanelUsuario.setVisible(false);
+        jPanelRangoFechas.setVisible(false);
+        jPanelRangoHoras.setVisible(false);
+        jPanelTabla.setVisible(false);
     }
 
     private void cargarjComboUsuarios() {
