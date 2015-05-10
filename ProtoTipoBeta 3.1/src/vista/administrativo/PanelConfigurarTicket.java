@@ -736,21 +736,26 @@ public class PanelConfigurarTicket extends javax.swing.JPanel {
             }
         }
         if (bandera) {
-            JOptionPane.showMessageDialog(this, "No se pudo Agregar el Area, Ya Existe", "ERROR", JOptionPane.ERROR_MESSAGE);
+            
+            if (txtAgreagrAsunto.getText().equals("")) {
+                JOptionPane.showMessageDialog(this, "Falta el nombre del área", "ERROR", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "No se pudo agregar el área", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
         } else {
             String contrasenna;
             if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Realmente "
-                    + "desea Agregar el Area?", null, JOptionPane.YES_NO_OPTION)) {
+                    + "desea agregar el área?", null, JOptionPane.YES_NO_OPTION)) {
                 contrasenna = JOptionPane.showInputDialog("Digite su contraseña:");
                 if (Controlador.obtenerInstancia().verificarContrasenna(VentanaLogin.correo, contrasenna)) {
                     if (Controlador.obtenerInstancia().agregarArea(txtAgregarArea.getText())) {
-                        JOptionPane.showMessageDialog(this, "   Area agregada con éxito", "Area Agregada", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "   Área agregada con éxito", "Área agregada", JOptionPane.INFORMATION_MESSAGE);
                         limpiarCampos();
                     } else {
-                        JOptionPane.showMessageDialog(this, "No se pudo Agregar el Area", "ERROR", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "No se pudo agregar el área", "ERROR", JOptionPane.ERROR_MESSAGE);
                     }
                 } else {
-                    JOptionPane.showMessageDialog(this, "   No se pudo Agregar el Area, constraseña incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "   No se pudo agregar el área, constraseña incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
             }
         }
@@ -765,23 +770,23 @@ public class PanelConfigurarTicket extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "    Falta ingresar nombre nuevo", "ERROR", JOptionPane.ERROR_MESSAGE);
         } else {
             if (jComboBoxModificarArea.getSelectedIndex() == 0) {
-                JOptionPane.showMessageDialog(this, "Seleccione el Area a Modificar", "ERROR", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Seleccione el área a modificar", "ERROR", JOptionPane.ERROR_MESSAGE);
             } else if ("".equals(txtAreaModificar.getText())) {
-                JOptionPane.showMessageDialog(this, "Indique la nueva Area", "ERROR", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Indique la nueva área", "ERROR", JOptionPane.ERROR_MESSAGE);
             } else {
                 String contrasenna;
                 if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Realmente "
-                        + "desea Modificar el Area?", null, JOptionPane.YES_NO_OPTION)) {
+                        + "desea modificar el área?", null, JOptionPane.YES_NO_OPTION)) {
                     contrasenna = JOptionPane.showInputDialog("Digite su contraseña:");
                     if (Controlador.obtenerInstancia().verificarContrasenna(VentanaLogin.correo, contrasenna)) {
                         if (Controlador.obtenerInstancia().modificarArea(jComboBoxModificarArea.getSelectedItem().toString(), txtAreaModificar.getText())) {
-                            JOptionPane.showMessageDialog(this, "   Area Modificada con éxito", "Area Modificada", JOptionPane.INFORMATION_MESSAGE);
+                            JOptionPane.showMessageDialog(this, "   Área modificada con éxito", "Área modificada", JOptionPane.INFORMATION_MESSAGE);
                             limpiarCampos();
                         } else {
                             JOptionPane.showMessageDialog(this, "No se pudo Modificar el Area", "ERROR", JOptionPane.ERROR_MESSAGE);
                         }
                     } else {
-                        JOptionPane.showMessageDialog(this, "   No se pudo Modificar el Area, constraseña incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "   No se pudo modificar el área, contraseña incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
                     }
                 }
             }
@@ -791,21 +796,21 @@ public class PanelConfigurarTicket extends javax.swing.JPanel {
     private void btnEliminarAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarAreaActionPerformed
 
         if (jComboBoxEliminarArea.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(this, "Seleccione el Area a Eliminar", "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Seleccione el área a eliminar", "ERROR", JOptionPane.ERROR_MESSAGE);
         } else {
             String contrasenna;
             if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Realmente "
-                    + "desea Eliminar el Area?", null, JOptionPane.YES_NO_OPTION)) {
+                    + "desea eliminar el área?", null, JOptionPane.YES_NO_OPTION)) {
                 contrasenna = JOptionPane.showInputDialog("Digite su contraseña:");
                 if (Controlador.obtenerInstancia().verificarContrasenna(VentanaLogin.correo, contrasenna)) {
                     if (Controlador.obtenerInstancia().eliminarArea(jComboBoxEliminarArea.getSelectedItem().toString())) {
-                        JOptionPane.showMessageDialog(this, "   Area Eliminada con éxito", "Area Eliminada", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "   Área eliminada con éxito", "Área eliminada", JOptionPane.INFORMATION_MESSAGE);
                         limpiarCampos();
                     } else {
-                        JOptionPane.showMessageDialog(this, "No se pudo Eliminar el Area", "ERROR", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "No se pudo eliminar el área", "ERROR", JOptionPane.ERROR_MESSAGE);
                     }
                 } else {
-                    JOptionPane.showMessageDialog(this, "   No se pudo Eliminar el Area, constraseña incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "   No se pudo eliminar el área, constraseña incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
             }
         }
@@ -828,22 +833,22 @@ public class PanelConfigurarTicket extends javax.swing.JPanel {
             if (txtAgreagrAsunto.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Falta el nombre de asunto", "ERROR", JOptionPane.ERROR_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(this, "No se pudo Agregar el Asunto, Ya Existe", "ERROR", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "No se pudo agregar el asunto", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
         } else {
             String contrasenna;
             if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Realmente "
-                    + "desea Agregar el Asunto?", null, JOptionPane.YES_NO_OPTION)) {
+                    + "desea agregar el asunto?", null, JOptionPane.YES_NO_OPTION)) {
                 contrasenna = JOptionPane.showInputDialog("Digite su contraseña:");
                 if (Controlador.obtenerInstancia().verificarContrasenna(VentanaLogin.correo, contrasenna)) {
                     if (Controlador.obtenerInstancia().agregarAsunto(txtAgreagrAsunto.getText())) {
-                        JOptionPane.showMessageDialog(this, "   Asunto agregada con éxito", "Asunto Agregada", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "   Asunto agregada con éxito", "Asunto agregada", JOptionPane.INFORMATION_MESSAGE);
                         limpiarCampos();
                     } else {
-                        JOptionPane.showMessageDialog(this, "No se pudo Agregar el Asunto", "ERROR", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "No se pudo agregar el asunto", "ERROR", JOptionPane.ERROR_MESSAGE);
                     }
                 } else {
-                    JOptionPane.showMessageDialog(this, "   No se pudo Agregar el Asunto, constraseña incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "   No se pudo agregar el asunto, constraseña incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
             }
         }
@@ -851,21 +856,21 @@ public class PanelConfigurarTicket extends javax.swing.JPanel {
 
     private void btnEliminarAsuntoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarAsuntoActionPerformed
         if (jComboBoxEliminarAsunto.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(this, "Seleccione el Asunto a Eliminar", "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Seleccione el asunto a eliminar", "ERROR", JOptionPane.ERROR_MESSAGE);
         } else {
             String contrasenna;
             if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Realmente "
-                    + "desea Eliminar el Asunto?", null, JOptionPane.YES_NO_OPTION)) {
+                    + "desea eliminar el asunto?", null, JOptionPane.YES_NO_OPTION)) {
                 contrasenna = JOptionPane.showInputDialog("Digite su contraseña:");
                 if (Controlador.obtenerInstancia().verificarContrasenna(VentanaLogin.correo, contrasenna)) {
                     if (Controlador.obtenerInstancia().eliminarAsunto(jComboBoxEliminarAsunto.getSelectedItem().toString())) {
-                        JOptionPane.showMessageDialog(this, "   Asunto Eliminado con éxito", "Asunto Eliminado", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "   Asunto eliminado con éxito", "Asunto eliminado", JOptionPane.INFORMATION_MESSAGE);
                         limpiarCampos();
                     } else {
-                        JOptionPane.showMessageDialog(this, "No se pudo Eliminar el Asunto", "ERROR", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "No se pudo eliminar el asunto", "ERROR", JOptionPane.ERROR_MESSAGE);
                     }
                 } else {
-                    JOptionPane.showMessageDialog(this, "   No se pudo Eliminar el Asunto, constraseña incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "   No se pudo eliminar el asunto, constraseña incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
             }
         }
@@ -876,23 +881,23 @@ public class PanelConfigurarTicket extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "    Falta ingresar nombre nuevo", "ERROR", JOptionPane.ERROR_MESSAGE);
         } else {
             if (jComboBoxModificarAsunto.getSelectedIndex() == 0) {
-                JOptionPane.showMessageDialog(this, "Seleccione el Asunto a Modificar", "ERROR", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Seleccione el asunto a modificar", "ERROR", JOptionPane.ERROR_MESSAGE);
             } else if ("".equals(txtModificarAsunto.getText())) {
-                JOptionPane.showMessageDialog(this, "Indique el nuevo Asunto", "ERROR", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Indique el nuevo asunto", "ERROR", JOptionPane.ERROR_MESSAGE);
             } else {
                 String contrasenna;
                 if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Realmente "
-                        + "desea Modificar el Asunto?", null, JOptionPane.YES_NO_OPTION)) {
+                        + "desea modificar el asunto?", null, JOptionPane.YES_NO_OPTION)) {
                     contrasenna = JOptionPane.showInputDialog("Digite su contraseña:");
                     if (Controlador.obtenerInstancia().verificarContrasenna(VentanaLogin.correo, contrasenna)) {
                         if (Controlador.obtenerInstancia().modificarAsunto(jComboBoxModificarAsunto.getSelectedItem().toString(), txtModificarAsunto.getText())) {
-                            JOptionPane.showMessageDialog(this, "   Asunto Modificado con éxito", "Area Modificada", JOptionPane.INFORMATION_MESSAGE);
+                            JOptionPane.showMessageDialog(this, "   Asunto modificado con éxito", "Area Modificada", JOptionPane.INFORMATION_MESSAGE);
                             limpiarCampos();
                         } else {
-                            JOptionPane.showMessageDialog(this, "No se pudo Modificar el Asunto", "ERROR", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(this, "No se pudo modificar el asunto", "ERROR", JOptionPane.ERROR_MESSAGE);
                         }
                     } else {
-                        JOptionPane.showMessageDialog(this, "   No se pudo Modificar el Asunto, constraseña incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "   No se pudo modificar el asunto, constraseña incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
                     }
                 }
             }
