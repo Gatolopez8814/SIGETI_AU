@@ -329,4 +329,18 @@ public class Controlador {
         return model.obtieneNumeroAlertas();        
     }
     
+     public ArrayList<String> consultaTodosReporteArea(String dato1) {
+        System.out.println("dato1=" + dato1);
+        return model.consultaReporteArea(dato1);
+    }//------------------------------------------------------------------------------FIN consultaTodosReporteArea
+       
+        public ArrayList<String> consultaTodosReporteHoras(String dato1, String dato2) {
+        System.out.println("dato1=" + dato1 + " dato2= " + dato2);
+        return model.consultaReporteHoras(dato1, dato2);
+    }//------------------------------------------------------------------------------FIN consultaTodosReporteArea
+       
+        public ArrayList<String> consultaTodosReporteFecha(String dato1, String dato2) {
+        System.out.println("dato1=" + dato1 + " dato2= " + dato2);
+        return model.consultaReporteFecha(dato1, dato2);
+    }//------------------------------------------------------------------------------FIN consultaTodosReporteArea
 }
