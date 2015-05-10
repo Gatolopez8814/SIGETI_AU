@@ -816,6 +816,11 @@ public class PanelBandejaAdministrador extends javax.swing.JPanel {
 
         jComboAñoDesde.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Año" }));
         jComboAñoDesde.setToolTipText("");
+        jComboAñoDesde.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboAñoDesdeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelFechaLayout = new javax.swing.GroupLayout(jPanelFecha);
         jPanelFecha.setLayout(jPanelFechaLayout);
@@ -1241,6 +1246,10 @@ public class PanelBandejaAdministrador extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnAplicarCambiosActionPerformed
 
+    private void jComboAñoDesdeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboAñoDesdeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboAñoDesdeActionPerformed
+
     public static boolean isFechaValida(String fecha) {
         try {
             SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
@@ -1259,6 +1268,7 @@ public class PanelBandejaAdministrador extends javax.swing.JPanel {
         for (int i = 2015; i <= year; i++) {
             lstAnyos.add(String.valueOf(i));
         }
+        lstAnyos.add(String.valueOf(year+1));
         for (String temp : lstAnyos) {
             this.jComboAñoDesde.addItem(temp);
         }

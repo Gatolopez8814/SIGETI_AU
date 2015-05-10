@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 public class Modelo {
 
@@ -56,7 +57,8 @@ public class Modelo {
                 }
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+          JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -80,7 +82,8 @@ public class Modelo {
                 }
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -97,7 +100,8 @@ public class Modelo {
                 return true;
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
@@ -114,7 +118,8 @@ public class Modelo {
                 return true;
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
@@ -135,7 +140,8 @@ public class Modelo {
                 estado = resultado.getInt(1);
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -151,7 +157,8 @@ public class Modelo {
                 return true;
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
@@ -168,7 +175,8 @@ public class Modelo {
                 return true;
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
@@ -181,13 +189,12 @@ public class Modelo {
         try {
             Statement sentencia = null;
             sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
-
             if (sentencia.executeUpdate("update usuario set estado=0 where correo=" + "'" + correoUsuario + "'") == 1) {
                 return true;
             }
-
         } catch (Exception e) {
-//            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
@@ -204,7 +211,8 @@ public class Modelo {
                 return true;
             }
         } catch (Exception e) {
-//            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
@@ -234,7 +242,8 @@ public class Modelo {
                 return true;
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
@@ -274,7 +283,8 @@ public class Modelo {
                 _ticket.setComentarios(comentarios);
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -317,7 +327,8 @@ public class Modelo {
                 _ticket.setComentarios(comentarios);
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -329,7 +340,6 @@ public class Modelo {
         //y segun el usuario actual de la sesion
         return (dato2.equals("")) ? consultaTicketsArea(dato1, _correo) : consultaTicketsfecha(dato1, dato2, _correo);
         //Si el usuario solicitó una busqueda de área el dato2 vendrá vacío y el sistema ejecuta la busqueda de ticket por area
-
     }//----------------------------------------------------------------------------- FIN consultaTodosTicket()
 
     private ArrayList<Ticket> consultaTicketsfecha(String dato1, String dato2, String _correo) {
@@ -363,7 +373,8 @@ public class Modelo {
                 tEncontrados.add(_ticket);
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -400,7 +411,8 @@ public class Modelo {
                 tEncontrados.add(_ticket);
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -418,7 +430,8 @@ public class Modelo {
                 _estado = resultado.getString(1);
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -433,7 +446,8 @@ public class Modelo {
                 return true;
             }
         } catch (Exception e) {
-//            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
@@ -475,7 +489,8 @@ public class Modelo {
                         consecutivoPriori, consecutivoticket, String.valueOf(fechaCreacion), especificacion);
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -490,8 +505,9 @@ public class Modelo {
             if (sentencia.executeUpdate("update usuario set contrasena= '" + _contNueva + "' where correo= '" + _correo + "' and contrasena= '" + _contAnterior + "'") == 1) {
                 return true;
             }
-
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
@@ -525,7 +541,8 @@ public class Modelo {
                 tEncontrados.add(_ticket);
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -540,7 +557,6 @@ public class Modelo {
         try {
             Statement sentencia = null;
             sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
-
             resultado = sentencia.executeQuery("select nombreArea from area order by nombreArea");
             if (resultado != null) {
             }
@@ -549,7 +565,8 @@ public class Modelo {
                 tEncontrados.add(nombre);
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -563,7 +580,6 @@ public class Modelo {
         try {
             Statement sentencia = null;
             sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
-
             resultado = sentencia.executeQuery("select correo from usuario where estado=" + estado + " and correo not like '" + usuarioActual + "' order by correo");
             if (resultado != null) {
             }
@@ -572,7 +588,8 @@ public class Modelo {
                 tEncontrados.add(correo);
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -586,7 +603,6 @@ public class Modelo {
         try {
             Statement sentencia = null;
             sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
-
             resultado = sentencia.executeQuery("select correo from usuario where estado not like " + estado + " and correo not like '" + usuarioActual + "' order by correo");
             if (resultado != null) {
             }
@@ -595,7 +611,8 @@ public class Modelo {
                 tEncontrados.add(correo);
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -609,7 +626,6 @@ public class Modelo {
         try {
             Statement sentencia = null;
             sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
-
             resultado = sentencia.executeQuery("select correo from usuario where estado = 1 and tipo not like 3 order by correo");
             if (resultado != null) {
             }
@@ -618,7 +634,8 @@ public class Modelo {
                 usuarios.add(correo);
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -641,7 +658,8 @@ public class Modelo {
                 usuarios.add(correo);
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -662,7 +680,8 @@ public class Modelo {
                 area = resultado.getString(1);
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -686,7 +705,8 @@ public class Modelo {
                 usuarios.add(correo);
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -710,7 +730,8 @@ public class Modelo {
                 tEncontrados.add(nombre);
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -743,7 +764,8 @@ public class Modelo {
                 tEncontrados.add(_ticket);
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -775,7 +797,8 @@ public class Modelo {
                 tEncontrados.add(_ticket);
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -808,7 +831,8 @@ public class Modelo {
                 tEncontrados.add(_ticket);
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -840,7 +864,8 @@ public class Modelo {
                 tEncontrados.add(_ticket);
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -873,7 +898,8 @@ public class Modelo {
                 tBandeja.add(_ticket);
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -905,7 +931,8 @@ public class Modelo {
                 tBandeja.add(_ticket);
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -920,8 +947,9 @@ public class Modelo {
             if (sentencia.executeUpdate("update ticket set consecEstado= '" + 3 + "' where consecutivoticket= '" + codigo + "' and consecEstado not like 1") == 1) {//se actualiza el fechaCreacion a 3, cuya descripcion es cerrado
                 return true;
             }
-
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
@@ -955,7 +983,8 @@ public class Modelo {
                 tBandeja.add(_ticket);
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -987,7 +1016,8 @@ public class Modelo {
                 tBandeja.add(_ticket);
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -1003,7 +1033,8 @@ public class Modelo {
                 return true;
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
@@ -1020,7 +1051,8 @@ public class Modelo {
                 return true;
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
@@ -1043,7 +1075,8 @@ public class Modelo {
                 cantidad = resultado.getInt(1);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -1065,7 +1098,8 @@ public class Modelo {
                 cantidad = resultado.getInt(1);
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -1099,7 +1133,8 @@ public class Modelo {
                 tBandeja.add(_ticket);
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+           JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -1120,7 +1155,8 @@ public class Modelo {
                 cantidad = resultado.getInt(1);
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -1141,7 +1177,8 @@ public class Modelo {
                 cantidad = resultado.getInt(1);
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+           JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -1163,7 +1200,8 @@ public class Modelo {
                 cantidad = resultado.getInt(1);
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -1186,7 +1224,8 @@ public class Modelo {
                 cantidad = resultado.getInt(1);
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -1209,7 +1248,8 @@ public class Modelo {
                 cantidad = resultado.getInt(1);
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -1233,7 +1273,8 @@ public class Modelo {
                 cantidad = resultado.getInt(1);
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -1257,7 +1298,8 @@ public class Modelo {
                 cantidad = resultado.getInt(1);
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -1279,7 +1321,8 @@ public class Modelo {
                 cantidad = resultado.getString(1);
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -1302,7 +1345,8 @@ public class Modelo {
                 cantidad = resultado.getInt(1);
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -1318,8 +1362,9 @@ public class Modelo {
                     + " where consecutivoticket=" + _codigo + "") == 1) {//se actualiza el fechaCreacion a 3, cuya descripcion es cerrado
                 return true;
             }
-
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
@@ -1338,6 +1383,8 @@ public class Modelo {
             }
 
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
@@ -1356,6 +1403,8 @@ public class Modelo {
             }
 
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
@@ -1374,7 +1423,8 @@ public class Modelo {
             }
 
         } catch (Exception e) {
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
@@ -1391,6 +1441,8 @@ public class Modelo {
                 return true;
             }
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
@@ -1406,8 +1458,9 @@ public class Modelo {
             if (sentencia.executeUpdate("update ticket set tiempoRealsolucion='" + _fecha + "' where consecutivoticket=" + _codigo + " and consecEstado=3") == 1) {//se actualiza el fechaCreacion a 3, cuya descripcion es cerrado
                 return true;
             }
-
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
@@ -1425,7 +1478,8 @@ public class Modelo {
                 return true;
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
@@ -1445,6 +1499,8 @@ public class Modelo {
                 contador = resultado.getInt(1);
             }
         } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -1463,7 +1519,8 @@ public class Modelo {
                 contador = resultado.getInt(1);
             }
         } catch (SQLException e) {
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -1496,7 +1553,8 @@ public class Modelo {
                 bitacora.add(_bitacora);
             }
         } catch (Exception e) {
-            //e.printStackTrace();  
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE); 
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -1531,7 +1589,8 @@ public class Modelo {
                 bitacora.add(_bitacora);
             }
         } catch (Exception e) {
-            //e.printStackTrace();  
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -1566,7 +1625,8 @@ public class Modelo {
                 bitacora.add(_bitacora);
             }
         } catch (Exception e) {
-            //e.printStackTrace();  
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE); 
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -1581,7 +1641,8 @@ public class Modelo {
                 return true;
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
@@ -1597,7 +1658,8 @@ public class Modelo {
                 return true;
             }
         } catch (Exception e) {
-            //e.printStackTrace
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
@@ -1613,7 +1675,8 @@ public class Modelo {
                 return true;
             }
         } catch (Exception e) {
-            //e.printStackTrace
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
@@ -1629,7 +1692,8 @@ public class Modelo {
                 return true;
             }
         } catch (Exception e) {
-            //e.printStackTrace
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
@@ -1646,7 +1710,8 @@ public class Modelo {
                 return true;
             }
         } catch (Exception e) {
-            //e.printStackTrace             
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);            
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
@@ -1663,7 +1728,8 @@ public class Modelo {
                 return true;
             }
         } catch (Exception e) {
-            //e.printStackTrace             
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);             
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
@@ -1690,7 +1756,8 @@ public class Modelo {
                 fecha.add(5, reloj.split(":")[2]);//segundos                  
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -1723,7 +1790,8 @@ public class Modelo {
                 bitacora.add(_bitacora);
             }
         } catch (Exception e) {
-            //e.printStackTrace();  
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -1757,7 +1825,10 @@ public class Modelo {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                  "ERROR", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            ConexionMySql.obtenerInstancia().desconectar();
         }
         return tAlertas;
     }

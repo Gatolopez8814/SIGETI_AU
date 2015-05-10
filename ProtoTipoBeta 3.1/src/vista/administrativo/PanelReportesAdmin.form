@@ -521,13 +521,11 @@
         <Component class="javax.swing.JComboBox" name="ComboBusqueda">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="6">
+              <StringArray count="4">
                 <StringItem index="0" value="Seleccione aqu&#xed;"/>
                 <StringItem index="1" value="Rango de fechas"/>
                 <StringItem index="2" value="Rango de horas"/>
                 <StringItem index="3" value="Seg&#xfa;n &#xe1;rea especifica"/>
-                <StringItem index="4" value="Tickets redireccionados"/>
-                <StringItem index="5" value="Tiempos de soluci&#xf3;n"/>
               </StringArray>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value=""/>

@@ -1116,6 +1116,7 @@ public class PanelBandejaArea extends javax.swing.JPanel {
         for (int i = 2015; i <= year; i++) {
             lstAnyos.add(String.valueOf(i));
         }
+        lstAnyos.add(String.valueOf(year+1));
         for (String temp1 : lstAnyos) {
             this.jComboAñoDesde.addItem(temp1);
         }

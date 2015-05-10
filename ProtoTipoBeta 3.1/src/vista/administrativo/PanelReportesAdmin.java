@@ -461,7 +461,7 @@ public class PanelReportesAdmin extends javax.swing.JPanel {
 
         jLabelSubtitulo.setText("Seleccione el tipo de reporte que desea: ");
 
-        ComboBusqueda.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione aquí", "Rango de fechas", "Rango de horas", "Según área especifica", "Tickets redireccionados", "Tiempos de solución" }));
+        ComboBusqueda.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione aquí", "Rango de fechas", "Rango de horas", "Según área especifica" }));
         ComboBusqueda.setToolTipText("");
         ComboBusqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
