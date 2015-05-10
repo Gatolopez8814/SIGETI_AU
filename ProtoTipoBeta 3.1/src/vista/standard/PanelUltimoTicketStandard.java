@@ -12,7 +12,7 @@ public class PanelUltimoTicketStandard extends javax.swing.JPanel {
     private PanelUltimoTicketStandard() {
         initComponents();
         this.ajustarEventos();
-        this.limpiarCampos();
+//        this.limpiarCampos();
 
     }//----------------------------------------------------------------------------- FIN Constructor()
 
@@ -20,6 +20,7 @@ public class PanelUltimoTicketStandard extends javax.swing.JPanel {
         if (instancia == null) {
             instancia = new PanelUltimoTicketStandard();
         }
+        instancia.limpiarCampos();
         instancia.llenarUltimo(VentanaLogin.correo);
         return instancia;
     }//----------------------------------------------------------------------------- FIN obtenerInstancia()
@@ -372,7 +373,7 @@ public class PanelUltimoTicketStandard extends javax.swing.JPanel {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Desea finalizar la consulta?", null, JOptionPane.YES_NO_OPTION)) {
-            this.limpiarCampos();
+            
             Ventana.obtenerInstancia().ventanaPrincipalStandard();
         }
     }//GEN-LAST:event_btnCancelarActionPerformed

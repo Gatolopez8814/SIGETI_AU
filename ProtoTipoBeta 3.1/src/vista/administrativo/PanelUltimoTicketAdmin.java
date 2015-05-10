@@ -12,13 +12,14 @@ public class PanelUltimoTicketAdmin extends javax.swing.JPanel {
     private PanelUltimoTicketAdmin() {
         initComponents();
         this.ajustarEventos();
-        this.limpiarCampos();
+//        this.limpiarCampos();
     }//----------------------------------------------------------------------------- FIN Constructor()
 
     public static PanelUltimoTicketAdmin obtenerInstancia() {//para garantizar hay solo una instancia
         if (instancia == null) {
             instancia = new PanelUltimoTicketAdmin();
         }
+        instancia.limpiarCampos();
         instancia.llenarUltimo(VentanaLogin.correo);
         return instancia;
     }////----------------------------------------------------------------------------- FIN obtenerInstancia()

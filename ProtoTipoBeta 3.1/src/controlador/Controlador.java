@@ -64,8 +64,8 @@ public class Controlador {
     }//----------------------------------------------------------------------------- FIN enviaCorreo()
 
     public boolean validaContraseña(String contraseña) {
-        return model.validaContraseña(contraseña);
-    }//----------------------------------------------------------------------------- FIN validaContraseña()
+        return model.validaContrasenna(contraseña);
+    }//----------------------------------------------------------------------------- FIN validaContrasenna()
 
     public static Controlador obtenerInstancia() {
         //asi garantizamos que solo aya una ventana

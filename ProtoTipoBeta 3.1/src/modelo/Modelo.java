@@ -212,12 +212,12 @@ public class Modelo {
         return false;
     }//----------------------------------------------------------------------------- FIN desBloqueaUsuarioAdmin()
 
-    public boolean validaContraseña(String contraseña) {
-        if (contraseña.length() >= 6 && contraseña.length() <= 16) {
+    public boolean validaContrasenna(String contrasenna) {
+        if (contrasenna.length() >= 6 && contrasenna.length() <= 16) {
             return true;
         }
         return false;
-    }//----------------------------------------------------------------------------- FIN validaContraseña()
+    }//----------------------------------------------------------------------------- FIN validaContrasenna()
 
     public boolean registraNuevoTicket(Ticket _ticket) {
         //este metodo permite a los usuarios ingresar un nuevo ticket a la base de datos

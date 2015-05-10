@@ -11,15 +11,17 @@ public class PanelUltimoTicketArea extends javax.swing.JPanel {
 
     private PanelUltimoTicketArea() {
         initComponents();
-        this.limpiarCampos();
+//        this.limpiarCampos();
         this.ajustarEventos();
-        this.llenarUltimo(VentanaLogin.correo);
+        
     }//----------------------------------------------------------------------------- FIN Constructor()
 
     public static PanelUltimoTicketArea obtenerInstancia() {//para garantizar hay solo una instancia
         if (instancia == null) {
             instancia = new PanelUltimoTicketArea();
         }
+        instancia.limpiarCampos();
+        instancia.llenarUltimo(VentanaLogin.correo);
         return instancia;
     }//----------------------------------------------------------------------------- FIN obtenerInstancia()
 
