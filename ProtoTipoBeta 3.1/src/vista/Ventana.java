@@ -659,7 +659,7 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
             ocultar();
             this.desAbilitarMenu();
             panelPrincipal.removeAll();
-            revalidate();//xq ???
+            revalidate();
         }
         setBarraEstadoMensajeAnterior();
     }//----------------------------------------------------------------------------- FIN cerrarSesion()
@@ -670,9 +670,7 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
         scrollPanelPrincipal = new JScrollPane(PanelCambioContraseña.obtenerInstancia());
         panelPrincipal.setLayout(new BorderLayout());
         panelPrincipal.add(ArbolStandard.obtenerInstancia(), BorderLayout.WEST);
-        panelPrincipal.add(scrollPanelPrincipal, BorderLayout.CENTER);
-        setSize(910, 605);
-        setPreferredSize(new Dimension(910, 605));
+        panelPrincipal.add(scrollPanelPrincipal, BorderLayout.CENTER);      
         pack();
         repaint();
     }//----------------------------------------------------------------------------- FIN cambiarClaveStandar()
@@ -683,9 +681,7 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
         scrollPanelPrincipal = new JScrollPane(PanelConsultaUno.obtenerInstancia());
         panelPrincipal.setLayout(new BorderLayout());
         panelPrincipal.add(ArbolStandard.obtenerInstancia(), BorderLayout.WEST);
-        panelPrincipal.add(scrollPanelPrincipal, BorderLayout.CENTER);
-        setSize(910, 605);
-        setPreferredSize(new Dimension(910, 605));
+        panelPrincipal.add(scrollPanelPrincipal, BorderLayout.CENTER);       
         pack();
         repaint();
     }//----------------------------------------------------------------------------- FIN buscarUnTicketStandard()
@@ -696,9 +692,7 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
         setBarraEstado("Pantalla principal");
         panelPrincipal.setLayout(new BorderLayout());
         panelPrincipal.add(ArbolStandard.obtenerInstancia(), BorderLayout.WEST);
-        panelPrincipal.add(new PanelConFondo("/img/2014-10-05_1533.png"));
-        setSize(910, 605);
-        setPreferredSize(new Dimension(910, 605));
+        panelPrincipal.add(new PanelConFondo("/img/2014-10-05_1533.png"));        
         pack();
         repaint();
     }//----------------------------------------------------------------------------- FIN ventanaPrincipalStandard()
@@ -709,9 +703,7 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
         scrollPanelPrincipal = new JScrollPane(PanelConsultaHistorial.obtenerInstancia());
         panelPrincipal.setLayout(new BorderLayout());
         panelPrincipal.add(ArbolStandard.obtenerInstancia(), BorderLayout.WEST);
-        panelPrincipal.add(scrollPanelPrincipal, BorderLayout.CENTER);
-        setSize(910, 605);
-        setPreferredSize(new Dimension(910, 605));
+        panelPrincipal.add(scrollPanelPrincipal, BorderLayout.CENTER);       
         pack();
         repaint();
     }//----------------------------------------------------------------------------- FIN historialTicketsStandard()
@@ -722,9 +714,7 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
         scrollPanelPrincipal = new JScrollPane(PanelUltimoTicketStandard.obtenerInstancia());
         panelPrincipal.setLayout(new BorderLayout());
         panelPrincipal.add(ArbolStandard.obtenerInstancia(), BorderLayout.WEST);
-        panelPrincipal.add(scrollPanelPrincipal, BorderLayout.CENTER);
-        setSize(910, 605);
-        setPreferredSize(new Dimension(910, 605));
+        panelPrincipal.add(scrollPanelPrincipal, BorderLayout.CENTER);       
         pack();
         repaint();
     }//----------------------------------------------------------------------------- FIN buscarUltimoTicketStandard()
@@ -735,9 +725,7 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
         scrollPanelPrincipal = new JScrollPane(PanelCrearTicket.obtenerInstancia());
         panelPrincipal.setLayout(new BorderLayout());
         panelPrincipal.add(ArbolStandard.obtenerInstancia(), BorderLayout.WEST);
-        panelPrincipal.add(scrollPanelPrincipal, BorderLayout.CENTER);
-        setSize(910, 605);
-        setPreferredSize(new Dimension(910, 605));
+        panelPrincipal.add(scrollPanelPrincipal, BorderLayout.CENTER);      
         pack();
         repaint();
     }//----------------------------------------------------------------------------- FIN crearTicketStandard()
