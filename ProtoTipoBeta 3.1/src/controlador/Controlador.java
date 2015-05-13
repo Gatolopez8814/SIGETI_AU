@@ -343,4 +343,20 @@ public class Controlador {
         System.out.println("dato1=" + dato1 + " dato2= " + dato2);
         return model.consultaReporteFecha(dato1, dato2);
     }//------------------------------------------------------------------------------FIN consultaTodosReporteArea
+        
+         public ArrayList<String> consultaTodosReporteMiArea(String dato1, String _correo) {
+        System.out.println("dato1=" + dato1);
+        return model.consultaReportesMiArea(dato1,_correo);
+    }//------------------------------------------------------------------------------FIN consultaTodosReporteMiArea
+       
+         public ArrayList<String> consultaReporteHorasArea(String dato1, String dato2, String _correo) {
+        System.out.println("dato1=" + dato1+"dato2"+dato2+"correo"+_correo);
+        return model.consultaReporteHorasArea(dato1,dato2,_correo);
+    }//------------------------------------------------------------------------------FIN consultaTodosReporteArea
+      
+         public ArrayList<String> consultaReporteFechaArea(String dato1, String dato2,String _correo) {
+        System.out.println("dato1=" + dato1 + " dato2= " + dato2);
+        return model.consultaReporteFechaArea(dato1, dato2,_correo);
+    }//------------------------------------------------------------------------------FIN consultaTodosReporteArea
+       
 }

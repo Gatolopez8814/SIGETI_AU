@@ -952,6 +952,9 @@
                         </Property>
                         <Property name="text" type="java.lang.String" value="Cerrar ticket"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioCerrarActionPerformed"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>

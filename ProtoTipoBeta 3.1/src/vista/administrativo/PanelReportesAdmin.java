@@ -266,7 +266,6 @@ public class PanelReportesAdmin extends javax.swing.JPanel {
                 {null, null},
                 {null, null},
                 {null, null},
-                {null, null},
                 {null, null}
             },
             new String [] {
@@ -301,35 +300,36 @@ public class PanelReportesAdmin extends javax.swing.JPanel {
         });
 
         jLabelDesde3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabelDesde3.setText("REPORTE");
+        jLabelDesde3.setText("Tickets según estado");
 
         javax.swing.GroupLayout jPanelTabla3Layout = new javax.swing.GroupLayout(jPanelTabla3);
         jPanelTabla3.setLayout(jPanelTabla3Layout);
         jPanelTabla3Layout.setHorizontalGroup(
             jPanelTabla3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelTabla3Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelTabla3Layout.createSequentialGroup()
+                .addGap(105, 105, 105)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnExportar)
+                .addGap(119, 119, 119))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelTabla3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabelDesde3, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(80, 80, 80)
-                .addComponent(btnExportar)
-                .addGap(104, 104, 104))
-            .addGroup(jPanelTabla3Layout.createSequentialGroup()
-                .addGap(329, 329, 329)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(251, 251, 251))
         );
         jPanelTabla3Layout.setVerticalGroup(
             jPanelTabla3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelTabla3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabelDesde3, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
-                .addGap(70, 70, 70))
             .addGroup(jPanelTabla3Layout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(btnExportar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabelDesde3, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanelTabla3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelTabla3Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnExportar)
+                        .addGap(69, 69, 69))
+                    .addGroup(jPanelTabla3Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(30, Short.MAX_VALUE))))
         );
 
         jPanelRangoFechas.setBackground(new java.awt.Color(158, 143, 123));
@@ -476,16 +476,18 @@ public class PanelReportesAdmin extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelTabla3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelSeleccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelArea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(PanelBotones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelRangoFechas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelRangoHoras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanelSeleccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanelArea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(PanelBotones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanelRangoFechas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanelRangoHoras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jPanelTabla3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -505,7 +507,7 @@ public class PanelReportesAdmin extends javax.swing.JPanel {
                 .addComponent(PanelBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11)
                 .addComponent(jPanelTabla3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(126, Short.MAX_VALUE))
+                .addContainerGap(167, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -527,13 +529,7 @@ public class PanelReportesAdmin extends javax.swing.JPanel {
         if (ComboBusqueda.getSelectedItem().equals("Según área especifica")) {
             jPanelArea.setVisible(true);
             this.btnReporte.setEnabled(true);
-        }
-        if (ComboBusqueda.getSelectedItem().equals("Tickets redireccionados")) {
-            JOptionPane.showMessageDialog(null, "¿No hay tickets redireccionados?");
-        }
-        if (ComboBusqueda.getSelectedItem().equals("Tiempos de solución")) {
-            JOptionPane.showMessageDialog(null, "¿No hay tickets insertados?");
-        }
+        }    
     }//GEN-LAST:event_ComboBusquedaActionPerformed
 
     private void cargarjComboArea() {
@@ -842,19 +838,7 @@ public class PanelReportesAdmin extends javax.swing.JPanel {
         return true;
     }
 
-    public static boolean isHoraValida(String hora) {
-        try {
-            SimpleDateFormat formatoHora = new SimpleDateFormat("hh:mm", Locale.getDefault());
-
-            formatoHora.setLenient(false);
-            formatoHora.parse(hora);
-        } catch (ParseException e) {
-            return false;
-        }
-        return true;
-    }
-
-    private String obtieneEstado(Ticket _ticket) {
+   private String obtieneEstado(Ticket _ticket) {
         String estado = "";
         if (_ticket.getEstado().equals("borrado")) {
             estado = "cerrado";
@@ -879,8 +863,6 @@ public class PanelReportesAdmin extends javax.swing.JPanel {
         comboHoraInicial.setSelectedIndex(0);
         comboMinutoFinal.setSelectedIndex(0);
         comboMinutoInicial.setSelectedIndex(0);  
-    
-
     }
 
     //Declaracion de variables

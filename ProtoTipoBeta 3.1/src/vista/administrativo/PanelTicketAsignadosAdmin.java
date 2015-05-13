@@ -208,6 +208,17 @@ public class PanelTicketAsignadosAdmin extends javax.swing.JPanel {
                 jPanelPrioridad.setVisible(false);
             }
         });
+        this.jRadioCerrar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jPanelFecha.setVisible(false);
+                jPanelComentario.setVisible(false);
+                jPanelResponsable.setVisible(false);
+                btnAplicarCambios.setVisible(true);
+                jPanelArea.setVisible(false);
+                jPanelPrioridad.setVisible(false);
+            }
+        });
     }
 
     @SuppressWarnings("unchecked")
@@ -274,6 +285,7 @@ public class PanelTicketAsignadosAdmin extends javax.swing.JPanel {
         jRadioPrioridad = new javax.swing.JRadioButton();
         jRadioResponsable = new javax.swing.JRadioButton();
         jRadioFecha = new javax.swing.JRadioButton();
+        jRadioCerrar = new javax.swing.JRadioButton();
         jPanelArea = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jComboBoxArea2 = new javax.swing.JComboBox<String>();
@@ -393,7 +405,7 @@ public class PanelTicketAsignadosAdmin extends javax.swing.JPanel {
         jPanelTablaLayout.setVerticalGroup(
             jPanelTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelTablaLayout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
+                .addContainerGap(12, Short.MAX_VALUE)
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -487,7 +499,7 @@ public class PanelTicketAsignadosAdmin extends javax.swing.JPanel {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1201, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1221, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -706,6 +718,14 @@ public class PanelTicketAsignadosAdmin extends javax.swing.JPanel {
         jRadioFecha.setBackground(new java.awt.Color(226, 221, 205));
         buttonGroupGestionar.add(jRadioFecha);
         jRadioFecha.setText("Asignar fecha de solución");
+        jRadioFecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioFechaActionPerformed(evt);
+            }
+        });
+
+        buttonGroupGestionar.add(jRadioCerrar);
+        jRadioCerrar.setText("Cerrar ticket");
 
         javax.swing.GroupLayout jPanelRadiosLayout = new javax.swing.GroupLayout(jPanelRadios);
         jPanelRadios.setLayout(jPanelRadiosLayout);
@@ -720,20 +740,24 @@ public class PanelTicketAsignadosAdmin extends javax.swing.JPanel {
                 .addComponent(jRadioPrioridad)
                 .addGap(18, 18, 18)
                 .addComponent(jRadioResponsable)
-                .addGap(10, 10, 10)
+                .addGap(18, 18, 18)
                 .addComponent(jRadioFecha)
+                .addGap(18, 18, 18)
+                .addComponent(jRadioCerrar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelRadiosLayout.setVerticalGroup(
             jPanelRadiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelRadiosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelRadiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioComentario)
-                    .addComponent(jRadioRedireccioinar)
-                    .addComponent(jRadioPrioridad)
-                    .addComponent(jRadioResponsable)
-                    .addComponent(jRadioFecha))
+                .addGroup(jPanelRadiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jRadioFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelRadiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jRadioComentario)
+                        .addComponent(jRadioRedireccioinar)
+                        .addComponent(jRadioPrioridad)
+                        .addComponent(jRadioResponsable)
+                        .addComponent(jRadioCerrar)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -894,7 +918,8 @@ public class PanelTicketAsignadosAdmin extends javax.swing.JPanel {
         jPanelGestionLayout.setVerticalGroup(
             jPanelGestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelGestionLayout.createSequentialGroup()
-                .addComponent(jPanelRadios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jPanelRadios, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelComentario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1187,7 +1212,29 @@ public class PanelTicketAsignadosAdmin extends javax.swing.JPanel {
                 }
             }
         }
+         if (this.jRadioCerrar.isSelected()) {
+            String contrasenna;
+            if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, " ¿Realmente desea cerrar el ticket " + this.codigoTicket + "?", null, JOptionPane.YES_NO_OPTION)) {
+                contrasenna = JOptionPane.showInputDialog("Digite su contraseña:");
+                if (Controlador.obtenerInstancia().verificarContrasenna(VentanaLogin.correo, contrasenna)) {
+                    if (Controlador.obtenerInstancia().cerrarTicket(this.codigoTicket)) {
+                        JOptionPane.showMessageDialog(this, "   El ticket ha sido cerrado con éxito", "Ticket cerrado",
+                                JOptionPane.PLAIN_MESSAGE);
+//                    PanelBandejaArea.obtenerInstancia().llenarBandeja();
+                    } else {
+                        JOptionPane.showMessageDialog(this, "   No se pudo cerrar el ticket", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
+
+                } else {
+                    JOptionPane.showMessageDialog(this, "   No se pudo cerrar el ticket, constraseña incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
     }//GEN-LAST:event_btnAplicarCambiosActionPerformed
+
+    private void jRadioFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioFechaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioFechaActionPerformed
 
     private void actualizarInformacion(int codi) {
         Ticket aux = Controlador.obtenerInstancia().informacionTicket(codi);
@@ -1318,6 +1365,7 @@ public class PanelTicketAsignadosAdmin extends javax.swing.JPanel {
     private javax.swing.JPanel jPanelRadios;
     private javax.swing.JPanel jPanelResponsable;
     private javax.swing.JPanel jPanelTabla;
+    private javax.swing.JRadioButton jRadioCerrar;
     private javax.swing.JRadioButton jRadioComentario;
     private javax.swing.JRadioButton jRadioFecha;
     private javax.swing.JRadioButton jRadioPrioridad;

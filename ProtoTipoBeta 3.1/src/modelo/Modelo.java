@@ -1996,5 +1996,117 @@ public class Modelo {
         return tEncontrados;
     }//---------------------------------------------------------------------------------------FIN ConsultaAreaTickets
 
-     
+      public ArrayList<String> consultaReportesMiArea(String area, String _correo) {
+
+        ArrayList< String> tEncontrados = new ArrayList<>();
+        Ticket _ticket;
+        String estado;
+        int cant;
+        ResultSet resultado = null;
+        try {
+            Statement sentencia = null;
+            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
+
+           resultado = sentencia.executeQuery("select  (select descripcion from estadoTicket a where a.consecutivoEstado = ticket.consecEstado), count(0) from ticket "
+                    + "where correousuario = '" + _correo + "' and ticket.areaDestino = '" + area + "' " 
+                    + "group by  ticket.consecEstado;");
+            if (resultado != null) {
+            }
+            while (resultado.next()) {
+                
+
+                 estado = resultado.getString(1);
+              
+                cant = resultado.getInt(2);
+                //tEncontrados=resultado.getInt(2);
+               tEncontrados.add(estado);
+                 tEncontrados.add(String.valueOf(cant));
+            }
+//            cant ="10";
+            
+        } catch (Exception e) {
+            System.out.println("Error Exception from Modelo -> consultaReportesMiArea()");
+            e.printStackTrace();
+        } finally {
+            ConexionMySql.obtenerInstancia().desconectar();
+            System.out.println("Se ha cerrado la conexion");
+        }
+        return tEncontrados;
+    }//---------------------------------------------------------------------------------------FIN ConsultaAreaTickets
+    
+      
+     public ArrayList<String> consultaReporteHorasArea(String hora1, String hora2, String _correo) {
+
+        ArrayList< String> tEncontrados = new ArrayList<>();
+        Ticket _ticket;
+        String estado;
+         int cant;
+        ResultSet resultado = null;
+        try {
+            Statement sentencia = null;
+            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
+
+           resultado = sentencia.executeQuery("select  (select descripcion from estadoTicket a where a.consecutivoEstado = ticket.consecEstado), count(0) from ticket "
+                    + "where correousuario = '" + _correo + "' and ticket.hora between '" + hora1 + "' and '" + hora2 
+                    + "' group by  ticket.consecEstado;");
+            if (resultado != null) {
+            }
+            while (resultado.next()) {
+                
+
+                 estado = resultado.getString(1);
+              
+               cant = resultado.getInt(2);
+                //tEncontrados=resultado.getInt(2);
+               tEncontrados.add(estado);
+                 tEncontrados.add(String.valueOf(cant));
+            }
+           
+        } catch (Exception e) {
+            System.out.println("Error Exception from Modelo -> consultaReporteArea()");
+            e.printStackTrace();
+        } finally {
+            ConexionMySql.obtenerInstancia().desconectar();
+            System.out.println("Se ha cerrado la conexion");
+        }
+        return tEncontrados;
+    }//---------------------------------------------------------------------------------------FIN ConsultaAreaTickets
+
+    public ArrayList<String> consultaReporteFechaArea(String fecha1, String fecha2, String _correo) {
+
+        ArrayList< String> tEncontrados = new ArrayList<>();
+        Ticket _ticket;
+        String estado;
+         int cant;
+        ResultSet resultado = null;
+        try {
+            Statement sentencia = null;
+            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
+
+           resultado = sentencia.executeQuery("select  (select descripcion from estadoTicket a where a.consecutivoEstado = ticket.consecEstado), count(0) from ticket "
+                    + "where correousuario = '" + _correo + "' and ticket.fechaCreacion >= '" + fecha1 + " 00:00:00' and  ticket.fechaCreacion <= '" + fecha2 + " 23:59:59' "
+                    + "group by  ticket.consecEstado;");
+            if (resultado != null) {
+            }
+            while (resultado.next()) {
+                
+
+                 estado = resultado.getString(1);
+              
+                cant = resultado.getInt(2);
+                //tEncontrados=resultado.getInt(2);
+               tEncontrados.add(estado);
+                 tEncontrados.add(String.valueOf(cant));
+            }
+            
+        } catch (Exception e) {
+            System.out.println("Error Exception from Modelo -> consultaReporteArea()");
+            e.printStackTrace();
+        } finally {
+            ConexionMySql.obtenerInstancia().desconectar();
+            System.out.println("Se ha cerrado la conexion");
+        }
+        return tEncontrados;
+    }//---------------------------------------------------------------------------------------FIN ConsultaAreaTickets
+ 
 }

@@ -220,6 +220,17 @@ public class PanelTicketEnProcesoAdmin extends javax.swing.JPanel {
                 jPanelPrioridad.setVisible(false);
             }
         });
+        this.jRadioCerrar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jPanelFecha.setVisible(false);
+                jPanelComentario.setVisible(false);
+                jPanelResponsable.setVisible(false);
+                btnAplicarCambios.setVisible(true);
+                jPanelArea.setVisible(false);
+                jPanelPrioridad.setVisible(false);
+            }
+        });
     }
 
     @SuppressWarnings("unchecked")
@@ -286,6 +297,7 @@ public class PanelTicketEnProcesoAdmin extends javax.swing.JPanel {
         jRadioPrioridad = new javax.swing.JRadioButton();
         jRadioResponsable = new javax.swing.JRadioButton();
         jRadioFecha = new javax.swing.JRadioButton();
+        jRadioCerrar = new javax.swing.JRadioButton();
         jPanelArea = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jComboBoxArea2 = new javax.swing.JComboBox<String>();
@@ -718,6 +730,9 @@ public class PanelTicketEnProcesoAdmin extends javax.swing.JPanel {
         buttonGroupGestionar.add(jRadioFecha);
         jRadioFecha.setText("Asignar fecha de solución");
 
+        buttonGroupGestionar.add(jRadioCerrar);
+        jRadioCerrar.setText("Cerrar ticket");
+
         javax.swing.GroupLayout jPanelRadiosLayout = new javax.swing.GroupLayout(jPanelRadios);
         jPanelRadios.setLayout(jPanelRadiosLayout);
         jPanelRadiosLayout.setHorizontalGroup(
@@ -733,6 +748,8 @@ public class PanelTicketEnProcesoAdmin extends javax.swing.JPanel {
                 .addComponent(jRadioResponsable)
                 .addGap(10, 10, 10)
                 .addComponent(jRadioFecha)
+                .addGap(10, 10, 10)
+                .addComponent(jRadioCerrar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelRadiosLayout.setVerticalGroup(
@@ -744,7 +761,8 @@ public class PanelTicketEnProcesoAdmin extends javax.swing.JPanel {
                     .addComponent(jRadioRedireccioinar)
                     .addComponent(jRadioPrioridad)
                     .addComponent(jRadioResponsable)
-                    .addComponent(jRadioFecha))
+                    .addComponent(jRadioFecha)
+                    .addComponent(jRadioCerrar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1193,113 +1211,24 @@ public class PanelTicketEnProcesoAdmin extends javax.swing.JPanel {
             }
         }
 
-//        if (this.jRadioComentario.isSelected()) {
-//            if (this.jTextAreaComentario2.getText().equals("")) {
-//                JOptionPane.showMessageDialog(this, "Debe escribir un comentario", "ERROR", JOptionPane.ERROR_MESSAGE);
-//            } else {
-//                String comentarios = this.jTextAreaComentarios.getText() + "\n" + this.jTextAreaComentario2.getText();
-//                if (Controlador.obtenerInstancia().agregaComentario(this.codigoTicket, comentarios)) {
-//                    JOptionPane.showMessageDialog(this, "Comentario agregado con exito", "", JOptionPane.INFORMATION_MESSAGE);
-//
-//                    
-//                    Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
-//                            VentanaLogin.correo, "Ticket", "Agregó comentario al ticket " + this.codigoTicket);
-//                    
-//                } else {
-//                    JOptionPane.showMessageDialog(this, "No se pudo agregar el comentario", "ERRO", JOptionPane.ERROR_MESSAGE);
-//                }
-//            }
-//        }
-//        if (this.jRadioFecha.isSelected()) {
-//            if (this.jTextAnnoDesde.getText().equals("") || this.jTextMesDesde.getText().equals("")
-//                    || this.jTextDiaDesde.getText().equals("")) {
-//                JOptionPane.showMessageDialog(this, "Faltan datos", "ERROR", JOptionPane.ERROR_MESSAGE);
-//            } else {
-//                String año, mes, dia;
-//                año = this.jTextAnnoDesde.getText();
-//                mes = this.jTextMesDesde.getText();
-//                dia = this.jTextDiaDesde.getText();
-//                if (!año.contains("a") && !mes.contains("m") && !dia.contains("d")) {
-//                    String fecha = año + "-" + mes + "-" + dia;
-//                    if (Controlador.obtenerInstancia().cambiaFechaSolucion(this.codigoTicket, fecha)) {
-//                        JOptionPane.showMessageDialog(this, "Fecha de solución cambiada con éxito", "", JOptionPane.INFORMATION_MESSAGE);
-//
-//         
-//                        Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
-//                                VentanaLogin.correo, "Ticket", "Cambió fecha de solución al ticket " + this.codigoTicket);
-//                       
-//                    } else {
-//                        JOptionPane.showMessageDialog(this, "No se pudo cambiar la fecha de solución", "ERROR", JOptionPane.ERROR_MESSAGE);
-//                    }
-//                } else {
-//                    JOptionPane.showMessageDialog(this, "Fecha de solución invalida", "ERROR", JOptionPane.ERROR_MESSAGE);
-//                }
-//
-//            }
-//        }
-//        if (this.jRadioPrioridad.isSelected()) {
-//            if (this.jComboBoxPrioridad.getSelectedIndex() == 0) {
-//                JOptionPane.showMessageDialog(this, "Debe seleccionar la prioridad", "ERROR", JOptionPane.ERROR_MESSAGE);
-//            } else {
-//                int _prioridad = 0;
-//                String seleccion = this.jComboBoxPrioridad.getSelectedItem().toString();
-//                switch (seleccion) {
-//                    case "Baja":
-//                        _prioridad = 1;
-//                        break;
-//                    case "Media":
-//                        _prioridad = 2;
-//                        break;
-//                    case "Alta":
-//                        _prioridad = 3;
-//                        break;
-//                }
-//                if (Controlador.obtenerInstancia().cambiaPrioridad(this.codigoTicket, _prioridad)) {
-//                    JOptionPane.showMessageDialog(this, "Prioridad cambiada con éxito", "", JOptionPane.INFORMATION_MESSAGE);
-//
-//                    
-//                    Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
-//                            VentanaLogin.correo, "Ticket", "Cambió prioridad al ticket " + this.codigoTicket);
-//                    
-//                } else {
-//                    JOptionPane.showMessageDialog(this, "No se pudo cambiar la prioridad", "ERROR", JOptionPane.ERROR_MESSAGE);
-//                }
-//            }
-//        }
-//        if (this.jRadioRedireccioinar.isSelected()) {
-//            if (this.jComboBoxArea2.getSelectedIndex() == 0) {
-//                JOptionPane.showMessageDialog(this, "Debe seleccionar el área de destino", "ERROR", JOptionPane.ERROR_MESSAGE);
-//            } else {
-//                String _area = this.jComboBoxArea2.getSelectedItem().toString();
-//                if (Controlador.obtenerInstancia().redireccionarTicket(this.codigoTicket, _area)) {
-//                    JOptionPane.showMessageDialog(this, "Ticket redireccionado con éxito", "", JOptionPane.INFORMATION_MESSAGE);
-//
-//                    
-//                    Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
-//                            VentanaLogin.correo, "Ticket", "Redireccionó el ticket " + this.codigoTicket);
-//                    
-//                } else {
-//                    JOptionPane.showMessageDialog(this, "No se ha podido redireccionar el ticket", "ERROR", JOptionPane.ERROR_MESSAGE);
-//                }
-//            }
-//        }
-//        if (this.jRadioResponsable.isSelected()) {
-//            if (this.jTextResponsable.getText().equals("")) {
-//                JOptionPane.showMessageDialog(this, "Debe escribir el correo del responsable", "ERROR", JOptionPane.ERROR_MESSAGE);
-//            } else {
-//                String correo = Controlador.obtenerInstancia().recortaCorreo(this.jTextResponsable.getText()) + "@castillo.cr";
-//                if (Controlador.obtenerInstancia().asignarResponsable(this.codigoTicket, correo)) {
-//                    JOptionPane.showMessageDialog(this, "Responsable asignado con éxito", "", JOptionPane.INFORMATION_MESSAGE);
-//
-//                    
-//                    Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
-//                            VentanaLogin.correo, "Ticket", "Asignó responsable al ticket " + this.codigoTicket);
-//                    
-//                } else {
-//                    JOptionPane.showMessageDialog(this, "No se ha podido asignar el responsable", "", JOptionPane.ERROR_MESSAGE);
-//                }
-//            }
-//        }
+ if (this.jRadioCerrar.isSelected()) {
+            String contrasenna;
+            if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, " ¿Realmente desea cerrar el ticket " + this.codigoTicket + "?", null, JOptionPane.YES_NO_OPTION)) {
+                contrasenna = JOptionPane.showInputDialog("Digite su contraseña:");
+                if (Controlador.obtenerInstancia().verificarContrasenna(VentanaLogin.correo, contrasenna)) {
+                    if (Controlador.obtenerInstancia().cerrarTicket(this.codigoTicket)) {
+                        JOptionPane.showMessageDialog(this, "   El ticket ha sido cerrado con éxito", "Ticket cerrado",
+                                JOptionPane.PLAIN_MESSAGE);
+//                    PanelBandejaArea.obtenerInstancia().llenarBandeja();
+                    } else {
+                        JOptionPane.showMessageDialog(this, "   No se pudo cerrar el ticket", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
+
+                } else {
+                    JOptionPane.showMessageDialog(this, "   No se pudo cerrar el ticket, constraseña incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
     }//GEN-LAST:event_btnAplicarCambiosActionPerformed
 
     private void actualizarInformacion(int codi) {
@@ -1419,6 +1348,7 @@ public class PanelTicketEnProcesoAdmin extends javax.swing.JPanel {
     private javax.swing.JPanel jPanelRadios;
     private javax.swing.JPanel jPanelResponsable;
     private javax.swing.JPanel jPanelTabla;
+    private javax.swing.JRadioButton jRadioCerrar;
     private javax.swing.JRadioButton jRadioComentario;
     private javax.swing.JRadioButton jRadioFecha;
     private javax.swing.JRadioButton jRadioPrioridad;
