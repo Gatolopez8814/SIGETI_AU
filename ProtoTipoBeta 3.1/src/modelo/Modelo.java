@@ -57,8 +57,9 @@ public class Modelo {
                 }
             }
         } catch (Exception e) {
-          JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -83,7 +84,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -101,7 +102,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
@@ -119,7 +120,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
@@ -141,7 +142,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -158,7 +159,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
@@ -176,7 +177,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
@@ -194,7 +195,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
@@ -212,7 +213,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
@@ -243,7 +244,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
@@ -284,7 +285,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -328,7 +329,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -374,7 +375,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -412,7 +413,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -431,7 +432,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -447,7 +448,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
@@ -490,7 +491,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -507,7 +508,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
@@ -542,7 +543,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -566,7 +567,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -589,7 +590,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -612,7 +613,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -635,7 +636,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -659,7 +660,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -681,7 +682,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -706,7 +707,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -731,7 +732,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -765,7 +766,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -798,7 +799,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -832,7 +833,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -865,7 +866,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -899,7 +900,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -932,7 +933,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -949,7 +950,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
@@ -984,7 +985,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -1017,7 +1018,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -1034,7 +1035,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
@@ -1052,7 +1053,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
@@ -1076,7 +1077,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -1099,7 +1100,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -1133,8 +1134,8 @@ public class Modelo {
                 tBandeja.add(_ticket);
             }
         } catch (Exception e) {
-           JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -1156,7 +1157,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -1177,8 +1178,8 @@ public class Modelo {
                 cantidad = resultado.getInt(1);
             }
         } catch (Exception e) {
-           JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -1201,7 +1202,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -1225,7 +1226,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -1249,7 +1250,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -1274,7 +1275,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -1299,7 +1300,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -1322,7 +1323,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -1346,7 +1347,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -1364,7 +1365,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
@@ -1384,7 +1385,7 @@ public class Modelo {
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
@@ -1404,7 +1405,7 @@ public class Modelo {
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
@@ -1424,7 +1425,7 @@ public class Modelo {
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
@@ -1442,7 +1443,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
@@ -1460,7 +1461,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
@@ -1479,7 +1480,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
@@ -1500,7 +1501,7 @@ public class Modelo {
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -1520,7 +1521,7 @@ public class Modelo {
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -1554,7 +1555,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE); 
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -1590,7 +1591,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -1626,7 +1627,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE); 
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -1642,7 +1643,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
@@ -1659,7 +1660,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
@@ -1676,7 +1677,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
@@ -1693,7 +1694,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
@@ -1711,7 +1712,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);            
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
@@ -1729,7 +1730,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);             
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
@@ -1757,7 +1758,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -1791,7 +1792,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -1826,7 +1827,7 @@ public class Modelo {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
         }
@@ -1881,8 +1882,7 @@ public class Modelo {
 //
 //    }//----------------------------------------------------------------------------- FIN consultaTodosTicket()
 //      
-  
-  
+
     public ArrayList<String> consultaReporteArea(String area) {
 
         ArrayList< String> tEncontrados = new ArrayList<>();
@@ -1894,63 +1894,25 @@ public class Modelo {
             Statement sentencia = null;
             sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
 
-           resultado = sentencia.executeQuery("select  (select descripcion from estadoTicket a where a.consecutivoEstado = ticket.consecEstado), count(0) from ticket "
+            resultado = sentencia.executeQuery("select  (select descripcion from estadoTicket a where a.consecutivoEstado = ticket.consecEstado), count(0) from ticket "
                     + "where ticket.areaDestino = '" + area + "' "
                     + "group by  ticket.consecEstado;");
             if (resultado != null) {
             }
             while (resultado.next()) {
-                
 
-                 estado = resultado.getString(1);
-              
+                estado = resultado.getString(1);
+
                 cant = resultado.getInt(2);
                 //tEncontrados=resultado.getInt(2);
-               tEncontrados.add(estado);
-                 tEncontrados.add(String.valueOf(cant));
+                tEncontrados.add(estado);
+                tEncontrados.add(String.valueOf(cant));
             }
 //            cant ="10";
-            
+
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> consultaReporteArea()");
-            e.printStackTrace();
-        } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
-        }
-        return tEncontrados;
-    }//---------------------------------------------------------------------------------------FIN ConsultaAreaTickets
-    
-     public ArrayList<String> consultaReporteFecha(String fecha1, String fecha2) {
-
-        ArrayList< String> tEncontrados = new ArrayList<>();
-        Ticket _ticket;
-        String estado;
-         int cant;
-        ResultSet resultado = null;
-        try {
-            Statement sentencia = null;
-            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
-
-           resultado = sentencia.executeQuery("select  (select descripcion from estadoTicket a where a.consecutivoEstado = ticket.consecEstado), count(0) from ticket "
-                    + "where ticket.fechaCreacion >= '" + fecha1 + " 00:00:00' and  ticket.fechaCreacion <= '" + fecha2 + " 23:59:59' "
-                    + "group by  ticket.consecEstado;");
-            if (resultado != null) {
-            }
-            while (resultado.next()) {
-                
-
-                 estado = resultado.getString(1);
-              
-                cant = resultado.getInt(2);
-                //tEncontrados=resultado.getInt(2);
-               tEncontrados.add(estado);
-                 tEncontrados.add(String.valueOf(cant));
-            }
-            
-        } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> consultaReporteArea()");
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
             System.out.println("Se ha cerrado la conexion");
@@ -1958,45 +1920,7 @@ public class Modelo {
         return tEncontrados;
     }//---------------------------------------------------------------------------------------FIN ConsultaAreaTickets
 
-
-     public ArrayList<String> consultaReporteHoras(String hora1, String hora2) {
-
-        ArrayList< String> tEncontrados = new ArrayList<>();
-        Ticket _ticket;
-        String estado;
-         int cant;
-        ResultSet resultado = null;
-        try {
-            Statement sentencia = null;
-            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
-
-           resultado = sentencia.executeQuery("select  (select descripcion from estadoTicket a where a.consecutivoEstado = ticket.consecEstado), count(0) from ticket "
-                    + "where ticket.hora between '" + hora1 + "' and '" + hora2 
-                    + "' group by  ticket.consecEstado;");
-            if (resultado != null) {
-            }
-            while (resultado.next()) {
-                
-
-                 estado = resultado.getString(1);
-              
-               cant = resultado.getInt(2);
-                //tEncontrados=resultado.getInt(2);
-               tEncontrados.add(estado);
-                 tEncontrados.add(String.valueOf(cant));
-            }
-           
-        } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> consultaReporteArea()");
-            e.printStackTrace();
-        } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
-        }
-        return tEncontrados;
-    }//---------------------------------------------------------------------------------------FIN ConsultaAreaTickets
-
-      public ArrayList<String> consultaReportesMiArea(String area, String _correo) {
+    public ArrayList<String> consultaReporteFecha(String fecha1, String fecha2) {
 
         ArrayList< String> tEncontrados = new ArrayList<>();
         Ticket _ticket;
@@ -2007,64 +1931,135 @@ public class Modelo {
             Statement sentencia = null;
             sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
 
-           resultado = sentencia.executeQuery("select  (select descripcion from estadoTicket a where a.consecutivoEstado = ticket.consecEstado), count(0) from ticket "
-                    + "where correousuario = '" + _correo + "' and ticket.areaDestino = '" + area + "' " 
+            resultado = sentencia.executeQuery("select  (select descripcion from estadoTicket a where a.consecutivoEstado = ticket.consecEstado), count(0) from ticket "
+                    + "where ticket.fechaCreacion >= '" + fecha1 + " 00:00:00' and  ticket.fechaCreacion <= '" + fecha2 + " 23:59:59' "
                     + "group by  ticket.consecEstado;");
             if (resultado != null) {
             }
             while (resultado.next()) {
-                
 
-                 estado = resultado.getString(1);
-              
+                estado = resultado.getString(1);
+
                 cant = resultado.getInt(2);
                 //tEncontrados=resultado.getInt(2);
-               tEncontrados.add(estado);
-                 tEncontrados.add(String.valueOf(cant));
+                tEncontrados.add(estado);
+                tEncontrados.add(String.valueOf(cant));
             }
-//            cant ="10";
-            
+
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> consultaReportesMiArea()");
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
             System.out.println("Se ha cerrado la conexion");
         }
         return tEncontrados;
     }//---------------------------------------------------------------------------------------FIN ConsultaAreaTickets
-    
-      
-     public ArrayList<String> consultaReporteHorasArea(String hora1, String hora2, String _correo) {
+
+    public ArrayList<String> consultaReporteHoras(String hora1, String hora2) {
 
         ArrayList< String> tEncontrados = new ArrayList<>();
         Ticket _ticket;
         String estado;
-         int cant;
+        int cant;
         ResultSet resultado = null;
         try {
             Statement sentencia = null;
             sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
 
-           resultado = sentencia.executeQuery("select  (select descripcion from estadoTicket a where a.consecutivoEstado = ticket.consecEstado), count(0) from ticket "
-                    + "where correousuario = '" + _correo + "' and ticket.hora between '" + hora1 + "' and '" + hora2 
+            resultado = sentencia.executeQuery("select  (select descripcion from estadoTicket a where a.consecutivoEstado = ticket.consecEstado), count(0) from ticket "
+                    + "where ticket.hora between '" + hora1 + "' and '" + hora2
                     + "' group by  ticket.consecEstado;");
             if (resultado != null) {
             }
             while (resultado.next()) {
-                
 
-                 estado = resultado.getString(1);
-              
-               cant = resultado.getInt(2);
+                estado = resultado.getString(1);
+
+                cant = resultado.getInt(2);
                 //tEncontrados=resultado.getInt(2);
-               tEncontrados.add(estado);
-                 tEncontrados.add(String.valueOf(cant));
+                tEncontrados.add(estado);
+                tEncontrados.add(String.valueOf(cant));
             }
-           
+
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> consultaReporteArea()");
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            ConexionMySql.obtenerInstancia().desconectar();
+            System.out.println("Se ha cerrado la conexion");
+        }
+        return tEncontrados;
+    }//---------------------------------------------------------------------------------------FIN ConsultaAreaTickets
+
+    public ArrayList<String> consultaReportesMiArea(String area, String _correo) {
+
+        ArrayList< String> tEncontrados = new ArrayList<>();
+        Ticket _ticket;
+        String estado;
+        int cant;
+        ResultSet resultado = null;
+        try {
+            Statement sentencia = null;
+            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
+
+            resultado = sentencia.executeQuery("select  (select descripcion from estadoTicket a "
+                    + "where a.consecutivoEstado = ticket.consecEstado), count(0) from ticket "
+                    + "where ticket.areaDestino = '" + area + "' "
+                    + "group by  ticket.consecEstado;");
+            if (resultado != null) {
+            }
+            while (resultado.next()) {
+
+                estado = resultado.getString(1);
+                cant = resultado.getInt(2);
+                
+                //tEncontrados=resultado.getInt(2);
+                tEncontrados.add(estado);
+                tEncontrados.add(String.valueOf(cant));
+            }
+//            cant ="10";
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            ConexionMySql.obtenerInstancia().desconectar();
+            System.out.println("Se ha cerrado la conexion");
+        }
+        System.err.println(tEncontrados.size());
+        return tEncontrados;
+    }//---------------------------------------------------------------------------------------FIN ConsultaAreaTickets
+
+    public ArrayList<String> consultaReporteHorasArea(String hora1, String hora2, String _correo) {
+
+        ArrayList< String> tEncontrados = new ArrayList<>();
+        Ticket _ticket;
+        String estado;
+        int cant;
+        ResultSet resultado = null;
+        try {
+            Statement sentencia = null;
+            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
+
+            resultado = sentencia.executeQuery("select  (select descripcion from estadoTicket a where a.consecutivoEstado = ticket.consecEstado), count(0) from ticket "
+                    + "where correousuario = '" + _correo + "' and ticket.hora between '" + hora1 + "' and '" + hora2
+                    + "' group by  ticket.consecEstado;");
+            if (resultado != null) {
+            }
+            while (resultado.next()) {
+
+                estado = resultado.getString(1);
+
+                cant = resultado.getInt(2);
+                //tEncontrados=resultado.getInt(2);
+                tEncontrados.add(estado);
+                tEncontrados.add(String.valueOf(cant));
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
             System.out.println("Se ha cerrado la conexion");
@@ -2077,36 +2072,35 @@ public class Modelo {
         ArrayList< String> tEncontrados = new ArrayList<>();
         Ticket _ticket;
         String estado;
-         int cant;
+        int cant;
         ResultSet resultado = null;
         try {
             Statement sentencia = null;
             sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
 
-           resultado = sentencia.executeQuery("select  (select descripcion from estadoTicket a where a.consecutivoEstado = ticket.consecEstado), count(0) from ticket "
+            resultado = sentencia.executeQuery("select  (select descripcion from estadoTicket a where a.consecutivoEstado = ticket.consecEstado), count(0) from ticket "
                     + "where correousuario = '" + _correo + "' and ticket.fechaCreacion >= '" + fecha1 + " 00:00:00' and  ticket.fechaCreacion <= '" + fecha2 + " 23:59:59' "
                     + "group by  ticket.consecEstado;");
             if (resultado != null) {
             }
             while (resultado.next()) {
-                
 
-                 estado = resultado.getString(1);
-              
+                estado = resultado.getString(1);
+
                 cant = resultado.getInt(2);
                 //tEncontrados=resultado.getInt(2);
-               tEncontrados.add(estado);
-                 tEncontrados.add(String.valueOf(cant));
+                tEncontrados.add(estado);
+                tEncontrados.add(String.valueOf(cant));
             }
-            
+
         } catch (Exception e) {
-            System.out.println("Error Exception from Modelo -> consultaReporteArea()");
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
             System.out.println("Se ha cerrado la conexion");
         }
         return tEncontrados;
     }//---------------------------------------------------------------------------------------FIN ConsultaAreaTickets
- 
+
 }

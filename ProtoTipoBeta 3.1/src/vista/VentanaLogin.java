@@ -172,9 +172,7 @@ public class VentanaLogin extends JFrame {//miniVentana donde se ingresa a la ap
                 ArrayList<Integer> valores;
                 valores = Controlador.obtenerInstancia().verificaLoggin(txtCorreo.getText(), String.valueOf(txtContrasenna.getPassword()));
                 int tipo = valores.get(0);
-                System.err.println(tipo);
                 int estado = valores.get(1);
-                System.err.println(estado);
                 switch (estado) {
                     case 0:
                         JOptionPane.showMessageDialog(null, "El usuario ha sido bloqueado y no tiene acceso a SIGETI", "ERROR", JOptionPane.ERROR_MESSAGE);

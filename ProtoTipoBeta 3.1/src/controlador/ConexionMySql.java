@@ -23,7 +23,7 @@ public class ConexionMySql {
         boolean ok = false;
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            conexion = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/sigeti", "root", "manager");
+            conexion = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/sigeti", "root", "root");
             if (conexion != null) {
                 ok = true;
             } else {

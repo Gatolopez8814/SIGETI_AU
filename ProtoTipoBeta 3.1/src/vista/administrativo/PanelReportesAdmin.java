@@ -24,8 +24,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import com.itextpdf.text.Document;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import modelo.Ticket;
 import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
@@ -35,23 +38,21 @@ import vista.VentanaLogin;
 public class PanelReportesAdmin extends javax.swing.JPanel {
 
     private PanelReportesAdmin() {
-
         initComponents();
-        this.limpiarCampos();
-        ocultarComponentes();
-        ajustarEventos();
-
     }//----------------------------------------------------------------------------- FIN Constructor()
 
     public static PanelReportesAdmin obtenerInstancia() {//para garantizar hay solo una instancia
         if (instancia == null) {
             instancia = new PanelReportesAdmin();
         }
+        instancia.limpiarCampos();
+        instancia.ocultarComponentes();
+        instancia.ajustarEventos();
         return instancia;
     }//----------------------------------------------------------------------------- FIN obtenerInstancia()
 
     private void ajustarEventos() {
-        
+
     }
 
     public void soloNumeros(JTextField txt) {//para validar que en la fecha solo digite numeros
@@ -68,7 +69,6 @@ public class PanelReportesAdmin extends javax.swing.JPanel {
     private void ocultarComponentes() {
         this.jPanelArea.setVisible(false);
         this.btnReporte.setEnabled(false);
-        this.btnLimpiar.setEnabled(false);
         this.jPanelRangoFechas.setVisible(false);
         this.jPanelTabla3.setVisible(false);
         this.jPanelRangoHoras.setVisible(false);
@@ -90,12 +90,9 @@ public class PanelReportesAdmin extends javax.swing.JPanel {
         PanelBotones = new javax.swing.JPanel();
         btnReporte = new javax.swing.JButton();
         btnCancelarReporte = new javax.swing.JButton();
-        btnLimpiar = new javax.swing.JButton();
         jPanelTabla3 = new javax.swing.JPanel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        tablaReporte = new javax.swing.JTable();
+        jPanel2 = new javax.swing.JPanel();
         btnExportar = new javax.swing.JButton();
-        jLabelDesde3 = new javax.swing.JLabel();
         jPanelRangoFechas = new javax.swing.JPanel();
         jLabelDesde = new javax.swing.JLabel();
         jLabelGuion1 = new javax.swing.JLabel();
@@ -225,13 +222,6 @@ public class PanelReportesAdmin extends javax.swing.JPanel {
             }
         });
 
-        btnLimpiar.setText("Limpiar campos");
-        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLimpiarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout PanelBotonesLayout = new javax.swing.GroupLayout(PanelBotones);
         PanelBotones.setLayout(PanelBotonesLayout);
         PanelBotonesLayout.setHorizontalGroup(
@@ -240,10 +230,8 @@ public class PanelReportesAdmin extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(btnReporte)
                 .addGap(65, 65, 65)
-                .addComponent(btnLimpiar)
-                .addGap(65, 65, 65)
                 .addComponent(btnCancelarReporte)
-                .addContainerGap(391, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PanelBotonesLayout.setVerticalGroup(
             PanelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -251,85 +239,52 @@ public class PanelReportesAdmin extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(PanelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelarReporte)
-                    .addComponent(btnReporte)
-                    .addComponent(btnLimpiar))
+                    .addComponent(btnReporte))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanelTabla3.setBackground(new java.awt.Color(226, 221, 205));
-        jPanelTabla3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(158, 143, 123), 10));
+        jPanelTabla3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        tablaReporte.setBackground(new java.awt.Color(201, 201, 201));
-        tablaReporte.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        tablaReporte.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "Estado", " Cantidad"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
+        jPanel2.setBackground(new java.awt.Color(255, 204, 102));
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tablaReporte.setToolTipText("");
-        tablaReporte.setAlignmentX(2.0F);
-        tablaReporte.setAlignmentY(2.0F);
-        tablaReporte.setAutoscrolls(false);
-        tablaReporte.setSelectionForeground(new java.awt.Color(102, 102, 102));
-        tablaReporte.getTableHeader().setReorderingAllowed(false);
-        jScrollPane5.setViewportView(tablaReporte);
-        if (tablaReporte.getColumnModel().getColumnCount() > 0) {
-            tablaReporte.getColumnModel().getColumn(0).setResizable(false);
-            tablaReporte.getColumnModel().getColumn(1).setResizable(false);
-        }
-
-        btnExportar.setText("Exportar a PDF");
+        btnExportar.setText("Exportar gráfico a PDF");
         btnExportar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExportarActionPerformed(evt);
             }
         });
 
-        jLabelDesde3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabelDesde3.setText("Tickets según estado");
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnExportar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnExportar))
+        );
 
         javax.swing.GroupLayout jPanelTabla3Layout = new javax.swing.GroupLayout(jPanelTabla3);
         jPanelTabla3.setLayout(jPanelTabla3Layout);
         jPanelTabla3Layout.setHorizontalGroup(
             jPanelTabla3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelTabla3Layout.createSequentialGroup()
-                .addGap(105, 105, 105)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnExportar)
-                .addGap(119, 119, 119))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelTabla3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabelDesde3, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(251, 251, 251))
+            .addGroup(jPanelTabla3Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(661, Short.MAX_VALUE))
         );
         jPanelTabla3Layout.setVerticalGroup(
             jPanelTabla3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelTabla3Layout.createSequentialGroup()
-                .addComponent(jLabelDesde3, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanelTabla3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelTabla3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnExportar)
-                        .addGap(69, 69, 69))
-                    .addGroup(jPanelTabla3Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(30, Short.MAX_VALUE))))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 301, Short.MAX_VALUE))
         );
 
         jPanelRangoFechas.setBackground(new java.awt.Color(158, 143, 123));
@@ -454,7 +409,7 @@ public class PanelReportesAdmin extends javax.swing.JPanel {
                 .addComponent(jLabelGuion8, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15)
                 .addComponent(comboMinutoFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(179, Short.MAX_VALUE))
         );
         jPanelRangoHorasLayout.setVerticalGroup(
             jPanelRangoHorasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -477,17 +432,15 @@ public class PanelReportesAdmin extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanelSeleccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanelArea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(PanelBotones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanelRangoFechas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanelRangoHoras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(jPanelTabla3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanelTabla3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelSeleccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelArea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(PanelBotones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelRangoFechas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelRangoHoras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -507,7 +460,7 @@ public class PanelReportesAdmin extends javax.swing.JPanel {
                 .addComponent(PanelBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11)
                 .addComponent(jPanelTabla3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(167, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -522,14 +475,14 @@ public class PanelReportesAdmin extends javax.swing.JPanel {
             this.btnReporte.setEnabled(true);
         }
         if (ComboBusqueda.getSelectedItem().equals("Rango de horas")) {
-            this.cargarjComboArea();
             jPanelRangoHoras.setVisible(true);
             this.btnReporte.setEnabled(true);
         }
         if (ComboBusqueda.getSelectedItem().equals("Según área especifica")) {
+            this.cargarjComboArea();
             jPanelArea.setVisible(true);
             this.btnReporte.setEnabled(true);
-        }    
+        }
     }//GEN-LAST:event_ComboBusquedaActionPerformed
 
     private void cargarjComboArea() {
@@ -550,24 +503,15 @@ public class PanelReportesAdmin extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnCancelarReporteActionPerformed
 
-    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        this.limpiarCampos();
-    }//GEN-LAST:event_btnLimpiarActionPerformed
-
     private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
-        this.jPanelTabla3.setVisible(true);
-        modelAux = (DefaultTableModel) tablaReporte.getModel();
+
         String a = (String) jComboArea.getSelectedItem();
-        System.out.println((String) jComboArea.getSelectedItem());
-        while (modelAux.getRowCount() > 0) {
-            modelAux.removeRow(0);
-        }
         if (ComboBusqueda.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Opción de busqueda incorrecta", "ERROR",
                     JOptionPane.ERROR_MESSAGE);
         } else if (ComboBusqueda.getSelectedItem().equals("Según área especifica")) {
             if (jComboArea.getSelectedItem().equals("Seleccione aquí")) {
-                JOptionPane.showMessageDialog(null, "Seleccione un area.", "ERROR",
+                JOptionPane.showMessageDialog(null, "Debe seleccionar un área.", "ERROR",
                         JOptionPane.ERROR_MESSAGE);
             } else {
                 ArrayList<String> aux = Controlador.obtenerInstancia().consultaTodosReporteArea(a);
@@ -575,72 +519,56 @@ public class PanelReportesAdmin extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(null, "No se han encontrado tickets referentes a esta area.", "ERROR",
                             JOptionPane.ERROR_MESSAGE);
                 } else {
-                    int i = 0;
-                    while (i < aux.size()) {
-                        modelAux.insertRow(modelAux.getRowCount(), new Object[]{
-                            aux.get(i), aux.get(i + 1)});
-                        i = i + 2;
-//                        jTable1.setModel(modelAux);
-                    }
+                    jPanelArea.setVisible(false);
+                    ChartPanel myChart = new ChartPanel(generateBarChartArea());
+                    myChart.setMouseWheelEnabled(true);
+                    jPanelTabla3.setLayout(new BorderLayout());
+                    jPanelTabla3.add(myChart, BorderLayout.CENTER);
+                    jPanelTabla3.validate();
+                    this.jPanelTabla3.setVisible(true);
+
+                    Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
+                            VentanaLogin.correo, "Ticket", "Consultó reporte área");
                 }
-                this.tablaReporte.revalidate();
-                this.tablaReporte.repaint();
-                this.tablaReporte.setVisible(true);
-                this.btnLimpiar.setEnabled(true);
             }
 
         } else if (ComboBusqueda.getSelectedItem().equals("Rango de horas")) {
 
-            if (this.comboHoraInicial.getSelectedIndex() != 0
-                            && this.comboMinutoInicial.getSelectedIndex() != 0
-                            && this.comboHoraFinal.getSelectedIndex() != 0
-                            && this.comboMinutoFinal.getSelectedIndex() != 0) {
-                        if (Integer.parseInt(comboHoraInicial.getSelectedItem().toString()) > Integer.parseInt(comboHoraFinal.getSelectedItem().toString())) {
-                            JOptionPane.showMessageDialog(null, "Rango de horas erroneo.", "ERROR",
-                                    JOptionPane.ERROR_MESSAGE);
-                        }else
-                         if ((Integer.parseInt(comboHoraInicial.getSelectedItem().toString()) == 
-                                 Integer.parseInt(comboHoraFinal.getSelectedItem().toString()))&&
-                                 (Integer.parseInt(comboMinutoInicial.getSelectedItem().toString()) > 
-                                 Integer.parseInt(comboMinutoFinal.getSelectedItem().toString()))) {
-                            JOptionPane.showMessageDialog(null, "Rango de horas erroneo.", "ERROR",
-                                    JOptionPane.ERROR_MESSAGE);
-                        }else {
-                            hora1 = this.comboHoraInicial.getSelectedItem().toString() + ":"
-                                    + this.comboMinutoInicial.getSelectedItem().toString() + ":00";
-                            hora2 = this.comboHoraFinal.getSelectedItem().toString() + ":"
-                                    + this.comboMinutoFinal.getSelectedItem().toString() + ":59";
-                            System.err.println(hora1 + "   " + hora2);
-            System.err.println(hora1 + "  " + hora2);
-          //  if (isHoraValida(hora1) && isHoraValida(hora2)) {
-                ArrayList<String> aux = Controlador.obtenerInstancia().consultaTodosReporteHoras(hora1, hora2);
-
-                if (aux.isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "No se han encontrado tickets en este rango de horas.", "ERROR",
+            if (this.comboHoraInicial.getSelectedIndex() != 0 && this.comboMinutoInicial.getSelectedIndex() != 0
+                    && this.comboHoraFinal.getSelectedIndex() != 0 && this.comboMinutoFinal.getSelectedIndex() != 0) {
+                if (Integer.parseInt(comboHoraInicial.getSelectedItem().toString()) > Integer.parseInt(comboHoraFinal.getSelectedItem().toString())) {
+                    JOptionPane.showMessageDialog(null, "Rango de horas erroneo.", "ERROR",
+                            JOptionPane.ERROR_MESSAGE);
+                } else if ((Integer.parseInt(comboHoraInicial.getSelectedItem().toString()) == Integer.parseInt(comboHoraFinal.getSelectedItem().toString()))
+                        && (Integer.parseInt(comboMinutoInicial.getSelectedItem().toString()) > Integer.parseInt(comboMinutoFinal.getSelectedItem().toString()))) {
+                    JOptionPane.showMessageDialog(null, "Rango de horas erroneo.", "ERROR",
                             JOptionPane.ERROR_MESSAGE);
                 } else {
-                    int i = 0;
-                    while (i < aux.size()) {
-                        modelAux.insertRow(modelAux.getRowCount(), new Object[]{
-                            aux.get(i), aux.get(i + 1)});
-                        i = i + 2;
-//                        jTable1.setModel(modelAux);
-                    }
+                    hora1 = this.comboHoraInicial.getSelectedItem().toString() + ":" + this.comboMinutoInicial.getSelectedItem().toString() + ":00";
+                    hora2 = this.comboHoraFinal.getSelectedItem().toString() + ":" + this.comboMinutoFinal.getSelectedItem().toString() + ":59";
+                    
+                    ArrayList<String> aux = Controlador.obtenerInstancia().consultaTodosReporteHoras(hora1, hora2);
+                    if (aux.isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "No se han encontrado tickets en este rango de horas.", "ERROR",
+                                JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        jPanelRangoHoras.setVisible(false);
+                        ChartPanel myChart = new ChartPanel(generateBarChartHoras());
+                        myChart.setMouseWheelEnabled(true);
+                        jPanelTabla3.setLayout(new BorderLayout());
+                        jPanelTabla3.add(myChart, BorderLayout.CENTER);
+                        jPanelTabla3.validate();
+                        this.jPanelTabla3.setVisible(true);
 
-//                    Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
-//                            VentanaLogin.correo, "Ticket", "Consultó historial");
+                        Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
+                                VentanaLogin.correo, "Ticket", "Consultó reporte horas");
+                    }
                 }
-                tablaReporte.setVisible(true);
-                tablaReporte.revalidate();
-                tablaReporte.repaint();
-                this.btnLimpiar.setEnabled(true);
-                // this.jPanelTabla3.setVisible(true);
-//            } else {
-//                JOptionPane.showMessageDialog(null, "Horas invalidas.", "ERROR",
-//                        JOptionPane.ERROR_MESSAGE);
+            }else{
+                JOptionPane.showMessageDialog(null, "Debe seleccionar las horas", "ERROR",
+                            JOptionPane.ERROR_MESSAGE);
             }
-                         }
-        } else {
+        } else {//inicio else fechas
             String dia1, mes1, anno1, dia2, mes2, anno2;
             dia1 = this.jComboDiaDesde.getSelectedItem().toString();
             mes1 = String.valueOf(this.jComboMesDesde.getSelectedIndex() + 1);
@@ -658,39 +586,29 @@ public class PanelReportesAdmin extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(null, "No se han encontrado tickets en este rango de fechas.", "ERROR",
                             JOptionPane.ERROR_MESSAGE);
                 } else {
-                    int i = 0;
-                    while (i < aux.size()) {
-                        modelAux.insertRow(modelAux.getRowCount(), new Object[]{
-                            aux.get(i), aux.get(i + 1)});
-                        i = i + 2;
-//                        jTable1.setModel(modelAux);
-                    }
+                    jPanelRangoFechas.setVisible(false);
+                    ChartPanel myChart = new ChartPanel(generateBarChartFechas());
+                    myChart.setMouseWheelEnabled(true);
+                    jPanelTabla3.setLayout(new BorderLayout());
+                    jPanelTabla3.add(myChart, BorderLayout.CENTER);
+                    jPanelTabla3.validate();
+                    this.jPanelTabla3.setVisible(true);
 
                     Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
-                            VentanaLogin.correo, "Ticket", "Consultó historial");
-
+                            VentanaLogin.correo, "Ticket", "Consultó reporte fechas");
                 }
-                tablaReporte.setVisible(true);
-                tablaReporte.revalidate();
-                tablaReporte.repaint();
-                // this.jPanelTabla3.setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(null, "Fechas invalidas.", "ERROR",
                         JOptionPane.ERROR_MESSAGE);
             }
-
         }//fin else fechas
-
-
     }//GEN-LAST:event_btnReporteActionPerformed
 
     private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
         String ruta = this.obtieneRuta();
         try {
             Document document = new Document();
-            System.out.println(ruta);
-            if (!ruta.contains(".pdf")) {//crea el archivo con extension pdf si no la trae ejemplo archivo.txt lo pasa a
-                //archivo.txt.pdf
+            if (!ruta.contains(".pdf")) {
                 ruta = ruta + ".pdf";
             }
             if (ComboBusqueda.getSelectedItem().equals("Según área especifica")) {
@@ -701,11 +619,12 @@ public class PanelReportesAdmin extends javax.swing.JPanel {
                 writeChartToPDF(document, generateBarChartHoras(), 400, 400, ruta);
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error al exportar el archivo",
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnExportarActionPerformed
 
-    private String obtieneRuta() {//obtiene la ruta que el usuario quiere con todo y nombre el archivo que le pone
+    private String obtieneRuta() {
         JFileChooser file = new JFileChooser();
         file.showSaveDialog(this);
         File ruta = file.getSelectedFile();
@@ -718,54 +637,102 @@ public class PanelReportesAdmin extends javax.swing.JPanel {
     public JFreeChart generateBarChartArea() {
         String a = (String) jComboArea.getSelectedItem();
         DefaultCategoryDataset dataSet = new DefaultCategoryDataset();
-        dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaTodosReporteArea(a).get(1)), "",
-                Controlador.obtenerInstancia().consultaTodosReporteArea(a).get(0));
+        int cantidadEstados = Controlador.obtenerInstancia().consultaTodosReporteArea(a).size();
+        switch (cantidadEstados) {
+            case 2:
+                dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaTodosReporteArea(a).get(1)), "",
+                        Controlador.obtenerInstancia().consultaTodosReporteArea(a).get(0));
+                break;
+            case 4:
+                dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaTodosReporteArea(a).get(1)), "",
+                        Controlador.obtenerInstancia().consultaTodosReporteArea(a).get(0));
+                dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaTodosReporteArea(a).get(3)), "",
+                        Controlador.obtenerInstancia().consultaTodosReporteArea(a).get(2));
+                break;
+            case 6:
+                dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaTodosReporteArea(a).get(1)), "",
+                        Controlador.obtenerInstancia().consultaTodosReporteArea(a).get(0));
+                dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaTodosReporteArea(a).get(3)), "",
+                        Controlador.obtenerInstancia().consultaTodosReporteArea(a).get(2));
+                dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaTodosReporteArea(a).get(5)), "",
+                        Controlador.obtenerInstancia().consultaTodosReporteArea(a).get(4));
+                break;
+            default:
+                JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                        "ERROR", JOptionPane.ERROR_MESSAGE);
+                break;
 
-        dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaTodosReporteArea(a).get(3)), "",
-                Controlador.obtenerInstancia().consultaTodosReporteArea(a).get(2));
-
-        dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaTodosReporteArea(a).get(5)), "",
-                Controlador.obtenerInstancia().consultaTodosReporteArea(a).get(4));
-
+        }
         JFreeChart chart = ChartFactory.createBarChart(
                 "Reporte de tickets del área " + a, "Estado de tickets", "Cantidad de tickets",
                 dataSet, PlotOrientation.VERTICAL, false, true, false);
-
         return chart;
     }
 
     public JFreeChart generateBarChartFechas() {
         DefaultCategoryDataset dataSet = new DefaultCategoryDataset();
-        dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaTodosReporteFecha(fecha1, fecha2).get(1)), "",
-                Controlador.obtenerInstancia().consultaTodosReporteFecha(fecha1, fecha2).get(0));
+        int cantidadEstados = Controlador.obtenerInstancia().consultaTodosReporteFecha(fecha1, fecha2).size();
+        switch (cantidadEstados) {
+            case 2:
+                dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaTodosReporteFecha(fecha1, fecha2).get(1)), "",
+                        Controlador.obtenerInstancia().consultaTodosReporteFecha(fecha1, fecha2).get(0));
+                break;
+            case 4:
+                dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaTodosReporteFecha(fecha1, fecha2).get(1)), "",
+                        Controlador.obtenerInstancia().consultaTodosReporteFecha(fecha1, fecha2).get(0));
+                dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaTodosReporteFecha(fecha1, fecha2).get(3)), "",
+                        Controlador.obtenerInstancia().consultaTodosReporteFecha(fecha1, fecha2).get(2));
+                break;
+            case 6:
+                dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaTodosReporteFecha(fecha1, fecha2).get(1)), "",
+                        Controlador.obtenerInstancia().consultaTodosReporteFecha(fecha1, fecha2).get(0));
+                dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaTodosReporteFecha(fecha1, fecha2).get(3)), "",
+                        Controlador.obtenerInstancia().consultaTodosReporteFecha(fecha1, fecha2).get(2));
+                dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaTodosReporteFecha(fecha1, fecha2).get(5)), "",
+                        Controlador.obtenerInstancia().consultaTodosReporteFecha(fecha1, fecha2).get(4));
+                break;
+            default:
+                JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                        "ERROR", JOptionPane.ERROR_MESSAGE);
+                break;
 
-        dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaTodosReporteFecha(fecha1, fecha2).get(3)), "",
-                Controlador.obtenerInstancia().consultaTodosReporteFecha(fecha1, fecha2).get(2));
-
-        dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaTodosReporteFecha(fecha1, fecha2).get(5)), "",
-                Controlador.obtenerInstancia().consultaTodosReporteFecha(fecha1, fecha2).get(4));
-
+        }
         JFreeChart chart = ChartFactory.createBarChart(
-                "Reporte de tickets del día "+ fecha1+" al "+ fecha2, "Estado de tickets", "Cantidad de tickets",
+                "Reporte de tickets del día " + fecha1 + " al " + fecha2, "Estado de tickets", "Cantidad de tickets",
                 dataSet, PlotOrientation.VERTICAL, false, true, false);
 
         return chart;
     }
 
     public JFreeChart generateBarChartHoras() {
-        
         DefaultCategoryDataset dataSet = new DefaultCategoryDataset();
-        dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaTodosReporteHoras(hora1,hora2).get(1)), "",
-                Controlador.obtenerInstancia().consultaTodosReporteHoras(hora1,hora2).get(0));
-
-        dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaTodosReporteHoras(hora1,hora2).get(3)), "",
-                Controlador.obtenerInstancia().consultaTodosReporteHoras(hora1,hora2).get(2));
-
-        dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaTodosReporteHoras(hora1,hora2).get(5)), "",
-                Controlador.obtenerInstancia().consultaTodosReporteHoras(hora1,hora2).get(4));
-
+        int cantidadEstados = Controlador.obtenerInstancia().consultaTodosReporteHoras(hora1, hora2).size();
+        switch (cantidadEstados) {
+            case 2:
+                dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaTodosReporteHoras(hora1, hora2).get(1)), "",
+                        Controlador.obtenerInstancia().consultaTodosReporteHoras(hora1, hora2).get(0));
+                break;
+            case 4:
+                dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaTodosReporteHoras(hora1, hora2).get(1)), "",
+                        Controlador.obtenerInstancia().consultaTodosReporteHoras(hora1, hora2).get(0));
+                dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaTodosReporteHoras(hora1, hora2).get(3)), "",
+                        Controlador.obtenerInstancia().consultaTodosReporteHoras(hora1, hora2).get(2));
+                break;
+            case 6:
+                dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaTodosReporteHoras(hora1, hora2).get(1)), "",
+                        Controlador.obtenerInstancia().consultaTodosReporteHoras(hora1, hora2).get(0));
+                dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaTodosReporteHoras(hora1, hora2).get(3)), "",
+                        Controlador.obtenerInstancia().consultaTodosReporteHoras(hora1, hora2).get(2));
+                dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaTodosReporteHoras(hora1, hora2).get(5)), "",
+                        Controlador.obtenerInstancia().consultaTodosReporteHoras(hora1, hora2).get(4));
+                break;
+            default:
+                JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                        "ERROR", JOptionPane.ERROR_MESSAGE);
+                break;
+        }
         JFreeChart chart = ChartFactory.createBarChart(
-                "Reporte de tickets entre las " + hora1+ " y las " +hora2, "Estado de tickets", "Cantidad de tickets",
+                "Reporte de tickets entre las " + hora1 + " y las " + hora2, "Estado de tickets", "Cantidad de tickets",
                 dataSet, PlotOrientation.VERTICAL, false, true, false);
 
         return chart;
@@ -775,29 +742,22 @@ public class PanelReportesAdmin extends javax.swing.JPanel {
         PdfWriter writer = null;
         document = new Document();
         try {
-//            System.err.println("entro al try");
             writer = PdfWriter.getInstance(document, new FileOutputStream(
                     fileName));
             document.open();
             document.add(new Paragraph("Reporte de tickets"));
             document.add(new Paragraph(new Date().toString()));
-//            System.err.println("abrio el doc");
             PdfContentByte contentByte = writer.getDirectContent();
             PdfTemplate template = contentByte.createTemplate(width, height);
             Graphics2D graphics2d = template.createGraphics(width, height, new DefaultFontMapper());
-            Rectangle2D rectangle2d = new Rectangle2D.Double(0, 0, width,
-                    height);
-
+            Rectangle2D rectangle2d = new Rectangle2D.Double(0, 0, width, height);
             chart.draw(graphics2d, rectangle2d);
-//            System.err.println("dibuja grafico");
             graphics2d.dispose();
             contentByte.addTemplate(template, 100, 250);
-
         } catch (Exception e) {
             e.printStackTrace();
         }
         document.close();
-//        System.err.println("cerro el doc");
         JOptionPane.showMessageDialog(null,
                 "El archivo se a guardado exitosamente como " + "\n" + fileName,
                 "", JOptionPane.INFORMATION_MESSAGE);
@@ -809,6 +769,8 @@ public class PanelReportesAdmin extends javax.swing.JPanel {
     }//GEN-LAST:event_jComboAreaActionPerformed
 
     private void cargarComboAnnos() {
+        jComboAñoDesde.removeAllItems();
+        jComboAñosHasta.removeAllItems();
         ArrayList<String> lstAnyos;
         lstAnyos = new ArrayList<>();
         int year = Calendar.getInstance().get(Calendar.YEAR);
@@ -838,16 +800,15 @@ public class PanelReportesAdmin extends javax.swing.JPanel {
         return true;
     }
 
-   private String obtieneEstado(Ticket _ticket) {
-        String estado = "";
-        if (_ticket.getEstado().equals("borrado")) {
-            estado = "cerrado";
-        } else {
-            estado = _ticket.getEstado();
-        }
-        return estado;
-    }//----------------------------------------------------------------------------- FIN obtieneEstado()
-
+//    private String obtieneEstado(Ticket _ticket) {
+//        String estado = "";
+//        if (_ticket.getEstado().equals("borrado")) {
+//            estado = "cerrado";
+//        } else {
+//            estado = _ticket.getEstado();
+//        }
+//        return estado;
+//    }//----------------------------------------------------------------------------- FIN obtieneEstado()
     private void limpiarCampos() {
         jComboArea.setSelectedIndex(0);
         ComboBusqueda.setSelectedIndex(0);
@@ -855,28 +816,28 @@ public class PanelReportesAdmin extends javax.swing.JPanel {
         jComboAñosHasta.setSelectedIndex(0);
         jComboDiaDesde.setSelectedIndex(0);
         jComboDiaHasta.setSelectedIndex(0);
-       
+
         jComboMesDesde.setSelectedIndex(0);
         jComboMesHasta.setSelectedIndex(0);
-       
+
         comboHoraFinal.setSelectedIndex(0);
         comboHoraInicial.setSelectedIndex(0);
         comboMinutoFinal.setSelectedIndex(0);
-        comboMinutoInicial.setSelectedIndex(0);  
+        comboMinutoInicial.setSelectedIndex(0);
+        jPanelTabla3.repaint();
     }
 
     //Declaracion de variables
     private static PanelReportesAdmin instancia = null;
     DefaultTableModel modelAux;
     String fecha1, fecha2, hora1, hora2;
+//    String fecha = new Date().toString();
 
-    String fecha = new Date().toString();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox ComboBusqueda;
     private javax.swing.JPanel PanelBotones;
     private javax.swing.JButton btnCancelarReporte;
     private javax.swing.JButton btnExportar;
-    private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnReporte;
     private javax.swing.JComboBox comboHoraFinal;
     private javax.swing.JComboBox comboHoraInicial;
@@ -891,7 +852,6 @@ public class PanelReportesAdmin extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> jComboMesHasta;
     private javax.swing.JLabel jLabelAreas;
     private javax.swing.JLabel jLabelDesde;
-    private javax.swing.JLabel jLabelDesde3;
     private javax.swing.JLabel jLabelGuion1;
     private javax.swing.JLabel jLabelGuion2;
     private javax.swing.JLabel jLabelGuion3;
@@ -903,14 +863,13 @@ public class PanelReportesAdmin extends javax.swing.JPanel {
     private javax.swing.JLabel jLabelHoraInicio;
     private javax.swing.JLabel jLabelSubtitulo;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanelArea;
     private javax.swing.JPanel jPanelRangoFechas;
     private javax.swing.JPanel jPanelRangoHoras;
     private javax.swing.JPanel jPanelSeleccion;
     private javax.swing.JPanel jPanelTabla3;
-    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JLabel labelTitulo;
-    private javax.swing.JTable tablaReporte;
     // End of variables declaration//GEN-END:variables
 
 }
