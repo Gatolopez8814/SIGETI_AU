@@ -107,6 +107,7 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
                 setSize(new Dimension(sizeX, sizeY));
                 setPreferredSize(new Dimension(sizeX, sizeY));
                 setLocationRelativeTo(null);
+                 setResizable(true);
                 menuArea();
                 ArbolArea.previeneError();
                 ventanaPrincipalArea();
@@ -120,6 +121,7 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
                 setSize(new Dimension(sizeX, sizeY));
                 setPreferredSize(new Dimension(sizeX, sizeY));
                 setLocationRelativeTo(null);
+                 setResizable(true);
                 menuAdministrativo();
                 ArbolAdministrativo.previeneError();
                 ventanaPrincipalAdmin();
@@ -133,6 +135,7 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
                 setSize(910, 605);
                 setPreferredSize(new Dimension(910, 605));
                 setLocationRelativeTo(null);
+                 setResizable(false);
                 menuStandard();
                 ArbolStandard.previeneError();
                 ventanaPrincipalStandard();                
