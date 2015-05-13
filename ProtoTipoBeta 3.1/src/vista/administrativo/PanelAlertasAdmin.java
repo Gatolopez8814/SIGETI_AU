@@ -268,7 +268,7 @@ public class PanelAlertasAdmin extends javax.swing.JPanel {
         jRadioFecha = new javax.swing.JRadioButton();
         jPanelArea = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jComboBoxArea2 = new javax.swing.JComboBox();
+        jComboBoxArea2 = new javax.swing.JComboBox<String>();
         jPanelPrioridad = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jComboBoxPrioridad = new javax.swing.JComboBox();
@@ -719,8 +719,12 @@ public class PanelAlertasAdmin extends javax.swing.JPanel {
 
         jLabel3.setText("Seleccione el área: ");
 
-        jComboBoxArea2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione aquí" }));
-        jComboBoxArea2.setToolTipText("");
+        jComboBoxArea2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione aquí", "Soporte técnico", "Mantenimiento" }));
+        jComboBoxArea2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxArea2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelAreaLayout = new javax.swing.GroupLayout(jPanelArea);
         jPanelArea.setLayout(jPanelAreaLayout);
@@ -730,7 +734,7 @@ public class PanelAlertasAdmin extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
-                .addComponent(jComboBoxArea2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jComboBoxArea2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelAreaLayout.setVerticalGroup(
@@ -1127,6 +1131,10 @@ public class PanelAlertasAdmin extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnAplicarCambiosActionPerformed
 
+    private void jComboBoxArea2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxArea2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxArea2ActionPerformed
+
     private void limpiarCampos() {
         buttonGroupGestionar.setSelected(null, true);
         jComboBoxArea2.setSelectedIndex(-1);
@@ -1163,7 +1171,7 @@ public class PanelAlertasAdmin extends javax.swing.JPanel {
     private javax.swing.JButton btnVerMAs;
     private javax.swing.ButtonGroup buttonGroupGestionar;
     private javax.swing.JLabel cantidad;
-    private javax.swing.JComboBox jComboBoxArea2;
+    private javax.swing.JComboBox<String> jComboBoxArea2;
     private javax.swing.JComboBox jComboBoxPrioridad;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

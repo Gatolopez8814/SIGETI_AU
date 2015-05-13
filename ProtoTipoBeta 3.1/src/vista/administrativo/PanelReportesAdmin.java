@@ -81,7 +81,7 @@ public class PanelReportesAdmin extends javax.swing.JPanel {
 
         jPanelArea = new javax.swing.JPanel();
         jLabelAreas = new javax.swing.JLabel();
-        jComboArea = new javax.swing.JComboBox();
+        jComboArea = new javax.swing.JComboBox<String>();
         jPanelSeleccion = new javax.swing.JPanel();
         jLabelSubtitulo = new javax.swing.JLabel();
         ComboBusqueda = new javax.swing.JComboBox();
@@ -882,7 +882,7 @@ public class PanelReportesAdmin extends javax.swing.JPanel {
     private javax.swing.JComboBox comboHoraInicial;
     private javax.swing.JComboBox comboMinutoFinal;
     private javax.swing.JComboBox comboMinutoInicial;
-    private javax.swing.JComboBox jComboArea;
+    private javax.swing.JComboBox<String> jComboArea;
     private javax.swing.JComboBox<String> jComboAñoDesde;
     private javax.swing.JComboBox<String> jComboAñosHasta;
     private javax.swing.JComboBox<String> jComboDiaDesde;

@@ -80,7 +80,7 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
         ajustarMenu();
         ajustarComponentes(getContentPane());
         ajustarEventos();
-        admin= false;
+        admin = false;
         alerta = Alertas.obtenerInstancia();
     }//----------------------------------------------------------------------------- FIN Constructor()
 
@@ -92,7 +92,7 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
     }//----------------------------------------------------------------------------- FIN obtenerInstancia()
 
     public void tecla() {
-        time_start = System.currentTimeMillis();        
+        time_start = System.currentTimeMillis();
     }
 
     public void setTipoUsuario(String tipoUsuario) {
@@ -107,6 +107,7 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
                 setSize(new Dimension(sizeX, sizeY));
                 setPreferredSize(new Dimension(sizeX, sizeY));
                 setLocationRelativeTo(null);
+                setResizable(true);
                 menuArea();
                 ArbolArea.previeneError();
                 ventanaPrincipalArea();
@@ -120,6 +121,7 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
                 setSize(new Dimension(sizeX, sizeY));
                 setPreferredSize(new Dimension(sizeX, sizeY));
                 setLocationRelativeTo(null);
+                setResizable(true);
                 menuAdministrativo();
                 ArbolAdministrativo.previeneError();
                 ventanaPrincipalAdmin();
@@ -133,9 +135,10 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
                 setSize(910, 605);
                 setPreferredSize(new Dimension(910, 605));
                 setLocationRelativeTo(null);
+                setResizable(false);
                 menuStandard();
                 ArbolStandard.previeneError();
-                ventanaPrincipalStandard();                
+                ventanaPrincipalStandard();
                 break;
         }
     }//----------------------------------------------------------------------------- FIN setTipoUsuario()
@@ -148,12 +151,12 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
         repaint();
         if (admin) {
             alertasAlPrincipio();
-        }       
+        }
     }//----------------------------------------------------------------------------- FIN mostrar()
 
     public void ocultar() {// oculta la ventana de ser necesario
         sesion = false;
-        admin= false;
+        admin = false;
         this.setVisible(false);
     }//----------------------------------------------------------------------------- FIN ocultar()
 
@@ -656,7 +659,7 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
             ocultar();
             this.desAbilitarMenu();
             panelPrincipal.removeAll();
-            revalidate();//xq ???
+            revalidate();
         }
         setBarraEstadoMensajeAnterior();
     }//----------------------------------------------------------------------------- FIN cerrarSesion()
@@ -667,7 +670,7 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
         scrollPanelPrincipal = new JScrollPane(PanelCambioContraseña.obtenerInstancia());
         panelPrincipal.setLayout(new BorderLayout());
         panelPrincipal.add(ArbolStandard.obtenerInstancia(), BorderLayout.WEST);
-        panelPrincipal.add(scrollPanelPrincipal, BorderLayout.CENTER);
+        panelPrincipal.add(scrollPanelPrincipal, BorderLayout.CENTER);      
         pack();
         repaint();
     }//----------------------------------------------------------------------------- FIN cambiarClaveStandar()
@@ -678,7 +681,7 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
         scrollPanelPrincipal = new JScrollPane(PanelConsultaUno.obtenerInstancia());
         panelPrincipal.setLayout(new BorderLayout());
         panelPrincipal.add(ArbolStandard.obtenerInstancia(), BorderLayout.WEST);
-        panelPrincipal.add(scrollPanelPrincipal, BorderLayout.CENTER);
+        panelPrincipal.add(scrollPanelPrincipal, BorderLayout.CENTER);       
         pack();
         repaint();
     }//----------------------------------------------------------------------------- FIN buscarUnTicketStandard()
@@ -689,7 +692,7 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
         setBarraEstado("Pantalla principal");
         panelPrincipal.setLayout(new BorderLayout());
         panelPrincipal.add(ArbolStandard.obtenerInstancia(), BorderLayout.WEST);
-        panelPrincipal.add(new PanelConFondo("/img/2014-10-05_1533.png"));
+        panelPrincipal.add(new PanelConFondo("/img/2014-10-05_1533.png"));        
         pack();
         repaint();
     }//----------------------------------------------------------------------------- FIN ventanaPrincipalStandard()
@@ -700,7 +703,7 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
         scrollPanelPrincipal = new JScrollPane(PanelConsultaHistorial.obtenerInstancia());
         panelPrincipal.setLayout(new BorderLayout());
         panelPrincipal.add(ArbolStandard.obtenerInstancia(), BorderLayout.WEST);
-        panelPrincipal.add(scrollPanelPrincipal, BorderLayout.CENTER);
+        panelPrincipal.add(scrollPanelPrincipal, BorderLayout.CENTER);       
         pack();
         repaint();
     }//----------------------------------------------------------------------------- FIN historialTicketsStandard()
@@ -711,7 +714,7 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
         scrollPanelPrincipal = new JScrollPane(PanelUltimoTicketStandard.obtenerInstancia());
         panelPrincipal.setLayout(new BorderLayout());
         panelPrincipal.add(ArbolStandard.obtenerInstancia(), BorderLayout.WEST);
-        panelPrincipal.add(scrollPanelPrincipal, BorderLayout.CENTER);
+        panelPrincipal.add(scrollPanelPrincipal, BorderLayout.CENTER);       
         pack();
         repaint();
     }//----------------------------------------------------------------------------- FIN buscarUltimoTicketStandard()
@@ -722,7 +725,7 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
         scrollPanelPrincipal = new JScrollPane(PanelCrearTicket.obtenerInstancia());
         panelPrincipal.setLayout(new BorderLayout());
         panelPrincipal.add(ArbolStandard.obtenerInstancia(), BorderLayout.WEST);
-        panelPrincipal.add(scrollPanelPrincipal, BorderLayout.CENTER);
+        panelPrincipal.add(scrollPanelPrincipal, BorderLayout.CENTER);      
         pack();
         repaint();
     }//----------------------------------------------------------------------------- FIN crearTicketStandard()
@@ -1036,7 +1039,7 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
         repaint();
     }//----------------------------------------------------------------------------- FIN ticketsCerradosAdmin()
 
-     public void alertaTicketsAdmin() {
+    public void alertaTicketsAdmin() {
         panelPrincipal.removeAll();
         setBarraEstado("Alerta de ticket");
         scrollPanelPrincipal = new JScrollPane(PanelAlertasAdmin.obtenerInstancia());
@@ -1111,9 +1114,9 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
     @Override
     public void run() {
         try {
-            while (true) {                
+            while (true) {
                 this.validaTimer();
-                this.validarAlertas();                         
+                this.validarAlertas();
             }
         } catch (Exception e) {
         }
@@ -1143,13 +1146,13 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
         }
     }
 
-    private void alertasAlPrincipio() {        
+    private void alertasAlPrincipio() {
         int cant = Controlador.obtenerInstancia().numeroAlerta();
         numAlertas = 999999999;
         if (cant > 0) {
             Alertas.obtenerInstancia().WarningAlert("Existen " + cant + " Alertas");
-        }      
-         numAlertas = cant;
+        }
+        numAlertas = cant;
         time_check_alert = System.currentTimeMillis();
     }
 

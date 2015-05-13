@@ -133,8 +133,7 @@ public class ArbolArea extends JPanel {//Arbol para usuario de Area
         });
     }//----------------------------------------------------------------------------- FIN ajustarEventos()
 
-    public void redireccionar(String opc) {
-        System.out.println("Selecciono:--> " + opc);
+    public void redireccionar(String opc) {       
         switch (opc) {
             case "SIGETI":
                 Ventana.obtenerInstancia().ventanaPrincipalArea();

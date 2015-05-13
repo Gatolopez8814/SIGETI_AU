@@ -113,36 +113,28 @@ public class ArbolStandard extends JPanel {//Arbol para usuario standard
     }//----------------------------------------------------------------------------- FIN ajustarEventos()
 
     public void redireccionar(String opc) {
-        try {
-            System.out.println("Selecciono:--> " + opc);
+        try {           
             switch (opc) {
                 case "Crear nuevo ticket":
-                    Ventana.obtenerInstancia().crearTicketStandard();
-                    System.out.println(" Crear Ticket");
+                    Ventana.obtenerInstancia().crearTicketStandard();                    
                     break;
                 case "Consultar último ticket":
-                    Ventana.obtenerInstancia().buscarUltimoTicketStandard();
-                    System.out.println(" Buscar Ultimo");
+                    Ventana.obtenerInstancia().buscarUltimoTicketStandard();                    
                     break;
                 case "Consultar un ticket":
-                    Ventana.obtenerInstancia().buscarUnTicketStandard();
-                    System.out.println(" Buscar uno");
+                    Ventana.obtenerInstancia().buscarUnTicketStandard();                   
                     break;
                 case "Historial de tickets":
-                    Ventana.obtenerInstancia().historialTicketsStandard();
-                    System.out.println(" Ver Historial");
+                    Ventana.obtenerInstancia().historialTicketsStandard();                    
                     break;
                 case "Cambiar contraseña":
-                    Ventana.obtenerInstancia().cambiarClaveStandar();
-                    System.out.println("Cambiar Clave");
+                    Ventana.obtenerInstancia().cambiarClaveStandar();                   
                     break;
                 case "Cerrar sesión":
-                    Ventana.obtenerInstancia().cerrarSesion();
-                    System.out.println("Cerrar Sesion");
+                    Ventana.obtenerInstancia().cerrarSesion();                    
                     break;
                 case "SIGETI":
-                    Ventana.obtenerInstancia().ventanaPrincipalStandard();
-                    System.out.println(" Ventana Principal");
+                    Ventana.obtenerInstancia().ventanaPrincipalStandard();                   
                     break;
             }//end switch
         } catch (Exception e) {
