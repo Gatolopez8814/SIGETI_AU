@@ -164,8 +164,7 @@ public class ArbolAdministrativo extends JPanel {//Arbol para usuario de Adminis
         });
     }//----------------------------------------------------------------------------- FIN ajustarEventos()
 
-    public void redireccionar(String opc) {
-        System.out.println("Selecciono:--> " + opc);
+    public void redireccionar(String opc) {       
         switch (opc) {
             case "SIGETI":
                 Ventana.obtenerInstancia().ventanaPrincipalAdmin();

@@ -113,8 +113,7 @@ public class ArbolStandard extends JPanel {//Arbol para usuario standard
     }//----------------------------------------------------------------------------- FIN ajustarEventos()
 
     public void redireccionar(String opc) {
-        try {
-            System.out.println("Selecciono:--> " + opc);
+        try {           
             switch (opc) {
                 case "Crear nuevo ticket":
                     Ventana.obtenerInstancia().crearTicketStandard();
