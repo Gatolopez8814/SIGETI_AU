@@ -14,7 +14,7 @@ public class Controlador {
 
     public String recortaCorreo(String _correo) {
         return model.recortaCorreo(_correo);
-    }
+    }//----------------------------------------------------------------------------- FIN recortaCorreo()
 
     public boolean registraUsuarioAdmin(String correo, int tipo) {
         String correoFinal = model.recortaCorreo(correo) + "@castillo.cr";
@@ -26,10 +26,11 @@ public class Controlador {
         return model.ModificaUsuarioAdmin(new Usuario(correoFinal, tipo, 1));
     }//----------------------------------------------------------------------------- FIN registraUsuarioAdmin()
 
-    public boolean cambiaARegistrado(String correoUsuario, int nuevoTipo){
+    public boolean cambiaARegistrado(String correoUsuario, int nuevoTipo) {
         String correoFinal = model.recortaCorreo(correoUsuario) + "@castillo.cr";
         return model.cambiaARegistrado(correoFinal, nuevoTipo);
-    }
+    }//----------------------------------------------------------------------------- FIN cambiaARegistrado()
+
     public boolean eliminaUsuarioAdmin(String correo) {
         String correoFinal = model.recortaCorreo(correo) + "@castillo.cr";
         return model.eliminaUsuarioAdmin(correoFinal);
@@ -68,7 +69,6 @@ public class Controlador {
     }//----------------------------------------------------------------------------- FIN validaContrasenna()
 
     public static Controlador obtenerInstancia() {
-        //asi garantizamos que solo aya una ventana
         if (instancia == null) {
             instancia = new Controlador();
         }
@@ -106,7 +106,7 @@ public class Controlador {
 
     public ArrayList<Ticket> ticketsDelArea(String _correoUsuario) {
         return model.ticketsDelArea(_correoUsuario);
-    }//----------------------------------------------------------------------------- FIN obtieneAreas()
+    }//----------------------------------------------------------------------------- FIN ticketsDelArea()
 
     public ArrayList<Ticket> ticketsEnProcesoArea(String _correoUsuario) {
         return model.ticketsEnProcesoArea(_correoUsuario);
@@ -157,27 +157,27 @@ public class Controlador {
     public ArrayList<String> obtieneAreas() {
         return model.obtieneAreas();
     }//----------------------------------------------------------------------------- FIN obtieneAreas()
-    
+
     public ArrayList<String> obtieneUsuarios(String usuarioActual, int estado) {
         return model.obtieneUsuarios(usuarioActual, estado);
     }//----------------------------------------------------------------------------- FIN obtieneUsuarios()
-    
+
     public ArrayList<String> obtieneUsuariosEliminar(String usuarioActual, int estado) {
         return model.obtieneUsuariosEliminar(usuarioActual, estado);
     }//----------------------------------------------------------------------------- FIN obtieneUsuariosEliminar()
-    
+
     public ArrayList<String> obtieneTodosUsuarios() {
         return model.obtieneTodosUsuarios();
     }//----------------------------------------------------------------------------- FIN obtieneTodosUsuarios()
-    
-     public ArrayList<String> obtieneUsuariosGeneral() {
-         return model.obtieneUsuariosGeneral();
-     }//----------------------------------------------------------------------------- FIN obtieneUsuariosGeneral()
-    
-    public String obtieneNombreArea(String _correoUsuario){
+
+    public ArrayList<String> obtieneUsuariosGeneral() {
+        return model.obtieneUsuariosGeneral();
+    }//----------------------------------------------------------------------------- FIN obtieneUsuariosGeneral()
+
+    public String obtieneNombreArea(String _correoUsuario) {
         return model.obtieneNombreArea(_correoUsuario);
     }//----------------------------------------------------------------------------- FIN obtieneNombreArea()
-    
+
     public ArrayList<String> obtieneUsuariosPorArea(String _area) {
         return model.obtieneUsuariosPorArea(_area);
     }//----------------------------------------------------------------------------- FIN obtieneUsuariosPorArea()
@@ -216,31 +216,31 @@ public class Controlador {
 
     public int cantidadTotalArea(String _correo) {
         return model.cantidadTotalArea(_correo);
-    }
+    }//----------------------------------------------------------------------------- FIN  cantidadTotalArea()
 
     public int cantidadNuevosArea(String _correo) {
         return model.cantidadNuevosArea(_correo);
-    }
+    }//----------------------------------------------------------------------------- FIN  cantidadNuevosArea()
 
     public int cantidadAsignadosArea(String _correo) {
         return model.cantidadAsignadosArea(_correo);
-    }
+    }//----------------------------------------------------------------------------- FIN  cantidadAsignadosArea()
 
     public int cantidadProcesoArea(String _correo) {
         return model.cantidadProcesoArea(_correo);
-    }
+    }//----------------------------------------------------------------------------- FIN  cantidadProcesoArea()
 
     public int cantidadCerradosArea(String _correo) {
         return model.cantidadCerradosArea(_correo);
-    }
+    }//----------------------------------------------------------------------------- FIN  cantidadCerradosArea()
 
     public boolean agregaComentario(int _codigo, String _comentario) {
         return model.agregaComentario(_codigo, _comentario);
     }//----------------------------------------------------------------------------- FIN agregaComentario()
-    
+
     public String obtieneComentarios(int codigo) {
         return model.obtieneComentarios(codigo);
-    }
+    }//----------------------------------------------------------------------------- FIN obtieneComentarios()
 
     public boolean cambiaFechaSolucion(int _codigo, String _comentario) {
         return model.cambiaFechaSolucion(_codigo, _comentario);
@@ -256,7 +256,7 @@ public class Controlador {
 
     public boolean asignarResponsable(int _codigo, String _responsable) {
         return model.asignarResponsable(_codigo, _responsable);
-    }//----------------------------------------------------------------------------- FIN redireccionarTicket()
+    }//----------------------------------------------------------------------------- FIN asignarResponsable()
 
     public boolean cambiaFechaRealSolucion(int _codigo, String _fecha) {
         return model.cambiaFechaRealSolucion(_codigo, _fecha);
@@ -285,78 +285,72 @@ public class Controlador {
     public ArrayList<Bitacora> consultaBitacoraHoras(String horaInicio, String horaFinal) {
         return model.consultaBitacoraHoras(horaInicio, horaFinal);
     }//----------------------------------------------------------------------------- FIN consultaBitacoraHoras()
-    
+
     public ArrayList<Bitacora> consultaBitacoraGeneral() {
         return model.consultaBitacoraGeneral();
     }//----------------------------------------------------------------------------- FIN consultaBitacoraGeneral()
-    
-    public boolean agregarArea(String nuevaArea){
+
+    public boolean agregarArea(String nuevaArea) {
         return model.agregarArea(nuevaArea);
-    }
-    
+    }//----------------------------------------------------------------------------- FIN agregarArea()
+
     public ArrayList<String> getSysDateFromServer() {
         return model.getSysDateFromServer();
-    }
-    //Declaracion de variables
-    private static Controlador instancia = null;
-    private Modelo model;
+    }//----------------------------------------------------------------------------- FIN getSysDateFromServer()
 
     public boolean agregarAsunto(String nuevoAsunto) {
         return model.agregarAsunto(nuevoAsunto);
-    }
+    }//----------------------------------------------------------------------------- FIN agregarAsunto()
 
     public boolean eliminarAsunto(String asunto) {
         return model.eliminarAsunto(asunto);
-    }
+    }//----------------------------------------------------------------------------- FIN eliminarAsunto()
+
     public boolean eliminarArea(String area) {
         return model.eliminarArea(area);
-    }
+    }//----------------------------------------------------------------------------- FIN eliminarArea()
 
     public boolean modificarAsunto(String area, String areaNueva) {
         return model.ModificarAsunto(area, areaNueva);
-    }
+    }//----------------------------------------------------------------------------- FIN modificarAsunto()
+
     public boolean modificarArea(String area, String areaNueva) {
         return model.ModificarArea(area, areaNueva);
-    }
+    }//----------------------------------------------------------------------------- FIN modificarArea()
 
     public ArrayList<Ticket> ticketsAlertaAdmin() {
         return model.ticketsAlertasAdmin();
-    }
-//    public String nuevaAlerta() { 
-//        return model.obtieneAlertas();        
-//    }
-    public int numeroAlerta() { 
-        return model.obtieneNumeroAlertas();        
-    }
-    
-     public ArrayList<String> consultaTodosReporteArea(String dato1) {
-        System.out.println("dato1=" + dato1);
+    }//----------------------------------------------------------------------------- FIN ticketsAlertaAdmin()
+
+    public int numeroAlerta() {
+        return model.obtieneNumeroAlertas();
+    }//----------------------------------------------------------------------------- FIN numeroAlerta()
+
+    public ArrayList<String> consultaTodosReporteArea(String dato1) {
         return model.consultaReporteArea(dato1);
     }//------------------------------------------------------------------------------FIN consultaTodosReporteArea
-       
-        public ArrayList<String> consultaTodosReporteHoras(String dato1, String dato2) {
-        System.out.println("dato1=" + dato1 + " dato2= " + dato2);
+
+    public ArrayList<String> consultaTodosReporteHoras(String dato1, String dato2) {
         return model.consultaReporteHoras(dato1, dato2);
-    }//------------------------------------------------------------------------------FIN consultaTodosReporteArea
-       
-        public ArrayList<String> consultaTodosReporteFecha(String dato1, String dato2) {
-        System.out.println("dato1=" + dato1 + " dato2= " + dato2);
+    }//------------------------------------------------------------------------------FIN consultaTodosReporteHoras
+
+    public ArrayList<String> consultaTodosReporteFecha(String dato1, String dato2) {
         return model.consultaReporteFecha(dato1, dato2);
-    }//------------------------------------------------------------------------------FIN consultaTodosReporteArea
-        
-         public ArrayList<String> consultaTodosReporteMiArea(String dato1, String _correo) {
-        System.out.println("dato1=" + dato1);
-        return model.consultaReportesMiArea(dato1,_correo);
+    }//------------------------------------------------------------------------------FIN consultaTodosReporteFecha
+
+    public ArrayList<String> consultaTodosReporteMiArea(String dato1, String _correo) {
+        return model.consultaReportesMiArea(dato1, _correo);
     }//------------------------------------------------------------------------------FIN consultaTodosReporteMiArea
-       
-         public ArrayList<String> consultaReporteHorasArea(String dato1, String dato2, String _correo) {
-        System.out.println("dato1=" + dato1+"dato2"+dato2+"correo"+_correo);
-        return model.consultaReporteHorasArea(dato1,dato2,_correo);
-    }//------------------------------------------------------------------------------FIN consultaTodosReporteArea
-      
-         public ArrayList<String> consultaReporteFechaArea(String dato1, String dato2,String _correo) {
-        System.out.println("dato1=" + dato1 + " dato2= " + dato2);
-        return model.consultaReporteFechaArea(dato1, dato2,_correo);
-    }//------------------------------------------------------------------------------FIN consultaTodosReporteArea
-       
+
+    public ArrayList<String> consultaReporteHorasArea(String dato1, String dato2, String _correo) {
+        return model.consultaReporteHorasArea(dato1, dato2, _correo);
+    }//------------------------------------------------------------------------------FIN consultaReporteHorasArea
+
+    public ArrayList<String> consultaReporteFechaArea(String dato1, String dato2, String _correo) {
+        return model.consultaReporteFechaArea(dato1, dato2, _correo);
+    }//------------------------------------------------------------------------------FIN consultaReporteFechaArea
+
+    //Declaracion de variables
+    private static Controlador instancia = null;
+    private Modelo model;
 }

@@ -52,6 +52,6 @@ public class Bitacora {
     public void setAccion(String accion) {
         this.accion = accion;
     }
-    
+
     private String usuario, fecha, hora, tabla, accion;
 }

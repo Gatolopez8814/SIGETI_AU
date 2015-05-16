@@ -2,11 +2,11 @@ package modelo;
 
 public class Usuario {
 
-    public Usuario(String correo,  int tipoUsuario, int estado) {
+    public Usuario(String correo, int tipoUsuario, int estado) {
         this.correo = correo;
         this.contraseña = GeneradorDeClave.obtenerInstancia().GenerarClave();
         this.tipoUsuario = tipoUsuario;
-        this.estado=estado;
+        this.estado = estado;
     }
 
     public String getCorreo() {
@@ -31,7 +31,7 @@ public class Usuario {
 
     public void setTipoUsuario(int tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
-    } 
+    }
 
     public int getEstado() {
         return estado;
@@ -39,11 +39,11 @@ public class Usuario {
 
     public void setEstado(int estado) {
         this.estado = estado;
-    }   
-    
+    }
+
     private String correo;
     private String contraseña;
     private int tipoUsuario;
     private int estado;
-    
+
 }

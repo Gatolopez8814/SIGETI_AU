@@ -7,20 +7,19 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import vista.Ventana;
 import vista.VentanaLogin;
-import vista.VentanaRegistro;
 
 public class PanelEliminarUsuarioAdmin extends javax.swing.JPanel {
 
     private PanelEliminarUsuarioAdmin() {
         initComponents();
-        ajustarEventos();
-        this.limpiarCampos();
     }//----------------------------------------------------------------------------- FIN Constructor()
 
     public static PanelEliminarUsuarioAdmin obtenerInstancia() {//para garantizar hay solo una instancia
         if (instancia == null) {
             instancia = new PanelEliminarUsuarioAdmin();
         }
+        instancia.ajustarEventos();
+        instancia.limpiarCampos();
         instancia.cargarjComboUsuarios();
         return instancia;
     }//----------------------------------------------------------------------------- FIN obtenerInstancia()
@@ -35,8 +34,8 @@ public class PanelEliminarUsuarioAdmin extends javax.swing.JPanel {
                 } else {
                     e.consume();
                 }
-            }//
-            
+            }
+
             @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 super.keyPressed(evt);
@@ -243,70 +242,64 @@ public class PanelEliminarUsuarioAdmin extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnEliminarusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarusuarioActionPerformed
-         if(this.txtCorreoEliminar.getText().equals("") && this.jComboUsuarios.getSelectedIndex()==0){
+        if (this.txtCorreoEliminar.getText().equals("") && this.jComboUsuarios.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(this, "Faltan datos", "ERROR", JOptionPane.ERROR_MESSAGE);
-        }else if(!this.txtCorreoEliminar.getText().equals("") && this.jComboUsuarios.getSelectedIndex()==0){
-            
-            if (txtCorreoEliminar.getText().equals(VentanaLogin.correo) || txtCorreoEliminar.getText().equals(VentanaLogin.correo.split("@")[0])){
-             JOptionPane.showMessageDialog(this, "No se puede Eliminar a si mismo", "ERROR", JOptionPane.ERROR_MESSAGE);
-             this.limpiarCampos();
-        }else if(Controlador.obtenerInstancia().obtieneEstadoUsuario(txtCorreoEliminar.getText()) == 2){
-            JOptionPane.showMessageDialog(this, "El usuario ya se encuentra eliminado", "ERROR", JOptionPane.ERROR_MESSAGE);
-        }else{
-        String contrasenna;
-        if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Realmente "
-                + "desea eliminar este usuario?", null, JOptionPane.YES_NO_OPTION)) {
-            contrasenna = JOptionPane.showInputDialog("Digite su contraseña:");
-            if (Controlador.obtenerInstancia().verificarContrasenna(VentanaLogin.correo, contrasenna)) {
-                if (Controlador.obtenerInstancia().eliminaUsuarioAdmin(txtCorreoEliminar.getText())) {
-                    JOptionPane.showMessageDialog(this, "   El usuario ha sido eliminado con éxito", "Usuario eliminado", JOptionPane.INFORMATION_MESSAGE);
-
-                    
-                    Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
-                            VentanaLogin.correo, "Usuario", "Eliminó al usuario " + txtCorreoEliminar.getText());
-                    
-                } else {
-                    JOptionPane.showMessageDialog(this, "No se pudo eliminar el usuario", "ERROR", JOptionPane.ERROR_MESSAGE);
-                }
+        } else if (!this.txtCorreoEliminar.getText().equals("") && this.jComboUsuarios.getSelectedIndex() == 0) {
+            if (txtCorreoEliminar.getText().equals(VentanaLogin.correo) || txtCorreoEliminar.getText().equals(VentanaLogin.correo.split("@")[0])) {
+                JOptionPane.showMessageDialog(this, "No se puede Eliminar a si mismo", "ERROR", JOptionPane.ERROR_MESSAGE);
+                this.limpiarCampos();
+            } else if (Controlador.obtenerInstancia().obtieneEstadoUsuario(txtCorreoEliminar.getText()) == 2) {
+                JOptionPane.showMessageDialog(this, "El usuario ya se encuentra eliminado", "ERROR", JOptionPane.ERROR_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(this, "   No se pudo desbloquear el usuario, constraseña incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-        }
-        }else if(this.txtCorreoEliminar.getText().equals("") && this.jComboUsuarios.getSelectedIndex()!=0){
-            if(Controlador.obtenerInstancia().obtieneEstadoUsuario(jComboUsuarios.getSelectedItem().toString()) == 2){
-            JOptionPane.showMessageDialog(this, "El usuario ya se encuentra eliminado", "ERROR", JOptionPane.ERROR_MESSAGE);
-        }else{
-        String contrasenna;
-        if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Realmente "
-                + "desea eliminar este usuario?", null, JOptionPane.YES_NO_OPTION)) {
-            contrasenna = JOptionPane.showInputDialog("Digite su contraseña:");
-            if (Controlador.obtenerInstancia().verificarContrasenna(VentanaLogin.correo, contrasenna)) {
-                if (Controlador.obtenerInstancia().eliminaUsuarioAdmin(jComboUsuarios.getSelectedItem().toString())) {
-                    JOptionPane.showMessageDialog(this, "   El usuario ha sido eliminado con éxito", "Usuario eliminado", JOptionPane.INFORMATION_MESSAGE);
-
-                    Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
-                            VentanaLogin.correo, "Usuario", "Eliminó al usuario " + jComboUsuarios.getSelectedItem().toString());
-                    instancia.cargarjComboUsuarios();
-                    this.limpiarCampos();
-                    
-                } else {
-                    JOptionPane.showMessageDialog(this, "No se pudo eliminar el usuario", "ERROR", JOptionPane.ERROR_MESSAGE);
+                String contrasenna;
+                if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Realmente "
+                        + "desea eliminar este usuario?", null, JOptionPane.YES_NO_OPTION)) {
+                    contrasenna = JOptionPane.showInputDialog("Digite su contraseña:");
+                    if (Controlador.obtenerInstancia().verificarContrasenna(VentanaLogin.correo, contrasenna)) {
+                        if (Controlador.obtenerInstancia().eliminaUsuarioAdmin(txtCorreoEliminar.getText())) {
+                            JOptionPane.showMessageDialog(this, "   El usuario ha sido eliminado con éxito", "Usuario eliminado", JOptionPane.INFORMATION_MESSAGE);
+                            Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
+                                    VentanaLogin.correo, "Usuario", "Eliminó al usuario " + txtCorreoEliminar.getText());
+                        } else {
+                            JOptionPane.showMessageDialog(this, "No se pudo eliminar el usuario", "ERROR", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(this, "   No se pudo desbloquear el usuario, constraseña incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
-            } else {
-                JOptionPane.showMessageDialog(this, "   No se pudo desbloquear el usuario, constraseña incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
-        }
-        }
-        }else{
+        } else if (this.txtCorreoEliminar.getText().equals("") && this.jComboUsuarios.getSelectedIndex() != 0) {
+            if (Controlador.obtenerInstancia().obtieneEstadoUsuario(jComboUsuarios.getSelectedItem().toString()) == 2) {
+                JOptionPane.showMessageDialog(this, "El usuario ya se encuentra eliminado", "ERROR", JOptionPane.ERROR_MESSAGE);
+            } else {
+                String contrasenna;
+                if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Realmente "
+                        + "desea eliminar este usuario?", null, JOptionPane.YES_NO_OPTION)) {
+                    contrasenna = JOptionPane.showInputDialog("Digite su contraseña:");
+                    if (Controlador.obtenerInstancia().verificarContrasenna(VentanaLogin.correo, contrasenna)) {
+                        if (Controlador.obtenerInstancia().eliminaUsuarioAdmin(jComboUsuarios.getSelectedItem().toString())) {
+                            JOptionPane.showMessageDialog(this, "   El usuario ha sido eliminado con éxito", "Usuario eliminado", JOptionPane.INFORMATION_MESSAGE);
+                            Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
+                                    VentanaLogin.correo, "Usuario", "Eliminó al usuario " + jComboUsuarios.getSelectedItem().toString());
+                            instancia.cargarjComboUsuarios();
+                            this.limpiarCampos();
+                        } else {
+                            JOptionPane.showMessageDialog(this, "No se pudo eliminar el usuario", "ERROR", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(this, "   No se pudo desbloquear el usuario, constraseña incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            }
+        } else {
             JOptionPane.showMessageDialog(this, "Debe elegir una sola opción", "ERROR", JOptionPane.ERROR_MESSAGE);
             instancia.cargarjComboUsuarios();
             this.limpiarCampos();
         }
-        
+
     }//GEN-LAST:event_btnEliminarusuarioActionPerformed
 
-    private void cargarjComboUsuarios(){
+    private void cargarjComboUsuarios() {
         this.jComboUsuarios.removeAllItems();
         this.jComboUsuarios.addItem("Seleccione aquí");
         ArrayList<String> temp = Controlador.obtenerInstancia().obtieneUsuariosEliminar(VentanaLogin.correo, 2);
@@ -317,7 +310,7 @@ public class PanelEliminarUsuarioAdmin extends javax.swing.JPanel {
         this.jComboUsuarios.revalidate();
         this.jComboUsuarios.repaint();
     }//----------------------------------------------------------------------------- FIN cargarjComboUsuarios()
-    
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.limpiarCampos();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -327,7 +320,7 @@ public class PanelEliminarUsuarioAdmin extends javax.swing.JPanel {
     }//GEN-LAST:event_txtCorreoEliminarActionPerformed
 
     private void jComboUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboUsuariosActionPerformed
-        if (jComboUsuarios.getSelectedIndex()==0) {
+        if (jComboUsuarios.getSelectedIndex() == 0) {
             this.txtCorreoEliminar.setEnabled(true);
         } else {
             this.txtCorreoEliminar.setEnabled(false);
@@ -342,6 +335,7 @@ public class PanelEliminarUsuarioAdmin extends javax.swing.JPanel {
 
     //Declaracion de variables
     private static PanelEliminarUsuarioAdmin instancia = null;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnEliminarusuario;

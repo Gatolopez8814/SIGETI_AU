@@ -1,7 +1,6 @@
 package vista.administrativo;
 
 import controlador.Controlador;
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -18,17 +17,16 @@ public class PanelAlertasAdmin extends javax.swing.JPanel {
 
     private PanelAlertasAdmin() {
         initComponents();
-        this.ajustarEventos();
-        this.limpiarCampos();
-        this.ocultarComponentes();
-        this.iniciarValidaciones();
-        this.llenarBandeja();
     }//----------------------------------------------------------------------------- FIN Constructor()
 
     public static PanelAlertasAdmin obtenerInstancia() {//para garantizar hay solo una instancia
         if (instancia == null) {
             instancia = new PanelAlertasAdmin();
         }
+        instancia.ajustarEventos();
+        instancia.limpiarCampos();
+        instancia.ocultarComponentes();
+        instancia.iniciarValidaciones();
         instancia.llenarBandeja();
         return instancia;
     }//----------------------------------------------------------------------------- FIN obtenerInstancia()
@@ -89,7 +87,7 @@ public class PanelAlertasAdmin extends javax.swing.JPanel {
     }//----------------------------------------------------------------------------- FIN soloNumeros()
 
     private void llenarBandeja() {
-        this.cantidad.setText(String.valueOf(Controlador.obtenerInstancia().numeroAlerta() ));
+        this.cantidad.setText(String.valueOf(Controlador.obtenerInstancia().numeroAlerta()));
         modelAux = (DefaultTableModel) tablaTickets.getModel();
         while (modelAux.getRowCount() > 0) {
             modelAux.removeRow(0);
@@ -103,15 +101,12 @@ public class PanelAlertasAdmin extends javax.swing.JPanel {
                     aux.get(i).getAsunto(), aux.get(i).getCorreoUsuario(), aux.get(i).getFecha()});
                 i++;
             }
-            
             Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
                     VentanaLogin.correo, "Ticket", "reviso alertas");
-            
         }
         tablaTickets.setVisible(true);
         tablaTickets.revalidate();
         tablaTickets.repaint();
-//        this.cantidad.setText(String.valueOf(modelAux.getRowCount()));
     }//----------------------------------------------------------------------------- FIN LlenaTicketsDelArea()
 
     private void ocultarComponentes() {
@@ -977,13 +972,10 @@ public class PanelAlertasAdmin extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnVerMAsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerMAsActionPerformed
-        //a partir de aqui se obtiene el codigo del ticket y se llena la demas informacion
-
         int dato = this.tablaTickets.getSelectedRow();
         if (dato >= 0) {
             int codi = Integer.parseInt(String.valueOf(this.tablaTickets.getValueAt(dato, 0)));
             this.codigoTicket = codi;
-            
             if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, " ¿Realmente desea ver el ticket " + codi + "?", null, JOptionPane.YES_NO_OPTION)) {
                 Controlador.obtenerInstancia().cambioEstadoLeido(codi);
                 Ticket aux = Controlador.obtenerInstancia().informacionTicket(codi);
@@ -993,11 +985,9 @@ public class PanelAlertasAdmin extends javax.swing.JPanel {
                 this.jPanelCantidad.setVisible(false);
                 this.llenarInformacionExtra(aux);
                 this.jPanelDetalle.setVisible(true);
-               // this.llenarBandeja();
             }
         } else {
             JOptionPane.showMessageDialog(null, "Debe seleccionar un ticket", "ERROR", JOptionPane.ERROR_MESSAGE);
-
         }
     }//GEN-LAST:event_btnVerMAsActionPerformed
 
@@ -1028,12 +1018,8 @@ public class PanelAlertasAdmin extends javax.swing.JPanel {
                 String comentarios = this.jTextAreaComentarios.getText() + "\n" + this.jTextAreaComentario2.getText();
                 if (Controlador.obtenerInstancia().agregaComentario(this.codigoTicket, comentarios)) {
                     JOptionPane.showMessageDialog(this, "Comentario agregado con éxito", "", JOptionPane.INFORMATION_MESSAGE);
-
-                    
                     Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
                             VentanaLogin.correo, "Ticket", "Agregó comentario al ticket " + this.codigoTicket);
-                    
-
                 } else {
                     JOptionPane.showMessageDialog(this, "No se pudo agregar el comentario", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
@@ -1052,19 +1038,14 @@ public class PanelAlertasAdmin extends javax.swing.JPanel {
                     String fecha = año + "-" + mes + "-" + dia;
                     if (Controlador.obtenerInstancia().cambiaFechaSolucion(this.codigoTicket, fecha)) {
                         JOptionPane.showMessageDialog(this, "Fecha de solución cambiada con éxito", "", JOptionPane.INFORMATION_MESSAGE);
-
-                      
                         Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
                                 VentanaLogin.correo, "Ticket", "Cambió fecha de solución al ticket " + this.codigoTicket);
-                        
-
                     } else {
                         JOptionPane.showMessageDialog(this, "No se pudo cambiar la fecha de solución", "ERROR", JOptionPane.ERROR_MESSAGE);
                     }
                 } else {
                     JOptionPane.showMessageDialog(this, "Fecha de solución invalida", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
-
             }
         }
         if (this.jRadioPrioridad.isSelected()) {
@@ -1086,11 +1067,8 @@ public class PanelAlertasAdmin extends javax.swing.JPanel {
                 }
                 if (Controlador.obtenerInstancia().cambiaPrioridad(this.codigoTicket, _prioridad)) {
                     JOptionPane.showMessageDialog(this, "Prioridad cambiada con éxito", "", JOptionPane.INFORMATION_MESSAGE);
-
-
                     Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
                             VentanaLogin.correo, "Ticket", "Cambió prioridad al ticket " + this.codigoTicket);
-                   
                 } else {
                     JOptionPane.showMessageDialog(this, "No se pudo cambiar la prioridad", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
@@ -1103,11 +1081,8 @@ public class PanelAlertasAdmin extends javax.swing.JPanel {
                 String _area = this.jComboBoxArea2.getSelectedItem().toString();
                 if (Controlador.obtenerInstancia().redireccionarTicket(this.codigoTicket, _area)) {
                     JOptionPane.showMessageDialog(this, "Ticket redireccionado con éxito", "", JOptionPane.INFORMATION_MESSAGE);
-
-                 
                     Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
                             VentanaLogin.correo, "Ticket", "Redireccionó el ticket " + this.codigoTicket);
-                    
                 } else {
                     JOptionPane.showMessageDialog(this, "No se ha podido redireccionar el ticket", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
@@ -1120,10 +1095,8 @@ public class PanelAlertasAdmin extends javax.swing.JPanel {
                 String correo = Controlador.obtenerInstancia().recortaCorreo(this.jTextResponsable.getText()) + "@castillo.cr";
                 if (Controlador.obtenerInstancia().asignarResponsable(this.codigoTicket, correo)) {
                     JOptionPane.showMessageDialog(this, "Responsable asignado con éxito", "", JOptionPane.INFORMATION_MESSAGE);
-
                     Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
                             VentanaLogin.correo, "Ticket", "Asignó responsable al ticket " + this.codigoTicket);
-                   
                 } else {
                     JOptionPane.showMessageDialog(this, "No se ha podido asignar el responsable", "", JOptionPane.ERROR_MESSAGE);
                 }
@@ -1156,13 +1129,13 @@ public class PanelAlertasAdmin extends javax.swing.JPanel {
         txtPrioridad.setText("");
         txtResponsable.setText("");
         txtTiempoSol.setText("");
-
     }
 
     //Declaracion de variables
     private static PanelAlertasAdmin instancia = null;
     private DefaultTableModel modelAux;
     private int codigoTicket;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAplicarCambios;
     private javax.swing.JButton btnCancelar;

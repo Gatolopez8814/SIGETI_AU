@@ -8,9 +8,7 @@ import com.itextpdf.text.pdf.PdfTemplate;
 import com.itextpdf.text.pdf.PdfWriter;
 import controlador.Controlador;
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import java.awt.Graphics2D;
-import java.awt.event.KeyAdapter;
 import java.awt.geom.Rectangle2D;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -41,14 +39,9 @@ public class PanelReportesArea extends javax.swing.JPanel {
             instancia = new PanelReportesArea();
         }
         instancia.limpiarCampos();
-        instancia.ajustarEventos();
         instancia.ocultarComponentes();
         return instancia;
     }//----------------------------------------------------------------------------- FIN obtenerInstancia()
-
-    private void ajustarEventos() {
-
-    }
 
     private void ocultarComponentes() {
         this.btnReporte.setEnabled(false);
@@ -417,7 +410,7 @@ public class PanelReportesArea extends javax.swing.JPanel {
             jPanelRangoFechas.setVisible(true);
             this.btnReporte.setEnabled(true);
         }
-        if (ComboBusqueda.getSelectedItem().equals("Rango de horas")) {      
+        if (ComboBusqueda.getSelectedItem().equals("Rango de horas")) {
             jPanelRangoHoras.setVisible(true);
             this.btnReporte.setEnabled(true);
         }
@@ -430,44 +423,40 @@ public class PanelReportesArea extends javax.swing.JPanel {
 
         if (ComboBusqueda.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Opción de busqueda incorrecta", "ERROR",
-                JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.ERROR_MESSAGE);
         } else if (ComboBusqueda.getSelectedItem().equals("Consultar mi área")) {
-                String area = Controlador.obtenerInstancia().obtieneNombreArea(correo);
-                ArrayList<String> aux = Controlador.obtenerInstancia().consultaTodosReporteMiArea(area, correo);
-                if (aux.isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "No se han encontrado tickets referentes a esta area.", "ERROR",
+            String area = Controlador.obtenerInstancia().obtieneNombreArea(correo);
+            ArrayList<String> aux = Controlador.obtenerInstancia().consultaTodosReporteMiArea(area, correo);
+            if (aux.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "No se han encontrado tickets referentes a esta area.", "ERROR",
                         JOptionPane.ERROR_MESSAGE);
-                } else {
-                    ChartPanel myChart = new ChartPanel(generateBarChartMiArea());
-                    myChart.setMouseWheelEnabled(true);
-                    jPanelTabla3.setLayout(new BorderLayout());
-                    jPanelTabla3.add(myChart,BorderLayout.CENTER);
-                    jPanelTabla3.validate();
-                    this.jPanelTabla3.setVisible(true);
-
-                    Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
-                            VentanaLogin.correo, "Ticket", "Consultó reporte área");
+            } else {
+                ChartPanel myChart = new ChartPanel(generateBarChartMiArea());
+                myChart.setMouseWheelEnabled(true);
+                jPanelTabla3.setLayout(new BorderLayout());
+                jPanelTabla3.add(myChart, BorderLayout.CENTER);
+                jPanelTabla3.validate();
+                this.jPanelTabla3.setVisible(true);
+                Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
+                        VentanaLogin.correo, "Ticket", "Consultó reporte área");
             }
         } else if (ComboBusqueda.getSelectedItem().equals("Rango de horas")) {
-
             if (this.comboHoraInicial.getSelectedIndex() != 0 && this.comboMinutoInicial.getSelectedIndex() != 0
-                && this.comboHoraFinal.getSelectedIndex() != 0 && this.comboMinutoFinal.getSelectedIndex() != 0) {
+                    && this.comboHoraFinal.getSelectedIndex() != 0 && this.comboMinutoFinal.getSelectedIndex() != 0) {
                 if (Integer.parseInt(comboHoraInicial.getSelectedItem().toString()) > Integer.parseInt(comboHoraFinal.getSelectedItem().toString())) {
                     JOptionPane.showMessageDialog(null, "Rango de horas erroneo.", "ERROR",
-                        JOptionPane.ERROR_MESSAGE);
-                }else
-                if ((Integer.parseInt(comboHoraInicial.getSelectedItem().toString()) == Integer.parseInt(comboHoraFinal.getSelectedItem().toString()))&&
-                (Integer.parseInt(comboMinutoInicial.getSelectedItem().toString()) > Integer.parseInt(comboMinutoFinal.getSelectedItem().toString()))) {
-                JOptionPane.showMessageDialog(null, "Rango de horas erroneo.", "ERROR",
-                    JOptionPane.ERROR_MESSAGE);
-            }else {
-                hora1 = this.comboHoraInicial.getSelectedItem().toString() + ":" + this.comboMinutoInicial.getSelectedItem().toString() + ":00";
-                hora2 = this.comboHoraFinal.getSelectedItem().toString() + ":" + this.comboMinutoFinal.getSelectedItem().toString() + ":59";
-                    
-                ArrayList<String> aux = Controlador.obtenerInstancia().consultaReporteHorasArea(hora1, hora2,VentanaLogin.correo);
+                            JOptionPane.ERROR_MESSAGE);
+                } else if ((Integer.parseInt(comboHoraInicial.getSelectedItem().toString()) == Integer.parseInt(comboHoraFinal.getSelectedItem().toString()))
+                        && (Integer.parseInt(comboMinutoInicial.getSelectedItem().toString()) > Integer.parseInt(comboMinutoFinal.getSelectedItem().toString()))) {
+                    JOptionPane.showMessageDialog(null, "Rango de horas erroneo.", "ERROR",
+                            JOptionPane.ERROR_MESSAGE);
+                } else {
+                    hora1 = this.comboHoraInicial.getSelectedItem().toString() + ":" + this.comboMinutoInicial.getSelectedItem().toString() + ":00";
+                    hora2 = this.comboHoraFinal.getSelectedItem().toString() + ":" + this.comboMinutoFinal.getSelectedItem().toString() + ":59";
+                    ArrayList<String> aux = Controlador.obtenerInstancia().consultaReporteHorasArea(hora1, hora2, VentanaLogin.correo);
                     if (aux.isEmpty()) {
                         JOptionPane.showMessageDialog(null, "No se han encontrado tickets en este rango de horas.", "ERROR",
-                            JOptionPane.ERROR_MESSAGE);
+                                JOptionPane.ERROR_MESSAGE);
                     } else {
                         jPanelRangoHoras.setVisible(false);
                         ChartPanel myChart = new ChartPanel(generateBarChartHoras());
@@ -476,16 +465,15 @@ public class PanelReportesArea extends javax.swing.JPanel {
                         jPanelTabla3.add(myChart, BorderLayout.CENTER);
                         jPanelTabla3.validate();
                         this.jPanelTabla3.setVisible(true);
-
                         Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
                                 VentanaLogin.correo, "Ticket", "Consultó reporte horas");
+                    }
                 }
-            }
-        }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Debe seleccionar las horas", "ERROR",
-                            JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.ERROR_MESSAGE);
             }
-        } else {//inicio else fechas
+        } else {
             String dia1, mes1, anno1, dia2, mes2, anno2;
             dia1 = this.jComboDiaDesde.getSelectedItem().toString();
             mes1 = String.valueOf(this.jComboMesDesde.getSelectedIndex() + 1);
@@ -495,13 +483,11 @@ public class PanelReportesArea extends javax.swing.JPanel {
             anno2 = this.jComboAñosHasta.getSelectedItem().toString();
             fecha1 = anno1 + "-" + mes1 + "-" + dia1;
             fecha2 = anno2 + "-" + mes2 + "-" + dia2;
-            System.err.println(fecha1 + "  " + fecha2);
             if (isFechaValida(fecha1) && isFechaValida(fecha2)) {
-                ArrayList<String> aux = Controlador.obtenerInstancia().consultaReporteFechaArea(fecha1, fecha2,VentanaLogin.correo);
-
+                ArrayList<String> aux = Controlador.obtenerInstancia().consultaReporteFechaArea(fecha1, fecha2, VentanaLogin.correo);
                 if (aux.isEmpty()) {
                     JOptionPane.showMessageDialog(null, "No se han encontrado tickets en este rango de fechas.", "ERROR",
-                        JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.ERROR_MESSAGE);
                 } else {
                     jPanelRangoFechas.setVisible(false);
                     ChartPanel myChart = new ChartPanel(generateBarChartFechas());
@@ -512,15 +498,12 @@ public class PanelReportesArea extends javax.swing.JPanel {
                     this.jPanelTabla3.setVisible(true);
                     Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
                             VentanaLogin.correo, "Ticket", "Consultó reporte fechas");
-
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Fechas invalidas.", "ERROR",
+                        JOptionPane.ERROR_MESSAGE);
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Fechas invalidas.", "ERROR",
-                JOptionPane.ERROR_MESSAGE);
         }
-
-        }//fin else fechas
-
     }//GEN-LAST:event_btnReporteActionPerformed
 
     private void btnCancelarReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarReporteActionPerformed
@@ -531,26 +514,31 @@ public class PanelReportesArea extends javax.swing.JPanel {
 
     private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
         String ruta = this.obtieneRuta();
-        try {
-            Document document = new Document();
-            System.out.println(ruta);
-            if (!ruta.contains(".pdf")) {
-                ruta = ruta + ".pdf";
+        if (ruta.equals("")) {
+            JOptionPane.showMessageDialog(null, "El archivo no ha sido guardado.", "ERROR",
+                    JOptionPane.ERROR_MESSAGE);
+        } else {
+            try {
+                Document document = new Document();
+                if (!ruta.contains(".pdf")) {
+                    ruta = ruta + ".pdf";
+                }
+                if (ComboBusqueda.getSelectedItem().equals("Consultar mi área")) {
+                    writeChartToPDF(document, generateBarChartMiArea(), 400, 400, ruta);
+                } else if (ComboBusqueda.getSelectedItem().equals("Rango de fechas")) {
+                    writeChartToPDF(document, generateBarChartFechas(), 400, 400, ruta);
+                } else if (ComboBusqueda.getSelectedItem().equals("Rango de horas")) {
+                    writeChartToPDF(document, generateBarChartHoras(), 400, 400, ruta);
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Ha ocurrido un error al exportar el archivo",
+                        "ERROR", JOptionPane.ERROR_MESSAGE);
             }
-            if (ComboBusqueda.getSelectedItem().equals("Consultar mi área")) {
-                writeChartToPDF(document, generateBarChartMiArea(), 400, 400, ruta);
-            } else if (ComboBusqueda.getSelectedItem().equals("Rango de fechas")) {
-                writeChartToPDF(document, generateBarChartFechas(), 400, 400, ruta);
-            } else if (ComboBusqueda.getSelectedItem().equals("Rango de horas")) {
-                writeChartToPDF(document, generateBarChartHoras(), 400, 400, ruta);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }//GEN-LAST:event_btnExportarActionPerformed
 
-     private void cargarComboAnnos() {
-         jComboAñoDesde.removeAllItems();
+    private void cargarComboAnnos() {
+        jComboAñoDesde.removeAllItems();
         jComboAñosHasta.removeAllItems();
         ArrayList<String> lstAnyos;
         lstAnyos = new ArrayList<>();
@@ -569,35 +557,21 @@ public class PanelReportesArea extends javax.swing.JPanel {
         this.jComboAñosHasta.revalidate();
         this.jComboAñosHasta.repaint();
     }
-     
-    private String obtieneEstado(Ticket _ticket) {
-        String estado = "";
-        if (_ticket.getEstado().equals("borrado")) {
-            estado = "cerrado";
-        } else {
-            estado = _ticket.getEstado();
-        }
-        return estado;
-    }//----------------------------------------------------------------------------- FIN obtieneEstado()
 
     private void limpiarCampos() {
-//        jComboArea.setSelectedIndex(0);
         ComboBusqueda.setSelectedIndex(0);
         jComboAñoDesde.setSelectedIndex(0);
         jComboAñosHasta.setSelectedIndex(0);
         jComboDiaDesde.setSelectedIndex(0);
         jComboDiaHasta.setSelectedIndex(0);
-
         jComboMesDesde.setSelectedIndex(0);
         jComboMesHasta.setSelectedIndex(0);
-
         comboHoraFinal.setSelectedIndex(0);
         comboHoraInicial.setSelectedIndex(0);
         comboMinutoFinal.setSelectedIndex(0);
         comboMinutoInicial.setSelectedIndex(0);
         jPanelTabla3.repaint();
     }
-
 
     private String obtieneRuta() {//obtiene la ruta que el usuario quiere con todo y nombre el archivo que le pone
         JFileChooser file = new JFileChooser();
@@ -612,106 +586,101 @@ public class PanelReportesArea extends javax.swing.JPanel {
     public JFreeChart generateBarChartMiArea() {
         DefaultCategoryDataset dataSet = new DefaultCategoryDataset();
         int cantidadEstados = Controlador.obtenerInstancia().consultaTodosReporteMiArea(area, correo).size();
-        switch(cantidadEstados){
+        switch (cantidadEstados) {
             case 2:
                 dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaTodosReporteMiArea(area, correo).get(1)), "",
-                Controlador.obtenerInstancia().consultaTodosReporteMiArea(area, correo).get(0));
+                        Controlador.obtenerInstancia().consultaTodosReporteMiArea(area, correo).get(0));
                 break;
             case 4:
                 dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaTodosReporteMiArea(area, correo).get(1)), "",
-                Controlador.obtenerInstancia().consultaTodosReporteMiArea(area, correo).get(0));
+                        Controlador.obtenerInstancia().consultaTodosReporteMiArea(area, correo).get(0));
                 dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaTodosReporteMiArea(area, correo).get(3)), "",
-                Controlador.obtenerInstancia().consultaTodosReporteMiArea(area, correo).get(2));
+                        Controlador.obtenerInstancia().consultaTodosReporteMiArea(area, correo).get(2));
                 break;
-                
+
             case 6:
                 dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaTodosReporteMiArea(area, correo).get(1)), "",
-                Controlador.obtenerInstancia().consultaTodosReporteMiArea(area, correo).get(0));
+                        Controlador.obtenerInstancia().consultaTodosReporteMiArea(area, correo).get(0));
                 dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaTodosReporteMiArea(area, correo).get(3)), "",
-                Controlador.obtenerInstancia().consultaTodosReporteMiArea(area, correo).get(2));
+                        Controlador.obtenerInstancia().consultaTodosReporteMiArea(area, correo).get(2));
                 dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaTodosReporteMiArea(area, correo).get(5)), "",
-                Controlador.obtenerInstancia().consultaTodosReporteMiArea(area, correo).get(4));
+                        Controlador.obtenerInstancia().consultaTodosReporteMiArea(area, correo).get(4));
                 break;
             default:
                 JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                    "ERROR", JOptionPane.ERROR_MESSAGE);
+                        "ERROR", JOptionPane.ERROR_MESSAGE);
                 break;
-            
+
         }
         JFreeChart chart = ChartFactory.createBarChart(
                 "Reporte de tickets del área " + area, "Estado de tickets", "Cantidad de tickets",
                 dataSet, PlotOrientation.VERTICAL, false, true, false);
-
         return chart;
     }
 
     public JFreeChart generateBarChartFechas() {
         DefaultCategoryDataset dataSet = new DefaultCategoryDataset();
-        int cantidadEstados = Controlador.obtenerInstancia().consultaReporteFechaArea(fecha1, fecha2,correo).size();
-        switch(cantidadEstados){
+        int cantidadEstados = Controlador.obtenerInstancia().consultaReporteFechaArea(fecha1, fecha2, correo).size();
+        switch (cantidadEstados) {
             case 2:
-                dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaReporteFechaArea(fecha1, fecha2,correo).get(1)), "",
-                Controlador.obtenerInstancia().consultaReporteFechaArea(fecha1, fecha2,VentanaLogin.correo).get(0));
+                dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaReporteFechaArea(fecha1, fecha2, correo).get(1)), "",
+                        Controlador.obtenerInstancia().consultaReporteFechaArea(fecha1, fecha2, VentanaLogin.correo).get(0));
                 break;
             case 4:
-                dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaReporteFechaArea(fecha1, fecha2,correo).get(1)), "",
-                Controlador.obtenerInstancia().consultaReporteFechaArea(fecha1, fecha2,VentanaLogin.correo).get(0));
-                dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaReporteFechaArea(fecha1, fecha2,correo).get(3)), "",
-                Controlador.obtenerInstancia().consultaReporteFechaArea(fecha1, fecha2,VentanaLogin.correo).get(2));
+                dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaReporteFechaArea(fecha1, fecha2, correo).get(1)), "",
+                        Controlador.obtenerInstancia().consultaReporteFechaArea(fecha1, fecha2, VentanaLogin.correo).get(0));
+                dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaReporteFechaArea(fecha1, fecha2, correo).get(3)), "",
+                        Controlador.obtenerInstancia().consultaReporteFechaArea(fecha1, fecha2, VentanaLogin.correo).get(2));
                 break;
             case 6:
-                dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaReporteFechaArea(fecha1, fecha2,correo).get(1)), "",
-                Controlador.obtenerInstancia().consultaReporteFechaArea(fecha1, fecha2,VentanaLogin.correo).get(0));
-                dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaReporteFechaArea(fecha1, fecha2,correo).get(3)), "",
-                Controlador.obtenerInstancia().consultaReporteFechaArea(fecha1, fecha2,VentanaLogin.correo).get(2));
-                dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaReporteFechaArea(fecha1, fecha2,correo).get(5)), "",
-                Controlador.obtenerInstancia().consultaReporteFechaArea(fecha1, fecha2,VentanaLogin.correo).get(4));
+                dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaReporteFechaArea(fecha1, fecha2, correo).get(1)), "",
+                        Controlador.obtenerInstancia().consultaReporteFechaArea(fecha1, fecha2, VentanaLogin.correo).get(0));
+                dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaReporteFechaArea(fecha1, fecha2, correo).get(3)), "",
+                        Controlador.obtenerInstancia().consultaReporteFechaArea(fecha1, fecha2, VentanaLogin.correo).get(2));
+                dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaReporteFechaArea(fecha1, fecha2, correo).get(5)), "",
+                        Controlador.obtenerInstancia().consultaReporteFechaArea(fecha1, fecha2, VentanaLogin.correo).get(4));
                 break;
             default:
                 JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                    "ERROR", JOptionPane.ERROR_MESSAGE);
+                        "ERROR", JOptionPane.ERROR_MESSAGE);
                 break;
-            
         }
         JFreeChart chart = ChartFactory.createBarChart(
                 "Reporte de tickets del día " + fecha1 + " al " + fecha2, "Estado de tickets", "Cantidad de tickets",
                 dataSet, PlotOrientation.VERTICAL, false, true, false);
-
         return chart;
     }
 
     public JFreeChart generateBarChartHoras() {
         DefaultCategoryDataset dataSet = new DefaultCategoryDataset();
-        int cantidadEstados = Controlador.obtenerInstancia().consultaReporteHorasArea(hora1, hora2,correo).size();
-        switch(cantidadEstados){
+        int cantidadEstados = Controlador.obtenerInstancia().consultaReporteHorasArea(hora1, hora2, correo).size();
+        switch (cantidadEstados) {
             case 2:
-                dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaReporteHorasArea(hora1, hora2,correo).get(1)), "",
-                Controlador.obtenerInstancia().consultaReporteHorasArea(hora1, hora2,VentanaLogin.correo).get(0));
+                dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaReporteHorasArea(hora1, hora2, correo).get(1)), "",
+                        Controlador.obtenerInstancia().consultaReporteHorasArea(hora1, hora2, VentanaLogin.correo).get(0));
                 break;
             case 4:
-                dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaReporteHorasArea(hora1, hora2,correo).get(1)), "",
-                Controlador.obtenerInstancia().consultaReporteHorasArea(hora1, hora2,VentanaLogin.correo).get(0));
-                dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaReporteHorasArea(hora1, hora2,correo).get(3)), "",
-                Controlador.obtenerInstancia().consultaReporteHorasArea(hora1, hora2,VentanaLogin.correo).get(2));
+                dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaReporteHorasArea(hora1, hora2, correo).get(1)), "",
+                        Controlador.obtenerInstancia().consultaReporteHorasArea(hora1, hora2, VentanaLogin.correo).get(0));
+                dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaReporteHorasArea(hora1, hora2, correo).get(3)), "",
+                        Controlador.obtenerInstancia().consultaReporteHorasArea(hora1, hora2, VentanaLogin.correo).get(2));
                 break;
             case 6:
-                dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaReporteHorasArea(hora1, hora2,correo).get(1)), "",
-                Controlador.obtenerInstancia().consultaReporteHorasArea(hora1, hora2,VentanaLogin.correo).get(0));
-                dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaReporteHorasArea(hora1, hora2,correo).get(3)), "",
-                Controlador.obtenerInstancia().consultaReporteHorasArea(hora1, hora2,VentanaLogin.correo).get(2));
-                dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaReporteHorasArea(hora1, hora2,correo).get(5)), "",
-                Controlador.obtenerInstancia().consultaReporteHorasArea(hora1, hora2,VentanaLogin.correo).get(4));
+                dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaReporteHorasArea(hora1, hora2, correo).get(1)), "",
+                        Controlador.obtenerInstancia().consultaReporteHorasArea(hora1, hora2, VentanaLogin.correo).get(0));
+                dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaReporteHorasArea(hora1, hora2, correo).get(3)), "",
+                        Controlador.obtenerInstancia().consultaReporteHorasArea(hora1, hora2, VentanaLogin.correo).get(2));
+                dataSet.setValue(Integer.parseInt(Controlador.obtenerInstancia().consultaReporteHorasArea(hora1, hora2, correo).get(5)), "",
+                        Controlador.obtenerInstancia().consultaReporteHorasArea(hora1, hora2, VentanaLogin.correo).get(4));
                 break;
             default:
                 JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                    "ERROR", JOptionPane.ERROR_MESSAGE);
+                        "ERROR", JOptionPane.ERROR_MESSAGE);
                 break;
-            
         }
         JFreeChart chart = ChartFactory.createBarChart(
                 "Reporte de tickets entre las " + hora1 + " y las " + hora2, "Estado de tickets", "Cantidad de tickets",
                 dataSet, PlotOrientation.VERTICAL, false, true, false);
-
         return chart;
     }
 
@@ -719,29 +688,25 @@ public class PanelReportesArea extends javax.swing.JPanel {
         PdfWriter writer = null;
         document = new Document();
         try {
-//            System.err.println("entro al try");
             writer = PdfWriter.getInstance(document, new FileOutputStream(
                     fileName));
             document.open();
             document.add(new Paragraph("Reporte de tickets"));
             document.add(new Paragraph(new Date().toString()));
-//            System.err.println("abrio el doc");
             PdfContentByte contentByte = writer.getDirectContent();
             PdfTemplate template = contentByte.createTemplate(width, height);
             Graphics2D graphics2d = template.createGraphics(width, height, new DefaultFontMapper());
             Rectangle2D rectangle2d = new Rectangle2D.Double(0, 0, width,
                     height);
-
             chart.draw(graphics2d, rectangle2d);
-//            System.err.println("dibuja grafico");
             graphics2d.dispose();
             contentByte.addTemplate(template, 100, 250);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error en la escritura del archivo",
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         }
         document.close();
-//        System.err.println("cerro el doc");
         JOptionPane.showMessageDialog(null,
                 "El archivo se a guardado exitosamente como " + "\n" + fileName,
                 "", JOptionPane.INFORMATION_MESSAGE);
@@ -749,11 +714,10 @@ public class PanelReportesArea extends javax.swing.JPanel {
 
 //Declaracion de variables
     private static PanelReportesArea instancia = null;
-    DefaultTableModel modelAux;
-    String fecha1, fecha2, hora1, hora2;
-    String correo = VentanaLogin.correo;
-    String area = Controlador.obtenerInstancia().obtieneNombreArea(correo);
-    String fecha = new Date().toString();
+    private String fecha1, fecha2, hora1, hora2;
+    private final String correo = VentanaLogin.correo;
+    private final String area = Controlador.obtenerInstancia().obtieneNombreArea(correo);
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox ComboBusqueda;
     private javax.swing.JPanel PanelBotones;

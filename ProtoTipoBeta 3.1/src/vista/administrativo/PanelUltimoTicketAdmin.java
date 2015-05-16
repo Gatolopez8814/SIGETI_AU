@@ -11,31 +11,27 @@ public class PanelUltimoTicketAdmin extends javax.swing.JPanel {
 
     private PanelUltimoTicketAdmin() {
         initComponents();
-        this.ajustarEventos();
-//        this.limpiarCampos();
     }//----------------------------------------------------------------------------- FIN Constructor()
 
     public static PanelUltimoTicketAdmin obtenerInstancia() {//para garantizar hay solo una instancia
         if (instancia == null) {
             instancia = new PanelUltimoTicketAdmin();
         }
+        instancia.ajustarEventos();
         instancia.limpiarCampos();
         instancia.llenarUltimo(VentanaLogin.correo);
         return instancia;
-    }////----------------------------------------------------------------------------- FIN obtenerInstancia()
+    }//----------------------------------------------------------------------------- FIN obtenerInstancia()
 
     private void llenarUltimo(String correo) {
-
         Ticket _ticket = Controlador.obtenerInstancia().consultaUltimo(correo);
         if (_ticket.getEstado() == null) {
             JOptionPane.showMessageDialog(this, "   No se han encontrado tickets a nombre de este usuario", "ERROR", JOptionPane.ERROR_MESSAGE);
-
         } else {
             this.jLabel1.setText("Último ticket creado: " + _ticket.getConsecutivo());
             this.txtResponsable.setText(_ticket.getResponsable());
             this.txtArea.setText(_ticket.getAreaDestino());
             this.txtAsunto.setText(_ticket.getAsunto());
-            //cambiar de borrado a cerrado
             if (_ticket.getEstado().equals("borrado")) {
                 this.txtEstado.setText("cerrado");
             } else {
@@ -45,12 +41,9 @@ public class PanelUltimoTicketAdmin extends javax.swing.JPanel {
             this.txtFecha.setText(_ticket.getFecha());
             this.jTextAreaDetalle.setText(_ticket.getDetalleProblema());
             this.jTextAreaComentarios.setText(_ticket.getComentarios());
-            this.jPanelDatos.setVisible(true);
-
-            
+            this.jPanelDatos.setVisible(true);            
             Controlador.obtenerInstancia().ejecutarSentenciaSQL( Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
-                    VentanaLogin.correo, "Ticket", "Consultó el ticket " + _ticket.getConsecutivo());
-            
+                    VentanaLogin.correo, "Ticket", "Consultó el ticket " + _ticket.getConsecutivo()); 
         }
     }
 
@@ -77,13 +70,6 @@ public class PanelUltimoTicketAdmin extends javax.swing.JPanel {
                 Ventana.obtenerInstancia().tecla();
             }
         });
-//        txtClasificacion.addKeyListener(new KeyAdapter() {
-//            @Override
-//            public void keyPressed(java.awt.event.KeyEvent evt) {
-//                super.keyPressed(evt);
-//                Ventana.obtenerInstancia().tecla();
-//            }
-//        });
         txtHora.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -91,13 +77,6 @@ public class PanelUltimoTicketAdmin extends javax.swing.JPanel {
                 Ventana.obtenerInstancia().tecla();
             }
         });
-//        txtCreador.addKeyListener(new KeyAdapter() {
-//            @Override
-//            public void keyPressed(java.awt.event.KeyEvent evt) {
-//                super.keyPressed(evt);
-//                Ventana.obtenerInstancia().tecla();
-//            }
-//        });
         txtArea.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -112,7 +91,6 @@ public class PanelUltimoTicketAdmin extends javax.swing.JPanel {
                 Ventana.obtenerInstancia().tecla();
             }
         });
-
     }
 
     @SuppressWarnings("unchecked")
@@ -386,13 +364,10 @@ public class PanelUltimoTicketAdmin extends javax.swing.JPanel {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Desea finalizar la consulta?", null, JOptionPane.YES_NO_OPTION)) {
-//            this.txtCreador.setText("");
             this.txtArea.setText("");
             this.txtEstado.setText("");
             this.txtAsunto.setText("");
-//            this.txtClasificacion.setText("");
             this.txtHora.setText("");
-//            this.jList1.setText("El problema consiste en ...");
             this.jTextAreaDetalle.setText("El problema consiste en ...");
             this.jTextAreaComentarios.setText("");
             Ventana.obtenerInstancia().ventanaPrincipalAdmin();
@@ -421,6 +396,7 @@ public class PanelUltimoTicketAdmin extends javax.swing.JPanel {
 
 //Declaracion de variables
     private static PanelUltimoTicketAdmin instancia = null;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelBotones;
     private javax.swing.JButton btnCancelar;

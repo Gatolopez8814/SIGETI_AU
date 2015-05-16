@@ -5,7 +5,6 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Event;
-import java.awt.FlowLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -49,7 +48,6 @@ import vista.administrativo.PanelCrearTicketAdministrativo;
 import vista.administrativo.PanelDesbloquearUsuarioAdmin;
 import vista.administrativo.PanelConfigurarTicket;
 import vista.administrativo.PanelEliminarUsuarioAdmin;
-import vista.administrativo.PanelGestionarTicketAdmin;
 import vista.administrativo.PanelModificarUsuario;
 import vista.administrativo.PanelRegistrarUsuariosAdmin;
 import vista.administrativo.PanelReportesAdmin;
@@ -885,17 +883,6 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
         repaint();
     }//----------------------------------------------------------------------------- FIN eliminarUsuarioAdmin()
 
-    public void gestionTicketAdmin() {
-        panelPrincipal.removeAll();
-        setBarraEstado("Gestión de ticket");
-        scrollPanelPrincipal = new JScrollPane(PanelGestionarTicketAdmin.obtenerInstancia());
-        panelPrincipal.setLayout(new BorderLayout());
-        panelPrincipal.add(ArbolAdministrativo.obtenerInstancia(), BorderLayout.WEST);
-        panelPrincipal.add(scrollPanelPrincipal, BorderLayout.CENTER);
-        pack();
-        repaint();
-    }//----------------------------------------------------------------------------- FIN gestionTicketAdmin()
-
     public void registrarUsuarioAdmin() {
         panelPrincipal.removeAll();
         setBarraEstado("Registro de usuarios");
@@ -1076,6 +1063,7 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
     public void TodosTicketsAdmin() {
         panelPrincipal.removeAll();
         setBarraEstado("Todos los Tickets");
+        
         scrollPanelPrincipal = new JScrollPane(PanelTodosTicketsAdmin.obtenerInstancia());
         panelPrincipal.setLayout(new BorderLayout());
         panelPrincipal.add(ArbolAdministrativo.obtenerInstancia(), BorderLayout.WEST);

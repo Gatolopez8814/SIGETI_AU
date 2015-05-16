@@ -12,7 +12,6 @@ public class ConexionMySql {
     private Connection conexion;
 
     public static ConexionMySql obtenerInstancia() {
-        //asi garantizamos que solo aya una ventana
         if (instancia == null) {
             instancia = new ConexionMySql();
         }
@@ -30,11 +29,8 @@ public class ConexionMySql {
                 ok = false;
             }
         } catch (SQLException e) {
-            //e.printStackTrace();
         } catch (ClassNotFoundException e) {
-            //e.printStackTrace();
         } catch (Exception e) {
-            //e.printStackTrace();
         }
         return conexion;
     }//----------------------------------------------------------------------------- FIN conectar()

@@ -32,7 +32,7 @@ public class ManejadorDeArchivos {
                 aux = br.readLine();
                 if (aux != null) {
                     l = l + aux;
-                }else {
+                } else {
                     break;
                 }
             }
@@ -40,7 +40,7 @@ public class ManejadorDeArchivos {
             lectorArchivo.close();
             return l;
         } catch (IOException e) {
-            System.out.println("Error:" + e.getMessage());
+
         }
         return null;
     }//end_leer
@@ -51,8 +51,7 @@ public class ManejadorDeArchivos {
             FileWriter w = new FileWriter(f);
             BufferedWriter bw = new BufferedWriter(w);
             PrintWriter wr = new PrintWriter(bw);
-            wr.write(txt);            
-            //wr.append(" - y aqui continua");            
+            wr.write(txt);
             wr.close();
             bw.close();
         } catch (IOException e) {

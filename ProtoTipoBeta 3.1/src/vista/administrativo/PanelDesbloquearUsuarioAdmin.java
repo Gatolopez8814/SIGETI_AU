@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package vista.administrativo;
 
 import controlador.Controlador;
@@ -17,14 +12,14 @@ public class PanelDesbloquearUsuarioAdmin extends javax.swing.JPanel {
 
     private PanelDesbloquearUsuarioAdmin() {
         initComponents();
-        ajustarEventos();
-        this.limpiarCampos();
     }//----------------------------------------------------------------------------- FIN Constructor()
 
     public static PanelDesbloquearUsuarioAdmin obtenerInstancia() {//para garantizar hay solo una instancia
         if (instancia == null) {
             instancia = new PanelDesbloquearUsuarioAdmin();
         }
+        instancia.ajustarEventos();
+        instancia.limpiarCampos();
         instancia.cargarjComboUsuarios();
         return instancia;
     }//----------------------------------------------------------------------------- FIN obtenerInstancia()
@@ -39,8 +34,8 @@ public class PanelDesbloquearUsuarioAdmin extends javax.swing.JPanel {
                 } else {
                     e.consume();
                 }
-            }//
-            
+            }
+
             @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 super.keyPressed(evt);
@@ -267,69 +262,62 @@ public class PanelDesbloquearUsuarioAdmin extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnDesbloquearusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDesbloquearusuarioActionPerformed
-        if(this.txtCorreoDesBloquear.getText().equals("") && this.jComboUsuarios.getSelectedIndex()==0){
+        if (this.txtCorreoDesBloquear.getText().equals("") && this.jComboUsuarios.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(this, "Faltan datos", "ERROR", JOptionPane.ERROR_MESSAGE);
-        }else if(!this.txtCorreoDesBloquear.getText().equals("") && this.jComboUsuarios.getSelectedIndex()==0){
-            if(Controlador.obtenerInstancia().obtieneEstadoUsuario(txtCorreoDesBloquear.getText()) == 1){
-            JOptionPane.showMessageDialog(this, "El usuario ya se encuentra desbloqueado", "ERROR", JOptionPane.ERROR_MESSAGE);
-        }else{
-        String contrasenna;
-        if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Realmente "
-                + "desea desbloquear este usuario?", null, JOptionPane.YES_NO_OPTION)) {
-            contrasenna = JOptionPane.showInputDialog("Digite su contraseña:");
-            if (Controlador.obtenerInstancia().verificarContrasenna(VentanaLogin.correo, contrasenna)) {
-                if (Controlador.obtenerInstancia().desBloqueaUsuarioAdmin(txtCorreoDesBloquear.getText())) {
-                    JOptionPane.showMessageDialog(this, "   El usuario ha sido desbloqueado con éxito", "Usuario desbloqueado", JOptionPane.INFORMATION_MESSAGE);
-
-                    instancia.cargarjComboUsuarios();
-                    
-                    Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
-                            VentanaLogin.correo, "Usuario", "Desbloqueó al usuario " + txtCorreoDesBloquear.getText());
-                    
-                } else {
-                    JOptionPane.showMessageDialog(this, "No se pudo desbloquear el usuario", "ERROR", JOptionPane.ERROR_MESSAGE);
-                }
+        } else if (!this.txtCorreoDesBloquear.getText().equals("") && this.jComboUsuarios.getSelectedIndex() == 0) {
+            if (Controlador.obtenerInstancia().obtieneEstadoUsuario(txtCorreoDesBloquear.getText()) == 1) {
+                JOptionPane.showMessageDialog(this, "El usuario ya se encuentra desbloqueado", "ERROR", JOptionPane.ERROR_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(this, "   No se pudo desbloquear el usuario, constraseña incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
-            }
-
-        }
-        }
-        }else if(this.txtCorreoDesBloquear.getText().equals("") && this.jComboUsuarios.getSelectedIndex()!=0){
-            if(Controlador.obtenerInstancia().obtieneEstadoUsuario(jComboUsuarios.getSelectedItem().toString()) == 1){
-            JOptionPane.showMessageDialog(this, "El usuario ya se encuentra desbloqueado", "ERROR", JOptionPane.ERROR_MESSAGE);
-        }else{
-        String contrasenna;
-        if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Realmente "
-                + "desea desbloquear este usuario?", null, JOptionPane.YES_NO_OPTION)) {
-            contrasenna = JOptionPane.showInputDialog("Digite su contraseña:");
-            if (Controlador.obtenerInstancia().verificarContrasenna(VentanaLogin.correo, contrasenna)) {
-                if (Controlador.obtenerInstancia().desBloqueaUsuarioAdmin(jComboUsuarios.getSelectedItem().toString())) {
-                    JOptionPane.showMessageDialog(this, "   El usuario ha sido desbloqueado con éxito", "Usuario desbloqueado", JOptionPane.INFORMATION_MESSAGE);
-
-                    Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
-                            VentanaLogin.correo, "Usuario", "Desbloqueó al usuario " + jComboUsuarios.getSelectedItem().toString());
-                    instancia.cargarjComboUsuarios();
-                    this.limpiarCampos();
-                    
-                } else {
-                    JOptionPane.showMessageDialog(this, "No se pudo desbloquear el usuario", "ERROR", JOptionPane.ERROR_MESSAGE);
+                String contrasenna;
+                if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Realmente "
+                        + "desea desbloquear este usuario?", null, JOptionPane.YES_NO_OPTION)) {
+                    contrasenna = JOptionPane.showInputDialog("Digite su contraseña:");
+                    if (Controlador.obtenerInstancia().verificarContrasenna(VentanaLogin.correo, contrasenna)) {
+                        if (Controlador.obtenerInstancia().desBloqueaUsuarioAdmin(txtCorreoDesBloquear.getText())) {
+                            JOptionPane.showMessageDialog(this, "   El usuario ha sido desbloqueado con éxito", "Usuario desbloqueado", JOptionPane.INFORMATION_MESSAGE);
+                            instancia.cargarjComboUsuarios();
+                            Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
+                                    VentanaLogin.correo, "Usuario", "Desbloqueó al usuario " + txtCorreoDesBloquear.getText());
+                        } else {
+                            JOptionPane.showMessageDialog(this, "No se pudo desbloquear el usuario", "ERROR", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(this, "   No se pudo desbloquear el usuario, constraseña incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
-            } else {
-                JOptionPane.showMessageDialog(this, "   No se pudo desbloquear el usuario, constraseña incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
-
-        }
-        }
-        }else{
+        } else if (this.txtCorreoDesBloquear.getText().equals("") && this.jComboUsuarios.getSelectedIndex() != 0) {
+            if (Controlador.obtenerInstancia().obtieneEstadoUsuario(jComboUsuarios.getSelectedItem().toString()) == 1) {
+                JOptionPane.showMessageDialog(this, "El usuario ya se encuentra desbloqueado", "ERROR", JOptionPane.ERROR_MESSAGE);
+            } else {
+                String contrasenna;
+                if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Realmente "
+                        + "desea desbloquear este usuario?", null, JOptionPane.YES_NO_OPTION)) {
+                    contrasenna = JOptionPane.showInputDialog("Digite su contraseña:");
+                    if (Controlador.obtenerInstancia().verificarContrasenna(VentanaLogin.correo, contrasenna)) {
+                        if (Controlador.obtenerInstancia().desBloqueaUsuarioAdmin(jComboUsuarios.getSelectedItem().toString())) {
+                            JOptionPane.showMessageDialog(this, "   El usuario ha sido desbloqueado con éxito", "Usuario desbloqueado", JOptionPane.INFORMATION_MESSAGE);
+                            Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
+                                    VentanaLogin.correo, "Usuario", "Desbloqueó al usuario " + jComboUsuarios.getSelectedItem().toString());
+                            instancia.cargarjComboUsuarios();
+                            this.limpiarCampos();
+                        } else {
+                            JOptionPane.showMessageDialog(this, "No se pudo desbloquear el usuario", "ERROR", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(this, "   No se pudo desbloquear el usuario, constraseña incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            }
+        } else {
             JOptionPane.showMessageDialog(this, "Debe elegir una sola opción", "ERROR", JOptionPane.ERROR_MESSAGE);
             instancia.cargarjComboUsuarios();
             this.limpiarCampos();
         }
-        
+
     }//GEN-LAST:event_btnDesbloquearusuarioActionPerformed
 
-     private void cargarjComboUsuarios(){
+    private void cargarjComboUsuarios() {
         this.jComboUsuarios.removeAllItems();
         this.jComboUsuarios.addItem("Seleccione aquí");
         ArrayList<String> temp = Controlador.obtenerInstancia().obtieneUsuarios(VentanaLogin.correo, 0);
@@ -340,13 +328,13 @@ public class PanelDesbloquearUsuarioAdmin extends javax.swing.JPanel {
         this.jComboUsuarios.revalidate();
         this.jComboUsuarios.repaint();
     }//----------------------------------------------------------------------------- FIN cargarjComboUsuarios()
-     
+
     private void txtCorreoDesBloquearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoDesBloquearActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCorreoDesBloquearActionPerformed
 
     private void jComboUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboUsuariosActionPerformed
-        if (jComboUsuarios.getSelectedIndex()==0) {
+        if (jComboUsuarios.getSelectedIndex() == 0) {
             this.txtCorreoDesBloquear.setEnabled(true);
         } else {
             this.txtCorreoDesBloquear.setEnabled(false);
@@ -361,6 +349,7 @@ public class PanelDesbloquearUsuarioAdmin extends javax.swing.JPanel {
 
     //Declaracion de variables
     private static PanelDesbloquearUsuarioAdmin instancia = null;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnDesbloquearusuario;

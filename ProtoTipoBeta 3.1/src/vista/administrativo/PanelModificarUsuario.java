@@ -11,15 +11,15 @@ public class PanelModificarUsuario extends javax.swing.JPanel {
 
     public PanelModificarUsuario() {
         initComponents();
-        ajustarEventos();
-        this.ocultarComponentes();
-        this.limpiarCampos();
     }//----------------------------------------------------------------------------- FIN Constructor()
 
     public static PanelModificarUsuario obtenerInstancia() {//para garantizar hay solo una instancia
         if (instancia == null) {
             instancia = new PanelModificarUsuario();
         }
+        instancia.ajustarEventos();
+        instancia.ocultarComponentes();
+        instancia.limpiarCampos();
         return instancia;
     }//----------------------------------------------------------------------------- FIN obtenerInstancia()
 
@@ -329,21 +329,15 @@ public class PanelModificarUsuario extends javax.swing.JPanel {
                         if ((Controlador.obtenerInstancia().ModificaUsuarioAdmin(jtCorreo.getText(), 3 - comboTipo.getSelectedIndex()))
                                 && (Controlador.obtenerInstancia().modificaAreaUsuario(jtCorreo.getText(), jComboArea.getSelectedItem().toString()))) {
                             JOptionPane.showMessageDialog(this, "   El usuario ha sido modificar con éxito", "Usuario modificado", JOptionPane.PLAIN_MESSAGE);
-
                             Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
                                     VentanaLogin.correo, "Usuario", "Registró al usuario " + jtCorreo.getText());
-
                         } else {
                             JOptionPane.showMessageDialog(this, "   No se pudo modificar el usuario", "ERROR", JOptionPane.ERROR_MESSAGE);
                         }
                     } else {
                         if (Controlador.obtenerInstancia().ModificaUsuarioAdmin(jtCorreo.getText(), 3 - comboTipo.getSelectedIndex())) {
                             JOptionPane.showMessageDialog(this, "   El usuario ha sido modificar con éxito", "Usuario registrado", JOptionPane.PLAIN_MESSAGE);
-
-                        // AQUI SE INSERTA EN LA TABLA DE BITACORA
-                            //VERIFICAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAR ESTE PANEL
                             Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(), VentanaLogin.correo, "Usuario", "Registró al usuario " + jtCorreo.getText());
-                            //FIN INSERT EN TABLA BITACORA
                         } else {
                             JOptionPane.showMessageDialog(this, "   No se pudo modificar el usuario", "ERROR", JOptionPane.ERROR_MESSAGE);
                         }
@@ -352,7 +346,6 @@ public class PanelModificarUsuario extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, "   No se pudo modificar el usuario, constraseña incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
             }
-            //            }
         }
     }//GEN-LAST:event_btnModificarActionPerformed
 
@@ -363,12 +356,12 @@ public class PanelModificarUsuario extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCancelar1ActionPerformed
 
     private void limpiarCampos() {
-        //comboTipo.setSelectedIndex(-1);
         jComboArea.setSelectedIndex(-1);
         jtCorreo.setText("");
     }
     //Declaracion de variables
     private static PanelModificarUsuario instancia = null;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelBotones;
     private javax.swing.JButton btnCancelar1;

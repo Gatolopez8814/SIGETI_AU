@@ -6,14 +6,11 @@ import java.awt.event.KeyEvent;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Locale;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import modelo.Bitacora;
-import modelo.Ticket;
 import vista.Ventana;
 import vista.VentanaLogin;
 
@@ -21,16 +18,15 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
 
     private PanelBitacoraAdmin() {
         initComponents();
-        this.limpiarCampos();
-        this.ocultarComponentes();
-//        this.iniciarValidaciones();
-        this.ajustarEventos();
     }//----------------------------------------------------------------------------- FIN Constructor()
 
     public static PanelBitacoraAdmin obtenerInstancia() {//para garantizar hay solo una instancia
         if (instancia == null) {
             instancia = new PanelBitacoraAdmin();
         }
+        instancia.limpiarCampos();
+        instancia.ocultarComponentes();
+        instancia.ajustarEventos();
         instancia.limpiarCampos();
         return instancia;
     }//----------------------------------------------------------------------------- FIN obtenerInstancia()
@@ -44,56 +40,6 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
                 Ventana.obtenerInstancia().tecla();
             }
         });
-//        jTextAnnoDesde.addKeyListener(new KeyAdapter() {
-//            @Override
-//            public void keyPressed(java.awt.event.KeyEvent evt) {
-//                super.keyPressed(evt);
-//                Ventana.obtenerInstancia().tecla();
-//            }
-//        });
-//        jTextAnnoHasta.addKeyListener(new KeyAdapter() {
-//            @Override
-//            public void keyPressed(java.awt.event.KeyEvent evt) {
-//                super.keyPressed(evt);
-//                Ventana.obtenerInstancia().tecla();
-//            }
-//        });
-//        jTextDiaDesde.addKeyListener(new KeyAdapter() {
-//            @Override
-//            public void keyPressed(java.awt.event.KeyEvent evt) {
-//                super.keyPressed(evt);
-//                Ventana.obtenerInstancia().tecla();
-//            }
-//        });
-//        jTextDiaHasta.addKeyListener(new KeyAdapter() {
-//            @Override
-//            public void keyPressed(java.awt.event.KeyEvent evt) {
-//                super.keyPressed(evt);
-//                Ventana.obtenerInstancia().tecla();
-//            }
-//        });
-//        jTextUsuario.addKeyListener(new KeyAdapter() {
-//            @Override
-//            public void keyPressed(java.awt.event.KeyEvent evt) {
-//                super.keyPressed(evt);
-//                Ventana.obtenerInstancia().tecla();
-//            }
-//        });
-//        jTextMesDesde.addKeyListener(new KeyAdapter() {
-//            @Override
-//            public void keyPressed(java.awt.event.KeyEvent evt) {
-//                super.keyPressed(evt);
-//                Ventana.obtenerInstancia().tecla();
-//            }
-//        });
-//        jTextMesHasta.addKeyListener(new KeyAdapter() {
-//            @Override
-//            public void keyPressed(java.awt.event.KeyEvent evt) {
-//                super.keyPressed(evt);
-//                Ventana.obtenerInstancia().tecla();
-//            }
-//        });
-
     }
 
     private void ocultarComponentes() {
@@ -102,30 +48,6 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
         this.jPanelTabla.setVisible(false);
         this.jPanelRangoHoras.setVisible(false);
     }//----------------------------------------------------------------------------- FIN ocultarComponentes()
-
-    private void iniciarValidaciones() {
-//        soloNumeros(this.jTextAnnoDesde);
-//        soloNumeros(this.jTextMesDesde);
-//        soloNumeros(this.jTextDiaDesde);
-//        soloNumeros(this.jTextAnnoHasta);
-//        soloNumeros(this.jTextMesHasta);
-//        soloNumeros(this.jTextDiaHasta);
-//        soloNumeros(this.jTextHoraInicial);
-//        soloNumeros(this.jTextMinutoInicial);
-//        soloNumeros(this.jTextHoraFinal);
-//        soloNumeros(this.jTextMinutoFinal);
-    }//----------------------------------------------------------------------------- FIN iniciarValidaciones()
-
-    public void soloNumeros(JTextField txt) {//para validar que en la fecha solo digite numeros
-        txt.addKeyListener(new KeyAdapter() {
-            public void keyTyped(KeyEvent e) {
-                char c = e.getKeyChar();
-                if (!Character.isDigit(c)) {
-                    e.consume();
-                }
-            }
-        });
-    }//----------------------------------------------------------------------------- FIN soloNumeros()
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -554,7 +476,6 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
 
     private void ComboBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBusquedaActionPerformed
         String tipoConsulta = ComboBusqueda.getSelectedItem().toString();
-
         switch (tipoConsulta) {
             case "Fechas":
                 this.cargarComboAnnos();
@@ -581,49 +502,12 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
             default:
                 break;
         }
-
-//        if (ComboBusqueda.getSelectedItem().equals("Fechas")) {
-//            if (!jTextAnnoHasta.getText().contains("a")
-//                    && !jTextAnnoDesde.getText().contains("a")
-//                    && !jTextMesDesde.getText().contains("m")
-//                    && !jTextMesHasta.getText().contains("m")
-//                    && !jTextDiaDesde.getText().contains("d")
-//                    && !jTextDiaHasta.getText().contains("d")) {
-//                //falta llamar al metodo de la consulta
-//            }else {
-//                JOptionPane.showMessageDialog(null, "Fecha invalida.", "ERROR",
-//                        JOptionPane.ERROR_MESSAGE);
-//            }
-//        } else 
-//            if (ComboBusqueda.getSelectedItem().equals("Usuario")) {
-//                if(!this.jTextUsuario.getText().equals("")){
-//                    
-//                }else {
-//                JOptionPane.showMessageDialog(null, "Es necesario el correo del usuario.", "ERROR",
-//                        JOptionPane.ERROR_MESSAGE);
-//            }
-//                
-//        } else 
-//                if (this.ComboBusqueda.getSelectedItem().equals("Horas")) {
-//                    
-//                    if (!jTextHoraInicial.getText().contains("h")
-//                    && !jTextMinutoInicial.getText().contains("m")
-//                    && !jTextHoraInicial.getText().contains("h")
-//                    && !jTextMinutoFinal.getText().contains("m")) {
-//                //falta llamar al metodo de la consulta
-//            }else {
-//                JOptionPane.showMessageDialog(null, "Hora invalida.", "ERROR",
-//                        JOptionPane.ERROR_MESSAGE);
-//            }
-//                   
-//        }
     }//GEN-LAST:event_ComboBusquedaActionPerformed
 
     private void btnConsultarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarTodosActionPerformed
         if (ComboBusqueda.getSelectedIndex() != 0) {
             String tipoConsulta = ComboBusqueda.getSelectedItem().toString();
             modelAux = (DefaultTableModel) jTableBitacora.getModel();
-
             while (modelAux.getRowCount() > 0) {
                 modelAux.removeRow(0);
             }
@@ -632,17 +516,6 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
                     this.jPanelRangoFechas.setVisible(true);
                     this.jPanelRangoHoras.setVisible(false);
                     this.jPanelUsuario.setVisible(false);
-//                    if (!jTextAnnoHasta.getText().contains("a")
-//                            && !jTextAnnoDesde.getText().contains("a")
-//                            && !jTextMesDesde.getText().contains("m")
-//                            && !jTextMesHasta.getText().contains("m")
-//                            && !jTextDiaDesde.getText().contains("d")
-//                            && !jTextDiaHasta.getText().contains("d")) {
-//                        
-//    
-//                        String fecha1 = this.jTextAnnoDesde.getText() + "-" + this.jTextMesDesde.getText() + "-" + this.jTextDiaDesde.getText();
-//                        String fecha2 = this.jTextAnnoHasta.getText() + "-" + this.jTextMesHasta.getText() + "-" + this.jTextDiaHasta.getText();
-
                     String dia1,
                      mes1,
                      anno1,
@@ -659,7 +532,6 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
                     anno2 = this.jComboAñosHasta.getSelectedItem().toString();
                     fecha1 = anno1 + "-" + mes1 + "-" + dia1;
                     fecha2 = anno2 + "-" + mes2 + "-" + dia2;
-                    System.err.println(fecha1 + "  " + fecha2);
                     if (isFechaValida(fecha1) && isFechaValida(fecha2)) {
                         Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
                                 VentanaLogin.correo, "Bitácora", "Consulto bitácora entre " + fecha1 + " y " + fecha2);
@@ -733,7 +605,6 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
                                     + this.comboMinutoInicial.getSelectedItem().toString() + ":00";
                             String hora2 = this.comboHoraFinal.getSelectedItem().toString() + ":"
                                     + this.comboMinutoFinal.getSelectedItem().toString() + ":59";
-                            System.err.println(hora1 + "   " + hora2);
                             Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
                                     VentanaLogin.correo, "Bitácora", "Consulto bitácora entre " + hora1 + " y " + hora2);
                             ArrayList<Bitacora> aux = Controlador.obtenerInstancia().consultaBitacoraHoras(hora1, hora2);
@@ -749,7 +620,6 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
                                 }
                             }
                         }
-
                         jTableBitacora.revalidate();
                         jTableBitacora.repaint();
                         this.jPanelTabla.setVisible(true);
@@ -780,7 +650,6 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
                 default:
                     break;
             }
-
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione un tipo de busqueda.", "ERROR",
                     JOptionPane.ERROR_MESSAGE);
@@ -799,6 +668,8 @@ public class PanelBitacoraAdmin extends javax.swing.JPanel {
     }
 
     private void cargarComboAnnos() {
+        jComboAñoDesde.removeAllItems();
+        jComboAñosHasta.removeAllItems();
         ArrayList<String> lstAnyos;
         lstAnyos = new ArrayList<>();
         int year = Integer.parseInt(Controlador.obtenerInstancia().getSysDateFromServer().get(0));

@@ -1,15 +1,9 @@
 package controlador;
+
 import java.util.Properties;
-//import javax.mail.Address;
-//import javax.mail.Message;
-//import javax.mail.MessagingException;
-//import javax.mail.Session;
-//import javax.mail.Transport;
-//import javax.mail.internet.InternetAddress;
-//import javax.mail.internet.MimeMessage;
 
 public class EnviaMensaje {
-    
+
     private static EnviaMensaje instancia = null;
 
     public static EnviaMensaje obtenerInstancia() {//para garantizar hay solo una instancia
@@ -18,25 +12,21 @@ public class EnviaMensaje {
         }
         return instancia;
     }//-----------------------------------------------------END_obtenerInstancia
-    
-    public boolean sendMessage(String mensaje,String subject, String correo){
-        boolean rpta=false;
+
+    public boolean sendMessage(String mensaje, String subject, String correo) {
+        boolean rpta = false;
         Properties props = new Properties();
         // Nombre del host de correo, es smtp.gmail.com
         props.setProperty("mail.smtp.host", "smtp.live.com");
         // TLS si está disponible
         props.setProperty("mail.smtp.starttls.enable", "true");
         // Puerto de gmail para envio de correos
-        props.setProperty("mail.smtp.port","587");
-        
-        
-        //************************************************************
+        props.setProperty("mail.smtp.port", "587");
+
         props.setProperty("mail.smtp.user", "grupo08-sigeti@hotmail.com");
-        //************************************************************
-        
+
         props.setProperty("mail.smtp.auth", "true");
-        
-        //************************************************************
+
         props.setProperty("mail.smtp.mail.sender", "grupo08-sigeti@hotmail.com");
         //************************************************************
 //        Session session = Session.getDefaultInstance(props);
@@ -62,6 +52,6 @@ public class EnviaMensaje {
 //            return rpta;
 //        }
         return rpta;
-}
-   
+    }
+
 }

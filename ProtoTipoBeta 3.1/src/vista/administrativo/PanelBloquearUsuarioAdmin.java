@@ -12,14 +12,14 @@ public class PanelBloquearUsuarioAdmin extends javax.swing.JPanel {
 
     private PanelBloquearUsuarioAdmin() {
         initComponents();
-        ajustarEventos();
-        this.limpiarCampos();
     }//----------------------------------------------------------------------------- FIN Constructor()
 
     public static PanelBloquearUsuarioAdmin obtenerInstancia() {//para garantizar hay solo una instancia
         if (instancia == null) {
             instancia = new PanelBloquearUsuarioAdmin();
         }
+        instancia.ajustarEventos();
+        instancia.limpiarCampos();
         instancia.cargarjComboUsuarios();
         return instancia;
     }//----------------------------------------------------------------------------- FIN obtenerInstancia()
@@ -34,7 +34,7 @@ public class PanelBloquearUsuarioAdmin extends javax.swing.JPanel {
                 } else {
                     e.consume();
                 }
-            }//
+            }
             @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 super.keyPressed(evt);
@@ -277,19 +277,15 @@ public class PanelBloquearUsuarioAdmin extends javax.swing.JPanel {
             if (Controlador.obtenerInstancia().verificarContrasenna(VentanaLogin.correo, contrasenna)) {
                 if (Controlador.obtenerInstancia().bloqueaUsuarioAdmin(txtCorreoBloquear.getText())) {
                     JOptionPane.showMessageDialog(this, "   El usuario ha sido bloqueado con éxito", "Usuario bloqueado", JOptionPane.INFORMATION_MESSAGE);
-                    //se actualiza el combo box
                     instancia.cargarjComboUsuarios();
-                    
                     Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
-                            VentanaLogin.correo, "Usuario", "Bloqueó al usuario " + txtCorreoBloquear.getText());
-                   
+                            VentanaLogin.correo, "Usuario", "Bloqueó al usuario " + txtCorreoBloquear.getText());                  
                 } else {
                     JOptionPane.showMessageDialog(this, "No se pudo bloquear el usuario", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "   No se pudo bloquear el usuario, constraseña incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
-
         }
         }
         }else if(this.txtCorreoBloquear.getText().equals("") && this.jComboUsuarios.getSelectedIndex()!=0){
@@ -302,9 +298,7 @@ public class PanelBloquearUsuarioAdmin extends javax.swing.JPanel {
             contrasenna = JOptionPane.showInputDialog("Digite su contraseña:");
             if (Controlador.obtenerInstancia().verificarContrasenna(VentanaLogin.correo, contrasenna)) {
                 if (Controlador.obtenerInstancia().bloqueaUsuarioAdmin(this.jComboUsuarios.getSelectedItem().toString())) {
-                    JOptionPane.showMessageDialog(this, "   El usuario ha sido bloqueado con éxito", "Usuario bloqueado", JOptionPane.INFORMATION_MESSAGE);
-                    //se actualiza el combo box
-                                        
+                    JOptionPane.showMessageDialog(this, "   El usuario ha sido bloqueado con éxito", "Usuario bloqueado", JOptionPane.INFORMATION_MESSAGE);              
                     Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
                             VentanaLogin.correo, "Usuario", "Bloqueó al usuario " + this.jComboUsuarios.getSelectedItem().toString());
                     instancia.cargarjComboUsuarios();
@@ -315,7 +309,6 @@ public class PanelBloquearUsuarioAdmin extends javax.swing.JPanel {
             } else {
                 JOptionPane.showMessageDialog(this, "   No se pudo bloquear el usuario, constraseña incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
-
         }
         }
         }else{
@@ -323,7 +316,6 @@ public class PanelBloquearUsuarioAdmin extends javax.swing.JPanel {
             instancia.cargarjComboUsuarios();
             this.limpiarCampos();
         }
-        
     }//GEN-LAST:event_btnBloquearusuarioActionPerformed
 
      private void cargarjComboUsuarios(){
@@ -355,8 +347,10 @@ public class PanelBloquearUsuarioAdmin extends javax.swing.JPanel {
         txtCorreoBloquear.setText("");
         this.jComboUsuarios.setSelectedIndex(0);
     }
+    
     //Declaracion de variables
     private static PanelBloquearUsuarioAdmin instancia = null;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBloquearusuario;
     private javax.swing.JButton btnCancelar;

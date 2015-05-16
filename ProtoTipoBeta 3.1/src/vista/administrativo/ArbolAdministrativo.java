@@ -17,15 +17,15 @@ public class ArbolAdministrativo extends JPanel {//Arbol para usuario de Adminis
 
     public ArbolAdministrativo() {//arbol donde se encuentra las opciones del usuario de area       
         ajustarComponentes();
-        ajustarEventos();
-        addMouseListener(Ventana.obtenerInstancia());
-        repaint();
     }//----------------------------------------------------------------------------- FIN Constructor()
 
     public static ArbolAdministrativo obtenerInstancia() {//para garantizar hay solo un arbol
         if (instancia == null) {
             instancia = new ArbolAdministrativo();
-        }        
+        }  
+        instancia.ajustarEventos();
+        instancia.addMouseListener(Ventana.obtenerInstancia());
+        instancia.repaint();
         return instancia;
     }//----------------------------------------------------------------------------- FIN obtenerInstancia
 
@@ -57,15 +57,15 @@ public class ArbolAdministrativo extends JPanel {//Arbol para usuario de Adminis
     }//----------------------------------------------------------------------------- FIN ajustarComponentes()
 
     private void armarArbol() {//inicializa y arma el jTree
-        Informacion infSigeti = new Informacion("SIGETI", "src/img/SIGETI-icon16.png"); //abuelo            
-        Informacion infTicket = new Informacion("Gestión de tickets               ", "src/img/Carpeta-tickets16.png");//padre 1   
+        Informacion infSigeti = new Informacion("SIGETI", "src/img/SIGETI-icon16.png");          
+        Informacion infTicket = new Informacion("Gestión de tickets               ", "src/img/Carpeta-tickets16.png");   
         Informacion infCrear = new Informacion("Crear nuevo ticket", "src/img/ticket16.png");
         Informacion infBandejaEntrada = new Informacion("Bandeja de entrada", "src/img/inbox-iconx16.png");
         Informacion infEnProceso = new Informacion("Tickets en proceso", "src/img/helical-gear-iconx16.png");
         Informacion infAsignados = new Informacion("Tickets asignados", "src/img/User-Files-iconx16.png");
         Informacion infAlertas = new Informacion("Alertas de tickets", "src/img/Alerts-iconx16.png");
         Informacion infCerrados = new Informacion("Tickets cerrados", "src/img/wood-box-iconx16.png");
-        Informacion infConfTicket = new Informacion("Configurar Tickets", "src/img/Control-Panel-icon.png");
+        Informacion infConfTicket = new Informacion("Asuntos y áreas", "src/img/Control-Panel-icon.png");
         
         Informacion infGestionReportes = new Informacion("Gestión de reportes", "src/img/MI-Scare-Report-iconx16.png");
         Informacion infReportes = new Informacion("Generar reporte", "src/img/Reports-iconx16.png");
@@ -78,7 +78,7 @@ public class ArbolAdministrativo extends JPanel {//Arbol para usuario de Adminis
         Informacion infDesBloqueoUsuario = new Informacion("Desbloquear usuario", "src/img/Apps-preferences-desktop-user-iconx16.png");
         Informacion infCambioTipo = new Informacion("Cambiar Tipo usuario", "src/img/Actions-user-properties-icon.png");
         
-        Informacion infConsultas = new Informacion("Gestión consultas", "src/img/Carpeta-Search16.png");//padre 2
+        Informacion infConsultas = new Informacion("Gestión consultas", "src/img/Carpeta-Search16.png");
         Informacion infConsultarUltimo = new Informacion("Consultar úlltimo ticket", "src/img/Search16.png");
         Informacion infConsultarUno = new Informacion("Consultar un ticket", "src/img/Search216.png");
         Informacion infConsultarTodos = new Informacion("Consultar varios tickets", "src/img/Search316.png");
@@ -86,7 +86,7 @@ public class ArbolAdministrativo extends JPanel {//Arbol para usuario de Adminis
         Informacion infConf = new Informacion("Configuración", "src/img/Conf-iconx16.png");
         Informacion infCerrarSeccion = new Informacion("Cerrar sesión", "src/img/user-login-iconx16.png");
         Informacion infTodosTickets = new Informacion("Todos los tickets", "src/img/3-Gray-Paper-Box-icon.png");
-        //--o--
+
         DefaultMutableTreeNode nodoSigeti = new DefaultMutableTreeNode(infSigeti);
         DefaultMutableTreeNode nodoTicket = new DefaultMutableTreeNode(infTicket);
         DefaultMutableTreeNode nodoCrear = new DefaultMutableTreeNode(infCrear);
@@ -116,7 +116,7 @@ public class ArbolAdministrativo extends JPanel {//Arbol para usuario de Adminis
         DefaultMutableTreeNode nodoConf = new DefaultMutableTreeNode(infConf);
         DefaultMutableTreeNode nodoCerrar = new DefaultMutableTreeNode(infCerrarSeccion);
         DefaultMutableTreeNode nodoTodosTickets = new DefaultMutableTreeNode(infTodosTickets);
-        //--o--
+
         nodoTicket.add(nodoCrear);
         nodoTicket.add(nodoTodosTickets);
         nodoTicket.add(nodoBandeja);
@@ -142,11 +142,9 @@ public class ArbolAdministrativo extends JPanel {//Arbol para usuario de Adminis
         nodoSigeti.add(nodoGestionUsuarios);
         nodoSigeti.add(nodoConsultas);
         nodoSigeti.add(nodoConf);
-        //--o--
-        DefaultTreeModel modelo = new DefaultTreeModel(nodoSigeti);
-        //--o--
-        arbol = new JTree(modelo);
 
+        DefaultTreeModel modelo = new DefaultTreeModel(nodoSigeti);
+        arbol = new JTree(modelo);
     }//----------------------------------------------------------------------------- FIN armarArbol()
 
     private void ajustarEventos() {//ajusta los eventos del arbol
@@ -168,92 +166,66 @@ public class ArbolAdministrativo extends JPanel {//Arbol para usuario de Adminis
         switch (opc) {
             case "SIGETI":
                 Ventana.obtenerInstancia().ventanaPrincipalAdmin();
-                System.out.println(" Ventana Principal");
                 break;
             case "Crear nuevo ticket":
                 Ventana.obtenerInstancia().crearTicketAdmin();
-                System.out.println(" Crear Ticket");
                 break;
             case "Bandeja de entrada":
                 Ventana.obtenerInstancia().bandejaEntradaAdmin();
-                System.out.println(" bandeja de entrada");
                 break;
             case "Tickets en proceso":
                 Ventana.obtenerInstancia().ticketsProcesoAdmin();
-                System.out.println("Tickets en proceso");
                 break;
             case "Tickets asignados":
                 Ventana.obtenerInstancia().ticketsAsignadosAdmin();
-                System.out.println("Tickets asignados");
                 break;
             case "Alertas de tickets":
                 Ventana.obtenerInstancia().alertaTicketsAdmin();
-                System.out.println("Alertas de tickets");
                 break;
             case "Tickets cerrados":
                 Ventana.obtenerInstancia().ticketsCerradosAdmin();
-                System.out.println("Tickets cerrados");
                 break;
             case "Generar reporte":
                 Ventana.obtenerInstancia().reportesAdmin();
-                System.out.println("Generar reporte");
                 break;
             case "Bitácora":
                 Ventana.obtenerInstancia().bitacoraAdmin();
-                System.out.println("Bitácora");
                 break;
             case "Cambiar Tipo usuario":
                 Ventana.obtenerInstancia().modificarUsuarioAdmin();
-                System.out.println("Cambiar Tipo usuario");
                 break;
-//            case "Estadísticas":
-////                Ventana.obtenerInstancia().t;
-//                System.out.println(" faltaaaaaaa");
-//                break;  
-            case "Configurar Tickets":
+            case "Asuntos y áreas":
                 Ventana.obtenerInstancia().ConfigurarTicketAdmin();
-                System.out.println("Configurar Tickets");
                 break;
             case "Registrar usuario":
                 Ventana.obtenerInstancia().registrarUsuarioAdmin();
-                System.out.println("v");
                 break;
             case "Eliminar usuario":
                 Ventana.obtenerInstancia().eliminarUsuarioAdmin();
-                System.out.println("Eliminar usuario");
                 break;
             case "Bloquear usuario":
                 Ventana.obtenerInstancia().bloquearUsuarioAdmin();
-                System.out.println("Bloquear usuario");
                 break;
             case "Desbloquear usuario":
                 Ventana.obtenerInstancia().desbloquearUsuarioAdmin();
-                System.out.println("Desbloquear usuario");
                 break;
-
             case "Consultar úlltimo ticket":
                 Ventana.obtenerInstancia().buscarUltimoTicketAdmin();
-                System.out.println(" Buscar Ultimo");
                 break;
             case "Consultar un ticket":
                 Ventana.obtenerInstancia().buscarUnTicketAdmin();
-                System.out.println(" Buscar uno");
                 break;
             case "Consultar varios tickets":
                 Ventana.obtenerInstancia().historialTicketsAdmin();
-                System.out.println(" Ver Historial");
                 break;
             case "Cambiar contraseña":
                 Ventana.obtenerInstancia().cambiarClaveAdmin();
-                System.out.println("Cambiar Clave");
                 break;
             case "Cerrar sesión":
                 Ventana.obtenerInstancia().cerrarSesion();
-                System.out.println("Cerrar Sesion");
                 break;
             case "Todos los tickets":
                 Ventana.obtenerInstancia().TodosTicketsAdmin();
-                System.out.println("Todos Tickets");
                 break;
         }//end switch
 
@@ -262,5 +234,4 @@ public class ArbolAdministrativo extends JPanel {//Arbol para usuario de Adminis
     //Declaracion de variables
     private static ArbolAdministrativo instancia = null;
     private JTree arbol;
-
 }//____________________________________________________________________END_CLASS

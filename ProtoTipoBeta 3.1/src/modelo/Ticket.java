@@ -5,8 +5,8 @@ public class Ticket {
     public Ticket() {
     }
 
-    public Ticket(String detalleProblema, String estado, String comentarios, String correoUsuario, String areaDestino, 
-            String tiempoSolucion, String responsable, String tiempoRealSolucion, String asunto, String hora, 
+    public Ticket(String detalleProblema, String estado, String comentarios, String correoUsuario, String areaDestino,
+            String tiempoSolucion, String responsable, String tiempoRealSolucion, String asunto, String hora,
             int prioridad, int consecutivo, String fecha, String especificacion) {
         this.detalleProblema = detalleProblema;
         this.estado = estado;
@@ -21,9 +21,8 @@ public class Ticket {
         this.prioridad = prioridad;
         this.consecutivo = consecutivo;
         this.fecha = fecha;
-        this.especificacion=especificacion;
+        this.especificacion = especificacion;
     }
-
 
     public String getDetalleProblema() {
         return detalleProblema;
@@ -81,7 +80,6 @@ public class Ticket {
         this.prioridad = prioridad;
     }
 
-
     public String getTiempoSolucion() {
         return tiempoSolucion;
     }
@@ -129,7 +127,7 @@ public class Ticket {
     public void setFecha(String fecha) {
         this.fecha = fecha;
     }
-    
+
     public String getEspecificacion() {
         return especificacion;
     }
@@ -138,25 +136,6 @@ public class Ticket {
         this.especificacion = especificacion;
     }
 
-    @Override
-    public String toString() {
-        return "Ticket{" + "\n"+
-                "Detalle del problema: " + detalleProblema + "\n" +
-                "Estado del ticket: " + estado + "\n" + 
-                "Comentarios hechos: " + comentarios + "\n" + 
-                "Usuario que lo creo: " + correoUsuario + "\n" +
-                "Area de destino: " + areaDestino + "\n" +
-                "Tiempo de solucion: " + tiempoSolucion + "\n" +
-                "Responsable del ticket: " + responsable + "\n" +
-                "Tiempo real de solucion: " + tiempoRealSolucion + "\n" +
-                "Asunto: " + asunto + "\n" +
-                "Hora de creación: " + hora + "\n" +
-                "Prioridad del ticket: " + prioridad + "\n" +
-                "Número de ticket: " + consecutivo + "\n" +
-                "Fecha de creación: " + fecha + "\n" +
-                "Especificaciones del ticket: " + especificacion + "\n" + '}';
-    }
-    
     private String detalleProblema;
     private String estado;
     private String comentarios;

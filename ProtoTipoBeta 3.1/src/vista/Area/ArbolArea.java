@@ -25,7 +25,7 @@ public class ArbolArea extends JPanel {//Arbol para usuario de Area
     public static ArbolArea obtenerInstancia() {//para garantizar hay solo un arbol
         if (instancia == null) {
             instancia = new ArbolArea();
-        }        
+        }
         return instancia;
     }//----------------------------------------------------------------------------- FIN obtenerInstancia()
 
@@ -39,9 +39,9 @@ public class ArbolArea extends JPanel {//Arbol para usuario de Area
     public void abrirArbol() {
         int[] indice = {1, 2, 3, 4, 5};
         arbol.setSelectionRows(indice);
-        for(int i=0;i< arbol.getRowCount();i++){
+        for (int i = 0; i < arbol.getRowCount(); i++) {
             arbol.expandRow(i);
-        }     
+        }
     }//----------------------------------------------------------------------------- FIN abrirArbol()
 
     private void ajustarComponentes() {
@@ -57,24 +57,24 @@ public class ArbolArea extends JPanel {//Arbol para usuario de Area
     }//----------------------------------------------------------------------------- FIN ajustarComponentes()
 
     private void armarArbol() {//inicializa y arma el jTree
-        Informacion infSigeti = new Informacion("SIGET", "src/img/SIGETI-icon16.png"); //abuelo            
-        Informacion infTicket = new Informacion("Gestión de tickets               ", "src/img/Carpeta-tickets16.png");//padre 1   
+        Informacion infSigeti = new Informacion("SIGET", "src/img/SIGETI-icon16.png");          
+        Informacion infTicket = new Informacion("Gestión de tickets               ", "src/img/Carpeta-tickets16.png");  
         Informacion infCrear = new Informacion("Crear nuevo ticket", "src/img/ticket16.png");
-        Informacion infArea = new Informacion("Área de trabajo", "src/img/Utilities-iconx16.png");//cambiar por el nobre del area 
+        Informacion infArea = new Informacion("Área de trabajo", "src/img/Utilities-iconx16.png"); 
         Informacion infNuevos = new Informacion("Bandeja de entrada", "src/img/inbox-iconx16.png");
         Informacion infTodos = new Informacion("Tickets del área", "src/img/wood-folder-iconx16.png");
         Informacion infEnProceso = new Informacion("Tickets en proceso", "src/img/helical-gear-iconx16.png");
         Informacion infAsignados = new Informacion("Tickets asignados", "src/img/Actions-dashboard-show-iconx16.png");
         Informacion infCarpetaReportes = new Informacion("Gestión reportes", "src/img/Network-Statistics-icon.png");
         Informacion infReportes = new Informacion("Generar reporte", "src/img/Balance-iconx16.png");
-        Informacion infConsultas = new Informacion("Gestión consultas", "src/img/Carpeta-Search16.png");//padre 2
+        Informacion infConsultas = new Informacion("Gestión consultas", "src/img/Carpeta-Search16.png");
         Informacion infConsultarUltimo = new Informacion("Consultar último ticket", "src/img/Search16.png");
         Informacion infConsultarUno = new Informacion("Consultar un ticket", "src/img/Search216.png");
         Informacion infConsultarTodos = new Informacion("Consultar mis tickets", "src/img/Search316.png");
         Informacion infCambioClave = new Informacion("Cambiar contraseña", "src/img/claveiconx16.png");
         Informacion infConf = new Informacion("Configuración", "src/img/Conf-iconx16.png");
         Informacion infCerrarSeccion = new Informacion("Cerrar sesión", "src/img/user-login-iconx16.png");
-        //--o--
+        
         nodoSigeti = new DefaultMutableTreeNode(infSigeti);
         nodoTicket = new DefaultMutableTreeNode(infTicket);
         nodoCrear = new DefaultMutableTreeNode(infCrear);
@@ -95,7 +95,7 @@ public class ArbolArea extends JPanel {//Arbol para usuario de Area
         nodoCambioClave = new DefaultMutableTreeNode(infCambioClave);
         nodoConf = new DefaultMutableTreeNode(infConf);
         nodoCerrar = new DefaultMutableTreeNode(infCerrarSeccion);
-        //--o--
+
         nodoReportes.add(nodoReporte);
         nodoArea.add(nodoBandejaEntrada);
         nodoArea.add(nodoTodos);
@@ -112,11 +112,10 @@ public class ArbolArea extends JPanel {//Arbol para usuario de Area
         nodoSigeti.add(nodoReportes);
         nodoSigeti.add(nodoConsultas);
         nodoSigeti.add(nodoConf);
-        //--o--
-        DefaultTreeModel modelo = new DefaultTreeModel(nodoSigeti);
-        //--o--
-        arbol = new JTree(modelo);
 
+        DefaultTreeModel modelo = new DefaultTreeModel(nodoSigeti);
+
+        arbol = new JTree(modelo);
     }//----------------------------------------------------------------------------- FIN armarArbol()
 
     private void ajustarEventos() {//ajusta los eventos del arbol
@@ -133,63 +132,50 @@ public class ArbolArea extends JPanel {//Arbol para usuario de Area
         });
     }//----------------------------------------------------------------------------- FIN ajustarEventos()
 
-    public void redireccionar(String opc) {       
+    public void redireccionar(String opc) {
         switch (opc) {
             case "SIGETI":
                 Ventana.obtenerInstancia().ventanaPrincipalArea();
-                System.out.println(" Ventana Principal");
                 break;
             case "Bandeja de entrada":
                 Ventana.obtenerInstancia().bandejaEntradaArea();
-                System.out.println(" Bendeja de Entrada");
                 break;
             case "Tickets del área":
                 Ventana.obtenerInstancia().ticketsDeArea();
-                System.out.println(" tickets del area");
                 break;
             case "Crear nuevo ticket":
                 Ventana.obtenerInstancia().crearTicketArea();
-                System.out.println(" Crear Ticket");
                 break;
             case "Tickets en proceso":
                 Ventana.obtenerInstancia().ticketsEnProcesoArea();
-                System.out.println(" Tickets en proceso");
                 break;
             case "Tickets asignados":
                 Ventana.obtenerInstancia().ticketsAsignadosArea();
-                System.out.println("Tickets asignados");
                 break;
             case "Generar reporte":
                 Ventana.obtenerInstancia().reportesArea();
-                System.out.println("reportes area");
                 break;
             case "Consultar último ticket":
                 Ventana.obtenerInstancia().buscarUltimoTicketArea();
-                System.out.println(" Buscar Ultimo");
                 break;
             case "Consultar un ticket":
                 Ventana.obtenerInstancia().buscarUnTicketArea();
-                System.out.println(" Buscar uno");
                 break;
             case "Consultar mis tickets":
                 Ventana.obtenerInstancia().historialTicketsArea();
-                System.out.println(" Ver Historial");
                 break;
             case "Cambiar contraseña":
                 Ventana.obtenerInstancia().cambiarClaveArea();
-                System.out.println("Cambiar Clave");
                 break;
             case "Cerrar sesión":
                 Ventana.obtenerInstancia().cerrarSesion();
-                System.out.println("Cerrar Sesion");
                 break;
         }//end switch
-
     }//----------------------------------------------------------------------------- FIN redireccionar()
 
     //Declaracion de variables
-    private static ArbolArea instancia = null; //atributo para implementar el patrón singleton
-    //--o--
+    private static ArbolArea instancia = null;
+    
     DefaultMutableTreeNode nodoSigeti;
     DefaultMutableTreeNode nodoTicket;
     DefaultMutableTreeNode nodoCrear;

@@ -21,7 +21,6 @@ public class Modelo {
     }//----------------------------------------------------------------------------- FIN recortaCorreo()
 
     public boolean enviaCorreo(String mensaje, String asunto, String correoUsuario) {
-        //envia el correo al usuario despues de crear un ticket
         String correo = correoUsuario + "@gmail.com";//cambiar por @castillo.cr
         return EnviaMensaje.obtenerInstancia().sendMessage(mensaje, asunto, correo);
     }//----------------------------------------------------------------------------- FIN enviaCorreo()
@@ -45,19 +44,18 @@ public class Modelo {
                 switch (estado) {
                     case 0:
                         valores.set(0, tipo_usuario);
-                        valores.set(1, 0);//bloqueado
+                        valores.set(1, 0);
                         break;
                     case 1:
                         valores.set(0, tipo_usuario);
-                        valores.set(1, 1);//normal
+                        valores.set(1, 1);
                         break;
                     case 2:
                         valores.set(0, tipo_usuario);
-                        valores.set(1, -1);//eliminado
+                        valores.set(1, -1);
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
@@ -697,7 +695,6 @@ public class Modelo {
         try {
             Statement sentencia = null;
             sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
-
             resultado = sentencia.executeQuery("select correo from usuario, areausuario where areausuario.correousuario=usuario.correo and areausuario.nombArea='" + _area + "' and usuario.estado=1");
             if (resultado != null) {
             }
@@ -722,7 +719,6 @@ public class Modelo {
         try {
             Statement sentencia = null;
             sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
-
             resultado = sentencia.executeQuery("select asunto from asuntos order by asunto");
             if (resultado != null) {
             }
@@ -1068,7 +1064,6 @@ public class Modelo {
         try {
             Statement sentencia = null;
             sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
-
             resultado = sentencia.executeQuery("select count(*) as total from ticket");
             if (resultado != null) {
             }
@@ -1091,7 +1086,6 @@ public class Modelo {
         try {
             Statement sentencia = null;
             sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
-
             resultado = sentencia.executeQuery("select count(*) as total from ticket where consecEstado=1");
             if (resultado != null) {
             }
@@ -1193,7 +1187,6 @@ public class Modelo {
         try {
             Statement sentencia = null;
             sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
-
             resultado = sentencia.executeQuery("select count(*) from ticket where consecEstado = 3");
             if (resultado != null) {
             }
@@ -1216,7 +1209,6 @@ public class Modelo {
         try {
             Statement sentencia = null;
             sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
-
             resultado = sentencia.executeQuery("select count(*) as total from ticket where consecEstado=1 and areaDestino = "
                     + " (select nombArea from areausuario where correousuario = '" + _correo + "')");
             if (resultado != null) {
@@ -1264,7 +1256,6 @@ public class Modelo {
         try {
             Statement sentencia = null;
             sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
-
             resultado = sentencia.executeQuery("select count(*) as total from ticket tablaTickets "
                     + "where tablaTickets.areaDestino = (select nombArea from areausuario where correousuario = '" + _correo + "') "
                     + "and tablaTickets.consecEstado = 2");
@@ -1289,7 +1280,6 @@ public class Modelo {
         try {
             Statement sentencia = null;
             sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
-
             resultado = sentencia.executeQuery("select count(*) as total from ticket tablaTickets "
                     + "where tablaTickets.areaDestino = (select nombArea from areausuario where correousuario = '" + _correo + "') "
                     + "and tablaTickets.consecEstado = 3");
@@ -1314,7 +1304,6 @@ public class Modelo {
         try {
             Statement sentencia = null;
             sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
-
             resultado = sentencia.executeQuery("select comentarios from ticket where consecutivoticket =" + codigo);
             if (resultado != null) {
             }
@@ -1337,7 +1326,6 @@ public class Modelo {
         try {
             Statement sentencia = null;
             sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
-
             resultado = sentencia.executeQuery("select count(*) as total from ticket tablaTickets "
                     + "where tablaTickets.areaDestino = (select nombArea from areausuario where correousuario = '" + _correo + "')");
             if (resultado != null) {
@@ -1382,7 +1370,6 @@ public class Modelo {
                     + " where consecutivoticket=" + _codigo + " and '" + _fecha + "' >=curdate()") == 1) {//se actualiza el fechaCreacion a 3, cuya descripcion es cerrado
                 return true;
             }
-
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -1402,7 +1389,6 @@ public class Modelo {
                     + " where consecutivoticket=" + _codigo) == 1) {//se actualiza el fechaCreacion a 3, cuya descripcion es cerrado
                 return true;
             }
-
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -1422,7 +1408,6 @@ public class Modelo {
                     + " and areaDestino not like '" + _area + "'") == 1) {//se actualiza el fechaCreacion a 3, cuya descripcion es cerrado
                 return true;
             }
-
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -1526,7 +1511,7 @@ public class Modelo {
             ConexionMySql.obtenerInstancia().desconectar();
         }
         return contador + 1;
-    }//----------------------------------------------------------------------------- FIN consultarConsecutivo()
+    }//----------------------------------------------------------------------------- FIN consultarConsecutivoBitacora()
 
     public ArrayList<Bitacora> consultaBitacoraUsuario(String correo) {
         //este metodo es para que el usuario administrador consulto la bitacora de un usuario 
@@ -1649,7 +1634,7 @@ public class Modelo {
             ConexionMySql.obtenerInstancia().desconectar();
         }
         return false;
-    }
+    }//----------------------------------------------------------------------------- FIN agregarArea()
 
     public boolean agregarAsunto(String nuevoAsunto) {
         try {
@@ -1666,7 +1651,7 @@ public class Modelo {
             ConexionMySql.obtenerInstancia().desconectar();
         }
         return false;
-    }
+    }//----------------------------------------------------------------------------- FIN agregarAsunto()
 
     public boolean eliminarAsunto(String asunto) {
         try {
@@ -1683,7 +1668,7 @@ public class Modelo {
             ConexionMySql.obtenerInstancia().desconectar();
         }
         return false;
-    }
+    }//----------------------------------------------------------------------------- FIN eliminarAsunto()
 
     public boolean eliminarArea(String area) {
         try {
@@ -1700,7 +1685,7 @@ public class Modelo {
             ConexionMySql.obtenerInstancia().desconectar();
         }
         return false;
-    }
+    }//----------------------------------------------------------------------------- FIN eliminarArea()
 
     public boolean ModificarArea(String area, String nuevaArea) {
         try {
@@ -1718,7 +1703,7 @@ public class Modelo {
             ConexionMySql.obtenerInstancia().desconectar();
         }
         return false;
-    }
+    }//----------------------------------------------------------------------------- FIN ModificarArea()
 
     public boolean ModificarAsunto(String asunto, String nuevoAsunto) {
         try {
@@ -1736,7 +1721,7 @@ public class Modelo {
             ConexionMySql.obtenerInstancia().desconectar();
         }
         return false;
-    }
+    }//----------------------------------------------------------------------------- FIN ModificarAsunto()
 
     public ArrayList<String> getSysDateFromServer() {
         ResultSet resultado = null;
@@ -1832,7 +1817,7 @@ public class Modelo {
             ConexionMySql.obtenerInstancia().desconectar();
         }
         return tAlertas;
-    }
+    }//---------------------------------------------------------------------------------------FIN ticketsAlertasAdmin
 
     boolean condicionAlertas(int prioridad, String fecha) {
         if (!"No asignado".equals(fecha)) {
@@ -1846,7 +1831,7 @@ public class Modelo {
             }
         }
         return false;
-    }
+    }//---------------------------------------------------------------------------------------FIN condicionAlertas
 
     int difDias(String fecha) {
         ArrayList<String> fechaActual = getSysDateFromServer();
@@ -1867,135 +1852,98 @@ public class Modelo {
         } else {
             return ((mesSolucion - mesActual) * 30) + diaSolucion - diaActual + +((anioActual - anioSolucion) * 366);
         }
-    }
+    }//---------------------------------------------------------------------------------------FIN difDias
 
     public int obtieneNumeroAlertas() {
         return ticketsAlertasAdmin().size();
-    }
-//    
-//  
-//      public ArrayList<String> consultaTodosReporteArea(String dato1) {
-//        //Este metodo es para consultar un ticket segun un rango de fechas o un área específica 
-//        //y segun el usuario actual de la sesion
-//        return consultaReporteArea(dato1);
-//        //Si el usuario solicitó una busqueda de área el dato2 vendrá vacío y el sistema ejecuta la busqueda de ticket por area
-//
-//    }//----------------------------------------------------------------------------- FIN consultaTodosTicket()
-//      
+    }//---------------------------------------------------------------------------------------FIN obtieneNumeroAlertas
 
     public ArrayList<String> consultaReporteArea(String area) {
-
         ArrayList< String> tEncontrados = new ArrayList<>();
-        Ticket _ticket;
         String estado;
         int cant;
         ResultSet resultado = null;
         try {
             Statement sentencia = null;
             sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
-
             resultado = sentencia.executeQuery("select  (select descripcion from estadoTicket a where a.consecutivoEstado = ticket.consecEstado), count(0) from ticket "
                     + "where ticket.areaDestino = '" + area + "' "
                     + "group by  ticket.consecEstado;");
             if (resultado != null) {
             }
             while (resultado.next()) {
-
                 estado = resultado.getString(1);
-
                 cant = resultado.getInt(2);
-                //tEncontrados=resultado.getInt(2);
                 tEncontrados.add(estado);
                 tEncontrados.add(String.valueOf(cant));
             }
-//            cant ="10";
-
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return tEncontrados;
-    }//---------------------------------------------------------------------------------------FIN ConsultaAreaTickets
+    }//---------------------------------------------------------------------------------------FIN consultaReporteArea
 
     public ArrayList<String> consultaReporteFecha(String fecha1, String fecha2) {
-
         ArrayList< String> tEncontrados = new ArrayList<>();
-        Ticket _ticket;
         String estado;
         int cant;
         ResultSet resultado = null;
         try {
             Statement sentencia = null;
             sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
-
             resultado = sentencia.executeQuery("select  (select descripcion from estadoTicket a where a.consecutivoEstado = ticket.consecEstado), count(0) from ticket "
                     + "where ticket.fechaCreacion >= '" + fecha1 + " 00:00:00' and  ticket.fechaCreacion <= '" + fecha2 + " 23:59:59' "
                     + "group by  ticket.consecEstado;");
             if (resultado != null) {
             }
             while (resultado.next()) {
-
                 estado = resultado.getString(1);
-
                 cant = resultado.getInt(2);
-                //tEncontrados=resultado.getInt(2);
                 tEncontrados.add(estado);
                 tEncontrados.add(String.valueOf(cant));
             }
-
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return tEncontrados;
-    }//---------------------------------------------------------------------------------------FIN ConsultaAreaTickets
+    }//---------------------------------------------------------------------------------------FIN consultaReporteFecha
 
     public ArrayList<String> consultaReporteHoras(String hora1, String hora2) {
-
         ArrayList< String> tEncontrados = new ArrayList<>();
-        Ticket _ticket;
         String estado;
         int cant;
         ResultSet resultado = null;
         try {
             Statement sentencia = null;
             sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
-
             resultado = sentencia.executeQuery("select  (select descripcion from estadoTicket a where a.consecutivoEstado = ticket.consecEstado), count(0) from ticket "
                     + "where ticket.hora between '" + hora1 + "' and '" + hora2
                     + "' group by  ticket.consecEstado;");
             if (resultado != null) {
             }
             while (resultado.next()) {
-
                 estado = resultado.getString(1);
-
                 cant = resultado.getInt(2);
-                //tEncontrados=resultado.getInt(2);
                 tEncontrados.add(estado);
                 tEncontrados.add(String.valueOf(cant));
             }
-
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return tEncontrados;
-    }//---------------------------------------------------------------------------------------FIN ConsultaAreaTickets
+    }//---------------------------------------------------------------------------------------FIN consultaReporteHoras
 
     public ArrayList<String> consultaReportesMiArea(String area, String _correo) {
-
         ArrayList< String> tEncontrados = new ArrayList<>();
-        Ticket _ticket;
         String estado;
         int cant;
         ResultSet resultado = null;
@@ -2010,97 +1958,75 @@ public class Modelo {
             if (resultado != null) {
             }
             while (resultado.next()) {
-
                 estado = resultado.getString(1);
                 cant = resultado.getInt(2);
-                
-                //tEncontrados=resultado.getInt(2);
                 tEncontrados.add(estado);
                 tEncontrados.add(String.valueOf(cant));
             }
-//            cant ="10";
-
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
-        System.err.println(tEncontrados.size());
         return tEncontrados;
-    }//---------------------------------------------------------------------------------------FIN ConsultaAreaTickets
+    }//---------------------------------------------------------------------------------------FIN consultaReportesMiArea
 
     public ArrayList<String> consultaReporteHorasArea(String hora1, String hora2, String _correo) {
-
         ArrayList< String> tEncontrados = new ArrayList<>();
-        Ticket _ticket;
         String estado;
         int cant;
         ResultSet resultado = null;
         try {
             Statement sentencia = null;
             sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
-
-            resultado = sentencia.executeQuery("select  (select descripcion from estadoTicket a where a.consecutivoEstado = ticket.consecEstado), count(0) from ticket "
-                    + "where correousuario = '" + _correo + "' and ticket.hora between '" + hora1 + "' and '" + hora2
-                    + "' group by  ticket.consecEstado;");
+            resultado = sentencia.executeQuery("select  (select descripcion from estadoTicket a "
+                    + " where a.consecutivoEstado = ticket.consecEstado), count(0) from ticket "
+                    + " where ticket.areaDestino = (select nombArea from areausuario where correousuario = '" + _correo + "') and ticket.hora between '" + hora1 + "' and '" + hora2
+                    + "' group by ticket.consecEstado;");
             if (resultado != null) {
             }
             while (resultado.next()) {
-
                 estado = resultado.getString(1);
-
                 cant = resultado.getInt(2);
-                //tEncontrados=resultado.getInt(2);
                 tEncontrados.add(estado);
                 tEncontrados.add(String.valueOf(cant));
             }
-
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return tEncontrados;
-    }//---------------------------------------------------------------------------------------FIN ConsultaAreaTickets
+    }//---------------------------------------------------------------------------------------FIN consultaReporteHorasArea
 
     public ArrayList<String> consultaReporteFechaArea(String fecha1, String fecha2, String _correo) {
-
         ArrayList< String> tEncontrados = new ArrayList<>();
-        Ticket _ticket;
         String estado;
         int cant;
         ResultSet resultado = null;
         try {
             Statement sentencia = null;
             sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
-
-            resultado = sentencia.executeQuery("select  (select descripcion from estadoTicket a where a.consecutivoEstado = ticket.consecEstado), count(0) from ticket "
-                    + "where correousuario = '" + _correo + "' and ticket.fechaCreacion >= '" + fecha1 + " 00:00:00' and  ticket.fechaCreacion <= '" + fecha2 + " 23:59:59' "
+            resultado = sentencia.executeQuery("select  (select descripcion from estadoTicket a "
+                    + " where a.consecutivoEstado = ticket.consecEstado), count(0) from ticket "
+                    + " where ticket.areaDestino = (select nombArea from areausuario where correousuario = '" + _correo + "') and ticket.fechaCreacion >= '" + fecha1 + " 00:00:00' and  ticket.fechaCreacion <= '" + fecha2 + " 23:59:59' "
                     + "group by  ticket.consecEstado;");
             if (resultado != null) {
             }
             while (resultado.next()) {
-
                 estado = resultado.getString(1);
-
                 cant = resultado.getInt(2);
-                //tEncontrados=resultado.getInt(2);
                 tEncontrados.add(estado);
                 tEncontrados.add(String.valueOf(cant));
             }
-
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
-            System.out.println("Se ha cerrado la conexion");
         }
         return tEncontrados;
-    }//---------------------------------------------------------------------------------------FIN ConsultaAreaTickets
-
+    }//---------------------------------------------------------------------------------------FIN consultaReporteFechaArea
 }

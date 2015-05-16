@@ -3,7 +3,6 @@ package vista.administrativo;
 import controlador.Controlador;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import vista.standard.*;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import modelo.Ticket;
@@ -14,16 +13,16 @@ public class PanelConsultaUnoAdmin extends javax.swing.JPanel {
 
     private PanelConsultaUnoAdmin() {
         initComponents();
-        this.limpiarCampos();
-        this.ocultarComponentes();
-        this.iniciarValidaciones();
-        this.ajustarEventos();
     }//----------------------------------------------------------------------------- FIN Constructor()
 
     public static PanelConsultaUnoAdmin obtenerInstancia() {//para garantizar hay solo una instancia
         if (instancia == null) {
             instancia = new PanelConsultaUnoAdmin();
         }
+        instancia.limpiarCampos();
+        instancia.ocultarComponentes();
+        instancia.iniciarValidaciones();
+        instancia.ajustarEventos();
         return instancia;
     }//----------------------------------------------------------------------------- FIN obtenerInstancia()
 
@@ -97,7 +96,6 @@ public class PanelConsultaUnoAdmin extends javax.swing.JPanel {
     private void ocultarComponentes() {
         this.jPanelDatos.setVisible(false);
         this.jPanelAreas.setVisible(false);
-
     }
 
     private void iniciarValidaciones() {
@@ -446,7 +444,6 @@ public class PanelConsultaUnoAdmin extends javax.swing.JPanel {
             if (_ticket.getFecha() != null) {//se puede preguntar por cualquier atributo que sea null por defecto
                 this.txtArea.setText(_ticket.getAreaDestino());
                 this.txtResponsable.setText(_ticket.getResponsable());
-                //cambiar de borrado a cerrado
                 String estado = "";
                 if (_ticket.getEstado().equals("borrado")) {
                     estado = "cerrado";
@@ -463,19 +460,15 @@ public class PanelConsultaUnoAdmin extends javax.swing.JPanel {
                 this.txtCodigo.setText("");
                 this.jPanelDatos.setVisible(true);
                 this.jPanelAreas.setVisible(true);
-                
-                
                 Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
-                        VentanaLogin.correo, "Ticket", "Consultó el ticket "+ this.txtCodigo.getText());
-                
-                
+                        VentanaLogin.correo, "Ticket", "Consultó el ticket " + this.txtCodigo.getText());
             } else {
                 JOptionPane.showMessageDialog(null, "Usuario no creó el ticket " + this.txtCodigo.getText());
                 this.limpiarCampos();
-            }//fin else _ticket.getFecha() != null
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Faltan datos");
-        }//fin else !"".equals(this.txtCodigo.getText())
+        }
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -499,6 +492,7 @@ public class PanelConsultaUnoAdmin extends javax.swing.JPanel {
 
     //Declaracion de variables
     private static PanelConsultaUnoAdmin instancia = null;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnConsultar;

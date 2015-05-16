@@ -12,16 +12,16 @@ public class PanelConfigurarTicket extends javax.swing.JPanel {
 
     private PanelConfigurarTicket() {
         initComponents();
-        this.limpiarCampos();
-        this.ajustarEventos();
-        this.cargarjComboArea();
-        this.cargarjComboAsunto();
     }//----------------------------------------------------------------------------- FIN Constructor()
 
     public static PanelConfigurarTicket obtenerInstancia() {//para garantizar hay solo una instancia
         if (instancia == null) {
             instancia = new PanelConfigurarTicket();
         }
+        instancia.limpiarCampos();
+        instancia.ajustarEventos();
+        instancia.cargarjComboArea();
+        instancia.cargarjComboAsunto();
         instancia.limpiarCampos();
         return instancia;
     }//----------------------------------------------------------------------------- FIN obtenerInstancia()
@@ -36,7 +36,7 @@ public class PanelConfigurarTicket extends javax.swing.JPanel {
                 } else {
                     e.consume();
                 }
-            }//
+            }
 
             @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -53,7 +53,7 @@ public class PanelConfigurarTicket extends javax.swing.JPanel {
                 } else {
                     e.consume();
                 }
-            }//
+            }
 
             @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -69,7 +69,7 @@ public class PanelConfigurarTicket extends javax.swing.JPanel {
                 } else {
                     e.consume();
                 }
-            }//
+            }
 
             @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -85,7 +85,7 @@ public class PanelConfigurarTicket extends javax.swing.JPanel {
                 } else {
                     e.consume();
                 }
-            }//
+            }
 
             @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -728,15 +728,12 @@ public class PanelConfigurarTicket extends javax.swing.JPanel {
             bandera = true;
         } else {
             for (String areas : Controlador.obtenerInstancia().obtieneAreas()) {
-
                 if (areas.equals(txtAgregarArea.getText())) {
-                    System.out.println(areas);
                     bandera = true;
                 }
             }
         }
         if (bandera) {
-            
             if (txtAgreagrAsunto.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Falta el nombre del área", "ERROR", JOptionPane.ERROR_MESSAGE);
             } else {
@@ -824,7 +821,6 @@ public class PanelConfigurarTicket extends javax.swing.JPanel {
             for (String asuntos : Controlador.obtenerInstancia().obtieneAsuntos()) {
 
                 if (asuntos.equals(txtAgreagrAsunto.getText())) {
-                    System.out.println(asuntos);
                     bandera = true;
                 }
             }
@@ -905,11 +901,6 @@ public class PanelConfigurarTicket extends javax.swing.JPanel {
     }//GEN-LAST:event_btnModificarAsuntoActionPerformed
 
     private void jComboBoxEliminarAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEliminarAreaActionPerformed
-//        if(jComboBoxEliminarArea.getSelectedIndex()!=0){
-//            jComboBoxModificarArea.setSelectedIndex(0);
-//            jComboBoxEliminarAsunto.setSelectedIndex(0);
-//            jComboBoxModificarArea.setSelectedIndex(0);
-//        }
     }//GEN-LAST:event_jComboBoxEliminarAreaActionPerformed
 
     private void jComboBoxModificarAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxModificarAreaActionPerformed
@@ -943,6 +934,7 @@ public class PanelConfigurarTicket extends javax.swing.JPanel {
 
     //Declaracion de variables
     private static PanelConfigurarTicket instancia = null;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarArea;
     private javax.swing.JButton btnAgregarAsunto;

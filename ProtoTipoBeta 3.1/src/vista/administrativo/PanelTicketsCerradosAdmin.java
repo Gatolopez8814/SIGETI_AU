@@ -1,7 +1,6 @@
 package vista.administrativo;
 
 import controlador.Controlador;
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -9,9 +8,7 @@ import java.awt.event.KeyEvent;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Locale;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -23,16 +20,15 @@ public class PanelTicketsCerradosAdmin extends javax.swing.JPanel {
 
     private PanelTicketsCerradosAdmin() {
         initComponents();
-        this.ocultarComponentes();
-        this.ajustarEventos();
-        this.iniciarValidaciones();
-        this.limpiarCampos();
     }//----------------------------------------------------------------------------- FIN Constructor()
 
     public static PanelTicketsCerradosAdmin obtenerInstancia() {//para garantizar hay solo una instancia
         if (instancia == null) {
             instancia = new PanelTicketsCerradosAdmin();
         }
+        instancia.ocultarComponentes();
+        instancia.ajustarEventos();
+        instancia.limpiarCampos();
         instancia.LlenaTicketsCerrados();
         return instancia;
     }//----------------------------------------------------------------------------- FIN obtenerInstancia()
@@ -75,23 +71,6 @@ public class PanelTicketsCerradosAdmin extends javax.swing.JPanel {
         this.txtTiempoRealSol.setText(_ticket.getTiempoRealSolucion());
         this.txtCreador.setText(_ticket.getCorreoUsuario());
     }//----------------------------------------------------------------------------- FIN llenarInformacionExtra()
-
-    private void iniciarValidaciones() {
-//        this.soloNumeros(this.jTextAnnoDesde);
-//        this.soloNumeros(this.jTextMesDesde);
-//        this.soloNumeros(this.jTextDiaDesde);
-    }//----------------------------------------------------------------------------- FIN iniciarValidaciones()
-
-    private void soloNumeros(JTextField txt) {//para validar que en la fecha solo digite numeros
-        txt.addKeyListener(new KeyAdapter() {
-            public void keyTyped(KeyEvent e) {
-                char c = e.getKeyChar();
-                if (!Character.isDigit(c)) {
-                    e.consume();
-                }
-            }
-        });
-    }//----------------------------------------------------------------------------- FIN soloNumeros()
 
     private void ocultarComponentes() {
         this.jPanelDetalle.setVisible(false);
@@ -799,8 +778,6 @@ public class PanelTicketsCerradosAdmin extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnVerMAsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerMAsActionPerformed
-        //a partir de aqui se obtiene el codigo del ticket y se llena la demas informacion
-
         int dato = this.tablaTickets.getSelectedRow();
         if (dato >= 0) {
             int codi = Integer.parseInt(String.valueOf(this.tablaTickets.getValueAt(dato, 0)));
@@ -816,7 +793,6 @@ public class PanelTicketsCerradosAdmin extends javax.swing.JPanel {
             }
         } else {
             JOptionPane.showMessageDialog(null, "Debe seleccionar un ticket", "ERROR", JOptionPane.ERROR_MESSAGE);
-
         }
     }//GEN-LAST:event_btnVerMAsActionPerformed
 
@@ -843,7 +819,6 @@ public class PanelTicketsCerradosAdmin extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Debe escribir un comentario", "ERROR", JOptionPane.ERROR_MESSAGE);
             } else {
                 String comentarios = Controlador.obtenerInstancia().obtieneComentarios(this.codigoTicket);
-
                 if (comentarios.equals("No hay comentarios")) {
                     comentarios = "* " + this.jTextAreaComentario2.getText();
                 } else {
@@ -852,12 +827,9 @@ public class PanelTicketsCerradosAdmin extends javax.swing.JPanel {
                 if (Controlador.obtenerInstancia().agregaComentario(this.codigoTicket, comentarios)) {
                     this.actualizarInformacion(this.codigoTicket);
                     JOptionPane.showMessageDialog(this, "Comentario agregado con exito", "", JOptionPane.INFORMATION_MESSAGE);
-
                     Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
                             VentanaLogin.correo, "Ticket", "Agregó comentario al ticket " + this.codigoTicket);
-
                     this.jTextAreaComentario2.setText("");
-
                 } else {
                     JOptionPane.showMessageDialog(this, "No se pudo agregar el comentario", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
@@ -866,56 +838,42 @@ public class PanelTicketsCerradosAdmin extends javax.swing.JPanel {
         if (this.jRadioFecha.isSelected()) {
             String dia1, mes1, anno1, fecha1;
             dia1 = this.jComboDiaDesde.getSelectedItem().toString();
-            mes1 = String.valueOf(this.jComboMesDesde.getSelectedIndex()+1);
+            mes1 = String.valueOf(this.jComboMesDesde.getSelectedIndex() + 1);
             anno1 = this.jComboAñoDesde.getSelectedItem().toString();
-            fecha1 =  anno1+"-"+mes1+"-"+dia1;
-            if(isFechaValida(fecha1)){
-//            if (this.jTextAnnoDesde.getText().equals("") || this.jTextMesDesde.getText().equals("")
-//                    || this.jTextDiaDesde.getText().equals("")) {
-//                JOptionPane.showMessageDialog(this, "Faltan datos", "ERROR", JOptionPane.ERROR_MESSAGE);
-//            } else {
-//                String año, mes, dia;
-//                año = this.jTextAnnoDesde.getText();
-//                mes = this.jTextMesDesde.getText();
-//                dia = this.jTextDiaDesde.getText();
-//                if (!año.contains("a") && !mes.contains("m") && !dia.contains("d")) {
-//                    String fecha = año + "-" + mes + "-" + dia;
-                    if (Controlador.obtenerInstancia().cambiaFechaRealSolucion(this.codigoTicket, fecha1)) {
-                        this.actualizarInformacion(this.codigoTicket);
-                        JOptionPane.showMessageDialog(this, "Fecha real de solución cambiada con éxito", "", JOptionPane.INFORMATION_MESSAGE);
-
-                        Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
-                                VentanaLogin.correo, "Ticket", "Cambió fecha real de solución al ticket " + this.codigoTicket);
-                        this.jComboAñoDesde.setSelectedIndex(0);
-                        this.jComboDiaDesde.setSelectedIndex(0);
-                        this.jComboMesDesde.setSelectedIndex(0);
-                       
-                    } else {
-                        JOptionPane.showMessageDialog(this, "No se pudo cambiar la fecha real de solución", "ERROR", JOptionPane.ERROR_MESSAGE);
-                    }
+            fecha1 = anno1 + "-" + mes1 + "-" + dia1;
+            if (isFechaValida(fecha1)) {
+                if (Controlador.obtenerInstancia().cambiaFechaRealSolucion(this.codigoTicket, fecha1)) {
+                    this.actualizarInformacion(this.codigoTicket);
+                    JOptionPane.showMessageDialog(this, "Fecha real de solución cambiada con éxito", "", JOptionPane.INFORMATION_MESSAGE);
+                    Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
+                            VentanaLogin.correo, "Ticket", "Cambió fecha real de solución al ticket " + this.codigoTicket);
+                    this.jComboAñoDesde.setSelectedIndex(0);
+                    this.jComboDiaDesde.setSelectedIndex(0);
+                    this.jComboMesDesde.setSelectedIndex(0);
                 } else {
-                    JOptionPane.showMessageDialog(this, "Fecha invalida", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "No se pudo cambiar la fecha real de solución", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
-
-//            }
+            } else {
+                JOptionPane.showMessageDialog(this, "Fecha invalida", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
         }
 
 
     }//GEN-LAST:event_btnAplicarCambiosActionPerformed
 
     private void btnAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirActionPerformed
-          String estado = "";
-            int dato = this.tablaTickets.getSelectedRow();
-            int codi = Integer.parseInt(String.valueOf(this.tablaTickets.getValueAt(dato, 0)));
-            this.codigoTicket = codi;
-            if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, " ¿Realmente desea re abrir el ticket " + codi + "?", null, JOptionPane.YES_NO_OPTION)) {
-               if (this.txtEstado.getText().equals("cerrado")) {
-                   estado="borrado";
+        String estado = "";
+        int dato = this.tablaTickets.getSelectedRow();
+        int codi = Integer.parseInt(String.valueOf(this.tablaTickets.getValueAt(dato, 0)));
+        this.codigoTicket = codi;
+        if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, " ¿Realmente desea re abrir el ticket " + codi + "?", null, JOptionPane.YES_NO_OPTION)) {
+            if (this.txtEstado.getText().equals("cerrado")) {
+                estado = "borrado";
                 Controlador.obtenerInstancia().cambioEstadoLeido(codi);//aqui se modifica el estado a visto.
-               LlenaTicketsCerrados();
-               }
-              JOptionPane.showMessageDialog(this, "El ticket fue abierto con exito", "", JOptionPane.INFORMATION_MESSAGE);
-            }   
+                LlenaTicketsCerrados();
+            }
+            JOptionPane.showMessageDialog(this, "El ticket fue abierto con exito", "", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_btnAbrirActionPerformed
 
     private void actualizarInformacion(int codi) {
@@ -927,7 +885,7 @@ public class PanelTicketsCerradosAdmin extends javax.swing.JPanel {
         this.llenarInformacionExtra(aux);
         this.jPanelDetalle.setVisible(true);
     }
-    
+
     private void LlenaTicketsCerrados() {
         this.cantidad.setText(String.valueOf(Controlador.obtenerInstancia().cantidadCerradosAdmin()));
         modelAux = (DefaultTableModel) tablaTickets.getModel();
@@ -943,14 +901,11 @@ public class PanelTicketsCerradosAdmin extends javax.swing.JPanel {
                     aux.get(i).getAsunto(), aux.get(i).getResponsable(), aux.get(i).getAreaDestino()});
                 i++;
             }
-            
             Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
                     VentanaLogin.correo, "Ticket", "Consultó tickets cerrados");
-            
         }
         tablaTickets.revalidate();
         tablaTickets.repaint();
-//        this.cantidad.setText(String.valueOf(modelAux.getRowCount()));
     }//----------------------------------------------------------------------------- FIN LlenaTicketsCerrados()
 
     public static boolean isFechaValida(String fecha) {
@@ -963,8 +918,9 @@ public class PanelTicketsCerradosAdmin extends javax.swing.JPanel {
         }
         return true;
     }
-    
+
     private void cargarComboAnnos() {
+        jComboAñoDesde.removeAllItems();
         ArrayList<String> lstAnyos;
         lstAnyos = new ArrayList<>();
         int year = Integer.parseInt(Controlador.obtenerInstancia().getSysDateFromServer().get(0));
@@ -978,16 +934,13 @@ public class PanelTicketsCerradosAdmin extends javax.swing.JPanel {
         this.jComboAñoDesde.revalidate();
         this.jComboAñoDesde.repaint();
     }
-    
+
     private void limpiarCampos() {
         buttonGroupGestionar.setSelected(null, true);
-//        jTextAnnoDesde.setText("aaaa");
         jTextAreaComentario2.setText("");
         jTextAreaComentarios.setText("");
         jTextAreaDetalle.setText("");
         jTextAreaEspecificacion.setText("");
-//        jTextDiaDesde.setText("dd");
-//        jTextMesDesde.setText("mm");
         txtArea.setText("");
         txtAsunto.setText("");
         txtCreador.setText("");
@@ -998,12 +951,13 @@ public class PanelTicketsCerradosAdmin extends javax.swing.JPanel {
         txtResponsable.setText("");
         txtTiempoRealSol.setText("");
         txtTiempoSol.setText("");
-}
+    }
 
 //Declaracion de variables
-private DefaultTableModel modelAux;
+    private DefaultTableModel modelAux;
     private static PanelTicketsCerradosAdmin instancia = null;
     private int codigoTicket;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbrir;
     private javax.swing.JButton btnAplicarCambios;

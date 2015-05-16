@@ -12,15 +12,15 @@ public class PanelRegistrarUsuariosAdmin extends javax.swing.JPanel {
 
     private PanelRegistrarUsuariosAdmin() {
         initComponents();
-        this.limpiarCampos();
-        ajustarEventos();
-        this.ocultarComponentes();
     }//----------------------------------------------------------------------------- FIN Constructor()
 
     public static PanelRegistrarUsuariosAdmin obtenerInstancia() {//para garantizar hay solo una instancia
         if (instancia == null) {
             instancia = new PanelRegistrarUsuariosAdmin();
         }
+        instancia.limpiarCampos();
+        instancia.ajustarEventos();
+        instancia.ocultarComponentes();
         return instancia;
     }//----------------------------------------------------------------------------- FIN obtenerInstancia()
 
@@ -50,7 +50,7 @@ public class PanelRegistrarUsuariosAdmin extends javax.swing.JPanel {
                 } else {
                     e.consume();
                 }
-            }//
+            }
 
             @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -320,20 +320,16 @@ public class PanelRegistrarUsuariosAdmin extends javax.swing.JPanel {
                                     && (Controlador.obtenerInstancia().registroAreaUsuario(jtCorreo.getText(), jComboArea.getSelectedItem().toString()))) {
                                 JOptionPane.showMessageDialog(this, "   El usuario " + Controlador.obtenerInstancia().recortaCorreo(jtCorreo.getText()) + "@castillo.cr" + "\n"
                                         + "ha sido registrado con éxito", "Usuario registrado", JOptionPane.PLAIN_MESSAGE);
-
                                 Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
                                         VentanaLogin.correo, "Usuario", "Registró al usuario " + jtCorreo.getText());
-
                             } else {
                                 JOptionPane.showMessageDialog(this, "   No se pudo registrar el usuario", "ERROR", JOptionPane.ERROR_MESSAGE);
                             }
                         } else {
                             if (Controlador.obtenerInstancia().registraUsuarioAdmin(jtCorreo.getText(), 4 - comboTipo.getSelectedIndex())) {
                                 JOptionPane.showMessageDialog(this, "   El usuario ha sido registrado con éxito", "Usuario registrado", JOptionPane.PLAIN_MESSAGE);
-
                                 Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
                                         VentanaLogin.correo, "Usuario", "Registró al usuario " + jtCorreo.getText());
-
                             } else {
                                 JOptionPane.showMessageDialog(this, "   No se pudo registrar el usuario", "ERROR", JOptionPane.ERROR_MESSAGE);
                             }
@@ -375,6 +371,7 @@ public class PanelRegistrarUsuariosAdmin extends javax.swing.JPanel {
 
     //Declaracion de variables
     private static PanelRegistrarUsuariosAdmin instancia = null;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelBotones;
     private javax.swing.JButton btnCancelar1;

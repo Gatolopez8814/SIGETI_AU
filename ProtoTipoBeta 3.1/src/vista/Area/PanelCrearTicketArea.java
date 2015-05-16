@@ -14,25 +14,32 @@ public class PanelCrearTicketArea extends javax.swing.JPanel {//panel donde se e
 
     private PanelCrearTicketArea() {
         initComponents();
-        this.limpiarCampos();
-        this.ajustarEventos();
-//        this.cargarjComboArea();
-//        this.cargarjComboAsunto();
     }//----------------------------------------------------------------------------- FIN Constructor()
+
+    public static PanelCrearTicketArea obtenerInstancia() {//para garantizar hay solo una instancia
+        if (instancia == null) {
+            instancia = new PanelCrearTicketArea();
+        }
+        instancia.limpiarCampos();
+        instancia.ajustarEventos();
+        instancia.cargarjComboArea();
+        instancia.cargarjComboAsunto();
+        return instancia;
+    }//----------------------------------------------------------------------------- FIN obtenerInstancia()
 
     private void ajustarEventos() {
         addMouseListener(Ventana.obtenerInstancia());
-        jTextDetalle.addFocusListener(new FocusListener() {                       //Focus Listener de TextArea
+        jTextDetalle.addFocusListener(new FocusListener() {                       
             @Override
-            public void focusGained(FocusEvent e) {                             // Limpia el TextArea cuando se le da click
+            public void focusGained(FocusEvent e) {                             
                 if (jTextDetalle.getText().equals("El problema consiste en ...")) {
                     jTextDetalle.setText("");
                 }
             }
 
             @Override
-            public void focusLost(FocusEvent e) {                               //Devuelve el TextArea a su estado por default
-                if (jTextDetalle.getText().equals("")) {                            //si el usuario no escribio nada
+            public void focusLost(FocusEvent e) {                               
+                if (jTextDetalle.getText().equals("")) {                         
                     jTextDetalle.setText("El problema consiste en ...");
                 }
             }
@@ -52,7 +59,7 @@ public class PanelCrearTicketArea extends javax.swing.JPanel {//panel donde se e
                 } else {
                     e.consume();
                 }
-            }//
+            }
 
             @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -61,15 +68,6 @@ public class PanelCrearTicketArea extends javax.swing.JPanel {//panel donde se e
             }
         });
     }//----------------------------------------------------------------------------- FIN ajustarEventos()
-
-    public static PanelCrearTicketArea obtenerInstancia() {//para garantizar hay solo una instancia
-        if (instancia == null) {
-            instancia = new PanelCrearTicketArea();
-        }
-        instancia.cargarjComboArea();
-        instancia.cargarjComboAsunto();
-        return instancia;
-    }//----------------------------------------------------------------------------- FIN obtenerInstancia()
 
     private void cargarjComboArea() {
         this.jComboArea.removeAllItems();
@@ -411,6 +409,7 @@ public class PanelCrearTicketArea extends javax.swing.JPanel {//panel donde se e
 
     //Declaracion de variables
     private static PanelCrearTicketArea instancia = null;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton jButton1;
