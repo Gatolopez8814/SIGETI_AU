@@ -102,10 +102,10 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
                 admin = false;
                 time_start = System.currentTimeMillis();
                 this.setTitle("SISTEMA DE GESTIÓN DE TICKETS - SIGETI - USUARIO DE AREA");
-                setSize(new Dimension(sizeX, sizeY));
-                setPreferredSize(new Dimension(sizeX, sizeY));
+                setSize(1210, 705);
+                setPreferredSize(new Dimension(1210, 705));
                 setLocationRelativeTo(null);
-                setResizable(true);
+                setResizable(false);
                 menuArea();
                 ArbolArea.previeneError();
                 ventanaPrincipalArea();
@@ -116,10 +116,10 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
                 sesion = true;
                 admin = true;
                 this.setTitle("SISTEMA DE GESTIÃ“N DE TICKETS - SIGETI - USUARIO ADMINISTRADOR");
-                setSize(new Dimension(sizeX, sizeY));
-                setPreferredSize(new Dimension(sizeX, sizeY));
+                setSize(1210, 705);
+                setPreferredSize(new Dimension(1210, 705));
                 setLocationRelativeTo(null);
-                setResizable(true);
+                setResizable(false);
                 menuAdministrativo();
                 ArbolAdministrativo.previeneError();
                 ventanaPrincipalAdmin();
