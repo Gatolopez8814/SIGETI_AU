@@ -8,7 +8,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Arrays;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import vista.Ventana;
 import vista.VentanaLogin;
 
@@ -16,8 +15,6 @@ public class PanelCambioContraseña extends javax.swing.JPanel {
 
     private PanelCambioContraseña() {
         initComponents();
-        ajustarEventos();
-        limpiarCampos();
 
     }//----------------------------------------------------------------------------- FIN Constructor()
 
@@ -25,48 +22,18 @@ public class PanelCambioContraseña extends javax.swing.JPanel {
         if (instancia == null) {
             instancia = new PanelCambioContraseña();
         }
+        instancia.ajustarEventos();
+        instancia.limpiarCampos();
         return instancia;
     }//----------------------------------------------------------------------------- FIN obtenerInstancia()
-    
+
     private boolean validaContrasenna() {
-        //verifica que se cumplan los requisitos para la contraseña
         boolean ok = true;
         String nl = System.getProperty("line.separator");
         final String pas1 = String.valueOf(this.jPasswordNueva.getPassword());
         if (String.valueOf(this.jPasswordNueva.getPassword()).equals(String.valueOf(this.jPasswordNueva2.getPassword()))) {
             if (pas1.length() >= 6 && pas1.length() <= 16) {
                 if (pas1.matches(".*[A-Za-z0-9].*[^@]")) {
-//              el primer caracter puede ser cualquiera . es para que se reciba cualquiera
-//              * es para que se pueda repetir caracter
-//              [^@!] se ponen seguidos los que no se quieren que se usen en la contraseña
-
-//                    int contLetra = 0, conNumero = 0, conSimbolos = 0;
-//                    for (int i = 0; i < pas1.length(); i++) {
-//                        if (String.valueOf(pas1.charAt(i)).matches("[A-Za-z]")) {
-//                            contLetra++;
-//                        } else if (String.valueOf(pas1.charAt(i)).matches("[0-9]")) {
-//                            conNumero++;
-//                        } else if (!String.valueOf(pas1.charAt(i)).matches("[@]")) {
-//                            conSimbolos++;
-//                        }
-//                    }
-//                    if (contLetra != 0 && conNumero != 0 && conSimbolos != 0) {
-//                        if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "La contraseña tiene un nivel alto de seguridad. " + nl
-//                                + "¿Deseas modificarla?", null, JOptionPane.YES_NO_OPTION)) {
-//                            ok = false;
-//                        }
-//                    } else if ((contLetra != 0 && conNumero == 0 && conSimbolos == 0)
-//                            || (contLetra == 0 && conNumero != 0 && conSimbolos == 0)) {
-//                        if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "La contraseña tiene un nivel medio de seguridad, " + nl
-//                                + "¿Deseas modificarla?", null, JOptionPane.YES_NO_OPTION)) {
-//                            ok = false;
-//                        }
-//                    } else if (conSimbolos > contLetra || conSimbolos > conNumero) {/////
-//                        if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "La contraseña tiene un nivel bajo de seguridad" + nl
-//                                + " ¿Deseas modificarla?", null, JOptionPane.YES_NO_OPTION)) {
-//                            ok = false;
-//                        }
-//                    }
                 } else {
                     JOptionPane.showMessageDialog(null, "La contraseña no puede tener el caracter especial @ ", "", JOptionPane.WARNING_MESSAGE);
                     this.lbmensaje.setText("");
@@ -81,29 +48,24 @@ public class PanelCambioContraseña extends javax.swing.JPanel {
             this.lbmensaje.setText("* La contraseña no coincide");
             this.lbmensaje.setForeground(Color.red);
             ok = false;
-//                JOptionPane.showMessageDialog(null, "La contraseña nueva no coincide", "", JOptionPane.ERROR_MESSAGE);
         }
         return ok;
     }//----------------------------------------------------------------------------- FIN validaContrasenna()
-    
+
     private void limpiarCampos() {
         this.jPasswordAnterior.setText("");
         this.jPasswordNueva.setText("");
         this.jPasswordNueva2.setText("");
         this.lbmensaje.setText("");
     }//----------------------------------------------------------------------------- FIN limpiarCampos()
-    
- 
+
     private void ajustarEventos() {
         addMouseListener(Ventana.obtenerInstancia());
-
-        // OJO al sobrepasar el limite hay problema con el kyType porque no permite borrar
-        //Se valida que la contrasenna no sobrepase el limite
         jPasswordAnterior.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
                 Ventana.obtenerInstancia().tecla();//
-                }
+            }
 
             @Override
             public void keyPressed(KeyEvent e) {
@@ -120,7 +82,7 @@ public class PanelCambioContraseña extends javax.swing.JPanel {
             @Override
             public void keyTyped(KeyEvent e) {
                 Ventana.obtenerInstancia().tecla();
-                if(16 != Arrays.toString(jPasswordNueva.getPassword()).length()) {
+                if (16 != Arrays.toString(jPasswordNueva.getPassword()).length()) {
                 } else {
                     e.consume();
                 }
@@ -145,7 +107,7 @@ public class PanelCambioContraseña extends javax.swing.JPanel {
                 } else {
                     e.consume();
                 }
-            }//
+            }
 
             @Override
             public void keyPressed(KeyEvent e) {
@@ -158,36 +120,36 @@ public class PanelCambioContraseña extends javax.swing.JPanel {
             }
         });
 
-        jPasswordAnterior.addFocusListener(new FocusListener() {                       //Focus Listener de TextArea
+        jPasswordAnterior.addFocusListener(new FocusListener() {   
             @Override
-            public void focusGained(FocusEvent e) {                             // Limpia el TextArea cuando se le da click
-             ////////
+            public void focusGained(FocusEvent e) { 
+                
             }
 
             @Override
-            public void focusLost(FocusEvent e) {                               //Devuelve el TextArea a su estado por default
+            public void focusLost(FocusEvent e) {    
 
             }
         });
-        jPasswordNueva.addFocusListener(new FocusListener() {                       //Focus Listener de TextArea
+        jPasswordNueva.addFocusListener(new FocusListener() {    
             @Override
             public void focusGained(FocusEvent e) {
-            /////////
+               
             }
 
             @Override
-            public void focusLost(FocusEvent e) {                               //Devuelve el TextArea a su estado por default
+            public void focusLost(FocusEvent e) {        
 
             }
         });
-        jPasswordNueva2.addFocusListener(new FocusListener() {                       //Focus Listener de TextArea
+        jPasswordNueva2.addFocusListener(new FocusListener() {      
             @Override
-            public void focusGained(FocusEvent e) {                             // Limpia el TextArea cuando se le da click
-             ///////////
+            public void focusGained(FocusEvent e) {      
+               
             }
 
             @Override
-            public void focusLost(FocusEvent e) {                               //Devuelve el TextArea a su estado por default
+            public void focusLost(FocusEvent e) {      
 
             }
         });
@@ -418,27 +380,25 @@ public class PanelCambioContraseña extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnCambiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiarActionPerformed
-        if(String.valueOf(this.jPasswordAnterior.getPassword()).equals("") || 
-                String.valueOf(this.jPasswordNueva.getPassword()).equals("") ||
-                String.valueOf(this.jPasswordNueva2.getPassword()).equals("")){
+        if (String.valueOf(this.jPasswordAnterior.getPassword()).equals("")
+                || String.valueOf(this.jPasswordNueva.getPassword()).equals("")
+                || String.valueOf(this.jPasswordNueva2.getPassword()).equals("")) {
             JOptionPane.showMessageDialog(null, "Faltan datos para continuar", "ERROR", JOptionPane.ERROR_MESSAGE);
             this.lbmensaje.setText("");
-        }else{
-        if (this.validaContrasenna()) {
-            if (Controlador.obtenerInstancia().cambiarContrasena(VentanaLogin.correo, String.valueOf(this.jPasswordNueva.getPassword()), String.valueOf(this.jPasswordAnterior.getPassword()))) {
-                JOptionPane.showMessageDialog(null, "Tu contraseña ha sido cambiada con éxito", "", JOptionPane.INFORMATION_MESSAGE);
-                                
-                    
+        } else {
+            if (this.validaContrasenna()) {
+                if (Controlador.obtenerInstancia().cambiarContrasena(VentanaLogin.correo, String.valueOf(this.jPasswordNueva.getPassword()), String.valueOf(this.jPasswordAnterior.getPassword()))) {
+                    JOptionPane.showMessageDialog(null, "Tu contraseña ha sido cambiada con éxito", "", JOptionPane.INFORMATION_MESSAGE);
+
                     Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
                             VentanaLogin.correo, "Usuario", "Cambio de contraseña");
-                    
-                    
-                this.limpiarCampos();
-            } else {
-                JOptionPane.showMessageDialog(null, "Tu contraseña no se ha podido cambiar", "", JOptionPane.ERROR_MESSAGE);
-                this.lbmensaje.setText("");
+
+                    this.limpiarCampos();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Tu contraseña no se ha podido cambiar", "", JOptionPane.ERROR_MESSAGE);
+                    this.lbmensaje.setText("");
+                }
             }
-        }
         }
     }//GEN-LAST:event_btnCambiarActionPerformed
 
@@ -448,6 +408,7 @@ public class PanelCambioContraseña extends javax.swing.JPanel {
 
     //Declaracion de variables
     private static PanelCambioContraseña instancia = null;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelBotones;
     private javax.swing.JPanel PanelContrasennas;

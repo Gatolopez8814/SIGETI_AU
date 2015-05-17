@@ -1,4 +1,3 @@
-
 package vista;
 
 import java.awt.Container;
@@ -10,7 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
 
-public class VentanaRecuperaContrasenna extends JFrame{
+public class VentanaRecuperaContrasenna extends JFrame {
 
     private VentanaRecuperaContrasenna() {
         super("SISTEMA GESTIÓN DE TICKETS - SIGETI - Recuperar contraseña");
@@ -56,7 +55,7 @@ public class VentanaRecuperaContrasenna extends JFrame{
     }//----------------------------------------------------------------------------- FIN ocultar()
 
     private void ajustarComponentes(Container c) {
-        c.add(PanelOlvidoContraseña.obtenerInstancia());        
+        c.add(PanelOlvidoContraseña.obtenerInstancia());
     }//----------------------------------------------------------------------------- FIN ajustarComponentes()
 
     private void ajustarEventos() {
@@ -67,9 +66,8 @@ public class VentanaRecuperaContrasenna extends JFrame{
             System.exit(0);
         }
     }//----------------------------------------------------------------------------- FIN cerrarAplicacion()
-    
+
     //Declaracion de variables
     private static VentanaRecuperaContrasenna instancia = null;
-
 
 }//_____________________________________________________________________________

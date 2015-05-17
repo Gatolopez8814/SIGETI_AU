@@ -26,7 +26,7 @@ public class SigetiTreeCellRenderer implements TreeCellRenderer {//clase para mo
         }
         return label;
     }//----------------------------------------------------------------------------- FIN getTreeCellRendererComponent()
-    
+
     //Declaracion de variables
     private JLabel label;
 }//____________________________________________________________________END_CLASS

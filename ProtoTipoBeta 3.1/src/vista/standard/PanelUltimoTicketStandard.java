@@ -11,7 +11,6 @@ public class PanelUltimoTicketStandard extends javax.swing.JPanel {
 
     private PanelUltimoTicketStandard() {
         initComponents();
-
     }//----------------------------------------------------------------------------- FIN Constructor()
 
     public static PanelUltimoTicketStandard obtenerInstancia() {//para garantizar hay solo una instancia
@@ -28,29 +27,23 @@ public class PanelUltimoTicketStandard extends javax.swing.JPanel {
         Ticket _ticket = Controlador.obtenerInstancia().consultaUltimo(correo);
         if (_ticket.getEstado() == null) {
             JOptionPane.showMessageDialog(this, "   No se han encontrado tickets a nombre de este usuario", "ERROR", JOptionPane.ERROR_MESSAGE);
-
         } else {
-            //cambiar de borrado a cerrado
             if (_ticket.getEstado().equals("borrado")) {
                 this.txtEstado.setText("cerrado");
             } else {
                 this.txtEstado.setText(_ticket.getEstado());
             }
-            this.jLabel1.setText("Último ticket creado: " +_ticket.getConsecutivo());
+            this.jLabel1.setText("Último ticket creado: " + _ticket.getConsecutivo());
             this.txtArea.setText(_ticket.getAreaDestino());
             this.txtResponsable.setText(_ticket.getResponsable());
-
             this.txtAsunto.setText(_ticket.getAsunto());
             this.txtHora.setText(_ticket.getHora());
             this.txtFecha.setText(_ticket.getFecha());
             this.jTextAreaDetalle.setText(_ticket.getDetalleProblema());
             this.jTextAreaComentarios.setText(_ticket.getComentarios());
             this.jPanelDatos.setVisible(true);
-
-           
             Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
                     VentanaLogin.correo, "Ticket", "Consultó el ticket " + _ticket.getConsecutivo());
-            
         }
     }
 
@@ -372,7 +365,6 @@ public class PanelUltimoTicketStandard extends javax.swing.JPanel {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Desea finalizar la consulta?", null, JOptionPane.YES_NO_OPTION)) {
-            
             Ventana.obtenerInstancia().ventanaPrincipalStandard();
         }
     }//GEN-LAST:event_btnCancelarActionPerformed
@@ -391,6 +383,7 @@ public class PanelUltimoTicketStandard extends javax.swing.JPanel {
 
     //Declaracion de variables
     private static PanelUltimoTicketStandard instancia = null;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelBotones;
     private javax.swing.JButton btnCancelar;

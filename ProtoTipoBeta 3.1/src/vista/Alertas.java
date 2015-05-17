@@ -1,15 +1,9 @@
-
 package vista;
 
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.awt.Window;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.image.ImageProducer;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -17,7 +11,6 @@ import javax.swing.JOptionPane;
 public class Alertas {
 
     private Alertas() {
-
     }
 
     public static Alertas obtenerInstancia() {//asi garantizamos que solo aya una ventana
@@ -74,8 +67,9 @@ public class Alertas {
         d.setVisible(true);
         Ventana.obtenerInstancia().setBarraEstadoMensajeAnterior();
     }
+    
+    //Declaracion de variables
     private static Alertas instancia = null;
     private final int sizeY = Toolkit.getDefaultToolkit().getScreenSize().height - 200;
     private final int sizeX = Toolkit.getDefaultToolkit().getScreenSize().width - 300;
 }
-

@@ -1,16 +1,12 @@
 package vista.standard;
 
 import controlador.Controlador;
-import java.awt.List;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Locale;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -22,16 +18,15 @@ public class PanelConsultaHistorial extends javax.swing.JPanel {
 
     private PanelConsultaHistorial() {
         initComponents();
-        this.limpiarCampos();
-        this.ocultarComponentes();
-        this.iniciarValidaciones();
-        this.ajustarEventos();
     }//----------------------------------------------------------------------------- FIN Constructor()
 
-    public static PanelConsultaHistorial obtenerInstancia() {//para garantizar hay solo una instancia
+    public static PanelConsultaHistorial obtenerInstancia() {
         if (instancia == null) {
             instancia = new PanelConsultaHistorial();
         }
+        instancia.limpiarCampos();
+        instancia.ocultarComponentes();
+        instancia.ajustarEventos();
         return instancia;
     }//----------------------------------------------------------------------------- FIN obtenerInstancia()
 
@@ -49,49 +44,6 @@ public class PanelConsultaHistorial extends javax.swing.JPanel {
 
     private void ajustarEventos() {
         addMouseListener(Ventana.obtenerInstancia());
-        
-//        jTextAnnoDesde.addKeyListener(new KeyAdapter() {
-//            @Override
-//            public void keyPressed(java.awt.event.KeyEvent evt) {
-//                super.keyPressed(evt);
-//                Ventana.obtenerInstancia().tecla();
-//            }
-//        });
-//        jTextMesDesde.addKeyListener(new KeyAdapter() {
-//            @Override
-//            public void keyPressed(java.awt.event.KeyEvent evt) {
-//                super.keyPressed(evt);
-//                Ventana.obtenerInstancia().tecla();
-//            }
-//        });
-//        jTextDiaDesde.addKeyListener(new KeyAdapter() {
-//            @Override
-//            public void keyPressed(java.awt.event.KeyEvent evt) {
-//                super.keyPressed(evt);
-//                Ventana.obtenerInstancia().tecla();
-//            }
-//        });
-//        jTextAnnoHasta.addKeyListener(new KeyAdapter() {
-//            @Override
-//            public void keyPressed(java.awt.event.KeyEvent evt) {
-//                super.keyPressed(evt);
-//                Ventana.obtenerInstancia().tecla();
-//            }
-//        });
-//        jTextMesHasta.addKeyListener(new KeyAdapter() {
-//            @Override
-//            public void keyPressed(java.awt.event.KeyEvent evt) {
-//                super.keyPressed(evt);
-//                Ventana.obtenerInstancia().tecla();
-//            }
-//        });
-//        jTextDiaHasta.addKeyListener(new KeyAdapter() {
-//            @Override
-//            public void keyPressed(java.awt.event.KeyEvent evt) {
-//                super.keyPressed(evt);
-//                Ventana.obtenerInstancia().tecla();
-//            }
-//        });
     }
 
     private void ocultarComponentes() {
@@ -102,26 +54,6 @@ public class PanelConsultaHistorial extends javax.swing.JPanel {
         this.jPanelTabla.setVisible(false);
         this.jPanelDetalle.setVisible(false);
     }//----------------------------------------------------------------------------- FIN ocultarComponentes()
-
-    private void iniciarValidaciones() {
-//        soloNumeros(this.jTextAnnoDesde);
-//        soloNumeros(this.jTextMesDesde);
-//        soloNumeros(this.jTextDiaDesde);
-//        soloNumeros(this.jTextAnnoHasta);
-//        soloNumeros(this.jTextMesHasta);
-//        soloNumeros(this.jTextDiaHasta);
-    }//----------------------------------------------------------------------------- FIN iniciarValidaciones()
-
-    public void soloNumeros(JTextField txt) {//para validar que en la fecha solo digite numeros
-        txt.addKeyListener(new KeyAdapter() {
-            public void keyTyped(KeyEvent e) {
-                char c = e.getKeyChar();
-                if (!Character.isDigit(c)) {
-                    e.consume();
-                }
-            }
-        });
-    }//----------------------------------------------------------------------------- FIN soloNumeros()
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -746,7 +678,6 @@ public class PanelConsultaHistorial extends javax.swing.JPanel {
                 this.jPanelRangoFechas.setVisible(false);
                 this.jPanelArea.setVisible(true);
                 this.btnConsultarTodos.setEnabled(true);
-//                this.limpiarCampos();
             }
         }
     }//GEN-LAST:event_ComboBusquedaActionPerformed
@@ -790,7 +721,6 @@ public class PanelConsultaHistorial extends javax.swing.JPanel {
         while (modelAux.getRowCount() > 0) {
             modelAux.removeRow(0);
         }
-
         if (ComboBusqueda.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Opción de busqueda incorrecta", "ERROR",
                     JOptionPane.ERROR_MESSAGE);
@@ -809,33 +739,28 @@ public class PanelConsultaHistorial extends javax.swing.JPanel {
                         modelAux.insertRow(modelAux.getRowCount(), new Object[]{aux.get(i).getConsecutivo(),
                             aux.get(i).getAreaDestino(), aux.get(i).getFecha(), this.obtieneEstado(aux.get(i)), aux.get(i).getResponsable()});
                         i++;
-                        //jTable1.setModel(modelAux);
-
                     }
-
                     Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
                             VentanaLogin.correo, "Ticket", "Consultó varios tickets");
-
                 }
                 tablaTickets.setVisible(true);
                 tablaTickets.revalidate();
                 tablaTickets.repaint();
                 this.jPanelTabla.setVisible(true);
             }
-        } else{
+        } else {
             String dia1, mes1, anno1, dia2, mes2, anno2, fecha1, fecha2;
             dia1 = this.jComboDiaDesde.getSelectedItem().toString();
-            mes1 = String.valueOf(this.jComboMesDesde.getSelectedIndex()+1);
+            mes1 = String.valueOf(this.jComboMesDesde.getSelectedIndex() + 1);
             anno1 = this.jComboAñoDesde.getSelectedItem().toString();
             dia2 = this.jComboDiaHasta.getSelectedItem().toString();
-            mes2 = String.valueOf(this.jComboMesHasta.getSelectedIndex()+1);
+            mes2 = String.valueOf(this.jComboMesHasta.getSelectedIndex() + 1);
             anno2 = this.jComboAñosHasta.getSelectedItem().toString();
-            fecha1 =  anno1+"-"+mes1+"-"+dia1;
-            fecha2 = anno2+"-"+mes2+"-"+dia2;
-            System.err.println(fecha1 + "  "+ fecha2);
-            if(isFechaValida(fecha1) && isFechaValida(fecha2)){
+            fecha1 = anno1 + "-" + mes1 + "-" + dia1;
+            fecha2 = anno2 + "-" + mes2 + "-" + dia2;
+            System.err.println(fecha1 + "  " + fecha2);
+            if (isFechaValida(fecha1) && isFechaValida(fecha2)) {
                 ArrayList<Ticket> aux = Controlador.obtenerInstancia().consultaTodosTicket(fecha1, fecha2, VentanaLogin.correo);
-                
                 if (aux.isEmpty()) {
                     JOptionPane.showMessageDialog(null, "No se han encontrado tickets en este rango de fechas.", "ERROR",
                             JOptionPane.ERROR_MESSAGE);
@@ -846,62 +771,20 @@ public class PanelConsultaHistorial extends javax.swing.JPanel {
                             aux.get(i).getAreaDestino(), aux.get(i).getFecha(), this.obtieneEstado(aux.get(i)),
                             aux.get(i).getResponsable()});
                         i++;
-                        //jTable1.setModel(modelAux);
                     }
-
                     Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
                             VentanaLogin.correo, "Ticket", "Consultó historial");
-
                 }
                 tablaTickets.setVisible(true);
                 tablaTickets.revalidate();
                 tablaTickets.repaint();
                 this.jPanelTabla.setVisible(true);
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Fechas invalidas.", "ERROR",
                         JOptionPane.ERROR_MESSAGE);
             }
-            
-        }//fin else fechas
-//        else {
-//            if (!jTextAnnoHasta.getText().contains("a")
-//                    && !jTextAnnoDesde.getText().contains("a")
-//                    && !jTextMesDesde.getText().contains("m")
-//                    && !jTextMesHasta.getText().contains("m")
-//                    && !jTextDiaDesde.getText().contains("d")
-//                    && !jTextDiaHasta.getText().contains("d")) {
-//                ArrayList<Ticket> aux = Controlador.obtenerInstancia().consultaTodosTicket(jTextAnnoDesde.getText() + "-"
-//                        + jTextMesDesde.getText() + "-" + jTextDiaDesde.getText(), jTextAnnoHasta.getText() + "-"
-//                        + jTextMesHasta.getText() + "-" + jTextDiaHasta.getText(), VentanaLogin.correo);
-//
-//                if (aux.isEmpty()) {
-//                    JOptionPane.showMessageDialog(null, "No se han encontrado tickets en este rango de fechas.", "ERROR",
-//                            JOptionPane.ERROR_MESSAGE);
-//                } else {
-//                    int i = 0;
-//                    while (i < aux.size()) {
-//                        modelAux.insertRow(modelAux.getRowCount(), new Object[]{aux.get(i).getConsecutivo(),
-//                            aux.get(i).getAreaDestino(), aux.get(i).getFecha(), this.obtieneEstado(aux.get(i)),
-//                            aux.get(i).getResponsable()});
-//                        i++;
-//                        //jTable1.setModel(modelAux);
-//                    }
-//
-//                    Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
-//                            VentanaLogin.correo, "Ticket", "Consultó historial");
-//
-//                }
-//                tablaTickets.setVisible(true);
-//                tablaTickets.revalidate();
-//                tablaTickets.repaint();
-//                this.jPanelTabla.setVisible(true);
-//            } else {
-//                JOptionPane.showMessageDialog(null, "Fechas invalidas.", "ERROR",
-//                        JOptionPane.ERROR_MESSAGE);
-//            }
-//        }
 
-
+        }
     }//GEN-LAST:event_btnConsultarTodosActionPerformed
 
     private void llenarInformacionExtra(Ticket _ticket) {
@@ -929,12 +812,9 @@ public class PanelConsultaHistorial extends javax.swing.JPanel {
         return true;
     }
     private void btnVerDetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerDetalleActionPerformed
-        //a partir de aqui se obtiene el codigo del ticket y se llena la demas informacion
-
         int dato = this.tablaTickets.getSelectedRow();
         if (dato >= 0) {
             int codi = Integer.parseInt(String.valueOf(this.tablaTickets.getValueAt(dato, 0)));
-
             if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, " ¿Realmente desea ver el ticket " + codi + "?", null, JOptionPane.YES_NO_OPTION)) {
                 Ticket aux = Controlador.obtenerInstancia().informacionTicket(codi);
                 this.jLabelTitulo.setText("Información del ticket " + codi);
@@ -945,11 +825,9 @@ public class PanelConsultaHistorial extends javax.swing.JPanel {
                 this.jPanelBoton.setVisible(false);
                 this.llenarInformacionExtra(aux);
                 this.jPanelDetalle.setVisible(true);
-
             }
         } else {
             JOptionPane.showMessageDialog(null, "Debe seleccionar un ticket", "ERROR", JOptionPane.ERROR_MESSAGE);
-
         }
     }//GEN-LAST:event_btnVerDetalleActionPerformed
 
@@ -983,6 +861,8 @@ public class PanelConsultaHistorial extends javax.swing.JPanel {
     }//GEN-LAST:event_jComboMesHastaActionPerformed
 
     private void cargarComboAnnos() {
+        jComboAñoDesde.removeAllItems();
+        jComboAñosHasta.removeAllItems();
         ArrayList<String> lstAnyos;
         lstAnyos = new ArrayList<>();
         int year = Integer.parseInt(Controlador.obtenerInstancia().getSysDateFromServer().get(0));
@@ -1002,7 +882,6 @@ public class PanelConsultaHistorial extends javax.swing.JPanel {
     }
 
     private void limpiarCampos() {
-
         ComboBusqueda.setSelectedIndex(0);
         jComboArea.setSelectedIndex(0);
         jTextAreaComentarios.setText("");
@@ -1016,12 +895,12 @@ public class PanelConsultaHistorial extends javax.swing.JPanel {
         txtPrioridad.setText("");
         txtResponsable.setText("");
         txtTiempoSol.setText("");
-
     }//----------------------------------------------------------------------------- FIN limpiarCampos()
 
     //Declaracion de variables
     private static PanelConsultaHistorial instancia = null;
-    DefaultTableModel modelAux;
+    private DefaultTableModel modelAux;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> ComboBusqueda;
     private javax.swing.JButton btnCancelar;

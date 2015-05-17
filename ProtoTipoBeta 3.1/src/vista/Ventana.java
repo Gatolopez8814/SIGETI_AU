@@ -141,7 +141,7 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
         }
     }//----------------------------------------------------------------------------- FIN setTipoUsuario()
 
-    public void mostrar() {//para mostar el JFRAME
+    public void mostrar() {
         this.setVisible(true);
         ArbolAdministrativo.previeneError();
         ArbolArea.previeneError();
@@ -152,7 +152,7 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
         }
     }//----------------------------------------------------------------------------- FIN mostrar()
 
-    public void ocultar() {// oculta la ventana de ser necesario
+    public void ocultar() {
         sesion = false;
         admin = false;
         this.setVisible(false);
@@ -270,7 +270,6 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
 
     public void menuStandard() {
         desAbilitarMenu();
-        //solo tiene componentes basicos
         //--o--
         menuArchivo.add(itemSalir);
         menuBuscar.add(itemBuscarUltimoTicket);
@@ -300,7 +299,6 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
         JMenuItem itemTicketsAsignados = new JMenuItem("Tickets Asignados");
         JMenuItem itemGenerarReporte = new JMenuItem("Generar Reporte");
         //--o--
-        //estas imagenes son para cargar la barra de menu, no el arbol
         Icon icon2 = new ImageIcon(getClass().getResource("/img/inbox-iconx16.png"));
         itemBandejaEntrada.setIcon(icon2);
         Icon icon3 = new ImageIcon(getClass().getResource("/img/wood-folder-iconx16.png"));
@@ -410,7 +408,6 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
         itemReporte.setIcon(icon11);
         Icon icon12 = new ImageIcon(getClass().getResource("/img/contacts-icon2x16.png"));
         itemBitacora.setIcon(icon12);
-
         //--o--       
         itemBandejaEntrada.addActionListener(new ActionListener() {
             @Override
@@ -632,10 +629,8 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
     public void cerrarAplicacion() {//mensaje de confirmacion para dar fin a la ejecucion de la aplicacion
         setBarraEstado("¿Realmente desea cerrar la aplicación? ");
         if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Desea cerrar la aplicación?", "Cerrar", JOptionPane.YES_NO_OPTION)) {
-
             Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
                     VentanaLogin.correo, "No aplica", "Finalizó sesión");
-
             System.exit(0);
         }
         setBarraEstadoMensajeAnterior();
@@ -668,7 +663,7 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
         scrollPanelPrincipal = new JScrollPane(PanelCambioContraseña.obtenerInstancia());
         panelPrincipal.setLayout(new BorderLayout());
         panelPrincipal.add(ArbolStandard.obtenerInstancia(), BorderLayout.WEST);
-        panelPrincipal.add(scrollPanelPrincipal, BorderLayout.CENTER);      
+        panelPrincipal.add(scrollPanelPrincipal, BorderLayout.CENTER);
         pack();
         repaint();
     }//----------------------------------------------------------------------------- FIN cambiarClaveStandar()
@@ -679,7 +674,7 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
         scrollPanelPrincipal = new JScrollPane(PanelConsultaUno.obtenerInstancia());
         panelPrincipal.setLayout(new BorderLayout());
         panelPrincipal.add(ArbolStandard.obtenerInstancia(), BorderLayout.WEST);
-        panelPrincipal.add(scrollPanelPrincipal, BorderLayout.CENTER);       
+        panelPrincipal.add(scrollPanelPrincipal, BorderLayout.CENTER);
         pack();
         repaint();
     }//----------------------------------------------------------------------------- FIN buscarUnTicketStandard()
@@ -690,7 +685,7 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
         setBarraEstado("Pantalla principal");
         panelPrincipal.setLayout(new BorderLayout());
         panelPrincipal.add(ArbolStandard.obtenerInstancia(), BorderLayout.WEST);
-        panelPrincipal.add(new PanelConFondo("/img/2014-10-05_1533.png"));        
+        panelPrincipal.add(new PanelConFondo("/img/2014-10-05_1533.png"));
         pack();
         repaint();
     }//----------------------------------------------------------------------------- FIN ventanaPrincipalStandard()
@@ -701,7 +696,7 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
         scrollPanelPrincipal = new JScrollPane(PanelConsultaHistorial.obtenerInstancia());
         panelPrincipal.setLayout(new BorderLayout());
         panelPrincipal.add(ArbolStandard.obtenerInstancia(), BorderLayout.WEST);
-        panelPrincipal.add(scrollPanelPrincipal, BorderLayout.CENTER);       
+        panelPrincipal.add(scrollPanelPrincipal, BorderLayout.CENTER);
         pack();
         repaint();
     }//----------------------------------------------------------------------------- FIN historialTicketsStandard()
@@ -712,7 +707,7 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
         scrollPanelPrincipal = new JScrollPane(PanelUltimoTicketStandard.obtenerInstancia());
         panelPrincipal.setLayout(new BorderLayout());
         panelPrincipal.add(ArbolStandard.obtenerInstancia(), BorderLayout.WEST);
-        panelPrincipal.add(scrollPanelPrincipal, BorderLayout.CENTER);       
+        panelPrincipal.add(scrollPanelPrincipal, BorderLayout.CENTER);
         pack();
         repaint();
     }//----------------------------------------------------------------------------- FIN buscarUltimoTicketStandard()
@@ -723,7 +718,7 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
         scrollPanelPrincipal = new JScrollPane(PanelCrearTicket.obtenerInstancia());
         panelPrincipal.setLayout(new BorderLayout());
         panelPrincipal.add(ArbolStandard.obtenerInstancia(), BorderLayout.WEST);
-        panelPrincipal.add(scrollPanelPrincipal, BorderLayout.CENTER);      
+        panelPrincipal.add(scrollPanelPrincipal, BorderLayout.CENTER);
         pack();
         repaint();
     }//----------------------------------------------------------------------------- FIN crearTicketStandard()
@@ -1063,7 +1058,7 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
     public void TodosTicketsAdmin() {
         panelPrincipal.removeAll();
         setBarraEstado("Todos los Tickets");
-        
+
         scrollPanelPrincipal = new JScrollPane(PanelTodosTicketsAdmin.obtenerInstancia());
         panelPrincipal.setLayout(new BorderLayout());
         panelPrincipal.add(ArbolAdministrativo.obtenerInstancia(), BorderLayout.WEST);
@@ -1110,8 +1105,7 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
         }
     }//----------------------------------------------------------------------------- FIN run()
 
-    public void validaTimer() {
-        //System.out.println("Time ->"+((System.currentTimeMillis() - time_start)/1000));        
+    public void validaTimer() {      
         if (sesion && ((System.currentTimeMillis() - time_start) > 300000)) {
             time_start = System.currentTimeMillis();
             sesion = false;
@@ -1119,7 +1113,7 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
             ocultar();
             this.desAbilitarMenu();
             panelPrincipal.removeAll();
-            revalidate();//xq ???
+            revalidate();
         }
     }//----------------------------------------------------------------------------- FIN validaTimer()
 
@@ -1147,53 +1141,42 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
     @Override
     public void mouseClicked(MouseEvent e) {
         time_start = System.currentTimeMillis();
-        //System.out.println("mouseClicked");
     }//----------------------------------------------------------------------------- FIN mouseClicked()
 
     @Override
     public void mousePressed(MouseEvent e) {
         time_start = System.currentTimeMillis();
-        //System.out.println("mousePressed");
     }//----------------------------------------------------------------------------- FIN mousePressed()
 
     @Override
     public void mouseReleased(MouseEvent e) {
         time_start = System.currentTimeMillis();
-        //System.out.println("mouseReleased");
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
         time_start = System.currentTimeMillis();
-        //System.out.println("mouseEntered");
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
         time_start = System.currentTimeMillis();
-        //System.out.println("mouseExited");
     }
 
     //Declaracion de variables
     private BarraEstado barraEstado;
     private String usuarioActivo; //Para guardar el tipo de usuario que está utilizando sistema
-    //usuarioActivo deber ser clase Usuario posteriormente
-    //--o--    
     private final int sizeY = Toolkit.getDefaultToolkit().getScreenSize().height - 50;
-    private final int sizeX = Toolkit.getDefaultToolkit().getScreenSize().width - 1;
-    //--o--    
+    private final int sizeX = Toolkit.getDefaultToolkit().getScreenSize().width - 1;  
     private static Ventana instancia = null;
-    //--o--
     private JScrollPane scrollPanelPrincipal = null;
-    private JPanel panelPrincipal = null;
-    //--o--    
+    private JPanel panelPrincipal = null;   
     private JMenuBar menu;
     private JMenu menuArchivo;
     private JMenu menuOpciones;
     private JMenu menuBuscar;
     private JMenu menuCuenta;
     private JMenu menuAyuda;
-    //--o--
     private JMenuItem itemSalir;
     private JMenuItem itemCrearTicket;
     private JMenuItem itemBuscarUnTicket;
@@ -1202,11 +1185,9 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
     private JMenuItem itemDesLoggeo;
     private JMenuItem itemAyuda;
     private JMenuItem itemCambioClave;
-    //--o--
     private boolean sesion;
     private long time_start;
-    private long time_check_alert;
-    //--o--    
+    private long time_check_alert;   
     private Alertas alerta;
     private int numAlertas;
     private boolean admin;

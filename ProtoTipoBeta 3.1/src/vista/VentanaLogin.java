@@ -17,7 +17,6 @@ import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
-import java.util.Arrays;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -31,7 +30,6 @@ import javax.swing.JTextField;
 import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
 import javax.swing.border.TitledBorder;
 import modelo.ManejadorDeArchivos;
-
 
 public class VentanaLogin extends JFrame {//miniVentana donde se ingresa a la aplicacion
 
@@ -90,19 +88,15 @@ public class VentanaLogin extends JFrame {//miniVentana donde se ingresa a la ap
         JPanel panelCuadro = new JPanel();
         panelCuadro.setOpaque(false);
         panelCuadro.setLayout(new GridLayout(4, 3, 5, 5));
-
         panelCuadro.add(Box.createRigidArea(new Dimension(20, 2)));
         panelCuadro.add(Box.createRigidArea(new Dimension(0, 0)));
         panelCuadro.add(Box.createRigidArea(new Dimension(0, 0)));
-
         panelCuadro.add(lbCorreo);
         panelCuadro.add(txtCorreo);
         panelCuadro.add(lbDominioCorreo);
-
         panelCuadro.add(lbContrasenna);
         panelCuadro.add(txtContrasenna);
         panelCuadro.add(Box.createRigidArea(new Dimension(0, 0)));
-        //panelCuadro.setBorder(new TitledBorder(""));
         //--o--
         JPanel panelOpciones = new JPanel();
         panelOpciones.setOpaque(false);
@@ -115,7 +109,6 @@ public class VentanaLogin extends JFrame {//miniVentana donde se ingresa a la ap
         JPanel panelBotones = new JPanel();
         panelBotones.setOpaque(false);
         panelBotones.setLayout(new FlowLayout());
-
         panelBotones.add(btnIngresar);
         panelBotones.add(btnRegistrarse);
         panelBotones.add(btnCancelar);
@@ -198,7 +191,7 @@ public class VentanaLogin extends JFrame {//miniVentana donde se ingresa a la ap
                         break;
                     default:
                         break;
-                }               
+                }
             }
         });
         btnRegistrarse.addActionListener(new ActionListener() {
@@ -216,29 +209,24 @@ public class VentanaLogin extends JFrame {//miniVentana donde se ingresa a la ap
                 limpiar();
                 VentanaRecuperaContrasenna.obtenerInstancia().mostrar();
                 ocultar();
-//                Ventana.obtenerInstancia().mostrar();
             }
 
             @Override
             public void mousePressed(MouseEvent e) {
-                //System.out.println("hizo Pressed");
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
-                //System.out.println("hizo Released");
             }
 
             @Override
             public void mouseEntered(MouseEvent e) {
-                //System.out.println("hizo Entered");
                 lbOlvidoClave.setForeground(new Color(231, 174, 24));
                 lbOlvidoClave.setFont(new Font("tahoma", Font.BOLD, 11));
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                //System.out.println("hizo Exited");
                 lbOlvidoClave.setForeground(Color.WHITE);
                 lbOlvidoClave.setFont(new Font("tahoma", Font.BOLD, 11));
             }

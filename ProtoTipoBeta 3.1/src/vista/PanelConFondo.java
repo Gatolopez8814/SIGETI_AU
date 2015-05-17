@@ -1,4 +1,3 @@
-
 package vista;
 
 import java.awt.Graphics;
@@ -6,14 +5,14 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-public class PanelConFondo extends JPanel{
-    
+public class PanelConFondo extends JPanel {
+
     private Image imagen;
 
     public PanelConFondo() {
-        imagen=null;
+        imagen = null;
     }//----------------------------------------------------------------------------- FIN Contructor()
-    
+
     public PanelConFondo(String nombreImagen) {
         imagen = new ImageIcon(getClass().getResource(nombreImagen)).getImage();
     }//----------------------------------------------------------------------------- FIN Constructor_sobrecargado()
@@ -42,5 +41,5 @@ public class PanelConFondo extends JPanel{
         }
         super.paint(g);
     }//----------------------------------------------------------------------------- FIN paint()
-    
+
 }//____________________________________________________________________END_CLASS

@@ -14,16 +14,14 @@ public class PanelCrearTicket extends javax.swing.JPanel {//panel donde se encue
 
     private PanelCrearTicket() {
         initComponents();
-        this.limpiarCampos();
-        this.ajustarEventos();
-//        this.cargarjComboArea();
-//        this.cargarjComboAsunto();
     }//----------------------------------------------------------------------------- FIN Constructor()
 
     public static PanelCrearTicket obtenerInstancia() {//para garantizar hay solo una instancia
         if (instancia == null) {
             instancia = new PanelCrearTicket();
         }
+        instancia.limpiarCampos();
+        instancia.ajustarEventos();
         instancia.cargarjComboArea();
         instancia.cargarjComboAsunto();
         return instancia;
@@ -31,17 +29,17 @@ public class PanelCrearTicket extends javax.swing.JPanel {//panel donde se encue
 
     private void ajustarEventos() {
         addMouseListener(Ventana.obtenerInstancia());
-        jTextDetalle.addFocusListener(new FocusListener() {                       //Focus Listener de TextArea
+        jTextDetalle.addFocusListener(new FocusListener() {                      
             @Override
-            public void focusGained(FocusEvent e) {                             // Limpia el TextArea cuando se le da click
+            public void focusGained(FocusEvent e) {                             
                 if (jTextDetalle.getText().equals("El problema consiste en ...")) {
                     jTextDetalle.setText("");
                 }
             }
 
             @Override
-            public void focusLost(FocusEvent e) {                               //Devuelve el TextArea a su estado por default
-                if (jTextDetalle.getText().equals("")) {                            //si el usuario no escribio nada
+            public void focusLost(FocusEvent e) {                              
+                if (jTextDetalle.getText().equals("")) {                      
                     jTextDetalle.setText("El problema consiste en ...");
                 }
             }
@@ -60,7 +58,8 @@ public class PanelCrearTicket extends javax.swing.JPanel {//panel donde se encue
                 } else {
                     e.consume();
                 }
-            }//
+            }
+
             @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 super.keyPressed(evt);
@@ -352,7 +351,7 @@ public class PanelCrearTicket extends javax.swing.JPanel {//panel donde se encue
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void jComboAsuntoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboAsuntoActionPerformed
-             if (jComboAsunto.getSelectedIndex() == 1) {
+        if (jComboAsunto.getSelectedIndex() == 1) {
             jLabel2.setVisible(true);
             txtEspecificacion.setVisible(true);
         } else {
@@ -363,10 +362,10 @@ public class PanelCrearTicket extends javax.swing.JPanel {//panel donde se encue
     }//GEN-LAST:event_jComboAsuntoActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-         if((jComboAsunto.getSelectedIndex() == 1 && txtEspecificacion.getText().equals("")) || (jComboArea.getSelectedIndex() == 0)
-                || (jTextDetalle.getText().equals("El problema consiste en ...")) || jComboAsunto.getSelectedIndex() == 0){
+        if ((jComboAsunto.getSelectedIndex() == 1 && txtEspecificacion.getText().equals("")) || (jComboArea.getSelectedIndex() == 0)
+                || (jTextDetalle.getText().equals("El problema consiste en ...")) || jComboAsunto.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(this, "   Faltan datos", "ERROR", JOptionPane.ERROR_MESSAGE);
-        }else {
+        } else {
             if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Realmente "
                     + "desea crear el ticket?", null, JOptionPane.YES_NO_OPTION)) {
                 int consecutivo = Controlador.obtenerInstancia().consultarConsecutivoTicket();
@@ -380,11 +379,11 @@ public class PanelCrearTicket extends javax.swing.JPanel {//panel donde se encue
                             VentanaLogin.correo, "Ticket", "Creó el ticket " + consecutivo);
                     this.limpiarCampos();
 
-                    if(Controlador.obtenerInstancia().enviaCorreo("Su ticket fue ingreado correctamente al sistema\n"
+                    if (Controlador.obtenerInstancia().enviaCorreo("Su ticket fue ingreado correctamente al sistema\n"
                             + "Puede consultar el progreso de su ticket utilizando el siguiente código"
-                            + "############","SIGETI ticket creado",Controlador.obtenerInstancia().recortaCorreo(VentanaLogin.correo))){
+                            + "############", "SIGETI ticket creado", Controlador.obtenerInstancia().recortaCorreo(VentanaLogin.correo))) {
                         JOptionPane.showMessageDialog(this, "Se ha enviado correo de confirmación", "Correo confirmación", JOptionPane.PLAIN_MESSAGE);
-                    }else{
+                    } else {
                         JOptionPane.showMessageDialog(this, "No se pudo enviar correo de confirmación", "ERROR", JOptionPane.ERROR_MESSAGE);
                     }
                 } else {
@@ -407,6 +406,7 @@ public class PanelCrearTicket extends javax.swing.JPanel {//panel donde se encue
 
     //Declaracion de variables
     private static PanelCrearTicket instancia = null;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnLimpiar;

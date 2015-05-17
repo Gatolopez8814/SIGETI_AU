@@ -1,8 +1,3 @@
-/*
- *implementado 18 octubre 2014
- *autor Jorge Lopez Courrau
- *
- */
 package vista;
 
 import java.awt.Container;
@@ -67,8 +62,8 @@ public class VentanaRegistro extends JFrame {
     }//----------------------------------------------------------------------------- FIN ajustarEventos()
 
     public void cerrarAplicacion() {//mensaje de confirmacion para dar fin a la ejecucion de la aplicacion        
-        if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Desea cerrar la aplicación?", "Cerrar", JOptionPane.YES_NO_OPTION)) {
-            
+        if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Desea cerrar la aplicación?", 
+                "Cerrar", JOptionPane.YES_NO_OPTION)) {
             System.exit(0);
         }
     }//----------------------------------------------------------------------------- FIN cerrarAplicacion()
