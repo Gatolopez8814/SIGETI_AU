@@ -912,6 +912,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Asignar responsable"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioResponsableActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="jRadioFecha">
                   <Properties>

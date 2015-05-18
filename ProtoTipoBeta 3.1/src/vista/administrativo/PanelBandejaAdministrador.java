@@ -658,6 +658,11 @@ public class PanelBandejaAdministrador extends javax.swing.JPanel {
         jRadioResponsable.setBackground(new java.awt.Color(226, 221, 205));
         buttonGroupGestionar.add(jRadioResponsable);
         jRadioResponsable.setText("Asignar responsable");
+        jRadioResponsable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioResponsableActionPerformed(evt);
+            }
+        });
 
         jRadioFecha.setBackground(new java.awt.Color(226, 221, 205));
         buttonGroupGestionar.add(jRadioFecha);
@@ -1096,6 +1101,10 @@ public class PanelBandejaAdministrador extends javax.swing.JPanel {
     private void jComboAñoDesdeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboAñoDesdeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboAñoDesdeActionPerformed
+
+    private void jRadioResponsableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioResponsableActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioResponsableActionPerformed
 
     public static boolean isFechaValida(String fecha) {
         try {
