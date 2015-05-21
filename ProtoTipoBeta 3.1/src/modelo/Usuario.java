@@ -4,7 +4,6 @@ public class Usuario {
 
     public Usuario(String correo, int tipoUsuario, int estado) {
         this.correo = correo;
-        this.contraseña = GeneradorDeClave.obtenerInstancia().GenerarClave();
         this.tipoUsuario = tipoUsuario;
         this.estado = estado;
     }

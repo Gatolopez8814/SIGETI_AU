@@ -89,18 +89,16 @@ public class Modelo {
         return ok;
     }//----------------------------------------------------------------------------- FIN verificarContrasenna()   
 
-    public boolean registraUsuarioAdmin(Usuario _usuario) {
+    public boolean registraUsuarioAdmin(Usuario _usuario, String contrasenna) {
         //este metodo permite al administrador ingresar un nuevo usuario a la base de datos
         try {
             Statement sentencia = null;
             sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
-            if (sentencia.executeUpdate("insert into usuario values(" + "'" + _usuario.getCorreo() + "'" + ","
-                    + "'" + _usuario.getTipoUsuario() + "'" + "," + "'" + _usuario.getContraseña() + "'" + "," + _usuario.getEstado() + ")") == 1) {
+            if (sentencia.executeUpdate("insert into usuario values(" + "'" + _usuario.getCorreo() + "', '" 
+                    + _usuario.getTipoUsuario() + "', '" + contrasenna + "'" + "," + _usuario.getEstado() + ")") == 1) {
                 return true;
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
-                    "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();

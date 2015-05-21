@@ -16,9 +16,9 @@ public class Controlador {
         return model.recortaCorreo(_correo);
     }//----------------------------------------------------------------------------- FIN recortaCorreo()
 
-    public boolean registraUsuarioAdmin(String correo, int tipo) {
+    public boolean registraUsuarioAdmin(String correo, int tipo, String contrasenna) {
         String correoFinal = model.recortaCorreo(correo) + "@castillo.cr";
-        return model.registraUsuarioAdmin(new Usuario(correoFinal, tipo, 1));
+        return model.registraUsuarioAdmin(new Usuario(correoFinal, tipo, 1), contrasenna);
     }//----------------------------------------------------------------------------- FIN registraUsuarioAdmin()
 
     public boolean ModificaUsuarioAdmin(String correo, int tipo) {

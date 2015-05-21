@@ -2,6 +2,7 @@ package vista;
 
 import controlador.Controlador;
 import javax.swing.JOptionPane;
+import modelo.GeneradorDeClave;
 
 public class PanelRegistrar extends javax.swing.JPanel {
 
@@ -187,22 +188,24 @@ public class PanelRegistrar extends javax.swing.JPanel {
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         // TODO add your handling code here:
         String correo = jTextFieldCorreo.getText();
+        String contrasenna = GeneradorDeClave.obtenerInstancia().GenerarClave();
         if (jTextFieldCorreo.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Complete los datos", "ERROR", JOptionPane.ERROR_MESSAGE);
-        } else if (Controlador.obtenerInstancia().registraUsuarioAdmin(correo, 3)) {
-            if(Controlador.obtenerInstancia().enviaCorreo("Su registro a sido exitoso, su contraseña es" //el if es para verificar si el correo fue enviado
+        } else if (Controlador.obtenerInstancia().registraUsuarioAdmin(correo, 3, contrasenna)) {
+            if(Controlador.obtenerInstancia().enviaCorreo("Su registro a sido exitoso, su contraseña es " + contrasenna //el if es para verificar si el correo fue enviado
                     , "Registro Sistema SGIETI Castillo Country Club", correo)){
             JOptionPane.showMessageDialog(this, "  Su cuenta ha sido creada de forma exitosa,  \n"
                     + "revise su correo en el encontrara su contraseña\n"
                     + "la cual podra cambiar una vez ingrese al sistema", "Cuenta Creada", JOptionPane.INFORMATION_MESSAGE);
             }else{
-                JOptionPane.showMessageDialog(this, "Hubo un error al enviar su contraseña de acceso a su correo", "Error de envio de correo", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Hubo un error al enviar su contraseña de acceso a su correo \n"
+                        + " Comuniquese con TI para obtener su contraseña", "Error de envio de correo", JOptionPane.ERROR_MESSAGE);
             }
             VentanaRegistro.obtenerInstancia().ocultar();
             VentanaLogin.obtenerInstancia().mostrar();
         }else{
             JOptionPane.showMessageDialog(this, "  ERROR,  \n"
-                    + "No se Creo la cuenta\n"
+                    + "No se creó la cuenta\n"
                     + "Intente de nuevo", "ERROR Cuenta NO Creada", JOptionPane.ERROR_MESSAGE);
         }
         jTextFieldCorreo.setText("");

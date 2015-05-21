@@ -5,6 +5,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import modelo.GeneradorDeClave;
 import vista.Ventana;
 import vista.VentanaLogin;
 
@@ -296,6 +297,7 @@ public class PanelRegistrarUsuariosAdmin extends javax.swing.JPanel {
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         String contrasenna;
+        String connUsuario;
         if (comboTipo.getSelectedIndex() == 0 || jtCorreo.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Faltan datos", "ERROR", JOptionPane.ERROR_MESSAGE);
         } else if (comboTipo.getSelectedItem().equals("Usuario de área") && jComboArea.getSelectedIndex() == 0) {
@@ -316,18 +318,23 @@ public class PanelRegistrarUsuariosAdmin extends javax.swing.JPanel {
                     contrasenna = JOptionPane.showInputDialog("Digite su contraseña:");
                     if (Controlador.obtenerInstancia().verificarContrasenna(VentanaLogin.correo, contrasenna)) {
                         if (comboTipo.getSelectedItem().equals("Usuario de área")) {
-                            if ((Controlador.obtenerInstancia().registraUsuarioAdmin(jtCorreo.getText(), 4 - comboTipo.getSelectedIndex()))
+                            connUsuario = GeneradorDeClave.obtenerInstancia().GenerarClave();
+                            if ((Controlador.obtenerInstancia().registraUsuarioAdmin(jtCorreo.getText(), 4 - comboTipo.getSelectedIndex(), connUsuario))
                                     && (Controlador.obtenerInstancia().registroAreaUsuario(jtCorreo.getText(), jComboArea.getSelectedItem().toString()))) {
                                 JOptionPane.showMessageDialog(this, "   El usuario " + Controlador.obtenerInstancia().recortaCorreo(jtCorreo.getText()) + "@castillo.cr" + "\n"
-                                        + "ha sido registrado con éxito", "Usuario registrado", JOptionPane.PLAIN_MESSAGE);
+                                        + "   ha sido registrado con éxito \n"
+                                        + "   La contraseña es: " + connUsuario, "Usuario registrado", JOptionPane.INFORMATION_MESSAGE);
                                 Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
                                         VentanaLogin.correo, "Usuario", "Registró al usuario " + jtCorreo.getText());
                             } else {
                                 JOptionPane.showMessageDialog(this, "   No se pudo registrar el usuario", "ERROR", JOptionPane.ERROR_MESSAGE);
                             }
                         } else {
-                            if (Controlador.obtenerInstancia().registraUsuarioAdmin(jtCorreo.getText(), 4 - comboTipo.getSelectedIndex())) {
-                                JOptionPane.showMessageDialog(this, "   El usuario ha sido registrado con éxito", "Usuario registrado", JOptionPane.PLAIN_MESSAGE);
+                            connUsuario = GeneradorDeClave.obtenerInstancia().GenerarClave();
+                            if (Controlador.obtenerInstancia().registraUsuarioAdmin(jtCorreo.getText(), 4 - comboTipo.getSelectedIndex(), connUsuario)) {
+                                JOptionPane.showMessageDialog(this, "   El usuario " + Controlador.obtenerInstancia().recortaCorreo(jtCorreo.getText()) + "@castillo.cr" + "\n"
+                                        + "   ha sido registrado con éxito \n"
+                                        + "   La contraseña es: " + connUsuario, "Usuario registrado", JOptionPane.INFORMATION_MESSAGE);
                                 Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
                                         VentanaLogin.correo, "Usuario", "Registró al usuario " + jtCorreo.getText());
                             } else {
