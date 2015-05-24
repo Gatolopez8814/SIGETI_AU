@@ -103,7 +103,7 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
                 time_start = System.currentTimeMillis();
                 this.setTitle("SISTEMA DE GESTIÓN DE TICKETS - SIGETI - USUARIO DE AREA");
                 setSize(1210, 705);
-                setPreferredSize(new Dimension(1210, 705));
+                setPreferredSize(new Dimension(1210, 705));                              
                 setLocationRelativeTo(null);
                 setResizable(false);
                 menuArea();

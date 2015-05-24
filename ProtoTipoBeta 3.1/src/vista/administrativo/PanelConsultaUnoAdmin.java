@@ -298,7 +298,7 @@ public class PanelConsultaUnoAdmin extends javax.swing.JPanel {
                     .addComponent(txtFecha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                     .addComponent(txtHora, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtAsunto, javax.swing.GroupLayout.Alignment.LEADING))
-                .addGap(0, 118, Short.MAX_VALUE))
+                .addGap(0, 179, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
