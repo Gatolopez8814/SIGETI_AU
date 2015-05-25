@@ -117,7 +117,7 @@
                           <Component id="jPanelArea" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="387" max="32767" attributes="0"/>
+                  <EmptySpace pref="358" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
