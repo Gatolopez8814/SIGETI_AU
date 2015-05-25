@@ -39,7 +39,7 @@ public class PanelConsultaUnoArea extends javax.swing.JPanel {
         txt.addKeyListener(new KeyAdapter() {
             public void keyTyped(KeyEvent e) {
                 char c = e.getKeyChar();
-                if (!Character.isDigit(c)) {
+                if (!Character.isDigit(c) || txt.getText().length()==10) {
                     e.consume();
                 }
             }
