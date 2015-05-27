@@ -837,7 +837,9 @@ public class PanelConfigurarTicket extends javax.swing.JPanel {
                     + "desea agregar el asunto?", null, JOptionPane.YES_NO_OPTION)) {
                 contrasenna = JOptionPane.showInputDialog("Digite su contraseña:");
                 if (Controlador.obtenerInstancia().verificarContrasenna(VentanaLogin.correo, contrasenna)) {
+                    
                     if (Controlador.obtenerInstancia().agregarAsunto(txtAgreagrAsunto.getText())) {
+                        
                         JOptionPane.showMessageDialog(this, "   Asunto agregada con éxito", "Asunto agregada", JOptionPane.INFORMATION_MESSAGE);
                         limpiarCampos();
                     } else {
