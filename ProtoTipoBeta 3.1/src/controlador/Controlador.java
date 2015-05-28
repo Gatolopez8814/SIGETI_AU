@@ -349,6 +349,10 @@ public class Controlador {
     public ArrayList<String> consultaReporteFechaArea(String dato1, String dato2, String _correo) {
         return model.consultaReporteFechaArea(dato1, dato2, _correo);
     }//------------------------------------------------------------------------------FIN consultaReporteFechaArea
+    
+     public void abreManual(String _correo) {
+         model.abreManual(_correo);
+     }
 
     //Declaracion de variables
     private static Controlador instancia = null;

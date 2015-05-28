@@ -1078,19 +1078,12 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
         repaint();
     } //----------------------------------------------------------------------------- FIN ventanaPrincipalAdmin()
 
-//    public void olvidoClave(){
-//        panelPrincipal.removeAll();
-//        setBarraEstado("Recuperar contraseña");
-//        PanelOlvidoContraseña panel = PanelOlvidoContraseña.obtenerInstancia();
-//        panelPrincipal.setLayout(new BorderLayout());
-//        panelPrincipal.add(panel, BorderLayout.CENTER);
-//        pack();
-//        repaint();
-//    }//----------------------------------------------------------------------------- FIN olvidoClave()
     public void ayuda() {
         setBarraEstado("¿Necesita ayuda?");
-        JOptionPane.showMessageDialog(this, "Si necesita ayuda por favor comunicarse via "
-                + "radio o teléfono \n              con el departamento de TI", "Ayuda", JOptionPane.INFORMATION_MESSAGE);
+        if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Desea consultar el manual de usuario?", "Ayuda", JOptionPane.YES_NO_OPTION)) {
+            Controlador.obtenerInstancia().abreManual(VentanaLogin.correo);
+        }
+        
         setBarraEstadoMensajeAnterior();
     }//----------------------------------------------------------------------------- FIN ayuda()
 

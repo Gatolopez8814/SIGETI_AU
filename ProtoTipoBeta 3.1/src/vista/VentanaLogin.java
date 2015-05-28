@@ -4,7 +4,6 @@ import controlador.Controlador;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
-import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -17,8 +16,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -177,7 +174,6 @@ public class VentanaLogin extends JFrame {//miniVentana donde se ingresa a la ap
                     case 1:
                         Ventana.obtenerInstancia().setTipoUsuario(String.valueOf(tipo));
                         correo = Controlador.obtenerInstancia().recortaCorreo(txtCorreo.getText()) + "@castillo.cr";
-                        System.err.println(Controlador.obtenerInstancia().consultarConsecutivoBitacora());
                         Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
                                 VentanaLogin.correo, "No aplica", "Ingresó al sistema");
                         limpiar();

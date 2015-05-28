@@ -3,6 +3,9 @@ package modelo;
 import com.mysql.jdbc.Connection;
 import controlador.ConexionMySql;
 import controlador.EnviaMensaje;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -94,7 +97,7 @@ public class Modelo {
         try {
             Statement sentencia = null;
             sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
-            if (sentencia.executeUpdate("insert into usuario values(" + "'" + _usuario.getCorreo() + "', '" 
+            if (sentencia.executeUpdate("insert into usuario values(" + "'" + _usuario.getCorreo() + "', '"
                     + _usuario.getTipoUsuario() + "', '" + contrasenna + "'" + "," + _usuario.getEstado() + ")") == 1) {
                 return true;
             }
@@ -301,7 +304,7 @@ public class Modelo {
             cStmt.setString(1, _correo);
             cStmt.execute();
             final ResultSet resultado = cStmt.getResultSet();
-                
+
             while (resultado.next()) {
                 codigo = resultado.getInt(1);
                 responsable = resultado.getString(2);
@@ -324,7 +327,7 @@ public class Modelo {
                 _ticket.setDetalleProblema(detalle);
                 _ticket.setComentarios(comentarios);
             }
-        
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -1058,7 +1061,7 @@ public class Modelo {
     }//----------------------------------------------------------------------------- FIN registraAreaUsuariomodificaAreaUsuario
 
     public int cantidadTotalAdmin() {
-        //este metodo es para obtener la cantidad de tickets nuevos
+        //este metodo es para obtener la tipo de tickets nuevos
         int cantidad = 0;
         ResultSet resultado = null;
         try {
@@ -1080,7 +1083,7 @@ public class Modelo {
     }//----------------------------------------------------------------------------- FIN cantidadNuevosAdmin()
 
     public int cantidadNuevosAdmin() {
-        //este metodo es para obtener la cantidad de tickets nuevos
+        //este metodo es para obtener la tipo de tickets nuevos
         int cantidad = 0;
         ResultSet resultado = null;
         try {
@@ -1137,7 +1140,7 @@ public class Modelo {
     }//----------------------------------------------------------------------------- FIN ticketsTodosLosTickets()
 
     public int cantidadAsignadosAdmin() {
-        //este metodo es para obtener la cantidad de tickets asignados para el usuario administrados
+        //este metodo es para obtener la tipo de tickets asignados para el usuario administrados
         int cantidad = 0;
         ResultSet resultado = null;
         try {
@@ -1159,7 +1162,7 @@ public class Modelo {
     }//----------------------------------------------------------------------------- FIN cantidadAsignadosAdmin()
 
     public int cantidadProcesoAdmin() {
-        //este metodo es para obtener la cantidad de tickets en proceso para el usuario administrados
+        //este metodo es para obtener la tipo de tickets en proceso para el usuario administrados
         int cantidad = 0;
         ResultSet resultado = null;
         try {
@@ -1181,7 +1184,7 @@ public class Modelo {
     }//----------------------------------------------------------------------------- FIN cantidadProcesoAdmin()
 
     public int cantidadCerradosAdmin() {
-        //este metodo es para obtener la cantidad de tickets cerrados para el usuario administrados
+        //este metodo es para obtener la tipo de tickets cerrados para el usuario administrados
         int cantidad = 0;
         ResultSet resultado = null;
         try {
@@ -1203,7 +1206,7 @@ public class Modelo {
     }//----------------------------------------------------------------------------- FIN cantidadCerradosAdmin()
 
     public int cantidadNuevosArea(String _correo) {
-        //este metodo es para obtener la cantidad de tickets nuevos
+        //este metodo es para obtener la tipo de tickets nuevos
         int cantidad = 0;
         ResultSet resultado = null;
         try {
@@ -1226,7 +1229,7 @@ public class Modelo {
     }//----------------------------------------------------------------------------- FIN cantidadNuevosArea()
 
     public int cantidadAsignadosArea(String _correo) {
-        //este metodo es para obtener la cantidad de tickets asignados
+        //este metodo es para obtener la tipo de tickets asignados
         int cantidad = 0;
         ResultSet resultado = null;
         try {
@@ -1250,7 +1253,7 @@ public class Modelo {
     }//----------------------------------------------------------------------------- FIN cantidadAsignadosArea()
 
     public int cantidadProcesoArea(String _correo) {
-        //este metodo es para obtener la cantidad de tickets en proceso
+        //este metodo es para obtener la tipo de tickets en proceso
         int cantidad = 0;
         ResultSet resultado = null;
         try {
@@ -1274,7 +1277,7 @@ public class Modelo {
     }//----------------------------------------------------------------------------- FIN cantidadProcesoArea()
 
     public int cantidadCerradosArea(String _correo) {
-        //este metodo es para obtener la cantidad de tickets en proceso
+        //este metodo es para obtener la tipo de tickets en proceso
         int cantidad = 0;
         ResultSet resultado = null;
         try {
@@ -1320,7 +1323,7 @@ public class Modelo {
     }//----------------------------------------------------------------------------- FIN obtieneComentarios()
 
     public int cantidadTotalArea(String _correo) {
-        //este metodo es para obtener la cantidad de tickets total del area
+        //este metodo es para obtener la tipo de tickets total del area
         int cantidad = 0;
         ResultSet resultado = null;
         try {
@@ -2029,4 +2032,59 @@ public class Modelo {
         }
         return tEncontrados;
     }//---------------------------------------------------------------------------------------FIN consultaReporteFechaArea
+
+    public int obtieneTipoUsuario(String _correo) {
+        //este metodo es para obtener el tipo de usuario que es
+        int tipo = 0;
+        ResultSet resultado = null;
+        try {
+            Statement sentencia = null;
+            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
+            resultado = sentencia.executeQuery("select tipo from usuario where correo='" + _correo + "'");
+            if (resultado != null) {
+            }
+            while (resultado.next()) {
+                tipo = resultado.getInt(1);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            ConexionMySql.obtenerInstancia().desconectar();
+        }
+        return tipo;
+    }
+
+    public void abreManual(String _correo) {
+        int tipo = this.obtieneTipoUsuario(_correo);
+        switch (tipo) {
+            case 1:
+                try {
+                    File path = new File("C:\\Users\\luis-mora\\Desktop\\manuales\\manual de usuario administrador.pdf");
+                    Desktop.getDesktop().open(path);
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(null, "Ha ocurrido un error al abir el archivo \n"+" comuniquese con TI",
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+                break;
+            case 2:
+                try {
+                    File path = new File("C:\\Users\\luis-mora\\Desktop\\manuales\\manual de usuario área.pdf");
+                    Desktop.getDesktop().open(path);
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(null, "Ha ocurrido un error al abir el archivo \n"+" comuniquese con TI",
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+                break;
+            case 3:
+                try {
+                    File path = new File("C:\\Users\\luis-mora\\Desktop\\manuales\\manual de usuario estandar.pdf");
+                    Desktop.getDesktop().open(path);
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(null, "Ha ocurrido un error al abir el archivo \n"+" comuniquese con TI",
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+                break;
+        }
+    }
 }
