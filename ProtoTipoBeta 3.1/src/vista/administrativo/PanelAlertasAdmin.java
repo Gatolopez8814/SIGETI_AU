@@ -98,7 +98,7 @@ public class PanelAlertasAdmin extends javax.swing.JPanel {
                 i++;
             }
             Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
-                    VentanaLogin.correo, "Ticket", "reviso alertas");
+                    VentanaLogin.correo, "Ticket", "revisó alertas");
         }
         tablaTickets.setVisible(true);
         tablaTickets.revalidate();
@@ -106,6 +106,10 @@ public class PanelAlertasAdmin extends javax.swing.JPanel {
     }//----------------------------------------------------------------------------- FIN LlenaTicketsDelArea()
 
     private void ocultarComponentes() {
+        this.jLabelTitulo.setText("Alertas de tickets");
+        this.jPanelTabla.setVisible(true);
+        this.jPanelBoton.setVisible(true);
+        this.jPanelCantidad.setVisible(true);
         this.jPanelDetalle.setVisible(false);
         this.jPanelGestion.setVisible(false);
         this.jPanelRadios.setVisible(false);
@@ -362,7 +366,7 @@ public class PanelAlertasAdmin extends javax.swing.JPanel {
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabelTitulo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabelTitulo.setText("Alerta");
+        jLabelTitulo.setText("Alertas");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -990,7 +994,7 @@ public class PanelAlertasAdmin extends javax.swing.JPanel {
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, " ¿Realmente desea regresar?", null, JOptionPane.YES_NO_OPTION)) {
             this.jPanelDetalle.setVisible(false);
-            this.jLabelTitulo.setText("Bandeja de entrada");
+            this.jLabelTitulo.setText("Alertas de tickets");
             this.jPanelTabla.setVisible(true);
             this.jPanelBoton.setVisible(true);
             this.jPanelCantidad.setVisible(true);

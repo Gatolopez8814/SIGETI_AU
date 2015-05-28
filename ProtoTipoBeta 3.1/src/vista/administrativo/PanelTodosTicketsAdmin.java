@@ -33,6 +33,10 @@ public class PanelTodosTicketsAdmin extends javax.swing.JPanel {
     }//----------------------------------------------------------------------------- FIN obtenerInstancia()
 
     private void ocultarComponentes() {
+        this.jLabelTitulo.setText("Total de tickets ");
+        this.jPanelTabla.setVisible(true);
+        this.jPanelBoton.setVisible(true);
+        this.jPanelCantidad.setVisible(true);
         this.jPanelDetalle.setVisible(false);
         this.jPanelGestion.setVisible(false);
         this.jPanelRadios.setVisible(false);
@@ -1249,7 +1253,7 @@ public class PanelTodosTicketsAdmin extends javax.swing.JPanel {
     private static PanelTodosTicketsAdmin instancia = null;
     private DefaultTableModel modelAux;
     private int codigoTicket;
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAplicarCambios;
     private javax.swing.JButton btnCancelar;

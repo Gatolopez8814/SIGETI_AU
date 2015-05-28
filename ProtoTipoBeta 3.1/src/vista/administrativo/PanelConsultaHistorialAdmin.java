@@ -35,7 +35,10 @@ public class PanelConsultaHistorialAdmin extends javax.swing.JPanel {
     }
 
     private void ocultarComponentes() {
-        this.jPanelArea.setVisible(false);
+        this.jLabelTitulo.setText("Consultar historial de tickets");
+        this.jPanelTabla.setVisible(true);
+        this.jPanelBoton.setVisible(true);
+        this.jPanelSeleccion.setVisible(true);
         this.tablaTickets.setVisible(false);
         this.jPanelRangoFechas.setVisible(false);
         this.btnConsultarTodos.setEnabled(false);

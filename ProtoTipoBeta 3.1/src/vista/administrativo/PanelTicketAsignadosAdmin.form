@@ -39,12 +39,10 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="jPanelDetalle" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="jPanelBoton" max="32767" attributes="0"/>
-                          <Component id="jPanelTabla" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jPanelCantidad" alignment="0" max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="jPanelBoton" alignment="1" max="32767" attributes="0"/>
+                      <Component id="jPanelTabla" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jPanelCantidad" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>

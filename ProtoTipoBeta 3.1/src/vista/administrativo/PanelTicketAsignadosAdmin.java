@@ -107,6 +107,10 @@ public class PanelTicketAsignadosAdmin extends javax.swing.JPanel {
     }//----------------------------------------------------------------------------- FIN LlenaTicketsAsignados()
 
     private void ocultarComponentes() {
+        this.jLabelTitulo.setText("Tickets asignados");
+        this.jPanelTabla.setVisible(true);
+        this.jPanelBoton.setVisible(true);
+        this.jPanelCantidad.setVisible(true);
         this.jPanelDetalle.setVisible(false);
         this.jPanelGestion.setVisible(false);
         this.jPanelRadios.setVisible(false);

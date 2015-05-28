@@ -73,6 +73,10 @@ public class PanelTicketsCerradosAdmin extends javax.swing.JPanel {
     }//----------------------------------------------------------------------------- FIN llenarInformacionExtra()
 
     private void ocultarComponentes() {
+        this.jLabelTitulo.setText("Tickets cerrados ");
+        this.jPanelTabla.setVisible(true);
+        this.jPanelBoton.setVisible(true);
+        this.jPanelCantidad.setVisible(true);
         this.jPanelDetalle.setVisible(false);
         this.jPanelGestion.setVisible(false);
         this.jPanelRadios.setVisible(false);

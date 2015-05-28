@@ -34,6 +34,10 @@ public class PanelTicketEnProcesoAdmin extends javax.swing.JPanel {
     }//----------------------------------------------------------------------------- FIN obtenerInstancia()
 
     private void ocultarComponentes() {
+        this.jLabelTitulo.setText("Tickets en proceso");
+        this.jPanelTabla.setVisible(true);
+        this.jPanelBoton.setVisible(true);
+        this.jPanelCantidad.setVisible(true);
         this.jPanelDetalle.setVisible(false);
         this.jPanelGestion.setVisible(false);
         this.jPanelRadios.setVisible(false);
@@ -708,6 +712,7 @@ public class PanelTicketEnProcesoAdmin extends javax.swing.JPanel {
         buttonGroupGestionar.add(jRadioFecha);
         jRadioFecha.setText("Asignar fecha de solución");
 
+        jRadioCerrar.setBackground(new java.awt.Color(226, 221, 205));
         buttonGroupGestionar.add(jRadioCerrar);
         jRadioCerrar.setText("Cerrar ticket");
 

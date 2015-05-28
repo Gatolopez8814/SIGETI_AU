@@ -24,13 +24,10 @@ public class PanelUltimoTicketStandard extends javax.swing.JPanel {
     }//----------------------------------------------------------------------------- FIN obtenerInstancia()
 
     private void llenarUltimo(String correo) {
-        System.err.println(correo);
         Ticket _ticket = Controlador.obtenerInstancia().consultaUltimo(correo);
         if (_ticket == null) {
             JOptionPane.showMessageDialog(this, "   No se han encontrado tickets a nombre de este usuario", "ERROR", JOptionPane.ERROR_MESSAGE);
         } else {
-            
-            System.err.println(correo + "joij");
             if (_ticket.getEstado().equals("borrado")) {
                 this.txtEstado.setText("cerrado");
             } else {
