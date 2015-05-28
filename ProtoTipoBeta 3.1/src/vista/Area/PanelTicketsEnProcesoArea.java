@@ -202,6 +202,10 @@ public class PanelTicketsEnProcesoArea extends javax.swing.JPanel {
     }//----------------------------------------------------------------------------- FIN LlenaTicketsEnProceso()
 
     private void ocultarComponentes() {
+        this.jLabelTitulo.setText("Tickets en proceso");
+        this.jPanelTabla.setVisible(true);
+        this.jPanelBoton.setVisible(true);
+        this.jPanelCantidad.setVisible(true);
         this.jPanelDetalle.setVisible(false);
         this.jPanelGestion.setVisible(false);
         this.jPanelRadios.setVisible(false);
@@ -736,8 +740,14 @@ public class PanelTicketsEnProcesoArea extends javax.swing.JPanel {
         buttonGroupGestionar.add(jRadioFecha);
         jRadioFecha.setText("Asignar fecha de solución");
 
+        jRadioCerrar.setBackground(new java.awt.Color(217, 213, 206));
         buttonGroupGestionar.add(jRadioCerrar);
         jRadioCerrar.setText("Cerrar ticket");
+        jRadioCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioCerrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelRadiosLayout = new javax.swing.GroupLayout(jPanelRadios);
         jPanelRadios.setLayout(jPanelRadiosLayout);
@@ -1175,6 +1185,10 @@ public class PanelTicketsEnProcesoArea extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_btnAplicarCambiosActionPerformed
+
+    private void jRadioCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioCerrarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioCerrarActionPerformed
 
     public static boolean isFechaValida(String fecha) {
         try {

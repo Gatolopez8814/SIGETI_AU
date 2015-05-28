@@ -34,6 +34,10 @@ public class PanelTicketsDelArea extends javax.swing.JPanel {
     }//----------------------------------------------------------------------------- FIN obtenerInstancia()
 
     private void ocultarComponentes() {
+        this.jLabelTitulo.setText("Tickets del área");
+        this.jPanelTabla.setVisible(true);
+        this.jPanelBoton.setVisible(true);
+        this.jPanelCantidad.setVisible(true);
         this.jPanelDetalle.setVisible(false);
         this.jPanelGestion.setVisible(false);
         this.jPanelRadios.setVisible(false);

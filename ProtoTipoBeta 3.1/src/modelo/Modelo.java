@@ -301,9 +301,7 @@ public class Modelo {
             cStmt.setString(1, _correo);
             cStmt.execute();
             final ResultSet resultado = cStmt.getResultSet();
-            if(!resultado.next()){
-                return null;
-            }else{
+                
             while (resultado.next()) {
                 codigo = resultado.getInt(1);
                 responsable = resultado.getString(2);
@@ -326,7 +324,7 @@ public class Modelo {
                 _ticket.setDetalleProblema(detalle);
                 _ticket.setComentarios(comentarios);
             }
-        }
+        
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);

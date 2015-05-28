@@ -993,11 +993,17 @@
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="jRadioCerrar">
                   <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ce" green="d5" red="d9" type="rgb"/>
+                    </Property>
                     <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                       <ComponentRef name="buttonGroupGestionar"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Cerrar ticket"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioCerrarActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
