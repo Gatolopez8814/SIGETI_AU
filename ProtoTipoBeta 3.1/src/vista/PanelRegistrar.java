@@ -192,12 +192,11 @@ public class PanelRegistrar extends javax.swing.JPanel {
         if (jTextFieldCorreo.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Complete los datos", "ERROR", JOptionPane.ERROR_MESSAGE);
         } else if (Controlador.obtenerInstancia().registraUsuarioAdmin(correo, 3, contrasenna)) {
-            if(Controlador.obtenerInstancia().enviaCorreo("Su registro a sido exitoso, su contraseña es " + contrasenna //el if es para verificar si el correo fue enviado
-                    , "Registro Sistema SGIETI Castillo Country Club", correo)){
-            JOptionPane.showMessageDialog(this, "  Su cuenta ha sido creada de forma exitosa,  \n"
-                    + "revise su correo en el encontrara su contraseña\n"
-                    + "la cual podra cambiar una vez ingrese al sistema", "Cuenta Creada", JOptionPane.INFORMATION_MESSAGE);
-            }else{
+            String nl = System.getProperty("line.separator");
+                    if (Controlador.obtenerInstancia().enviaCorreo("Correo creado automaticamente, por favor no contestar este correo "+nl
+                            +"Fue registrado en el sistema SIGETI"+nl+"Su contraseña es "+  contrasenna, "Usuario registrado", Controlador.obtenerInstancia().recortaCorreo(VentanaLogin.correo))) {
+                        JOptionPane.showMessageDialog(this, "Se le ha enviado un correo con su contraseña nueva", "Correo confirmación", JOptionPane.INFORMATION_MESSAGE);
+                    }else{
                 JOptionPane.showMessageDialog(this, "Hubo un error al enviar su contraseña de acceso a su correo \n"
                         + " Comuniquese con TI para obtener su contraseña", "Error de envio de correo", JOptionPane.ERROR_MESSAGE);
             }

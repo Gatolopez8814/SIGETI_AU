@@ -366,11 +366,12 @@ public class PanelCrearTicketAdministrativo extends javax.swing.JPanel {//panel 
                     Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora() + 1,
                             VentanaLogin.correo, "Ticket", "Creó el ticket " + consecutivo);
                     this.limpiarCampos();
-                    if (Controlador.obtenerInstancia().enviaCorreo("Su ticket fue ingreado correctamente al sistema\n"
-                            + "Puede consultar el progreso de su ticket utilizando el siguiente código"
-                            + "############", "SIGETI ticket creado", Controlador.obtenerInstancia().recortaCorreo(VentanaLogin.correo))) {
-                        JOptionPane.showMessageDialog(this, "Se ha enviado correo de confirmación", "Correo confirmación", JOptionPane.PLAIN_MESSAGE);
-                    } else {
+                    String nl = System.getProperty("line.separator");
+                    if (Controlador.obtenerInstancia().enviaCorreo("Correo creado automaticamente, por favor no contestar este correo "+nl
+                            +"Su ticket ha sido creado exitosamente "+nl
+                            + "Puede consultar el ticket con el siguiente código "+ consecutivo, "SIGETI ticket creado", Controlador.obtenerInstancia().recortaCorreo(VentanaLogin.correo))) {
+                        JOptionPane.showMessageDialog(this, "Se ha enviado un correo de confirmación a su correo electrónico", "Correo confirmación", JOptionPane.INFORMATION_MESSAGE);
+                    }  else {
                         JOptionPane.showMessageDialog(this, "No se pudo enviar correo de confirmación", "ERROR", JOptionPane.ERROR_MESSAGE);
                     }
                 } else {

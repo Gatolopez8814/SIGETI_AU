@@ -309,10 +309,13 @@ public class PanelCambioContraseñaArea extends javax.swing.JPanel {
             if (this.validaContrasenna()) {
                 if (Controlador.obtenerInstancia().cambiarContrasena(VentanaLogin.correo, String.valueOf(this.jPasswordNueva.getPassword()), String.valueOf(this.jPasswordAnterior.getPassword()))) {
                     JOptionPane.showMessageDialog(null, "Tu contraseña ha sido cambiada con éxito", "", JOptionPane.INFORMATION_MESSAGE);
-
+                    String nl = System.getProperty("line.separator");
+                    if (Controlador.obtenerInstancia().enviaCorreo("Correo creado automaticamente, por favor no contestar este correo "+nl
+                            +"Su contraseña nueva es "+ String.valueOf(this.jPasswordNueva.getPassword()), "SIGETI contraseña cambiada", Controlador.obtenerInstancia().recortaCorreo(VentanaLogin.correo))) {
+                        JOptionPane.showMessageDialog(this, "Se le ha enviado un correo con su contraseña nueva", "Correo confirmación", JOptionPane.INFORMATION_MESSAGE);
+                    }
                     Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
                             VentanaLogin.correo, "Usuario", "Cambio de contraseña");
-
                     this.limpiarCampos();
                 } else {
                     JOptionPane.showMessageDialog(null, "Tu contraseña no se ha podido cambiar", "", JOptionPane.ERROR_MESSAGE);

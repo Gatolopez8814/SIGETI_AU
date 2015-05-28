@@ -304,7 +304,7 @@ public class PanelRegistrarUsuariosAdmin extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Faltan datos", "ERROR", JOptionPane.ERROR_MESSAGE);
         } else {
             if (Controlador.obtenerInstancia().obtieneEstadoUsuario(jtCorreo.getText()) == 0) {
-                JOptionPane.showMessageDialog(this, "El usuario " + Controlador.obtenerInstancia().recortaCorreo(jtCorreo.getText()) + "@castillo.cr"+ " ya está registrado, se encuentra bloqueado", "ERROR", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "El usuario " + Controlador.obtenerInstancia().recortaCorreo(jtCorreo.getText()) + "@castillo.cr" + " ya está registrado, se encuentra bloqueado", "ERROR", JOptionPane.ERROR_MESSAGE);
             } else if (Controlador.obtenerInstancia().obtieneEstadoUsuario(jtCorreo.getText()) == 2) {
                 if (Controlador.obtenerInstancia().cambiaARegistrado(jtCorreo.getText(), 4 - comboTipo.getSelectedIndex())) {
                     JOptionPane.showMessageDialog(this, "El usuario " + Controlador.obtenerInstancia().recortaCorreo(jtCorreo.getText()) + "@castillo.cr" + "\n"
@@ -321,6 +321,11 @@ public class PanelRegistrarUsuariosAdmin extends javax.swing.JPanel {
                             connUsuario = GeneradorDeClave.obtenerInstancia().GenerarClave();
                             if ((Controlador.obtenerInstancia().registraUsuarioAdmin(jtCorreo.getText(), 4 - comboTipo.getSelectedIndex(), connUsuario))
                                     && (Controlador.obtenerInstancia().registroAreaUsuario(jtCorreo.getText(), jComboArea.getSelectedItem().toString()))) {
+                                String nl = System.getProperty("line.separator");
+                                if (Controlador.obtenerInstancia().enviaCorreo("Correo creado automaticamente, por favor no contestar este correo " + nl
+                                        + "Su contraseña es " + connUsuario, "SIGETI Nuevo Usuario", Controlador.obtenerInstancia().recortaCorreo(VentanaLogin.correo))) {
+                                    JOptionPane.showMessageDialog(this, "Usted a sido registrado en el sistema SIGETI", "Correo confirmación", JOptionPane.INFORMATION_MESSAGE);
+                                }
                                 JOptionPane.showMessageDialog(this, "   El usuario " + Controlador.obtenerInstancia().recortaCorreo(jtCorreo.getText()) + "@castillo.cr" + "\n"
                                         + "   ha sido registrado con éxito \n"
                                         + "   La contraseña es: " + connUsuario, "Usuario registrado", JOptionPane.INFORMATION_MESSAGE);
@@ -378,7 +383,7 @@ public class PanelRegistrarUsuariosAdmin extends javax.swing.JPanel {
 
     //Declaracion de variables
     private static PanelRegistrarUsuariosAdmin instancia = null;
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelBotones;
     private javax.swing.JButton btnCancelar1;

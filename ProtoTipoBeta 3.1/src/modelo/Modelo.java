@@ -24,7 +24,7 @@ public class Modelo {
     }//----------------------------------------------------------------------------- FIN recortaCorreo()
 
     public boolean enviaCorreo(String mensaje, String asunto, String correoUsuario) {
-        String correo = correoUsuario + "@gmail.com";//cambiar por @castillo.cr
+        String correo = correoUsuario + "@castillo.cr";//cambiar por @castillo.cr
         return EnviaMensaje.obtenerInstancia().sendMessage(mensaje, asunto, correo);
     }//----------------------------------------------------------------------------- FIN enviaCorreo()
 

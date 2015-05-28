@@ -18,7 +18,7 @@ public class SigetiTreeCellRenderer implements TreeCellRenderer {//clase para mo
         Object o = ((DefaultMutableTreeNode) value).getUserObject();
         if (o instanceof Informacion) {
             Informacion country = (Informacion) o;
-            label.setIcon(new ImageIcon(country.getFlagIcon()));
+            label.setIcon(country.getFlagIcon());
             label.setText(country.getName());
         } else {
             label.setIcon(null);

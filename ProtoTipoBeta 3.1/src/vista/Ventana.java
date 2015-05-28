@@ -103,7 +103,7 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
                 time_start = System.currentTimeMillis();
                 this.setTitle("SISTEMA DE GESTIÓN DE TICKETS - SIGETI - USUARIO DE AREA");
                 setSize(1210, 705);
-                setPreferredSize(new Dimension(1210, 705));                              
+                setPreferredSize(new Dimension(1210, 705));
                 setLocationRelativeTo(null);
                 setResizable(false);
                 menuArea();
@@ -642,19 +642,21 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
     }//----------------------------------------------------------------------------- FIN cambioIcono()
 
     public void cerrarSesion() {
-        setBarraEstado("¿Desea cerrar la sesion?");
-        if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Realmente "
-                + "desea cerrar la sesión?", null, JOptionPane.YES_NO_OPTION)) {
-            Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
-                    VentanaLogin.correo, "No aplica", "Finalizó sesión");
-            sesion = false;
-            VentanaLogin.obtenerInstancia().mostrar();
-            ocultar();
-            this.desAbilitarMenu();
-            panelPrincipal.removeAll();
-            revalidate();
+        if (sesion) {
+            setBarraEstado("¿Desea cerrar la sesion?");
+            if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Realmente "
+                    + "desea cerrar la sesión?", null, JOptionPane.YES_NO_OPTION)) {
+                Controlador.obtenerInstancia().ejecutarSentenciaSQL(Controlador.obtenerInstancia().consultarConsecutivoBitacora(),
+                        VentanaLogin.correo, "No aplica", "Finalizó sesión");
+                sesion = false;
+                VentanaLogin.obtenerInstancia().mostrar();
+                ocultar();
+                this.desAbilitarMenu();
+                panelPrincipal.removeAll();
+                revalidate();
+            }
+            setBarraEstadoMensajeAnterior();
         }
-        setBarraEstadoMensajeAnterior();
     }//----------------------------------------------------------------------------- FIN cerrarSesion()
 
     public void cambiarClaveStandar() {
@@ -1083,7 +1085,7 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
         if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Desea consultar el manual de usuario?", "Ayuda", JOptionPane.YES_NO_OPTION)) {
             Controlador.obtenerInstancia().abreManual(VentanaLogin.correo);
         }
-        
+
         setBarraEstadoMensajeAnterior();
     }//----------------------------------------------------------------------------- FIN ayuda()
 
@@ -1098,7 +1100,7 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
         }
     }//----------------------------------------------------------------------------- FIN run()
 
-    public void validaTimer() {      
+    public void validaTimer() {
         if (sesion && ((System.currentTimeMillis() - time_start) > 300000)) {
             time_start = System.currentTimeMillis();
             sesion = false;
@@ -1160,10 +1162,10 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
     private BarraEstado barraEstado;
     private String usuarioActivo; //Para guardar el tipo de usuario que está utilizando sistema
     private final int sizeY = Toolkit.getDefaultToolkit().getScreenSize().height - 50;
-    private final int sizeX = Toolkit.getDefaultToolkit().getScreenSize().width - 1;  
+    private final int sizeX = Toolkit.getDefaultToolkit().getScreenSize().width - 1;
     private static Ventana instancia = null;
     private JScrollPane scrollPanelPrincipal = null;
-    private JPanel panelPrincipal = null;   
+    private JPanel panelPrincipal = null;
     private JMenuBar menu;
     private JMenu menuArchivo;
     private JMenu menuOpciones;
@@ -1180,7 +1182,7 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
     private JMenuItem itemCambioClave;
     private boolean sesion;
     private long time_start;
-    private long time_check_alert;   
+    private long time_check_alert;
     private Alertas alerta;
     private int numAlertas;
     private boolean admin;

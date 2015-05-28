@@ -1,8 +1,10 @@
 package vista;
 
+import javax.swing.ImageIcon;
+
 public class Informacion {//clase para poder asignar la imagen diferente y un nombre a los arboles
 
-    public Informacion(String name, String flagIcon) {
+    public Informacion(String name, ImageIcon flagIcon) {
         this.name = name;
         this.flagIcon = flagIcon;
     }//----------------------------------------------------------------------------- FIN Constructor()
@@ -15,11 +17,11 @@ public class Informacion {//clase para poder asignar la imagen diferente y un no
         this.name = name;
     }//----------------------------------------------------------------------------- FIN setName()
 
-    public String getFlagIcon() {
+    public ImageIcon getFlagIcon() {
         return flagIcon;
     }//----------------------------------------------------------------------------- FIN getFlagIcon()
 
-    public void setFlagIcon(String flagIcon) {
+    public void setFlagIcon(ImageIcon flagIcon) {
         this.flagIcon = flagIcon;
     }//----------------------------------------------------------------------------- FIN setFlagIcon()
 
@@ -30,5 +32,5 @@ public class Informacion {//clase para poder asignar la imagen diferente y un no
 
     //Declaracion de variables
     private String name;
-    private String flagIcon;
+    private ImageIcon flagIcon;
 }//____________________________________________________________________END_CLASS

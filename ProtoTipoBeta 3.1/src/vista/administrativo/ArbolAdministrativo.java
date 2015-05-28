@@ -3,6 +3,7 @@ package vista.administrativo;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JTree;
 import javax.swing.event.TreeSelectionEvent;
@@ -57,35 +58,35 @@ public class ArbolAdministrativo extends JPanel {//Arbol para usuario de Adminis
     }//----------------------------------------------------------------------------- FIN ajustarComponentes()
 
     private void armarArbol() {//inicializa y arma el jTree
-        Informacion infSigeti = new Informacion("SIGETI", "src/img/SIGETI-icon16.png");          
-        Informacion infTicket = new Informacion("Gestión de tickets               ", "src/img/Carpeta-tickets16.png");   
-        Informacion infCrear = new Informacion("Crear nuevo ticket", "src/img/ticket16.png");
-        Informacion infBandejaEntrada = new Informacion("Bandeja de entrada", "src/img/inbox-iconx16.png");
-        Informacion infEnProceso = new Informacion("Tickets en proceso", "src/img/helical-gear-iconx16.png");
-        Informacion infAsignados = new Informacion("Tickets asignados", "src/img/User-Files-iconx16.png");
-        Informacion infAlertas = new Informacion("Alertas de tickets", "src/img/Alerts-iconx16.png");
-        Informacion infCerrados = new Informacion("Tickets cerrados", "src/img/wood-box-iconx16.png");
-        Informacion infConfTicket = new Informacion("Asuntos y áreas", "src/img/Control-Panel-icon.png");
+        Informacion infSigeti = new Informacion("SIGETI", new ImageIcon(getClass().getResource("/img/SIGETI-icon16.png")));          
+        Informacion infTicket = new Informacion("Gestión de tickets               ", new ImageIcon(getClass().getResource("/img/Carpeta-tickets16.png")) );   
+        Informacion infCrear = new Informacion("Crear nuevo ticket", new ImageIcon(getClass().getResource("/img/ticket16.png")));
+        Informacion infBandejaEntrada = new Informacion("Bandeja de entrada", new ImageIcon(getClass().getResource("/img/inbox-iconx16.png")));
+        Informacion infEnProceso = new Informacion("Tickets en proceso", new ImageIcon(getClass().getResource("/img/helical-gear-iconx16.png")));
+        Informacion infAsignados = new Informacion("Tickets asignados", new ImageIcon(getClass().getResource("/img/User-Files-iconx16.png")));
+        Informacion infAlertas = new Informacion("Alertas de tickets", new ImageIcon(getClass().getResource("/img/Alerts-iconx16.png")));
+        Informacion infCerrados = new Informacion("Tickets cerrados", new ImageIcon(getClass().getResource("/img/wood-box-iconx16.png")));
+        Informacion infConfTicket = new Informacion("Asuntos y áreas", new ImageIcon(getClass().getResource("/img/Control-Panel-icon.png")));
         
-        Informacion infGestionReportes = new Informacion("Gestión de reportes", "src/img/MI-Scare-Report-iconx16.png");
-        Informacion infReportes = new Informacion("Generar reporte", "src/img/Reports-iconx16.png");
-        Informacion infBitacora = new Informacion("Bitácora", "src/img/contacts-icon2x16.png");
+        Informacion infGestionReportes = new Informacion("Gestión de reportes", new ImageIcon(getClass().getResource("/img/MI-Scare-Report-iconx16.png")));
+        Informacion infReportes = new Informacion("Generar reporte", new ImageIcon(getClass().getResource("/img/Reports-iconx16.png")));
+        Informacion infBitacora = new Informacion("Bitácora",new ImageIcon(getClass().getResource("/img/contacts-icon2x16.png")) );
 
-        Informacion infGestionUsuarios = new Informacion("Gestión de usuarios", "src/img/users-iconx16.png");
-        Informacion infAgregarUsuario = new Informacion("Registrar usuario", "src/img/Actions-list-add-user-iconx16.png");
-        Informacion infEliminarUsuario = new Informacion("Eliminar usuario", "src/img/Actions-list-remove-user-iconx16.png");
-        Informacion infBloqueoUsuario = new Informacion("Bloquear usuario", "src/img/Apps-preferences-desktop-user-password-iconx16.png");
-        Informacion infDesBloqueoUsuario = new Informacion("Desbloquear usuario", "src/img/Apps-preferences-desktop-user-iconx16.png");
-        Informacion infCambioTipo = new Informacion("Cambiar Tipo usuario", "src/img/Actions-user-properties-icon.png");
+        Informacion infGestionUsuarios = new Informacion("Gestión de usuarios",new ImageIcon(getClass().getResource("/img/users-iconx16.png")) );
+        Informacion infAgregarUsuario = new Informacion("Registrar usuario",new ImageIcon(getClass().getResource("/img/Actions-list-add-user-iconx16.png")) );
+        Informacion infEliminarUsuario = new Informacion("Eliminar usuario",new ImageIcon(getClass().getResource( "/img/Actions-list-remove-user-iconx16.png")));
+        Informacion infBloqueoUsuario = new Informacion("Bloquear usuario", new ImageIcon(getClass().getResource("/img/Apps-preferences-desktop-user-password-iconx16.png")));
+        Informacion infDesBloqueoUsuario = new Informacion("Desbloquear usuario", new ImageIcon(getClass().getResource("/img/Apps-preferences-desktop-user-iconx16.png")));
+        Informacion infCambioTipo = new Informacion("Cambiar Tipo usuario", new ImageIcon(getClass().getResource("/img/Actions-user-properties-icon.png")));
         
-        Informacion infConsultas = new Informacion("Gestión consultas", "src/img/Carpeta-Search16.png");
-        Informacion infConsultarUltimo = new Informacion("Consultar úlltimo ticket", "src/img/Search16.png");
-        Informacion infConsultarUno = new Informacion("Consultar un ticket", "src/img/Search216.png");
-        Informacion infConsultarTodos = new Informacion("Consultar varios tickets", "src/img/Search316.png");
-        Informacion infCambioClave = new Informacion("Cambiar contraseña", "src/img/claveiconx16.png");
-        Informacion infConf = new Informacion("Configuración", "src/img/Conf-iconx16.png");
-        Informacion infCerrarSeccion = new Informacion("Cerrar sesión", "src/img/user-login-iconx16.png");
-        Informacion infTodosTickets = new Informacion("Todos los tickets", "src/img/3-Gray-Paper-Box-icon.png");
+        Informacion infConsultas = new Informacion("Gestión consultas",new ImageIcon(getClass().getResource("/img/Carpeta-Search16.png")) );
+        Informacion infConsultarUltimo = new Informacion("Consultar úlltimo ticket",new ImageIcon(getClass().getResource("/img/Search16.png")) );
+        Informacion infConsultarUno = new Informacion("Consultar un ticket", new ImageIcon(getClass().getResource("/img/Search216.png")));
+        Informacion infConsultarTodos = new Informacion("Consultar varios tickets",new ImageIcon(getClass().getResource( "/img/Search316.png")));
+        Informacion infCambioClave = new Informacion("Cambiar contraseña",new ImageIcon(getClass().getResource( "/img/claveiconx16.png")));
+        Informacion infConf = new Informacion("Configuración",new ImageIcon(getClass().getResource("/img/Conf-iconx16.png")) );
+        Informacion infCerrarSeccion = new Informacion("Cerrar sesión",new ImageIcon(getClass().getResource("/img/user-login-iconx16.png")) );
+        Informacion infTodosTickets = new Informacion("Todos los tickets", new ImageIcon(getClass().getResource("/img/3-Gray-Paper-Box-icon.png")));
 
         DefaultMutableTreeNode nodoSigeti = new DefaultMutableTreeNode(infSigeti);
         DefaultMutableTreeNode nodoTicket = new DefaultMutableTreeNode(infTicket);

@@ -21,9 +21,10 @@ public class ManejadorDeArchivos {
 
     public String leerFichero(String nombreArchivo) {
         try {
-            File f;
+            
             FileReader lectorArchivo;
-            f = new File(nombreArchivo);
+            File f = new File("C:\\Users\\Public\\SIGETI\\" + nombreArchivo );
+
             lectorArchivo = new FileReader(f);
             BufferedReader br = new BufferedReader(lectorArchivo);
             String l = "";
@@ -46,7 +47,11 @@ public class ManejadorDeArchivos {
     }//end_leer
 
     public void escribirArchivo(String nombreArchivo, String txt) {
-        File f = new File(nombreArchivo);
+        
+        File f = new File("C:\\Users\\Public\\SIGETI\\" + nombreArchivo );
+        //String absolutePath = file.getAbsolutePath();
+        //System.out.println(absolutePath);
+       // File f = new File(absolutePath);
         try {
             FileWriter w = new FileWriter(f);
             BufferedWriter bw = new BufferedWriter(w);

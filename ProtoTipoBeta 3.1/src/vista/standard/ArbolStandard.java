@@ -3,6 +3,7 @@ package vista.standard;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JTree;
 import javax.swing.event.TreeSelectionEvent;
@@ -57,16 +58,17 @@ public class ArbolStandard extends JPanel {
     }//----------------------------------------------------------------------------- FIN ajustarComponentes()
 
     private void armarArbol() {
-        Informacion infSigeti = new Informacion("SIGETI", "src/img/SIGETI-icon16.png");          
-        Informacion infTicket = new Informacion("Gestión de tickets               ", "src/img/Carpeta-tickets16.png");   
-        Informacion infCrear = new Informacion("Crear nuevo ticket", "src/img/ticket16.png");
-        Informacion infConsultas = new Informacion("Gestión de consultas", "src/img/Carpeta-Search16.png");
-        Informacion infConsultarUltimo = new Informacion("Consultar último ticket", "src/img/Search16.png");
-        Informacion infConsultarUno = new Informacion("Consultar un ticket", "src/img/Search216.png");
-        Informacion infConsultarTodos = new Informacion("Historial de tickets", "src/img/Search316.png");
-        Informacion infCambioClave = new Informacion("Cambiar contraseña", "src/img/claveiconx16.png");
-        Informacion infConf = new Informacion("Configuración", "src/img/Conf-iconx16.png");
-        Informacion infCerrarSeccion = new Informacion("Cerrar sesión", "src/img/user-login-iconx16.png");
+        //new ImageIcon(getClass().getResource("/img/wood-box-iconx16.png"));
+        Informacion infSigeti = new Informacion("SIGETI", new ImageIcon(getClass().getResource("/img/SIGETI-icon16.png")) );
+        Informacion infTicket = new Informacion("Gestión de tickets               ", new ImageIcon(getClass().getResource("/img/Carpeta-tickets16.png")));   
+        Informacion infCrear = new Informacion("Crear nuevo ticket", new ImageIcon(getClass().getResource("/img/ticket16.png")));
+        Informacion infConsultas = new Informacion("Gestión de consultas", new ImageIcon(getClass().getResource("/img/Carpeta-Search16.png")));
+        Informacion infConsultarUltimo = new Informacion("Consultar último ticket", new ImageIcon(getClass().getResource("/img/Search16.png")));
+        Informacion infConsultarUno = new Informacion("Consultar un ticket", new ImageIcon(getClass().getResource("/img/Search216.png")));
+        Informacion infConsultarTodos = new Informacion("Historial de tickets", new ImageIcon(getClass().getResource("/img/Search316.png")));
+        Informacion infCambioClave = new Informacion("Cambiar contraseña",new ImageIcon(getClass().getResource("/img/claveiconx16.png")) );
+        Informacion infConf = new Informacion("Configuración", new ImageIcon(getClass().getResource("/img/Conf-iconx16.png")));
+        Informacion infCerrarSeccion = new Informacion("Cerrar sesión", new ImageIcon(getClass().getResource("/img/user-login-iconx16.png")));
 
         nodoSigeti = new DefaultMutableTreeNode(infSigeti);
         nodoTicket = new DefaultMutableTreeNode(infTicket);
