@@ -62,7 +62,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+//            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return valores;
     }//----------------------------------------------------------------------------- FIN verificaLoggin()   
@@ -87,7 +87,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+//            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return ok;
     }//----------------------------------------------------------------------------- FIN verificarContrasenna()   
@@ -104,7 +104,7 @@ public class Modelo {
         } catch (Exception e) {
             return false;
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return false;
     }//----------------------------------------------------------------------------- FIN registraUsuarioAdmin()
@@ -122,7 +122,7 @@ public class Modelo {
                     "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+//            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return false;
     }//----------------------------------------------------------------------------- FIN registraUsuarioAdmin()
@@ -143,7 +143,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+//            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return estado;
     }//----------------------------------------------------------------------------- FIN obtieneEstadoUsuario()
@@ -161,7 +161,7 @@ public class Modelo {
                     "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return false;
     }//----------------------------------------------------------------------------- FIN cambiaARegistrado()
@@ -179,7 +179,7 @@ public class Modelo {
                     "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return false;
     }//----------------------------------------------------------------------------- FIN eliminaUsuarioAdmin()
@@ -197,7 +197,7 @@ public class Modelo {
                     "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return false;
     }//----------------------------------------------------------------------------- FIN bloqueaUsuarioAdmin()
@@ -215,7 +215,7 @@ public class Modelo {
                     "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return false;
     }//----------------------------------------------------------------------------- FIN desBloqueaUsuarioAdmin()
@@ -246,7 +246,7 @@ public class Modelo {
                     "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return false;
     }//----------------------------------------------------------------------------- FIN registraNuevoTicket()
@@ -286,7 +286,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return _ticket;
     }//----------------------------------------------------------------------------- FIN consultaUno()
@@ -332,7 +332,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return _ticket;
     }//----------------------------------------------------------------------------- FIN consultaUltimo()
@@ -378,7 +378,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return tEncontrados;
     }
@@ -416,7 +416,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return tEncontrados;
     }//---------------------------------------------------------------------------------------FIN ConsultaAreaTickets
@@ -435,7 +435,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return _estado;
     }//----------------------------------------------------------------------------- FIN consultaEstado()
@@ -452,7 +452,7 @@ public class Modelo {
                     "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return false;
     }//----------------------------------------------------------------------------- FIN cambioEstadoLeido()
@@ -494,7 +494,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return datos;
     }//----------------------------------------------------------------------------- FIN informacionTicket()
@@ -512,7 +512,7 @@ public class Modelo {
                     "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return false;
     }//----------------------------------------------------------------------------- FIN cambioContrasenna()
@@ -546,7 +546,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return tEncontrados;
     }//----------------------------------------------------------------------------- FIN ticketsDelArea()
@@ -570,7 +570,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return tEncontrados;
     }//----------------------------------------------------------------------------- FIN obtieneAreas()
@@ -593,7 +593,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return tEncontrados;
     }//----------------------------------------------------------------------------- FIN obtieneUsuarios()
@@ -616,7 +616,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return tEncontrados;
     }//----------------------------------------------------------------------------- FIN obtieneUsuariosEliminar()
@@ -639,7 +639,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return usuarios;
     }//----------------------------------------------------------------------------- FIN obtieneTodosUsuarios()
@@ -663,7 +663,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return usuarios;
     }//----------------------------------------------------------------------------- FIN obtieneUsuariosGeneral()
@@ -685,7 +685,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return area;
     }//----------------------------------------------------------------------------- FIN obtieneNombreArea()
@@ -709,7 +709,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return usuarios;
     }//----------------------------------------------------------------------------- FIN obtieneUsuariosPorArea()
@@ -733,7 +733,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return tEncontrados;
     }//----------------------------------------------------------------------------- FIN obtieneAsuntos()
@@ -767,7 +767,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return tEncontrados;
     }//----------------------------------------------------------------------------- FIN tickets EnprocesoArea()
@@ -800,7 +800,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return tEncontrados;
     }//----------------------------------------------------------------------------- FIN tickets En proceso Area
@@ -834,7 +834,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return tEncontrados;
     }//----------------------------------------------------------------------------- FIN ticketsDelAreaAsignados()
@@ -867,7 +867,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return tEncontrados;
     }//----------------------------------------------------------------------------- FIN ticketsDelAreaAsignados()
@@ -901,7 +901,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return tBandeja;
     }//----------------------------------------------------------------------------- FIN ticketsBandejaEntradaArea()
@@ -934,7 +934,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return tBandeja;
     }//----------------------------------------------------------------------------- FIN ticketsBandejaEntradaAdmin()
@@ -952,7 +952,7 @@ public class Modelo {
                     "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return false;
     }//----------------------------------------------------------------------------- FIN cerrarTicket()
@@ -986,7 +986,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return tBandeja;
     }//----------------------------------------------------------------------------- FIN ticketsCerradosArea()
@@ -1019,7 +1019,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return tBandeja;
     }//----------------------------------------------------------------------------- FIN ticketsCerradosAdmin
@@ -1037,7 +1037,7 @@ public class Modelo {
                     "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return false;
     }//----------------------------------------------------------------------------- FIN registraAreaUsuariomodificaAreaUsuario
@@ -1055,7 +1055,7 @@ public class Modelo {
                     "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return false;
     }//----------------------------------------------------------------------------- FIN registraAreaUsuariomodificaAreaUsuario
@@ -1077,7 +1077,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return cantidad;
     }//----------------------------------------------------------------------------- FIN cantidadNuevosAdmin()
@@ -1099,7 +1099,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return cantidad;
     }//----------------------------------------------------------------------------- FIN cantidadTotalAdmin()
@@ -1134,7 +1134,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return tBandeja;
     }//----------------------------------------------------------------------------- FIN ticketsTodosLosTickets()
@@ -1156,7 +1156,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return cantidad;
     }//----------------------------------------------------------------------------- FIN cantidadAsignadosAdmin()
@@ -1178,7 +1178,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return cantidad;
     }//----------------------------------------------------------------------------- FIN cantidadProcesoAdmin()
@@ -1200,7 +1200,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return cantidad;
     }//----------------------------------------------------------------------------- FIN cantidadCerradosAdmin()
@@ -1223,7 +1223,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return cantidad;
     }//----------------------------------------------------------------------------- FIN cantidadNuevosArea()
@@ -1247,7 +1247,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return cantidad;
     }//----------------------------------------------------------------------------- FIN cantidadAsignadosArea()
@@ -1271,7 +1271,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return cantidad;
     }//----------------------------------------------------------------------------- FIN cantidadProcesoArea()
@@ -1295,7 +1295,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return cantidad;
     }//----------------------------------------------------------------------------- FIN cantidadCerradosArea()
@@ -1317,7 +1317,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return cantidad;
     }//----------------------------------------------------------------------------- FIN obtieneComentarios()
@@ -1340,7 +1340,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return cantidad;
     }//----------------------------------------------------------------------------- FIN cantidadTotalArea()
@@ -1359,7 +1359,7 @@ public class Modelo {
                     "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return false;
     }//----------------------------------------------------------------------------- FIN agregaComentario()
@@ -1378,7 +1378,7 @@ public class Modelo {
                     "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return false;
     }//----------------------------------------------------------------------------- FIN cambiaFechaSolucion()
@@ -1397,7 +1397,7 @@ public class Modelo {
                     "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return false;
     }//----------------------------------------------------------------------------- FIN cambiaPrioridad()
@@ -1416,7 +1416,7 @@ public class Modelo {
                     "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return false;
     }//----------------------------------------------------------------------------- FIN redireccionarTicket()
@@ -1434,7 +1434,7 @@ public class Modelo {
                     "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return false;
     }//----------------------------------------------------------------------------- FIN asignarResponsable()
@@ -1452,7 +1452,7 @@ public class Modelo {
                     "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return false;
     }//----------------------------------------------------------------------------- FIN cambiaFechaRealSolucion()
@@ -1471,7 +1471,7 @@ public class Modelo {
                     "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+//            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return false;
     }//----------------------------------------------------------------------------- FIN ejecutarSentenciaSQL()
@@ -1491,7 +1491,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return contador + 1;
     }//----------------------------------------------------------------------------- FIN consultarConsecutivoTicket()
@@ -1511,7 +1511,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+//            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return contador + 1;
     }//----------------------------------------------------------------------------- FIN consultarConsecutivoBitacora()
@@ -1545,7 +1545,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return bitacora;
     }//----------------------------------------------------------------------------- FIN consultaBitacoraUsuario()
@@ -1581,7 +1581,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return bitacora;
     }//----------------------------------------------------------------------------- FIN consultaBitacoraFechas()
@@ -1617,7 +1617,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return bitacora;
     }//----------------------------------------------------------------------------- FIN consultaBitacoraHoras()
@@ -1634,7 +1634,7 @@ public class Modelo {
                     "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return false;
     }//----------------------------------------------------------------------------- FIN agregarArea()
@@ -1651,7 +1651,7 @@ public class Modelo {
                     "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return false;
     }//----------------------------------------------------------------------------- FIN agregarAsunto()
@@ -1668,7 +1668,7 @@ public class Modelo {
                     "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return false;
     }//----------------------------------------------------------------------------- FIN eliminarAsunto()
@@ -1685,7 +1685,7 @@ public class Modelo {
                     "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return false;
     }//----------------------------------------------------------------------------- FIN eliminarArea()
@@ -1703,7 +1703,7 @@ public class Modelo {
                     "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return false;
     }//----------------------------------------------------------------------------- FIN ModificarArea()
@@ -1721,7 +1721,7 @@ public class Modelo {
                     "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return false;
     }//----------------------------------------------------------------------------- FIN ModificarAsunto()
@@ -1748,7 +1748,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return fecha;
     }//----------------------------------------------------------------------------- FIN getSysDateFromServer()
@@ -1782,7 +1782,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return bitacora;
     }//----------------------------------------------------------------------------- FIN consultaBitacoraGeneral()
@@ -1817,7 +1817,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+//            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return tAlertas;
     }//---------------------------------------------------------------------------------------FIN ticketsAlertasAdmin
@@ -1884,7 +1884,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return tEncontrados;
     }//---------------------------------------------------------------------------------------FIN consultaReporteArea
@@ -1912,7 +1912,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return tEncontrados;
     }//---------------------------------------------------------------------------------------FIN consultaReporteFecha
@@ -1940,7 +1940,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return tEncontrados;
     }//---------------------------------------------------------------------------------------FIN consultaReporteHoras
@@ -1970,7 +1970,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return tEncontrados;
     }//---------------------------------------------------------------------------------------FIN consultaReportesMiArea
@@ -1999,7 +1999,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return tEncontrados;
     }//---------------------------------------------------------------------------------------FIN consultaReporteHorasArea
@@ -2028,7 +2028,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return tEncontrados;
     }//---------------------------------------------------------------------------------------FIN consultaReporteFechaArea
@@ -2050,7 +2050,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, intentelo más tarde",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
-            ConexionMySql.obtenerInstancia().desconectar();
+            //ConexionMySql.obtenerInstancia().desconectar();
         }
         return tipo;
     }
